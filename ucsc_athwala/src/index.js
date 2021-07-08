@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import SignIn from './Signin/SignIn'
-import reportWebVitals from './reportWebVitals';
+import SignInt from './Signin/SignIn';
+import CreateFundraising from './Fundraising/CreateFundraising';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <SignIn/>
+    <SignInt />
+    {/* <CreateFundraising /> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
@@ -15,4 +15,3 @@ ReactDOM.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
