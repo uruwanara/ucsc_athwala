@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SignInt from './Signin/SignIn';
+import CreateFundraising from './Fundraising/CreateFundraising';
 
 
 ReactDOM.render(
   <React.StrictMode>
     <SignInt />
+    {/* <CreateFundraising /> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
