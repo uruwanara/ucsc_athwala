@@ -6,9 +6,9 @@ function CreateFundraising() {
     return (
 
         <div className="container mt-4 shadow-lg p-3 mb-5 bg-body rounded">
-            <h2 class="text-primary" align="center">Let's create a fundraising for the needs</h2>
-
-            <form action="#" className="p-4 bg-secondary" >
+            <h2 class="text-primary text-center">Let's create a fundraising for the needs</h2>
+<hr />
+            <form action="#" className="p-4 bg-secondary mt-3" >
                 <div className="form-group row g-3">
 
                     <div className="col-md-8">
@@ -42,10 +42,16 @@ function CreateFundraising() {
                         <input name="base_amount" type="time" className="form-control" placeholder="Enter an expired time" id="input_expired_time" />
                     </div>
 
-                    <div className="col-md-12 mt-4 text-center">
-                        <button type="submit" class="btn btn-primary">Create Fundraising</button>
+                    <div className="col-md-12 mt-4 text-center m-1">
+                        <div>
+                        <button type="submit" value="submit" class="btn btn-primary float-end m-1">Create Fundraising</button>
+                        </div>
+                        <div>
+                        <button type="reset" value="reset" class="btn btn-primary float-end m-1">Reset Details</button>
+                        </div>
                     </div>
 
+                
                 </div>
             </form>
         </div>
