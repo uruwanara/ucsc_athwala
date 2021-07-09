@@ -1,197 +1,57 @@
-
+import { formatMs } from '@material-ui/core';
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import { TextField } from '@material-ui/core';
-import { createTheme } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
-import { red } from '@material-ui/core/colors/red';
-import CurrencyTextField from '@unicef/material-ui-currency-textfield';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
-import { ThemeProvider } from '@material-ui/styles';
-import './CreateFundraising.css';
 
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: '#043387',
-            dark: '#000f59',
-            // light:'#4b5cb8',
-            light: '#0288d1',
-            contrastText: '#ffffff'
-        },
-        secondary: {
-            main: '#40c4ff',
-            light: '#82f7ff',
-            dark: '#0094cc',
-            contrastText: '#000000',
-        },
-    },
-});
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
-
-
-}));
-
-
-
-export default function CreateFundraising() {
-    const classes = useStyles();
-    const [value, setValue] = React.useState(100);
-
+function CreateFundraising() {
     return (
-        // <Box bgcolor="secondary.main"  color="secondary.contrastText" p={5}>
-        <ThemeProvider theme={theme}>
-            <Box bgcolor="primary.light" p={5}>
-                <div className={classes.root}>
 
-                    <form className={classes.root} noValidate autoComplete="off">
-                        <Box color="secondary.light" mb={5}>
-                            <Typography align="center" variant="h4" component="h2">Let's Create a fundraising for the needs</Typography>
-                        </Box>
-                        <hr />
+        <div className="container mt-4 shadow-lg p-3 mb-5 bg-body rounded">
+            <h2 class="text-primary" align="center">Let's create a fundraising for the needs</h2>
 
-                        <Grid container spacing={4}>
+            <form action="#" className="p-4 bg-secondary" >
+                <div className="form-group row g-3">
 
-                            <Grid item xs={8}>
-                                <Box color="primary.contrastText">
-                                    <Typography variant="h6" component="h2">Fundaising Topic</Typography>
-                                    <TextField
-                                        variant="outlined"
-                                        margin="normal"
-                                        id="fund_topic"
-                                        label="Fundraising Topic"
-                                        name="fund_topic"
-                                        // autoComplete="email"
-                                        // autoFocus
-                                        size="medium"
-                                        placeholder="Enter meaningful topic"
-                                        fullWidth
-                                    />
-                                </Box>
-                            </Grid>
+                    <div className="col-md-8">
+                        <label for="input_fund_topic" className="form-label">Fundraising Topic</label>
+                        <input name="topic" type="text" className="form-control" placeholder="Enter the fundraising topic" id="input_fund_topic" />
+                    </div>
 
-                            <Grid item xs={4}>
-                                <Box color="primary.contrastText">
-                                    <Typography variant="h6" component="h2">Expected total amount</Typography>
-                                    <CurrencyTextField
-                                        label="Enter the expecting amount"
-                                        margin="normal"
-                                        variant="outlined"
-                                        value={value}
-                                        currencySymbol="Rs."
-                                        outputFormat="string"
-                                    //  onChange={(event, value)=> setValue(value)}
-                                    />
-                                </Box>
-                            </Grid>
+                    <div className="col-md-4">
+                        <label for="input_tot_amount" className="form-label">Expected Total Amount</label>
+                        <input name="tot_amount" type="text" className="form-control" placeholder="Enter the expecting amount" id="input_tot_amount" />
+                    </div>
 
-                            <Grid item xs={12}>
-                                <Box color="primary.contrastText">
-                                    <Typography variant="h6" component="h2">Fundraising Description</Typography>
-                                    <TextField
-                                        variant="outlined"
-                                        margin="normal"
-                                        id="fund_description"
-                                        label="Fundraising Description"
-                                        name="fund_descrition"
-                                        // autoComplete="email"
-                                        // autoFocus
-                                        size="medium"
-                                        placeholder="Enter a detailed description"
-                                        fullWidth
-                                    />
-                                </Box>
-                            </Grid>
+                    <div className="col-md-12">
+                        <label for="input_fund_descrition" className="form-label">Fundraising Description</label>
+                        <input name="description" type="text" className="form-control" placeholder="Enter a meaningful description" id="input_fund_descrition" />
+                    </div>
 
-                            <Grid item xs={4}>
-                                <Box color="primary.contrastText" align="center">
-                                    <Typography variant="h6" component="h2">Base amount</Typography>
-                                </Box>
-                                <Box align="center" >
-                                    <CurrencyTextField
-                                        label="Enter the base amount"
-                                        margin="normal"
-                                        variant="outlined"
-                                        //   fullWidth
-                                        // value={100}
-                                        currencySymbol="Rs."
-                                        outputFormat="string"
-                                    //  onChange={(event, value)=> setValue(value)}
-                                    />
-                                </Box>
-                            </Grid>
 
-                            <Grid item xs={4}>
-                                <Box color="primary.contrastText" align="center" >
-                                    <Typography variant="h6" component="h2">Expired Date of Fundraising</Typography>
-                                </Box>
-                                <Box align="center" >
-                                    <TextField
-                                        variant="outlined"
-                                        margin="normal"
-                                        id="fund_topic"
-                                        //   fullWidth
-                                        label="Date"
-                                        caption="Fundraising Topic"
-                                        name="fund_topic"
-                                        // autoComplete="email"
-                                        // autoFocus
-                                        size="medium"
-                                        type="date"
-                                        placeholder="Enter meaningful topic"
+                    <div className="col-md-4">
+                        <label for="input_base_amount" className="form-label">Base amount of fundraising</label>
+                        <input name="base_amount" type="text" className="form-control" placeholder="Enter a base amount" id="input_base_amount" />
+                    </div>
 
-                                    />
-                                </Box>
-                            </Grid>
+                    <div className="col-md-4">
+                        <label for="input_expired_date" className="form-label">Expired date of fundraising</label>
+                        <input name="base_amount" type="date" className="form-control" placeholder="Enter an expire date" id="input_expired_date" />
+                    </div>
 
-                            <Grid item xs={4}>
-                                <Box color="primary.contrastText" align="center">
-                                    <Typography variant="h6" component="h2">Expired Time of Fundraising</Typography>
-                                </Box>
-                                <Box align="center">
-                                    <TextField
-                                        variant="outlined"
-                                        margin="normal"
-                                        id="ex_time"
-                                        label="Time"
-                                        // fullWidth
-                                        name="fund_topic"
-                                        // autoComplete="email"
-                                        // autoFocus
-                                        size="medium"
-                                        type="time"
-                                        placeholder="Enter meaningful topic"
-                                    />
-                                </Box>
-                            </Grid>
+                    <div className="col-md-4">
+                        <label for="input_expired_time" className="form-label">Expired time of fundraising</label>
+                        <input name="base_amount" type="time" className="form-control" placeholder="Enter an expired time" id="input_expired_time" />
+                    </div>
 
-                            <Grid item xs={12} >
-                                <Box align="right" >
-                                    <Button size="medium" variant="contained" color="secondary">
-                                        Create Fundraising
-                                    </Button>
-                                </Box>
-                            </Grid>
+                    <div className="col-md-12 mt-4 text-center">
+                        <button type="submit" class="btn btn-primary">Create Fundraising</button>
+                    </div>
 
-                        </Grid>
-                    </form>
-                    
                 </div>
-            </Box>
-        </ThemeProvider>
+            </form>
+        </div>
+
     );
+
 }
+
+export default CreateFundraising;
