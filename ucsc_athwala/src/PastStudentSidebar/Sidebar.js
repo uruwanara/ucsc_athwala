@@ -1,142 +1,18 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
-import Navbar from '../Navbar/Navbar';
-import ShopIcon from '@material-ui/icons/Shop';
-import GavelIcon from '@material-ui/icons/Gavel';
-import WorkIcon from '@material-ui/icons/Work';
-import VideocamIcon from '@material-ui/icons/Videocam';
-import ChatIcon from '@material-ui/icons/Chat';
-import ForumIcon from '@material-ui/icons/Forum';
-import HelpIcon from '@material-ui/icons/Help';
+import '../css/sidebar.css';
 
-
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-    },
-    appBar: {
-      zIndex: theme.zIndex.drawer + 1,
-    },
-    drawer: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-    drawerPaper: {
-      width: drawerWidth,
-    },
-    drawerContainer: {
-      overflow: 'auto',
-    },
-    content: {
-      flexGrow: 1,
-      padding: theme.spacing(3),
-    },
-  }));
-
-
-  export default function Sidebar() {
-    const classes = useStyles();
-  
-    return (
-      <div className={classes.root}>
-        <CssBaseline />
-        
-        {<AppBar position="fixed" className={classes.appBar}>
-          <Navbar />
-        </AppBar>}
-        
-        <Drawer
-          className={classes.drawer}
-          variant="permanent"
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-        >
-          <Toolbar />
-          <div className={classes.drawerContainer}>
-              <List>
-  
-              <ListItem button href="#">
-              <ListItemIcon>
-                  <DashboardIcon style={{ fill: "orange"}}/>  
-              </ListItemIcon>
-              <ListItemText primary="Dashboard" />
-              </ListItem>
-
-              <ListItem button>
-              <ListItemIcon>
-                  <WorkIcon style={{ fill: "orange"}}/>
-              </ListItemIcon>
-              <ListItemText primary="Job vacancy" />
-              </ListItem>
-  
-              <ListItem button>
-              <ListItemIcon>
-                  <PeopleAltIcon style={{ fill: "orange"}}/>
-              </ListItemIcon>
-              <ListItemText primary="Donation" />
-              </ListItem>
-  
-              <ListItem button>
-              <ListItemIcon>
-                  <ShopIcon style={{ fill: "orange"}}/>
-              </ListItemIcon>
-              <ListItemText primary="Product" />
-              </ListItem>
-  
-              <ListItem button>
-              <ListItemIcon>
-                  <GavelIcon style={{ fill: "orange"}}/>
-              </ListItemIcon>
-              <ListItemText primary="Auction" />
-              </ListItem>
-
-              <ListItem button>
-              <ListItemIcon>
-                  <VideocamIcon style={{ fill: "orange"}}/>
-              </ListItemIcon>
-              <ListItemText primary="Video Conference" />
-              </ListItem>
-  
-              <ListItem button>
-              <ListItemIcon>
-                  <ChatIcon style={{ fill: "orange"}}/>
-              </ListItemIcon>
-              <ListItemText primary="Chat" />
-              </ListItem>
-  
-              <ListItem button>
-              <ListItemIcon>
-                  <ForumIcon style={{ fill: "orange"}}/>
-              </ListItemIcon>
-              <ListItemText primary="UCSC help stack" />
-              </ListItem>
-  
-              <ListItem button>
-              <ListItemIcon>
-                  <HelpIcon style={{ fill: "orange"}}/>
-              </ListItemIcon>
-              <ListItemText primary="QA support" />
-              </ListItem>
-  
-              </List>
-          </div>
-        </Drawer>
-
-
-        {/*<Dashboard />*/}
-      </div>
+export default function Side() {
+    return(
+    <div className="sidebar-custom">
+                <a href="#about"> <i className="fa fa-tachometer" aria-hidden="true" style={{color:'orange',padding:10}}></i> Dashboard</a>
+                <a href="#contact"> <i className="fa fa-flag" aria-hidden="true" style={{color:'orange',padding:10}}></i> Job Vacancy</a>
+                <a href="#services"> <i className="fa fa-users" aria-hidden="true" style={{color:'orange' ,padding:10}}></i> Donation</a>
+                <a href="#clients"> <i className="fa fa-shopping-cart" aria-hidden="true" style={{color:'orange',padding:10}}></i> Product</a>
+                <a href="#contact"> <i className="fa fa-gavel" aria-hidden="true" style={{color:'orange',padding:10}}></i> Auction</a>
+                <a href="#contact"> <i className="fa fa-video-camera" aria-hidden="true" style={{color:'orange',padding:10}}></i> Video conference</a>
+                <a href="#contact"> <i className="fa fa-comments" aria-hidden="true" style={{color:'orange',padding:10}}></i> Chat</a>
+                <a href="#contact"> <i className="fa fa-list-alt" aria-hidden="true" style={{color:'orange',padding:10}}></i> UCSC help desk</a>
+                <a href="#contact"> <i className="fa fa-question-circle" aria-hidden="true" style={{color:'orange',padding:10}}></i> QA support</a>
+    </div>
     );
-  }
+}

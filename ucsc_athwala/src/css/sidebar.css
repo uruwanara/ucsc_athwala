@@ -1,0 +1,31 @@
+.sidebar-custom{
+    position: absolute;
+    width: 240px;
+    height:100%;
+    margin:0px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 1;
+    overflow-x: hidden;
+    padding-top: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight:550;
+}
+
+.sidebar-custom a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #000000;
+    display: block;
+  }
+  
+  .sidebar-custom a:hover {
+    color: #ffae00;
+  }
+
+  .content {
+    font-family:'Poppins, sans-serif';
+    flex-grow: 1;
+    padding-left: 250px;
+  }

@@ -1,0 +1,37 @@
+.container-custom{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: 300px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 20px;
+    width:max-width;
+    flex-grow: 1;
+  }
+
+  .welcome{
+    float:right;
+    margin-right:0px;
+    margin-top: 5px;
+  }
+
+  .title{
+      margin-top: 50px;
+      color: rgb(28, 28, 100);
+  }
+
+  .card-footer-custom{
+      padding: 0px;
+  }
+
+  .card-footer-custom > button:hover {
+    background-color: rgb(90, 100, 175);
+    border:1px solid rgb(90, 100, 175);
+    color: white;
+  }
+
+  .btn-custom > button:hover{
+    background-color: rgb(90, 100, 175);
+    border:1px solid rgb(90, 100, 175);
+    color: white;
+  }
