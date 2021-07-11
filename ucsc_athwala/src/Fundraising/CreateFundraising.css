@@ -1,0 +1,17 @@
+form{
+    background-color:#cc6300;
+}
+
+div label{
+    color:white;
+    font-weight: bold;
+}
+
+div h2{
+background-color: rgb(4, 11, 77);
+color: rgb(221, 221, 230);
+}
+
+#con{
+    background-color:#2e3bb3 !important;
+}
