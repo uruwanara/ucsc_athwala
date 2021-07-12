@@ -1,17 +1,16 @@
-form{
-    background-color:#cc6300;
-}
+ /* form{
+    background-color:#e7c582;
+} */
 
-div label{
-    color:white;
-    font-weight: bold;
-}
 
-div h2{
-background-color: rgb(4, 11, 77);
-color: rgb(221, 221, 230);
-}
+  .btn-custom > button:hover {
+    background-color: #ff6411;
+    border: 1px solid #ff6411;
+    color: white;
+  }
+ 
 
-#con{
-    background-color:#2e3bb3 !important;
-}
+  div label{
+      color: #081d62;
+      font-weight: bold;
+  }
