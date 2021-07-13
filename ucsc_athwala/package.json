@@ -1,5 +1,5 @@
 {
-  "homepage":"https://uruwanara.github.io/ucsc_athwala",
+  "homepage": "https://uruwanara.github.io/ucsc_athwala",
   "name": "ucsc_athwala",
   "version": "0.1.0",
   "private": true,
@@ -8,12 +8,14 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "@unicef/material-ui-currency-textfield": "^0.8.6",
+    "bootstrap-icons": "^1.5.0",
     "react": "^17.0.2",
+    "react-calendar": "^3.4.0",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "recharts": "^2.0.10",
     "web-vitals": "^1.1.2"
   },
-  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
