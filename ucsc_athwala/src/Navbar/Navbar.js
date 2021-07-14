@@ -9,7 +9,7 @@ export default function Navbar() {
                     
                 <li className="nav-item nav-item-custom">
                 <div className="dropdown" style={{float:"right"}}>
-                    <i className="fa fa-user-circle fa-2x" aria-hidden="true" style={{paddingRight:40,color:'white'}}></i>
+                    <i className="fa fa-user-circle fa-2x" aria-hidden="true" style={{paddingRight:40,color:'#ffffff'}}></i>
                     
                     <div className="dropdown-content">
                         <a href="#profile"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>

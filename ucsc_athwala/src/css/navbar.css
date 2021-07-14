@@ -1,5 +1,7 @@
 .navbar-custom {
-    background-color:rgb(90, 100, 175);
+    background: #FF8008;
+    background: -webkit-linear-gradient(to top, #ffa03a, #ff6411);  
+    background: linear-gradient(to top, #ffa03a, #ff6411); 
     display: flex;
     left: 0px;
     top: 0px;
