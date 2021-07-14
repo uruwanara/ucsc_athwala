@@ -1,0 +1,52 @@
+.container-custom {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: 300px;
+    background-color: rgba(255, 255, 255, 0);
+    margin-top: 20px;
+    /* width: max-width; */
+    flex-grow: 1;
+  }
+  
+  
+  .title {
+    font-family: "Poppins", sans-serif;
+    /* margin-top: 50px; */
+    color: black;
+    font-size: x-large;
+  }
+  
+  .card-footer-custom {
+    padding: 0px;
+    border: none;
+    background-color: transparent;
+  }
+  
+  .card-footer-custom > button {
+    background-color: #ffffff;
+    border: 3px solid #ff6411;
+    border-radius: 20px;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .card-footer-custom > button:hover {
+    background-color: #ff6411;
+    border: 1px solid #ff6411;
+    color: white;
+  }
+  
+  .btn-custom > button {
+    background: #ff8008;
+    background: -webkit-linear-gradient(to top, #fd8a0f, #ff6411);
+    background: linear-gradient(to top, #fd8e18, #ff6411);
+    color: white;
+    border-radius: 15px;
+  }
+  
+  .btn-custom > button:hover {
+    background-color: #ff6411;
+    border: 1px solid #ff6411;
+    color: white;
+  }
+   
