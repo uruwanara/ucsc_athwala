@@ -6,10 +6,11 @@ import Admindash from './AdminDashboard/Admindash';
 // import SignInt from './Signin/SignIn';
 
 
+
+
 ReactDOM.render(
   <React.StrictMode>
-     <Admindash />
-    {/* <SignInt /> */}
+    <SignInt/>  
   </React.StrictMode>,
   document.getElementById('root')
 );

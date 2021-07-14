@@ -1,14 +1,13 @@
-import { formatMs } from '@material-ui/core';
 import React from 'react';
-
+import './CreateFundraising.css';
 
 function CreateFundraising() {
     return (
 
-        <div className="container mt-4 shadow-lg p-3 mb-5 bg-body rounded">
-            <h2 class="text-primary text-center">Let's create a fundraising for the needs</h2>
+        <div id="con" className="container mt-4 shadow-lg p-3 mb-5 bg-body rounded">
+            <h2 class="text-center">Let's create a fundraising for the needs</h2>
 <hr />
-            <form action="#" className="p-4 bg-secondary mt-3" >
+            <form action="#" className="p-4 mt-3" >
                 <div className="form-group row g-3">
 
                     <div className="col-md-8">
@@ -49,9 +48,7 @@ function CreateFundraising() {
                         <div>
                         <button type="reset" value="reset" class="btn btn-primary float-end m-1">Reset Details</button>
                         </div>
-                    </div>
-
-                
+                    </div>                
                 </div>
             </form>
         </div>

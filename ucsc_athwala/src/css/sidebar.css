@@ -4,7 +4,7 @@
     height:100%;
     margin:0px;
     background-color: rgb(255, 255, 255);
-    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 4px 0 rgba(255, 68, 0, 0.2), 0 4px 4px 0 rgba(255, 89, 0, 0.19);
     z-index: 1;
     overflow-x: hidden;
     padding-top: 20px;
@@ -21,7 +21,7 @@
   }
   
   .sidebar-custom a:hover {
-    color: #ffae00;
+    color: #ff6411;
   }
 
   .content {
