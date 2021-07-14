@@ -6,11 +6,11 @@ import styled from 'styled-components';
 function Footer(){
     return(
        <FooterContainer className="main-footer">
-        <div className="footer-middle">
-        <div className="container">
-        <div className="row">
+        <div className="footer-middle ">
+        <div className="container footer">
+        <div className="row footer1">
         {/* column 1 */}
-        <div className="col-md-5 col-sm-6">
+        <div className="col-md-6 col-sm-6">
             <h4>UCSC අත්වැල</h4>
             <p>The major goal of this project is to help the newcomers of UCSC to resonate with the  environment,
              culture of the university and the administration. Also to help the student  community to manage their essentials
@@ -29,7 +29,7 @@ function Footer(){
             </ul>
         </div>
          {/* column 3 */}
-         <div className="col-md-3 col-sm-6">
+         <div className="col-md-2 col-sm-6">
             <h4>About Us</h4>
             <ul className="list-unstyled">
                 <li><i class="fas fa-user-alt"></i>&nbsp;Uthpala Ruwanara</li>
@@ -70,5 +70,7 @@ const FooterContainer = styled.footer`
     width: 100%;
    
   }
+
+
 `;
 
