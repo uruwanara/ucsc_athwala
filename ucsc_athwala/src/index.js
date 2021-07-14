@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import ViewFundraising from './Fundraising/ViewFundraising';
 import StudentDashboard from './StudentDashboard/StudentDashboard';
 import Admindash from './AdminDashboard/Admindash';
-// import SignInt from './Signin/SignIn';
+import SingInt from './Signin/SignIn';
+// import PastStudentDashboard from './PastStudentDashboard/PastStudentDashboard';
 
 //import ViewFundraising from './Fundraising/ViewFundraising';
 //import StudentDashboard from './StudentDashboard/StudentDashboard';
@@ -16,7 +17,7 @@ import Admindash from './AdminDashboard/Admindash';
 
 ReactDOM.render(
   <React.StrictMode>
-    <SignInt/>  
+    <SingInt/>  
   </React.StrictMode>,
   document.getElementById('root')
 );
