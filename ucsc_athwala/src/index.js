@@ -1,6 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SignInt from './Signin/SignIn';
+import ViewFundraising from './Fundraising/ViewFundraising';
+import StudentDashboard from './StudentDashboard/StudentDashboard';
+import Admindash from './AdminDashboard/Admindash';
+// import SignInt from './Signin/SignIn';
+
+//import ViewFundraising from './Fundraising/ViewFundraising';
+//import StudentDashboard from './StudentDashboard/StudentDashboard';
+//import Admindash from './AdminDashboard/Admindash';
+
+
 
 
 
