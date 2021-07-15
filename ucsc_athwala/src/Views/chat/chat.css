@@ -1,0 +1,46 @@
+body{
+  overflow-x: scroll;
+  overflow-y:hidden;
+}
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    width: 5px;
+    background: #f5f5f5;
+  }
+  ::-webkit-scrollbar-thumb {
+    width: 1em;
+    background-color: #ddd;
+    outline: 1px solid slategrey;
+    border-radius: 1rem;
+  }
+  .text-small {
+    color: rgb(255, 255, 255);
+    font-size: 0.9rem;
+  }
+  .messages-box{
+    height: 700px;
+    overflow-y: scroll;
+  }
+  .chat-box {
+    height: 670px;
+    overflow-y: scroll;
+  }
+  .rounded-lg {
+    margin-left: -75px;
+    margin-top: -50px;
+    border-radius: 0.5rem;
+    
+  }
+  input::placeholder {
+    font-size: 0.9rem;
+    color: #999;
+  }
+  strong{color: blue;}
+  /* .list-group-item.active{
+    background-color: #ffbc0066;
+  }
+  .rounded .py-2 .px-3 .mb-2 .custome-1{
+    background-color: #ffbc0066;
+  } */

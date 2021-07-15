@@ -9,20 +9,15 @@ import Login from './Views/Signin/SignIn'
 import SignUp from './Views/SignUp/SignUp'
 import StdDashBoard from './Views/StudentDashboard/StudentDashboard'
 import Viewdonations from './Views/Donation/Donation_page'
-<<<<<<< Updated upstream
 import StdContactCounsellor from './Views/StdContactCounsellor/StdContactCounsellor'
 import StdLearningGroup from './Views/StdLearningGroups/StdLearningGroups'
-=======
 import ViewEleProduct from './Views/Product/ProductPageViewEles'
 import ViewNoteProduct from './Views/Product/ProductPageViewNotes'
-// import SellNoteProduct from './Views/Product/ProductPageSellNote'
-
-
-
 import SellNoteProduct from './Views/Product/ProductPageSellNote'
 import SellEleProduct from './Views/Product/ProductPageSellEle'
+import Chat from './Views/chat/chatpage'
 
->>>>>>> Stashed changes
+
 
 function App() {
     return (
@@ -67,6 +62,10 @@ function App() {
 
                 <Route path="/SellEleProduct" exact>
                     <SellEleProduct />
+                </Route>
+
+                <Route path="/Chat" exact>
+                    <Chat/>
                 </Route>
 
             </Switch>
