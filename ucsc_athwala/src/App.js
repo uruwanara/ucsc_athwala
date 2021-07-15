@@ -187,18 +187,14 @@ function App() {
 
                 </Route>
 
-<<<<<<< Updated upstream
+
                 <Route path="/Job" exact>
                     <Job/>
                 </Route>
-
-=======
-                <Route path="/everify" exact>
+                 <Route path="/everify" exact>
                     <Everify />
                 </Route>
 
-
->>>>>>> Stashed changes
             </Switch>
         </Router>
     );
