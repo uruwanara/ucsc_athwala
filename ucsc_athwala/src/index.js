@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import ViewFundraising from './Fundraising/ViewFundraising';
 import StudentDashboard from './StudentDashboard/StudentDashboard';
 import Admindash from './AdminDashboard/Admindash';
-import Auction from './Auction/Auction';
+import SingInt from './Signin/SignIn';
+// import PastStudentDashboard from './PastStudentDashboard/PastStudentDashboard';
 
 // import SignInt from './Signin/SignIn';
 
@@ -18,7 +19,7 @@ import Auction from './Auction/Auction';
 
 ReactDOM.render(
   <React.StrictMode>
-    <SignInt/>  
+    <SingInt/>  
   </React.StrictMode>,
   document.getElementById('root')
 );
