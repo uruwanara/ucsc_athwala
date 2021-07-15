@@ -7,7 +7,7 @@ import Nav from '../Navbar/Navbar';
 import {Link, useHistory } from "react-router-dom";
 
 export default function StuDashboard(){
-
+//nimasha
     const history = useHistory();
     
     return(
