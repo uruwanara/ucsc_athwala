@@ -44,6 +44,14 @@ import SellEleProduct from './Views/Product/ProductPageSellEle'
 import Chat from './Views/chat/chatpage'
 import Job from './Views/job/jobPage'
 import Everify from './Views/EmailVerify/EmailVerify'
+import SamsungEleProduct from './Views/Product/ViewProductSamsungPhone'
+import NokiaEleProduct from './Views/Product/ViewProductNokia C20'
+import LectureNoteProduct from './Views/Product/ViewProductLectureNote'
+import HuwaweiITabEleProduct from './Views/Product/ViewProductHuaweiTab'
+import HuwaweiP30EleProduct from './Views/Product/ViewProductHuawei P30 Lite'
+import HPProEleProduct from './Views/Product/ViewProductHPProbook'
+import HP15EleProduct from './Views/Product/ViewProductHP15s'
+import AcerEleProduct from './Views/Product/ViewProductAcerAspire'
 import PastStuDashboard from "./Views/PastStudentDashboard/PastStudentDashboard";
 
 
@@ -194,6 +202,30 @@ function App() {
                 </Route>
                  <Route path="/everify" exact>
                     <Everify />
+                </Route>
+                <Route path="/SamsungEleProduct" exact>
+                    <SamsungEleProduct />
+                </Route>
+                <Route path="/NokiaEleProduct" exact>
+                    <NokiaEleProduct />
+                </Route>
+                <Route path="/LectureNoteProduct" exact>
+                    <LectureNoteProduct />
+                </Route>
+                <Route path="/HuwaweiITabEleProduct" exact>
+                    <HuwaweiITabEleProduct />
+                </Route>
+                <Route path="/HuwaweiP30EleProduct" exact>
+                    <HuwaweiP30EleProduct />
+                </Route>
+                <Route path="/HPProEleProduct" exact>
+                    <HPProEleProduct />
+                </Route>
+                <Route path="/HP15EleProduct" exact>
+                    <HP15EleProduct />
+                </Route>
+                <Route path="/HP15EleProduct" exact>
+                    <HP15EleProduct />
                 </Route>
 
                 <Route path="/pstddashboard" exact>
