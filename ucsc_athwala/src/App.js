@@ -9,7 +9,8 @@ import Login from './Views/Signin/SignIn'
 import SignUp from './Views/SignUp/SignUp'
 import StdDashBoard from './Views/StudentDashboard/StudentDashboard'
 import Viewdonations from './Views/Donation/Donation_page'
-
+import StdContactCounsellor from './Views/StdContactCounsellor/StdContactCounsellor'
+import StdLearningGroup from './Views/StdLearningGroups/StdLearningGroups'
 
 function App() {
     return (
@@ -29,7 +30,13 @@ function App() {
                     <StdDashBoard />
                 </Route>
 
+                <Route path="/stdcntcoun" exact>
+                    <StdDashBoard />
+                </Route>
 
+                <Route path="/stdlrngrp" exact>
+                <StdDashBoard />
+                </Route>
                 <Route path="/signup" exact>
                     <SignUp />
                 </Route>
