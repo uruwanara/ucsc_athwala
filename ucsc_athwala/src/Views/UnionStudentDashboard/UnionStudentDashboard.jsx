@@ -26,7 +26,7 @@ function UnionStudentDashboard() {
 
                 
                 <div className="container container-custom">
-                    <div><h5 className="welcome">Hi Abises Weerasekera!!</h5></div>
+                    <div><h5 className="welcome">Hi Union Member, Abises Weerasekera!!</h5></div>
                     <div className="title"><h5>Explore and donate today</h5></div>
 
                     <div class="card-group">

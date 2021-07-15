@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../css/sidebar.css';
+import {Link, useHistory } from "react-router-dom";
 
 export default function Side() {
     return(

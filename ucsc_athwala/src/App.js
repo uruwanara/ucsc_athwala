@@ -52,6 +52,7 @@ import HuwaweiP30EleProduct from './Views/Product/ViewProductHuawei P30 Lite'
 import HPProEleProduct from './Views/Product/ViewProductHPProbook'
 import HP15EleProduct from './Views/Product/ViewProductHP15s'
 import AcerEleProduct from './Views/Product/ViewProductAcerAspire'
+import PastStuDashboard from "./Views/PastStudentDashboard/PastStudentDashboard";
 
 
 
@@ -202,7 +203,6 @@ function App() {
                  <Route path="/everify" exact>
                     <Everify />
                 </Route>
-
                 <Route path="/SamsungEleProduct" exact>
                     <SamsungEleProduct />
                 </Route>
@@ -227,6 +227,11 @@ function App() {
                 <Route path="/HP15EleProduct" exact>
                     <HP15EleProduct />
                 </Route>
+
+                <Route path="/pstddashboard" exact>
+                    <PastStuDashboard />
+                </Route>
+
 
             </Switch>
         </Router>
