@@ -1,0 +1,17 @@
+:root{
+    --mainDark: #000000;
+    --mainWhite: #FFFFFF;
+
+}
+.footer{
+    /* background-color:white; */
+    padding-left: none;
+   
+  }
+  .footer1{
+    /* background-color:white; */
+    padding-left: none;
+    margin-left:-10rem;
+    margin-right: -9rem;
+   
+  }

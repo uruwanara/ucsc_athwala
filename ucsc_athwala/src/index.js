@@ -7,10 +7,18 @@ import Auction from './Auction/Auction';
 
 // import SignInt from './Signin/SignIn';
 
+//import ViewFundraising from './Fundraising/ViewFundraising';
+//import StudentDashboard from './StudentDashboard/StudentDashboard';
+//import Admindash from './AdminDashboard/Admindash';
+
+
+
+
+
 
 ReactDOM.render(
   <React.StrictMode>
-    { <Auction /> }
+    <SignInt/>  
   </React.StrictMode>,
   document.getElementById('root')
 );
