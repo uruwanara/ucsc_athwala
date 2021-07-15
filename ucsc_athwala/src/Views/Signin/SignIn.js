@@ -47,6 +47,7 @@ export default function SignIn() {
   const classes = useStyles();
 
   const history = useHistory();
+
   return (
       <Grid container component="main" className={classes.root}>
         <CssBaseline />
@@ -84,7 +85,7 @@ export default function SignIn() {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button onClick={()=>{ history.push("/signup")}}
+          <Button onClick={()=>{ history.push("/stddashboard")}}
             type="submit"
             fullWidth
             variant="contained"

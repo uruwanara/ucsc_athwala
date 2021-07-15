@@ -50,7 +50,7 @@ export default function ContactCouncellor(){
 const VideoModal = (props) => {
     return <div>
         <iframe allow="camera; microphone; display-capture; autoplay; clipboard-write"
-                src="https://meet.jit.si/ucscathwalaCounsellorMeeting124578"
+                src="https://meet.jit.si/ucscathwala124578"
                 marginWidth="1000px"
                 width="100%"
                 height="700px"
