@@ -143,8 +143,6 @@ function App() {
                     <UnionDashboard />
                 </Route>
 
-                    </Route>
-
                 <Route path="/Chat" exact>
                     <Chat/>
 
