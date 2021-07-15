@@ -15,7 +15,7 @@ export default function Side() {
         <Link to="/ViewEleProduct"><i className="fa fa-shopping-cart" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Product</Link>
         <Link to=""><i className="fa fa-gavel" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Auction</Link>
         <Link to="/viewstufundraising"><i className="fa fa-flag" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Fundrasing</Link>
-        <Link to=""><i className="fa fa-handshake-o" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Job oppertunity</Link>
+        <Link to="/Job"><i className="fa fa-handshake-o" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Job oppertunity</Link>
         <Link to="/stdlrngrp"><i className="fa fa-video-camera" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Learning Groups</Link>
         <Link to="/Chat"><i className="fa fa-comments" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Chat</Link>
         <Link to=""><i className="fa fa-list-alt" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> UCSC help stack</Link>
