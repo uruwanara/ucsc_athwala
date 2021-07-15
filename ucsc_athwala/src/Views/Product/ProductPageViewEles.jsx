@@ -4,9 +4,13 @@ import Tab from './ProductTabs';
 import Cause from './ProductEleView';
 import Side from '../StudentSidebar/Sidebar';
 import Nav from '../Navbar/Navbar';
+import {Link, useHistory } from "react-router-dom";
 
 
 export default function StuDashboard(){
+
+    const history = useHistory();
+    
     return(
         <div>
             <div><Nav /></div>
