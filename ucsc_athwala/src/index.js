@@ -6,6 +6,8 @@ import Admindash from './AdminDashboard/Admindash';
 import SingInt from './Signin/SignIn';
 // import PastStudentDashboard from './PastStudentDashboard/PastStudentDashboard';
 
+// import SignInt from './Signin/SignIn';
+
 //import ViewFundraising from './Fundraising/ViewFundraising';
 //import StudentDashboard from './StudentDashboard/StudentDashboard';
 //import Admindash from './AdminDashboard/Admindash';
