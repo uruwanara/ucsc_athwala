@@ -22,12 +22,7 @@ export default function ContactCouncellor(){
             <div style={{display:'flex'}}>
                 <Side />
                 <div className="container container-custom">
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        className={classes.button}
-
-                        button onClick={() => setShown(!shown)}>Contact Councellor</Button>
+                    <h5 >This section is under developing!</h5>
                     <Button
                         variant="contained"
                         color="primary"
@@ -35,14 +30,12 @@ export default function ContactCouncellor(){
 
                         button onClick={() => setShown1(!shown1)}>Join a Learning Group</Button>
                     <div>
+                        <div></div>
                         {shown1 ? <VideoModal2 /> : null}
-
-                    </div><div>
-                    {shown ? <VideoModal /> : null}
-
+                    </div>
                 </div>
                 </div>
-            </div>
+
         </div>
     );
 }

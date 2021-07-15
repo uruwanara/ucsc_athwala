@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     button: {
-      },
+    },
 }));
 export default function ContactCouncellor(){
     const [shown, setShown] = React.useState(false)
@@ -22,27 +22,20 @@ export default function ContactCouncellor(){
             <div style={{display:'flex'}}>
                 <Side />
                 <div className="container container-custom">
+                    <h5 >This section is under developing!</h5>
                     <Button
                         variant="contained"
-                        color="primary"
+                        color="secondary"
                         className={classes.button}
 
-                        button onClick={() => setShown(!shown)}>Contact Councellor</Button>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        className={classes.button}
-
-                        button onClick={() => setShown1(!shown1)}>Join a Learning Group</Button>
+                        button onClick={() => setShown1(!shown1)}>Contact Counsellor</Button>
                     <div>
+                        <div></div>
                         {shown1 ? <VideoModal2 /> : null}
-
-                    </div><div>
-                    {shown ? <VideoModal /> : null}
-
-                </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     );
 }

@@ -43,11 +43,11 @@ function App() {
                 </Route>
 
                 <Route path="/stdcntcoun" exact>
-                    <StdDashBoard />
+                    <StdContactCounsellor/>
                 </Route>
 
                 <Route path="/stdlrngrp" exact>
-                <StdDashBoard />
+                <StdLearningGroup />
                 </Route>
                 <Route path="/signup" exact>
                     <SignUp />
