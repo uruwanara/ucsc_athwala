@@ -2,7 +2,6 @@ import {React,useState} from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import logo from "../Signin/Img/ico.png";
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
+import {Link, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,8 +43,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
-
 export default function SignUp() {
     const classes = useStyles();
 
@@ -55,8 +53,7 @@ export default function SignUp() {
     const [ustype, setUsrType] = useState("");
 
     // eslint-disable-next-line
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-
+    const {enqueueSnackbar, closeSnackbar } = useSnackbar();
 
     const signUp=()=>{
         if(!(email.includes("@stu.ucsc.cmb.ac.lk")|| email.includes("@ucsc.lk"))){
@@ -85,6 +82,7 @@ export default function SignUp() {
             console.log(response.data);
             if(response.data.data.userType==="STUDENT"){
                 //history.push("/stddashboard");
+                alert("Alumni");
             }else if (response.data.data.userType==="ALUMNI"){
                 alert("Alumni");
             }else if (response.data.data.userType==="COUNSELLOR"){
@@ -135,7 +133,7 @@ export default function SignUp() {
                                 id="firstName"
                                 label="First Name"
                                 autoFocus
-                                onclick={(e) => {setFname(e.target.value)}}
+                                onChange={(e) => {setFname(e.target.value)}}
 
                             />
                         </Grid>
@@ -148,7 +146,7 @@ export default function SignUp() {
                                 label="Last Name"
                                 name="lastName"
                                 autoComplete="lname"
-                                onclick={(e) => {setLname(e.target.value)}}
+                                onChange={(e) => {setLname(e.target.value)}}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -160,7 +158,7 @@ export default function SignUp() {
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
-                                onclick={(e) => {setEmail(e.target.value)}}
+                                onChange={(e) => {setEmail(e.target.value)}}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -173,19 +171,17 @@ export default function SignUp() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
-                                onclick={(e) => {setPassword(e.target.value)}}
+                                onChange={(e) => {setPassword(e.target.value)}}
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <Autocomplete
                                 id="combo-box-demo"
                                 options={userTypes}
-
-
                                 getOptionLabel={(option) => option.uType}
                                 style={{ width: 300 }}
                                 renderInput={(params) => <TextField {...params} label="I am a" variant="outlined" />}
-                                onclick={(e) => {setUsrType(e.target.value)}}
+                                onChange={(e) => {setUsrType(e.target.value)}}
                             />
                         </Grid>
                     </Grid>
@@ -201,7 +197,7 @@ export default function SignUp() {
                     </Button>
                     <Grid container justifyContent="flex-end">
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link to="/login" >
                                 Already have an account? Sign in
                             </Link>
                         </Grid>
