@@ -144,6 +144,7 @@ function App() {
 
                 <Route path="/unionDashobard" exact>
                     <UnionDashboard />
+                    </Route>
 
                 <Route path="/Chat" exact>
                     <Chat/>
@@ -156,5 +157,3 @@ function App() {
 }
 
 export default App;
-
-
