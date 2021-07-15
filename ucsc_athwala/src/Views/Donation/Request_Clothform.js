@@ -9,24 +9,24 @@ export default function RequestCloth(){
 
         <div class="form-row">
             <div class="form-group col-md-8">
-                <label for="title">Title*</label>
-                <input type="text" class="form-control" id="title" placeholder="title" required></input>
+                <label for="title" class="label-custom">Title*</label>
+                <input type="text" class="form-control input-custom" id="title" placeholder="title" required></input>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-8">
-                <label for="description">Description*</label>
-                <input type="text" class="form-control" id="description" placeholder="decription" required></input>
+                <label for="description" class="label-custom">Description*</label>
+                <input type="text" class="form-control input-custom" id="description" placeholder="decription" required></input>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
-            <label for="type">Cloth type*</label>
-            <input type="text" class="form-control" id="type" placeholder="type of cloth" required></input>
+            <label for="type" class="label-custom">Cloth type*</label>
+            <input type="text" class="form-control input-custom" id="type" placeholder="type of cloth" required></input>
         </div>
         <div class="form-group col-md-4">
-            <label for="gender">Gender*</label>
-                <select class="custom-select">
+            <label for="gender" class="label-custom">Gender*</label>
+                <select class="custom-select select">
                     <option selected>Open this select menu</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -36,8 +36,8 @@ export default function RequestCloth(){
         </div>
         <div class="form-row">
             <div class="form-group col-md-8">
-                <label for="size">Size</label>
-                <select class="custom-select">
+                <label for="size" class="label-custom">Size</label>
+                <select class="custom-select select">
                     <option selected>Open this select menu</option>
                     <option value="XS">XS (Width:16" Length:24")</option>
                     <option value="S">S (Width:18" Length:26")</option>
@@ -50,8 +50,8 @@ export default function RequestCloth(){
         </div>
         <div class="form-row">
             <div class="form-group col-md-8">
-                <label for="date">Before (around)</label>
-                <input type="date" class="form-control" id="title" placeholder="Date"></input>
+                <label for="date" class="label-custom">Before (around)</label>
+                <input type="date" class="form-control input-custom" id="title" placeholder="Date"></input>
             </div>
         </div>
         <div class="form-group">
