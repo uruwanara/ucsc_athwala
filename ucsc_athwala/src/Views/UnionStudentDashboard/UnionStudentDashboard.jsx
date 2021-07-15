@@ -1,11 +1,11 @@
 import React from 'react';
 import './UnionStudentDashboard.css';
-import Note from '../image/note.jpg';
-import Cloth from '../image/cloth.jpg';
-import Device from '../image/device.jpg';
-import Money from '../image/money.jpg';
+import Note from '../../image/note.jpg';
+import Cloth from '../../image/cloth.jpg';
+import Device from '../../image/device.jpg';
+import Money from '../../image/money.jpg';
 import Nav from '../Navbar/Navbar';
-import Event from '../image/Vaani-Vizha.jpg';
+import Event from '../../image/Vaani-Vizha.jpg';
 import UnionStudentSidebar from '../UnionSidebar/UnionStudentSidebar';
 
 

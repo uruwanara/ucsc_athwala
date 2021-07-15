@@ -1,8 +1,8 @@
 import React from 'react';
-import Event from '../image/Vaani-Vizha.jpg';
+import Event from '../../image/Vaani-Vizha.jpg';
 import UnionStudentSidebar from '../UnionSidebar/UnionStudentSidebar';
 import Nav from '../Navbar/Navbar';
-import Pirith from '../image/Pirith.jpg';
+import Pirith from '../../image/Pirith.jpg';
 import './ViewFundraising.css';
 
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import './auction.css';
 import TextField from '@material-ui/core/TextField';
-import Note from '../image/note.jpg';
-import Cloth from '../image/cloth.jpg';
-import Device from '../image/device.jpg';
-import Money from '../image/money.jpg';
+import Note from '../../image/note.jpg';
+import Cloth from '../../image/cloth.jpg';
+import Device from '../../image/device.jpg';
+import Money from '../../image/money.jpg';
 import Nav from '../Navbar/Navbar';
-import Event from '../image/Vaani-Vizha.jpg';
+import Event from '../../image/Vaani-Vizha.jpg';
 
 export default function StuDashboard(){
     return(

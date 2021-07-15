@@ -1,16 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ViewFundraising from './Fundraising/ViewFundraising';
-import StudentDashboard from './StudentDashboard/StudentDashboard';
-import Admindash from './AdminDashboard/Admindash';
-import SingInt from './Signin/SignIn';
-// import PastStudentDashboard from './PastStudentDashboard/PastStudentDashboard';
-
-// import SignInt from './Signin/SignIn';
-
-//import ViewFundraising from './Fundraising/ViewFundraising';
-//import StudentDashboard from './StudentDashboard/StudentDashboard';
-//import Admindash from './AdminDashboard/Admindash';
+import SingIn from './Views/Signin/SignIn';
 
 
 
@@ -19,7 +9,7 @@ import SingInt from './Signin/SignIn';
 
 ReactDOM.render(
   <React.StrictMode>
-    <SingInt/>  
+    <SingIn/>
   </React.StrictMode>,
   document.getElementById('root')
 );

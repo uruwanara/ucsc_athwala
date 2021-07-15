@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/sidebar.css';
+import '../../css/sidebar.css';
 
 export default function Side() {
     return(
