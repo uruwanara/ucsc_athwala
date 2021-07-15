@@ -7,17 +7,13 @@ import {
 
 import Login from './Views/Signin/SignIn'
 import SignUp from './Views/SignUp/SignUp'
-
 import StdDashBoard from './Views/StudentDashboard/StudentDashboard'
 import UnionDashboard from './Views/UnionStudentDashboard/UnionStudentDashboard'
-
 import StdContactCounsellor from './Views/StdContactCounsellor/StdContactCounsellor'
 import StdLearningGroup from './Views/StdLearningGroups/StdLearningGroups'
-
 import ViewEleProduct from './Views/Product/ProductPageViewEles'
 import ViewNoteProduct from './Views/Product/ProductPageViewNotes'
 // import SellNoteProduct from './Views/Product/ProductPageSellNote'
-
 import Viewcauses from './Views/Donation/Donation_page'
 import RequestNote from './Views/Donation/Request_Note'
 import RequestCloth from './Views/Donation/Request_Cloth'
@@ -33,10 +29,14 @@ import ViewOtherCause from './Views/Donation/View_Othercause'
 import ViewReceivedDonation from './Views/Donation/View_MyrequestingReceived'
 import ViewPendingDonation from './Views/Donation/View_Myrequesting'
 import ViewNotReceivedDonation from './Views/Donation/View_MyrequestingNotrecived'
-
+import Viewdonations from './Views/Donation/Donation_page'
+import StdContactCounsellor from './Views/StdContactCounsellor/StdContactCounsellor'
+import StdLearningGroup from './Views/StdLearningGroups/StdLearningGroups'
+import ViewEleProduct from './Views/Product/ProductPageViewEles'
+import ViewNoteProduct from './Views/Product/ProductPageViewNotes'
 import SellNoteProduct from './Views/Product/ProductPageSellNote'
 import SellEleProduct from './Views/Product/ProductPageSellEle'
-
+import Chat from './Views/chat/chatpage'
 
 
 function App() {
@@ -141,8 +141,13 @@ function App() {
                     <SellEleProduct />
                 </Route>
 
+
                 <Route path="/unionDashobard" exact>
                     <UnionDashboard />
+
+                <Route path="/Chat" exact>
+                    <Chat/>
+
                 </Route>
 
             </Switch>
