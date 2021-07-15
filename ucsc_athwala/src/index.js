@@ -1,25 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ViewFundraising from './Fundraising/ViewFundraising';
-import StudentDashboard from './StudentDashboard/StudentDashboard';
-import Admindash from './AdminDashboard/Admindash';
-import Auction from './Auction/Auction';
-import Viewauction from './Auction/Viewauction';
-
-// import SignInt from './Signin/SignIn';
-
-//import ViewFundraising from './Fundraising/ViewFundraising';
-//import StudentDashboard from './StudentDashboard/StudentDashboard';
-//import Admindash from './AdminDashboard/Admindash';
-
-
-
-
-
+import App from './App'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Viewauction/>  
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );
