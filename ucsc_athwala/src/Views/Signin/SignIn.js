@@ -79,7 +79,7 @@ export default function SignIn() {
         }else if (response.data.data.userType==="COUNSELLOR"){
           alert("Counsellor");
         }
-      }else  if(response.status==="unauthorized") {
+      }else  if(response.data.status==="unauthorized") {
         enqueueSnackbar('Please Sign In to your Email and Verify the account', {
           variant: 'error', anchorOrigin: {
             vertical: 'top',
@@ -141,11 +141,12 @@ export default function SignIn() {
           {/*  control={<Checkbox value="remember" color="primary" />}*/}
           {/*  label="Remember me"*/}
           {/*/>*/}
-          <Button onClick={signin}
+          <Button
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={signin}
                      >
             Sign In
           </Button>

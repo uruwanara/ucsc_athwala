@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Paper from '@material-ui/core/Paper';
-import logo from "../Signin/Img/ico.png";
+import logo from "../Signin/Img/logo.png";
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import {Link, useHistory } from "react-router-dom";
@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
     const classes = useStyles();
 
+    const history =useHistory();
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [email, setEmail] = useState("");
@@ -57,13 +58,13 @@ export default function SignUp() {
 
     const signUp=()=>{
         if(!(email.includes("@stu.ucsc.cmb.ac.lk")|| email.includes("@ucsc.lk"))){
-            enqueueSnackbar('Email Not Valid', {
+            enqueueSnackbar('Email Not Valid. Use your UCSC Email', {
                 variant: 'error',anchorOrigin: {
                     vertical: 'top',
                     horizontal: 'right',
                 },
             });
-            return;
+
         }
         const user={
             "username": fname+lname,
@@ -79,33 +80,11 @@ export default function SignUp() {
                 "Content-type": "application/json; charset=UTF-8"
             }
         }).then((response)=>{
-            console.log(response.data);
-            if(response.data.data.userType==="STUDENT"){
-                //history.push("/stddashboard");
-                alert("Alumni");
-            }else if (response.data.data.userType==="ALUMNI"){
-                alert("Alumni");
-            }else if (response.data.data.userType==="COUNSELLOR"){
-                alert("Counsellor");
-            }
+            console.log(response.data.data.userType);
+                history.push("/everify");
 
-
-            //
-            // if(response.status==="sucsess"){
-            //     //redirect
-            // }else  if(response.status==="unauthorized") {
-            //     //Notistact
-            // }
         }).catch((err)=>{
-            // enqueueSnackbar(err.message, {
-            //     variant: 'error',anchorOrigin: {
-            //         vertical: 'top',
-            //         horizontal: 'right',
-            //     },
-            //
-            //     // Please sign in notistack
-            //
-            // });;
+
         })
 
     }
@@ -181,12 +160,11 @@ export default function SignUp() {
                                 getOptionLabel={(option) => option.uType}
                                 style={{ width: 300 }}
                                 renderInput={(params) => <TextField {...params} label="I am a" variant="outlined" />}
-                                onChange={(e) => {setUsrType(e.target.value)}}
+                                onChange={(e,newValue) => {setUsrType(newValue.name)}}
                             />
                         </Grid>
                     </Grid>
                     <Button
-                        type="submit"
                         fullWidth
                         variant="contained"
                         color="primary"
