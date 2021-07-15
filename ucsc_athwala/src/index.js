@@ -1,15 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SingIn from './Views/Signin/SignIn';
-
-
-
-
+import SingUp from './Views/SignUp/SignUp';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <SingIn/>
+    <SingUp/>
   </React.StrictMode>,
   document.getElementById('root')
 );
