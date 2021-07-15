@@ -42,8 +42,12 @@ import Home from './Views/Home/Home'
 import SellNoteProduct from './Views/Product/ProductPageSellNote'
 import SellEleProduct from './Views/Product/ProductPageSellEle'
 import Chat from './Views/chat/chatpage'
+<<<<<<< Updated upstream
 import Job from './Views/job/jobPage'
 
+=======
+import Everify from './Views/EmailVerify/EmailVerify'
+>>>>>>> Stashed changes
 
 
 function App() {
@@ -186,10 +190,18 @@ function App() {
 
                 </Route>
 
+<<<<<<< Updated upstream
                 <Route path="/Job" exact>
                     <Job/>
                 </Route>
 
+=======
+                <Route path="/everify" exact>
+                    <Everify />
+                </Route>
+
+
+>>>>>>> Stashed changes
             </Switch>
         </Router>
     );
