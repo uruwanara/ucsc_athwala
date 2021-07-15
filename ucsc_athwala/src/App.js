@@ -141,12 +141,9 @@ function App() {
 
                 <Route path="/unionDashobard" exact>
                     <UnionDashboard />
-<<<<<<< Updated upstream
-                    </Route>
 
-=======
-                </Route>
->>>>>>> Stashed changes
+                    </Route>
+                
                 <Route path="/Chat" exact>
                     <Chat/>
 
