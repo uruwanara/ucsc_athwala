@@ -1,9 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,6 +9,8 @@ import logo from './Img/logo.png';
 import '../../css/style.css';
 import Paper from "@material-ui/core/Paper";
 import {Link, useHistory } from "react-router-dom";
+import {useSnackbar} from "notistack";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,6 +48,59 @@ export default function SignIn() {
 
   const history = useHistory();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+
+  // eslint-disable-next-line
+  const {enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+
+  const signin=()=>{
+        const user={
+          "email": email,
+          "password": password
+    }
+    console.log(user);
+    axios.post("http://localhost:5000/api/login",user,{
+      headers:{
+        "access-control-allow-origin" : "*",
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    }).then((response)=>{
+      console.log(response.data.data.userType);
+      console.log(response.data.status);
+      if(response.data.status==="success"){
+        if(response.data.data.userType==="STUDENT"){
+          console.log("1");
+          history.push("/stddashboard");
+        }else if (response.data.data.userType==="ALUMNI"){
+          alert("Alumni");
+        }else if (response.data.data.userType==="COUNSELLOR"){
+          alert("Counsellor");
+        }
+      }else  if(response.status==="unauthorized") {
+        enqueueSnackbar('Please Sign In to your Email and Verify the account', {
+          variant: 'error', anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'right',
+          }
+        })
+      }}).catch((err)=>{
+      enqueueSnackbar(err.message, {
+        variant: 'error',anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'right',
+        },
+
+        // Please sign in notistack
+
+      });;
+    })
+
+  }
+
+
   return (
       <Grid container component="main" className={classes.root}>
         <CssBaseline />
@@ -68,7 +121,9 @@ export default function SignIn() {
             label="Email Address"
             name="email"
             autoComplete="email"
+            onChange={(e) => {setEmail(e.target.value)}}
             autoFocus
+
           />
           <TextField
             variant="outlined"
@@ -80,13 +135,13 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={(e) => {setPassword(e.target.value)}}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button onClick={()=>{ history.push("/stddashboard")}}
-            type="submit"
+          {/*<FormControlLabel*/}
+          {/*  control={<Checkbox value="remember" color="primary" />}*/}
+          {/*  label="Remember me"*/}
+          {/*/>*/}
+          <Button onClick={signin}
             fullWidth
             variant="contained"
             color="primary"
@@ -110,3 +165,76 @@ export default function SignIn() {
         </Grid>
   );
 }
+
+
+
+
+//
+//
+// if(response.data.data.userType==="STUDENT"){
+//   //history.push("/stddashboard");
+// }else if (response.data.data.userType==="ALUMNI"){
+//   alert("Alumni");
+// }else if (response.data.data.userType==="COUNSELLOR"){
+//   alert("Counsellor");
+// }
+//
+//
+// onChange={(e)=>{setEmail(e.target.value)}}
+//
+// onChange={(e,newValue)=>{setPassword(e.target.value)}}
+//
+//
+//
+// const signUp=()=>{
+//   if(!(email.includes("@stu.ucsc.cmb.ac.lk")|| email.includes("@ucsc.lk"))){
+//     enqueueSnackbar('Email Not Valid', {
+//       variant: 'error',anchorOrigin: {
+//         vertical: 'top',
+//         horizontal: 'right',
+//       },
+//     });
+//     return;
+//   }
+//   const user={
+//     "username": fname+lname,
+//     "fname": fname,
+//     "lname": lname,
+//     "userType": ustype,
+//     "email": email,
+//     "password": password
+//   }
+//   axios.post("http://localhost:5000/api/users/create",user,{
+//     headers:{
+//       "access-control-allow-origin" : "*",
+//       "Content-type": "application/json; charset=UTF-8"
+//     }
+//   }).then((response)=>{
+//     // console.log(response.data);
+//     // if(response.data.data.userType==="STUDENT"){
+//     //     //history.push("/stddashboard");
+//     // }else if (response.data.data.userType==="ALUMNI"){
+//     //     alert("Alumni");
+//     // }else if (response.data.data.userType==="COUNSELLOR"){
+//     //     alert("Counsellor");
+//     // }
+//
+//     if(response.status==="sucsess"){
+//       //redirect
+//     }else  if(response.status==="unauthorized") {
+//       //Notistact
+//     }
+//   }).catch((err)=>{
+//     enqueueSnackbar(err.message, {
+//       variant: 'error',anchorOrigin: {
+//         vertical: 'top',
+//         horizontal: 'right',
+//       },
+//
+//       // Please sign in notistack
+//
+//     });;
+//   })
+//
+// }
+//

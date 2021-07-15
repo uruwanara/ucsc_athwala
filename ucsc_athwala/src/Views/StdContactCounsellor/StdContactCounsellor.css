@@ -7,52 +7,53 @@
     margin-top: 20px;
     width:max-width;
     flex-grow: 1;
-  }
+}
 
-  .welcome{
+.welcome{
     float:right;
     margin-right:0px;
     margin-top: 5px;
     font-family: 'Poppins', sans-serif;
-  }
+}
 
-  .title{
-      font-family: 'Poppins', sans-serif;
-      margin-top: 50px;
-      color: black;
-  }
+.title{
+    font-family: 'Poppins', sans-serif;
+    margin-top: 50px;
+    color: black;
+}
 
-  .card-footer-custom{
-      padding: 0px;
-      border: none;
-      background-color: transparent;
-  }
+.card-footer-custom{
+    padding: 0px;
+    border: none;
+    background-color: transparent;
+}
 
-  .card-footer-custom > button{
+.card-footer-custom > button{
     background-color: #ffffff;
     border:3px solid #ff6411 ;
     border-radius: 20px;
     font-family: 'Poppins', sans-serif;
-  }
-  
-  .card-footer-custom > button:hover {
+}
+
+.card-footer-custom > button:hover {
     background-color: #ff6411;
     border:1px solid #ff6411;
     color: white;
-  }
+}
 
-  .btn-cust > button{
+.btn-custom > button{
     background: #FF8008;
     background: -webkit-linear-gradient(to top, #fd8a0f, #ff6411);
     background: linear-gradient(to top, #fd8e18, #ff6411);
     color: white;
     border-radius: 15px;
+    margin-top: 5.5rem;
 
-  }
+}
 
-  .btn-cust > button:hover{
+.btn-custom > button:hover{
     background-color: #ff6411;
     border:1px solid #ff6411;
     color: white;
-  }
-  
+
+}

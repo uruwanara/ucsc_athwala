@@ -1,15 +1,16 @@
-import React from 'react';
+import {React,useState} from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Paper from '@material-ui/core/Paper';
 import logo from "../Signin/Img/ico.png";
-
+import axios from 'axios';
+import { useSnackbar } from 'notistack';
+import {Link, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,6 +46,71 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
     const classes = useStyles();
 
+    const [fname, setFname] = useState("");
+    const [lname, setLname] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [ustype, setUsrType] = useState("");
+
+    // eslint-disable-next-line
+    const {enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+    const signUp=()=>{
+        if(!(email.includes("@stu.ucsc.cmb.ac.lk")|| email.includes("@ucsc.lk"))){
+            enqueueSnackbar('Email Not Valid', {
+                variant: 'error',anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right',
+                },
+            });
+            return;
+        }
+        const user={
+            "username": fname+lname,
+            "fname": fname,
+            "lname": lname,
+            "userType": ustype,
+            "email": email,
+            "password": password
+        }
+        axios.post("http://localhost:5000/api/users/create",user,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then((response)=>{
+            console.log(response.data);
+            if(response.data.data.userType==="STUDENT"){
+                //history.push("/stddashboard");
+                alert("Alumni");
+            }else if (response.data.data.userType==="ALUMNI"){
+                alert("Alumni");
+            }else if (response.data.data.userType==="COUNSELLOR"){
+                alert("Counsellor");
+            }
+
+
+            //
+            // if(response.status==="sucsess"){
+            //     //redirect
+            // }else  if(response.status==="unauthorized") {
+            //     //Notistact
+            // }
+        }).catch((err)=>{
+            enqueueSnackbar(err.message, {
+                variant: 'error',anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right',
+                },
+
+                // Please sign in notistack
+
+            });;
+        })
+
+    }
+
+
     return (
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
@@ -67,6 +133,8 @@ export default function SignUp() {
                                 id="firstName"
                                 label="First Name"
                                 autoFocus
+                                onChange={(e) => {setFname(e.target.value)}}
+
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -78,6 +146,7 @@ export default function SignUp() {
                                 label="Last Name"
                                 name="lastName"
                                 autoComplete="lname"
+                                onChange={(e) => {setLname(e.target.value)}}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -89,6 +158,7 @@ export default function SignUp() {
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
+                                onChange={(e) => {setEmail(e.target.value)}}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -101,17 +171,17 @@ export default function SignUp() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                onChange={(e) => {setPassword(e.target.value)}}
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <Autocomplete
                                 id="combo-box-demo"
                                 options={userTypes}
-
-
                                 getOptionLabel={(option) => option.uType}
                                 style={{ width: 300 }}
                                 renderInput={(params) => <TextField {...params} label="I am a" variant="outlined" />}
+                                onChange={(e) => {setUsrType(e.target.value)}}
                             />
                         </Grid>
                     </Grid>
@@ -120,13 +190,14 @@ export default function SignUp() {
                         fullWidth
                         variant="contained"
                         color="primary"
+                        onClick={signUp}
                         className={classes.submit}
                     >
                         Sign Up
                     </Button>
                     <Grid container justifyContent="flex-end">
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link to="/login" >
                                 Already have an account? Sign in
                             </Link>
                         </Grid>
@@ -140,4 +211,4 @@ export default function SignUp() {
     );
 }
 
-const userTypes= [{ uType: 'UCSC Student'},{ uType: 'UCSC Alumni'},{ uType: 'UCSC Counsellor'},];
+const userTypes= [{ uType: 'UCSC Student',name:"STUDENT"},{ uType: 'UCSC Alumni',name:"ALUMNI"},{ uType: 'UCSC Counsellor',name:"COUNSELLOR"}];

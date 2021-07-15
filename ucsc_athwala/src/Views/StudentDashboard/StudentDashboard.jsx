@@ -7,8 +7,10 @@ import Money from '../../image/money.jpg';
 import Side from '../StudentSidebar/Sidebar';
 import Nav from '../Navbar/Navbar';
 import Event from '../../image/Vaani-Vizha.jpg';
+import {Link, useHistory } from "react-router-dom";
 
 export default function StuDashboard(){
+    const history = useHistory();
     return(
         <div>
             <div><Nav /></div>
@@ -24,28 +26,28 @@ export default function StuDashboard(){
                                 <img src={Note} alt="cap" class="card-img-top" style={{height:150}} ></img>
                                 <div class="card-body">
                                 <h5 class="card-title">Lecture Note</h5>
-                                <div class="card-footer card-footer-custom"><button type="button" class="btn btn-block">Donate Now</button></div>
+                                <div class="card-footer card-footer-custom"><button onClick={()=>{ history.push("/viewcauses")}} type="button" class="btn btn-block">Donate Now</button></div>
                                 </div>
                             </div>
                             <div class="card">
                                 <img class="card-img-top" src={Cloth} alt="cap" style={{height:150}}></img>
                                 <div class="card-body">
                                 <h5 class="card-title">Cloths</h5>
-                                <div class="card-footer card-footer-custom"><button type="button" class="btn btn-block">Donate Now</button></div>
+                                <div class="card-footer card-footer-custom"><button onClick={()=>{ history.push("/viewcauses")}} type="button" class="btn btn-block">Donate Now</button></div>
                                 </div>
                             </div>
                             <div class="card">
                                 <img class="card-img-top" src={Device} alt="cap" style={{height:150}}></img>
                                 <div class="card-body">
                                 <h5 class="card-title">Electronic Devices</h5>
-                                <div class="card-footer card-footer-custom"><button type="button" class="btn btn-block">Donate Now</button></div>
+                                <div class="card-footer card-footer-custom"><button onClick={()=>{ history.push("/viewcauses")}} type="button" class="btn btn-block">Donate Now</button></div>
                                 </div>
                             </div>
                             <div class="card">
                                 <img class="card-img-top" src={Money} alt="cap" style={{height:150}}></img>
                                 <div class="card-body">
                                 <h5 class="card-title">Money</h5>
-                                <div class="card-footer card-footer-custom"><button type="button" class="btn btn-block">Donate Now</button></div>
+                                <div class="card-footer card-footer-custom"><button onClick={()=>{ history.push("/viewcauses")}} type="button" class="btn btn-block">Donate Now</button></div>
                                 </div>
                             </div>
                     </div>
@@ -67,7 +69,7 @@ export default function StuDashboard(){
                                 <div class="card" style={{backgroundColor:'#e9ecef',border:0}}>
                                 <div><p class="card-text text-center" style={{margin:10,color:'#343a40',alignSelf:'left',fontFamily:'Poppins, sans-serif'}}>Raised : Rs.5000</p></div>
                                 <div><p class="card-text text-center" style={{margin:10,color:'#343a40',alignSelf:'left',fontFamily:'Poppins, sans-serif'}}>Goal : Rs.15000</p></div>
-                                <div className="btn-custom" style={{alignSelf:'center'}}><button type="button" class="btn btn-md">Donate today</button></div>
+                                <div className="btn-cust" style={{alignSelf:'center'}}><button type="button" class="btn btn-md">Donate today</button></div>
                                 </div>
                         </div>
                     </div>       

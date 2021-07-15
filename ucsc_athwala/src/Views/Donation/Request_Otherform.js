@@ -5,30 +5,30 @@ export default function RequestOther(){
     return(
     <div>
     <form style={{marginLeft:150}}>
-        <div style={{marginBottom:20 ,fontFamily:'Poppins, sans-serif'}}><h4>Request form</h4></div>
+        <div style={{marginBottom:10 ,fontFamily:'Poppins, sans-serif'}}><h4>Request form</h4></div>
 
         <div class="form-row">
             <div class="form-group col-md-8">
-                <label for="title">Title*</label>
-                <input type="text" class="form-control" id="title" placeholder="title" required></input>
+                <label for="title" class="label-custom">Title*</label>
+                <input type="text" class="form-control input-custom" id="title" placeholder="title" required></input>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-8">
-                <label for="description">Description*</label>
-                <input type="text" class="form-control" id="description" placeholder="decription" required></input>
+                <label for="description" class="label-custom">Description*</label>
+                <input type="text" class="form-control input-custom" id="description" placeholder="decription" required></input>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-8">
-                <label for="reason">Reason*</label>
-                <input type="text" class="form-control" id="reason" placeholder="Reason" required></input>
+                <label for="reason" class="label-custom">Reason*</label>
+                <input type="text" class="form-control input-custom" id="reason" placeholder="Reason" required></input>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-8">
-                <label for="date">Before (around)</label>
-                <input type="date" class="form-control" id="date" placeholder="date"></input>
+                <label for="date" class="label-custom">Before (around)</label>
+                <input type="date" class="form-control input-custom" id="date" placeholder="date"></input>
             </div>
         </div>
         <div class="form-group">
