@@ -97,15 +97,15 @@ export default function SignUp() {
             //     //Notistact
             // }
         }).catch((err)=>{
-            enqueueSnackbar(err.message, {
-                variant: 'error',anchorOrigin: {
-                    vertical: 'top',
-                    horizontal: 'right',
-                },
-
-                // Please sign in notistack
-
-            });;
+            // enqueueSnackbar(err.message, {
+            //     variant: 'error',anchorOrigin: {
+            //         vertical: 'top',
+            //         horizontal: 'right',
+            //     },
+            //
+            //     // Please sign in notistack
+            //
+            // });;
         })
 
     }
