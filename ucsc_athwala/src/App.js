@@ -11,6 +11,7 @@ import StdDashBoard from './Views/StudentDashboard/StudentDashboard'
 import UnionDashboard from './Views/UnionStudentDashboard/UnionStudentDashboard'
 import StdContactCounsellor from './Views/StdContactCounsellor/StdContactCounsellor'
 import StdLearningGroup from './Views/StdLearningGroups/StdLearningGroups'
+
 import ViewEleProduct from './Views/Product/ProductPageViewEles'
 import ViewNoteProduct from './Views/Product/ProductPageViewNotes'
 // import SellNoteProduct from './Views/Product/ProductPageSellNote'
@@ -29,10 +30,7 @@ import ViewOtherCause from './Views/Donation/View_Othercause'
 import ViewReceivedDonation from './Views/Donation/View_MyrequestingReceived'
 import ViewPendingDonation from './Views/Donation/View_Myrequesting'
 import ViewNotReceivedDonation from './Views/Donation/View_MyrequestingNotrecived'
-import StdContactCounsellor from './Views/StdContactCounsellor/StdContactCounsellor'
-import StdLearningGroup from './Views/StdLearningGroups/StdLearningGroups'
-import ViewEleProduct from './Views/Product/ProductPageViewEles'
-import ViewNoteProduct from './Views/Product/ProductPageViewNotes'
+import Viewdonations from './Views/Donation/Donation_page'
 import SellNoteProduct from './Views/Product/ProductPageSellNote'
 import SellEleProduct from './Views/Product/ProductPageSellEle'
 import Chat from './Views/chat/chatpage'
@@ -143,8 +141,9 @@ function App() {
 
                 <Route path="/unionDashobard" exact>
                     <UnionDashboard />
-                    </Route>
 
+                    </Route>
+                
                 <Route path="/Chat" exact>
                     <Chat/>
 

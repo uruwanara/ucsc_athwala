@@ -1,7 +1,3 @@
-body{
-  overflow-x: scroll;
-  overflow-y:hidden;
-}
   ::-webkit-scrollbar {
     width: 5px;
   }
