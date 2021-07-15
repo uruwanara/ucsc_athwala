@@ -9,6 +9,9 @@ import Login from './Views/Signin/SignIn'
 import SignUp from './Views/SignUp/SignUp'
 import StdDashBoard from './Views/StudentDashboard/StudentDashboard'
 import Viewdonations from './Views/Donation/Donation_page'
+import UnionStudentDashboard from './Views/UnionStudentDashboard/UnionStudentDashboard'
+
+
 
 
 function App() {
@@ -27,6 +30,10 @@ function App() {
 
                 <Route path="/stddashboard" exact>
                     <StdDashBoard />
+                </Route>
+
+                <Route path="/ustddashboard" exact>
+                    <UnionStudentDashboard />
                 </Route>
 
 
