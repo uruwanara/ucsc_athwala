@@ -5,7 +5,7 @@ export default function Side() {
     return(
     <div className="sidebar-custom">
                 <a href="#about"> <i className="fa fa-tachometer" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Dashboard</a>
-                <a href="#contact"> <i className="fa fa-handshake-o" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Job Vacancy</a>
+                <Link to="/Job">  <i className="fa fa-handshake-o" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Job Vacancy</Link>
                 <a href="#services"> <i className="fa fa-users" aria-hidden="true" style={{color:'#ff6411' ,padding:10}}></i> Donation</a>
                 <a href="#clients"> <i className="fa fa-shopping-cart" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Product</a>
                 <a href="#contact"> <i className="fa fa-gavel" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Auction</a>

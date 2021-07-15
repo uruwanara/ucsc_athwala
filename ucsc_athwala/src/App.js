@@ -42,6 +42,7 @@ import Home from './Views/Home/Home'
 import SellNoteProduct from './Views/Product/ProductPageSellNote'
 import SellEleProduct from './Views/Product/ProductPageSellEle'
 import Chat from './Views/chat/chatpage'
+import Job from './Views/job/jobPage'
 
 
 
@@ -183,6 +184,10 @@ function App() {
                 <Route path="/Chat" exact>
                     <Chat/>
 
+                </Route>
+
+                <Route path="/Job" exact>
+                    <Job/>
                 </Route>
 
             </Switch>
