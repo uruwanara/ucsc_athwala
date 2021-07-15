@@ -4,6 +4,7 @@ import ViewFundraising from './Fundraising/ViewFundraising';
 import StudentDashboard from './StudentDashboard/StudentDashboard';
 import Admindash from './AdminDashboard/Admindash';
 import Auction from './Auction/Auction';
+import Viewauction from './Auction/Viewauction';
 
 // import SignInt from './Signin/SignIn';
 
@@ -18,7 +19,7 @@ import Auction from './Auction/Auction';
 
 ReactDOM.render(
   <React.StrictMode>
-    <SignInt/>  
+    <Viewauction/>  
   </React.StrictMode>,
   document.getElementById('root')
 );
