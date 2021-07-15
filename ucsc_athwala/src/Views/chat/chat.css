@@ -1,8 +1,4 @@
-body{
-  overflow-x: scroll;
-  overflow-y:hidden;
-}
-  ::-webkit-scrollbar {
+ ::-webkit-scrollbar {
     width: 5px;
   }
   ::-webkit-scrollbar-track {
