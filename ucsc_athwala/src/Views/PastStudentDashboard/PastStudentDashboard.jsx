@@ -15,7 +15,7 @@ export default function PastStuDashboard(){
             <div style={{display:'flex'}}>
                 <Side />
                 <div className="container container-custom">
-                    <div><h5 className="welcome">Hi Nimasha Supunpraba !</h5></div>
+                    <div><h5 className="welcome">Hi Alumni,  Nimasha Supunpraba !</h5></div>
 
                     <div>
                         <div className="title"><h5>Create Job Vacancy</h5></div>

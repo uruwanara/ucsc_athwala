@@ -44,6 +44,7 @@ import SellEleProduct from './Views/Product/ProductPageSellEle'
 import Chat from './Views/chat/chatpage'
 import Job from './Views/job/jobPage'
 import Everify from './Views/EmailVerify/EmailVerify'
+import PastStuDashboard from "./Views/PastStudentDashboard/PastStudentDashboard";
 
 
 
@@ -194,6 +195,11 @@ function App() {
                  <Route path="/everify" exact>
                     <Everify />
                 </Route>
+
+                <Route path="/pstddashboard" exact>
+                    <PastStuDashboard />
+                </Route>
+
 
             </Switch>
         </Router>

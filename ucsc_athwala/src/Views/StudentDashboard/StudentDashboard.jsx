@@ -17,7 +17,7 @@ export default function StuDashboard(){
             <div style={{display:'flex'}}>
                 <Side />
                 <div className="container container-custom">
-                    <div><h5 className="welcome">Hi Dhanu Anjana !</h5></div>
+                    <div><h5 className="welcome">Hi Student, Dhanu Anjana !</h5></div>
                     <div className="title"><h5>Explore and donate today</h5></div>
                     
                     <div class="card-group">
