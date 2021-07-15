@@ -31,9 +31,18 @@ import ViewReceivedDonation from './Views/Donation/View_MyrequestingReceived'
 import ViewPendingDonation from './Views/Donation/View_Myrequesting'
 import ViewNotReceivedDonation from './Views/Donation/View_MyrequestingNotrecived'
 import Viewdonations from './Views/Donation/Donation_page'
+
+import UnionStudentDashboard from './Views/UnionStudentDashboard/UnionStudentDashboard'
+import FundraisingDashboard from './Views/Fundraising/FundraisingDashboard'
+import CreateFundraising from './Views/Fundraising/CreateFundraising'
+import ViewFundraising from './Views/Fundraising/ViewFundraising'
+import ViewStuFundraising from './Views/Fundraising/ViewStuFundraising'
+import EditFundraising from './Views/Fundraising/EditFundraising'
+import Home from './Views/Home/Home'
 import SellNoteProduct from './Views/Product/ProductPageSellNote'
 import SellEleProduct from './Views/Product/ProductPageSellEle'
 import Chat from './Views/chat/chatpage'
+
 
 
 function App() {
@@ -52,6 +61,34 @@ function App() {
 
                 <Route path="/stddashboard" exact>
                     <StdDashBoard />
+                </Route>
+
+                <Route path="/ustddashboard" exact>
+                    <UnionStudentDashboard />
+                </Route>
+
+                <Route path="/funddashboard" exact>
+                    <FundraisingDashboard />
+                </Route>
+
+                <Route path="/createfundraising" exact>
+                    <CreateFundraising />
+                </Route>
+
+                <Route path="/viewfundraising" exact>
+                    <ViewFundraising />
+                </Route>
+
+                <Route path="/editfundraising" exact>
+                    <EditFundraising />
+                </Route>
+
+                <Route path="/viewstufundraising" exact>
+                    <ViewStuFundraising />
+                </Route>
+
+                <Route path="/home" exact>
+                    <Home />
                 </Route>
 
                 <Route path="/stdcntcoun" exact>
@@ -113,10 +150,10 @@ function App() {
                     <ViewNotReceivedDonation />
                 </Route>
 
-
                 <Route path="/stdlrngrp" exact>
                 <StdLearningGroup />
                 </Route>
+
 
                 <Route path="/signup" exact>
                     <SignUp />

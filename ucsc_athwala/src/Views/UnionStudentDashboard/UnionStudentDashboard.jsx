@@ -9,8 +9,14 @@ import Event from '../../image/Vaani-Vizha.jpg';
 import UnionStudentSidebar from '../UnionSidebar/UnionStudentSidebar';
 
 
+import {Link, useHistory } from "react-router-dom";
+
+
 
 function UnionStudentDashboard() {
+
+    const history = useHistory();
+
     return (
         <div>
             <div><Nav /></div>
@@ -59,9 +65,10 @@ function UnionStudentDashboard() {
                     <div>
                         <div className="title"><h5>Fundraising event</h5></div>
 
-                        <div className="btn-custom mt-3 mb-3">
-                            <button type="button" className="btn btn-md">Add a New Fundraising</button>
-
+                        <div>
+                            <Link to="/ustddashboard/FundraisingDashboard">
+                            <button type="button" className="btn btn1 mt-2 mb-2">Add a New Fundraising</button>
+                            </Link>
                         </div>
 
                         <div class="card-group">
