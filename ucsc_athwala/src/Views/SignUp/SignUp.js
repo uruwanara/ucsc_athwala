@@ -194,7 +194,7 @@ export default function SignUp() {
                         fullWidth
                         variant="contained"
                         color="primary"
-                        onClick={"signUp"}
+                        onClick={signUp}
                         className={classes.submit}
                     >
                         Sign Up
