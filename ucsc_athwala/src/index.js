@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SingUp from './Views/SignUp/SignUp';
-
+import SingIn from './Views/ContactCouncellors/ContactCouncellors';
+import { useHistory } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <SingUp/>
+    <SingIn/>
   </React.StrictMode>,
   document.getElementById('root')
 );
