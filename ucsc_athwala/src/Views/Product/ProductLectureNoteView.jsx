@@ -21,7 +21,7 @@ export default function ProductCases(){
       <td>DSA 2 lecture note.</td>
       <td>2021-07-11</td>
      
-      <td><button type="button" class="btn tb-btn">View</button></td>
+      <td><button  type="button" class="btn tb-btn">View</button></td>
     </tr>
     <tr>
       <td>SE Lecture note</td>
