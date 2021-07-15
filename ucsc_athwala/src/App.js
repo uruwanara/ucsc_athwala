@@ -19,6 +19,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <script src='https://meet.jit.si/external_api.js'></script>
     </div>
   );
 }

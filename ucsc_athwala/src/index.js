@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 ReactDOM.render(
   <React.StrictMode>
     <SingIn/>
+      <script src='https://meet.jit.si/external_api.js'></script>
   </React.StrictMode>,
   document.getElementById('root')
 );
