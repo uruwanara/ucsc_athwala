@@ -13,7 +13,7 @@ export default function UnionStudentSidebar() {
             <a href="#contact"> <i className="fa fa-flag" aria-hidden="true" style={{ color: '#ff6411', padding: 10 }}></i> Fundrasing</a>
             <a href="#contact"> <i className="fa fa-handshake-o" aria-hidden="true" style={{ color: '#ff6411', padding: 10 }}></i> Job oppertunity</a>
             <a href="#contact"> <i className="fa fa-video-camera" aria-hidden="true" style={{ color: '#ff6411', padding: 10 }}></i> Video conference</a>
-            <a href="#contact"> <i className="fa fa-comments" aria-hidden="true" style={{ color: '#ff6411', padding: 10 }}></i> Chat</a>
+            <Link to="/Chat"> <i className="fa fa-comments" aria-hidden="true" style={{ color: '#ff6411', padding: 10 }}></i> Chat</Link>
             <a href="#contact"> <i className="fa fa-list-alt" aria-hidden="true" style={{ color: '#ff6411', padding: 10 }}></i> UCSC help desk</a>
             <a href="#contact"> <i className="fa fa-question-circle" aria-hidden="true" style={{ color: '#ff6411', padding: 10 }}></i> QA support</a>
         </div>
