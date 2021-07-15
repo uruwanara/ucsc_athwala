@@ -13,8 +13,9 @@ import UnionStudentDashboard from './Views/UnionStudentDashboard/UnionStudentDas
 import FundraisingDashboard from './Views/Fundraising/FundraisingDashboard'
 import CreateFundraising from './Views/Fundraising/CreateFundraising'
 import ViewFundraising from './Views/Fundraising/ViewFundraising'
-import ViewStuFundraising from './Views/Fundraising/ViewStuFundraising';
-import EditFundraising from './Views/Fundraising/EditFundraising';
+import ViewStuFundraising from './Views/Fundraising/ViewStuFundraising'
+import EditFundraising from './Views/Fundraising/EditFundraising'
+import Home from './Views/Home/Home'
 
 
 
@@ -61,6 +62,10 @@ function App() {
 
                 <Route path="/viewstufundraising" exact>
                     <ViewStuFundraising />
+                </Route>
+
+                <Route path="/home" exact>
+                    <Home />
                 </Route>
 
 
