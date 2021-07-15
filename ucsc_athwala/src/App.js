@@ -10,6 +10,13 @@ import SignUp from './Views/SignUp/SignUp'
 import StdDashBoard from './Views/StudentDashboard/StudentDashboard'
 import Viewdonations from './Views/Donation/Donation_page'
 import UnionStudentDashboard from './Views/UnionStudentDashboard/UnionStudentDashboard'
+import FundraisingDashboard from './Views/Fundraising/FundraisingDashboard'
+import CreateFundraising from './Views/Fundraising/CreateFundraising'
+import ViewFundraising from './Views/Fundraising/ViewFundraising'
+import ViewStuFundraising from './Views/Fundraising/ViewStuFundraising';
+import EditFundraising from './Views/Fundraising/EditFundraising';
+
+
 
 
 
@@ -34,6 +41,26 @@ function App() {
 
                 <Route path="/ustddashboard" exact>
                     <UnionStudentDashboard />
+                </Route>
+
+                <Route path="/funddashboard" exact>
+                    <FundraisingDashboard />
+                </Route>
+
+                <Route path="/createfundraising" exact>
+                    <CreateFundraising />
+                </Route>
+
+                <Route path="/viewfundraising" exact>
+                    <ViewFundraising />
+                </Route>
+
+                <Route path="/editfundraising" exact>
+                    <EditFundraising />
+                </Route>
+
+                <Route path="/viewstufundraising" exact>
+                    <ViewStuFundraising />
                 </Route>
 
 
