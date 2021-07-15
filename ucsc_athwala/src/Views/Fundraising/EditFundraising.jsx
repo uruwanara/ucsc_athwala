@@ -6,7 +6,7 @@ import UnionStudentSidebar from '../UnionSidebar/UnionStudentSidebar';
 
 
 
-function CreateFundraising() {
+function EditFundraising() {
     return (
         <div>
             <div><Nav /></div>
@@ -19,7 +19,7 @@ function CreateFundraising() {
                     <h2 className="text-center">Let's Create a New fundrasing programme</h2>
                     <hr />
 
-                    <form className="row g-3 border border-primary pb-3">
+                    <form className="row g-3 border border-primary pb-3 container-fluid">
 
                         <div className="col-md-7 d-flex align-items-end justify-content-end">
                             {/* <label htmlFor="inputTopic" className="form-label mt-3">Fundraising Event Topic</label>
@@ -93,8 +93,8 @@ function CreateFundraising() {
 
 
                         
-                        <div className="col-12 d-flex flex-row-reverse mt-4">
-                            <div><button input type="submit" className="btn btn1 m-1">Create Fundrasing</button>
+                        <div className="col-12 d-flex flex-row-reverse mt-4 ml-1">
+                            <div><button input type="submit" className="btn btn1 m-1">Update Fundraising</button>
                             </div>
                             <div><button input type="reset" className=" btn btn1 m-1">Reset Details</button>
                             </div>
@@ -110,4 +110,4 @@ function CreateFundraising() {
 
 }
 
-export default CreateFundraising;
+export default EditFundraising;

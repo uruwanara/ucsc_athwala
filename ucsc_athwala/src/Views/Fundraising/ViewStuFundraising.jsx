@@ -3,12 +3,12 @@ import Event from '../../image/Vaani-Vizha.jpg';
 import UnionStudentSidebar from '../UnionSidebar/UnionStudentSidebar';
 import Nav from '../Navbar/Navbar';
 import Pirith from '../../image/Pirith.jpg';
-import './ViewFundraising.css';
+import './ViewStuFundraising.css';
 import { Link, useHistory } from "react-router-dom";
 
 
 
-function ViewFundraising() {
+function ViewStuFundraising() {
     const history = useHistory();
     return (
         <div>
@@ -62,14 +62,14 @@ function ViewFundraising() {
                                     {/* d-flex flex-row-reverse will put the button at the edn of the div tag */}
                                     <div className="mt-3 col-md-12 d-flex flex-row-reverse">
                                         {/* <button type="button" class="btn btn-md">Edit Fundraising</button> */}
-                                        <div className="ml-1">
+                                        {/* <div className="ml-1">
                                             <Link to="/editfundraising">
                                             <button input style={{ fontColor: 'red' }} type="button" className="btn btn1">Edit Fundraising</button>
                                             </Link>
                                         </div>
                                         <div className="ml-1">
                                             <button input type="button" className="btn btn1">End by force</button>
-                                        </div>
+                                        </div> */}
                                         <div className="ml-1">
                                             <button input type="button" className="btn btn1">Donate fundraising</button>
                                         </div>
@@ -128,13 +128,13 @@ function ViewFundraising() {
                                     {/* d-flex flex-row-reverse will put the button at the edn of the div tag */}
                                     <div className="mt-3 col-md-12 d-flex flex-row-reverse">
                                         {/* <button type="button" class="btn btn-md">Edit Fundraising</button> */}
-                                        <div className="ml-1">
+                                        {/* <div className="ml-1">
                                             <Link to="/editfundraising">
                                             <button input type="button" className="btn btn1">Edit Fundrasing</button>
                                             </Link>
                                         </div>
                                         <div className="ml-1"><button input type="button" className="btn btn1">End by force</button>
-                                        </div>
+                                        </div> */}
                                         <div className="ml-1"><button input type="button" className="btn btn1">Donate fundraising</button>
                                         </div>
                                     </div>
@@ -155,4 +155,4 @@ function ViewFundraising() {
     );
 }
 
-export default ViewFundraising;
+export default ViewStuFundraising;

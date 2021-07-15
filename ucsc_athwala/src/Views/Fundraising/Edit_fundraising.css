@@ -3,7 +3,7 @@
 } */
 
 
-  .btn-custom > button:hover {
+.btn-custom > button:hover {
     background-color: #ff6411;
     border: 1px solid #ff6411;
     color: white;
