@@ -29,7 +29,6 @@ import ViewOtherCause from './Views/Donation/View_Othercause'
 import ViewReceivedDonation from './Views/Donation/View_MyrequestingReceived'
 import ViewPendingDonation from './Views/Donation/View_Myrequesting'
 import ViewNotReceivedDonation from './Views/Donation/View_MyrequestingNotrecived'
-import Viewdonations from './Views/Donation/Donation_page'
 import StdContactCounsellor from './Views/StdContactCounsellor/StdContactCounsellor'
 import StdLearningGroup from './Views/StdLearningGroups/StdLearningGroups'
 import ViewEleProduct from './Views/Product/ProductPageViewEles'
@@ -156,5 +155,3 @@ function App() {
 }
 
 export default App;
-
-
