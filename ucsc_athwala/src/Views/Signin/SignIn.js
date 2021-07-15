@@ -78,8 +78,10 @@ export default function SignIn() {
           alert("Alumni");
         }else if (response.data.data.userType==="COUNSELLOR"){
           alert("Counsellor");
+        }else if(response.data.data.userType==="UNIONST"){
+          history.push("/ustddashboard");
         }
-      }else  if(response.data.status==="unauthorized") {
+      }else  if(response.data.message==="unauthorized") {
         enqueueSnackbar('Please Sign In to your Email and Verify the account', {
           variant: 'error', anchorOrigin: {
             vertical: 'top',
@@ -87,15 +89,24 @@ export default function SignIn() {
           }
         })
       }}).catch((err)=>{
-      enqueueSnackbar(err.message, {
+        console.log((err.message));
+        if(err.message==="Request failed with status code 401"){
+      enqueueSnackbar("Please Verify Your Email", {
         variant: 'error',anchorOrigin: {
           vertical: 'top',
           horizontal: 'right',
         },
+      })}
+      if(err.message==="Request failed with status code 500"){
+        enqueueSnackbar("Email Not Found Please Sign Up", {
+          variant: 'error',anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'right',
+          },
+        })}
 
-        // Please sign in notistack
 
-      });;
+        ;;
     })
 
   }
