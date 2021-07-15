@@ -9,30 +9,30 @@ export default function RequestDevice(){
 
         <div class="form-row">
             <div class="form-group col-md-8">
-                <label for="title">Title*</label>
-                <input type="text" class="form-control" id="title" placeholder="title" required></input>
+                <label for="title" class="label-custom">Title*</label>
+                <input type="text" class="form-control input-custom" id="title" placeholder="title" required></input>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-8">
-                <label for="description">Description*</label>
-                <input type="text" class="form-control" id="description" placeholder="decription" required></input>
+                <label for="description" class="label-custom">Description*</label>
+                <input type="text" class="form-control input-custom" id="description" placeholder="decription" required></input>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
-            <label for="model">Model of device </label>
-            <input type="text" class="form-control" id="model" placeholder="device model" required></input>
+            <label for="model" class="label-custom">Model of device </label>
+            <input type="text" class="form-control input-custom" id="model" placeholder="device model" required></input>
         </div>
         <div class="form-group col-md-4">
-            <label for="brand">Brand name</label>
-            <input type="text" class="form-control" id="brand" placeholder="device brand" required></input>
+            <label for="brand" class="label-custom">Brand name</label>
+            <input type="text" class="form-control input-custom" id="brand" placeholder="device brand" required></input>
         </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-8">
-                <label for="beforeDate">Before (around)</label>
-                <input type="date" class="form-control" id="BeforeDate" placeholder="Date"></input>
+                <label for="beforeDate" class="label-custom">Before (around)</label>
+                <input type="date" class="form-control input-custom" id="BeforeDate" placeholder="Date"></input>
             </div>
         </div>
         <div class="form-group">
