@@ -1,6 +1,5 @@
 import React from 'react';
 import './Admindash.css';
-import Calendar from 'react-calendar';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import {
     LineChart,
@@ -10,13 +9,9 @@ import {
     Tooltip,
     ResponsiveContainer,
   } from "recharts";
-import Note from '../image/note.jpg';
-import Cloth from '../image/cloth.jpg';
-import Device from '../image/device.jpg';
-import Money from '../image/money.jpg';
 import Side from '../AdminSidebar/Sidebar';
 import Nav from '../Navbar/Navbar';
-import Event from '../image/Vaani-Vizha.jpg';
+
 
 export default function StuDashboard(){
     const data = [
