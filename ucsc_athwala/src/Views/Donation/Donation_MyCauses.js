@@ -1,6 +1,9 @@
 import React from 'react';
+import {Link, useHistory } from "react-router-dom";
 
 export default function MyCases(){
+  const history = useHistory();
+  
     return(
     <div>
         <table class="table table-striped">
@@ -15,53 +18,53 @@ export default function MyCases(){
   </thead>
   <tbody>
     <tr>
-      <td>DSA Lecture note</td>
-      <td>i'm 2nd year student.I need DSA 2 lecture note.</td>
+      <td>Database Lecture note</td>
+      <td>i'm 2nd year student.I need Database lecture note.</td>
       <td>2021-07-11</td>
       <td>Received</td>
-      <td><button type="button" class="btn tb-btn">View</button></td>
+      <td><button onClick={()=>{ history.push("/viewReceived_donation")}} type="button" class="btn tb-btn">View</button></td>
     </tr>
     <tr>
       <td>SE Lecture note</td>
       <td>i'm 2nd year student.I need Software engineering 2 lecture note.</td>
       <td>2021-07-11</td>
       <td>Not received</td>
-      <td><button type="button" class="btn tb-btn">View</button></td>
+      <td><button onClick={()=>{ history.push("/viewNotReceived_donation")}} type="button" class="btn tb-btn">View</button></td>
     </tr>
     <tr>
       <td>DSA Lecture note</td>
       <td>i'm 2nd year student.I need DSA 2 lecture note.</td>
       <td>2021-07-11</td>
       <td>Pending</td>
-      <td><button type="button" class="btn tb-btn">View</button></td>
+      <td><button onClick={()=>{ history.push("/viewPending_donation")}} type="button" class="btn tb-btn">View</button></td>
     </tr>
     <tr>
       <td>DSA Lecture note</td>
       <td>i'm 2nd year student.I need DSA 2 lecture note.</td>
       <td>2021-07-11</td>
       <td>Pending</td>
-      <td><button type="button" class="btn tb-btn">View</button></td>
+      <td><button onClick={()=>{ history.push("/viewPending_donation")}} type="button" class="btn tb-btn">View</button></td>
     </tr>
     <tr>
-      <td>DSA Lecture note</td>
-      <td>i'm 2nd year student.I need DSA 2 lecture note.</td>
+      <td>SE Lecture note</td>
+      <td>i'm 2nd year student.I need Software engineering 2 lecture note.</td>
       <td>2021-07-11</td>
       <td>Not Received</td>
-      <td><button type="button" class="btn tb-btn">View</button></td>
+      <td><button onClick={()=>{ history.push("/viewNotReceived_donation")}} type="button" class="btn tb-btn">View</button></td>
     </tr>
     <tr>
-      <td>DSA Lecture note</td>
-      <td>i'm 2nd year student.I need DSA 2 lecture note.</td>
-      <td>2021-07-11</td>
-      <td>Not Received</td>
-      <td><button type="button" class="btn tb-btn">View</button></td>
-    </tr>
-    <tr>
-      <td>DSA Lecture note</td>
-      <td>i'm 2nd year student.I need DSA 2 lecture note.</td>
+      <td>Database Lecture note</td>
+      <td>i'm 2nd year student.I need Database lecture note.</td>
       <td>2021-07-11</td>
       <td>Received</td>
-      <td><button type="button" class="btn tb-btn">View</button></td>
+      <td><button onClick={()=>{ history.push("/viewReceived_donation")}} type="button" class="btn tb-btn">View</button></td>
+    </tr>
+    <tr>
+      <td>DSA Lecture note</td>
+      <td>i'm 2nd year student.I need DSA 2 lecture note.</td>
+      <td>2021-07-11</td>
+      <td>Pending</td>
+      <td><button onClick={()=>{ history.push("/viewPending_donation")}} type="button" class="btn tb-btn">View</button></td>
     </tr>
   </tbody>
 </table>
