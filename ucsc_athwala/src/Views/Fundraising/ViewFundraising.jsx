@@ -18,7 +18,7 @@ function ViewFundraising() {
 
                 <div className="container container-custom">
 
-                    <h2 style={{ fontFamily: 'Poppins'}} className="text-center">View prepared Fundraising events</h2>
+                    <h2 style={{ fontFamily: 'Poppins' }} className="text-center">View prepared Fundraising events</h2>
                     <div class="card border-secondary mt-4">
                         <h5 style={{ fontFamily: 'Poppins' }} class="card-header text-center">Ongoing Fundraising</h5>
 
@@ -58,7 +58,15 @@ function ViewFundraising() {
                                     <div className="col-md-4"><h6 style={{ fontFamily: 'Poppins' }}>Final Expected amount: Rs 300,000</h6></div>
                                     <div className="col-md-4"><h6 style={{ fontFamily: 'Poppins' }}>To be recieved amount: Rs 240,000</h6></div>
                                     {/* d-flex flex-row-reverse will put the button at the edn of the div tag */}
-                                    <div className="btn-custom col-md-12 d-flex flex-row-reverse"><button type="button" class="btn btn-md">Edit Fundraising</button></div>
+                                    <div className="btn-custom col-md-12 d-flex flex-row-reverse">
+                                        {/* <button type="button" class="btn btn-md">Edit Fundraising</button> */}
+                                        <div className="btn-custom ml-1">
+                                            <button input style={{ fontColor: 'red' }} type="button" className="btn">Edit Fundraising</button>
+                                        </div>
+                                        <div className="btn-custom ml-1">
+                                            <button input type="button" className="btn">End by force</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
 
@@ -111,7 +119,13 @@ function ViewFundraising() {
                                     <div className="col-md-4"><h6 style={{ fontFamily: 'Poppins' }}>Final Expected amount: Rs 200,000</h6></div>
                                     <div className="col-md-4"><h6 style={{ fontFamily: 'Poppins' }}>To be recieved amount: Rs 100,000</h6></div>
                                     {/* d-flex flex-row-reverse will put the button at the edn of the div tag */}
-                                    <div className="btn-custom col-md-12 d-flex flex-row-reverse"><button type="button" class="btn btn-md">Edit Fundraising</button></div>
+                                    <div className="btn-custom col-md-12 d-flex flex-row-reverse">
+                                        {/* <button type="button" class="btn btn-md">Edit Fundraising</button> */}
+                                        <div className="btn-custom ml-1"><button input type="button" className="btn">Edit Fundrasing</button>
+                                        </div>
+                                        <div className="btn-custom ml-1"><button input type="button" className="btn">End by force</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
 
