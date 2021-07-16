@@ -54,6 +54,28 @@ import HP15EleProduct from './Views/Product/ViewProductHP15s'
 import AcerEleProduct from './Views/Product/ViewProductAcerAspire'
 import PastStuDashboard from "./Views/PastStudentDashboard/PastStudentDashboard";
 
+import PstViewDonation from './Views/PastStudentDonation/Donation_page'
+import PstViewNoteCause from './Views/PastStudentDonation/View_Notecause'
+import PstViewClothCause from './Views/PastStudentDonation/View_Clothcause'
+import PstViewDeviceCause from './Views/PastStudentDonation/View_Devicecause'
+import PstViewMoneyCause from './Views/PastStudentDonation/View_Moneycause'
+import PstViewOtherCause from './Views/PastStudentDonation/View_Othercause'
+
+import UnionViewDonation from './Views/UnionDonation/Donation_page'
+import UnionViewNoteCause from './Views/UnionDonation/View_Notecause'
+import UnionViewClothCause from './Views/UnionDonation/View_Clothcause'
+import UnionViewDeviceCause from './Views/UnionDonation/View_Devicecause'
+import UnionViewMoneyCause from './Views/UnionDonation/View_Moneycause'
+import UnionViewOtherCause from './Views/UnionDonation/View_Othercause'
+import UnionRequestNote from './Views/UnionDonation/Request_Note'
+import UnionRequestCloth from './Views/UnionDonation/Request_Cloth'
+import UnionRequestDevice from './Views/UnionDonation/Request_Device'
+import UnionRequestMoney from './Views/UnionDonation/Request_Money'
+import UnionRequestOther from './Views/UnionDonation/Request_Other'
+import UnionViewMyrequest from './Views/UnionDonation/MyRequesting'
+import UnionViewReceivedDonation from './Views/UnionDonation/View_MyrequestingReceived'
+import UnionViewPendingDonation from './Views/UnionDonation/View_Myrequesting'
+import UnionViewNotReceivedDonation from './Views/UnionDonation/View_MyrequestingNotrecived'
 
 
 function App() {
@@ -232,6 +254,90 @@ function App() {
                     <PastStuDashboard />
                 </Route>
 
+                <Route path="/pstDonation" exact>
+                    <PstViewDonation />
+                </Route>
+                
+                <Route path="/pstviewNoteCause_details" exact>
+                    <PstViewNoteCause />
+                </Route>
+
+                <Route path="/pstviewClothCause_details" exact>
+                    <PstViewClothCause />
+                </Route>
+
+                <Route path="/pstviewDeviceCause_details" exact>
+                    <PstViewDeviceCause />
+                </Route>
+
+                <Route path="/pstviewMoneyCause_details" exact>
+                    <PstViewMoneyCause />
+                </Route>
+
+                <Route path="/pstviewOtherCause_details" exact>
+                    <PstViewOtherCause />
+                </Route>
+
+
+                <Route path="/unionviewcauses" exact>
+                    <UnionViewDonation />
+                </Route>
+
+                <Route path="/unionviewNoteCause_details" exact>
+                    <UnionViewNoteCause />
+                </Route>
+
+                <Route path="/unionviewClothCause_details" exact>
+                    <UnionViewClothCause />
+                </Route>
+
+                <Route path="/unionviewDeviceCause_details" exact>
+                    <UnionViewDeviceCause />
+                </Route>
+
+                <Route path="/unionviewMoneyCause_details" exact>
+                    <UnionViewMoneyCause />
+                </Route>
+
+                <Route path="/unionviewOtherCause_details" exact>
+                    <UnionViewOtherCause />
+                </Route>
+
+                <Route path="/unionrequestNote" exact>
+                    <UnionRequestNote />
+                </Route>
+
+                <Route path="/unionrequestCloth" exact>
+                    <UnionRequestCloth />
+                </Route>
+
+                <Route path="/unionrequestDevice" exact>
+                    <UnionRequestDevice />
+                </Route>
+
+                <Route path="/unionrequestMoney" exact>
+                    <UnionRequestMoney />
+                </Route>
+
+                <Route path="/unionrequestOther" exact>
+                    <UnionRequestOther />
+                </Route>
+
+                <Route path="/unionviewMyrequest" exact>
+                    <UnionViewMyrequest />
+                </Route>
+
+                <Route path="/unionviewReceived_donation" exact>
+                    <UnionViewReceivedDonation />
+                </Route>
+
+                <Route path="/unionviewPending_donation" exact>
+                    <UnionViewPendingDonation />
+                </Route>
+
+                <Route path="/unionviewNotReceived_donation" exact>
+                    <UnionViewNotReceivedDonation />
+                </Route>
 
             </Switch>
         </Router>

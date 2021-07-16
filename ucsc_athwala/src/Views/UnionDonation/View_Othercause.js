@@ -1,8 +1,8 @@
 import React from 'react';
 import './Donation.css';
-import Side from '../PastStudentSidebar/Sidebar';
+import Side from '../UnionSidebar/UnionStudentSidebar';
 import Nav from '../Navbar/Navbar';
-import Note from '../../image/note.jpg';
+import Note from '../../image/other.jpg';
 
 
 export default function View_Notecause(){
@@ -17,10 +17,10 @@ export default function View_Notecause(){
                             
                             <div className="col-md-7">
                                 <div className="card" style={{backgroundColor:'transparent',border:0}}>
-                                        <h3>DSA part 02 Lecture Note</h3>
+                                        <h3>Need help for my brother's recovery</h3>
                                         <p class="card-text card-text-custom">
-                                        I,m a second year student. I have exam on next month. I miss some lectures because i was in sick condition.
-                                        so i need DSA part 02 lecture notes.
+                                        I,m a second year student. My brother got accident last month. now he is recovering.
+                                        we need a wheel chair for him. if someone has a wheel chair and willing to donate it please donate for me.
                                         </p><br></br>
                                 </div>
                             </div>
@@ -36,16 +36,8 @@ export default function View_Notecause(){
                                 <div className="card" style={{backgroundColor:'transparent',border:0}}>
                                         <h3>My Details</h3>
                                         <div className="row">
-                                            <div className="col-md-4"><label>Study year : </label></div>
-                                            <div className="col-md-8"><label>2nd year</label></div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-4"><label>Subject : </label></div>
-                                            <div className="col-md-8"><label>DSA part 02</label></div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-4"><label>Specific lessons : </label></div>
-                                            <div className="col-md-8"><label>All the lessons</label></div>
+                                            <div className="col-md-4"><label>Donate for : </label></div>
+                                            <div className="col-md-8"><label>Brother's recovery</label></div>
                                         </div>
                                         <div className="row">
                                             <div className="col-md-4"><label>Before around : </label></div>
@@ -56,18 +48,6 @@ export default function View_Notecause(){
                             <div className="col-md-5">
                                 <div className="card" style={{ backgroundColor:'transparent',border:0}}>
                                     <h3>Donate me</h3>
-                                        <div className="row">
-                                            <div className="col-md-12"><label>You are able to upload file here</label></div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-12"><input type="file" class="form-control-file" id="uploadFile"></input></div>
-                                        </div><br></br>
-                                        <div className="row">
-                                            <div className="col-md-12"><button type="button" className="btn btn-custom">Donate</button></div>
-                                        </div><br></br>
-                                        <div className="row">
-                                            <div className="col-md-12"><label>OR</label></div>
-                                        </div><br></br>
                                         <div className="row">
                                             <div className="col-md-12"><button type="button" className="btn btn-custom">Contact to send</button></div>
                                         </div>
