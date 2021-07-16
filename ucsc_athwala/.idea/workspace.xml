@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="294a3b9c-7728-46ab-88d8-2f363f532b99" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/PastStudentDashboard/PastStudentDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/PastStudentDashboard/PastStudentDashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/PastStudentSidebar/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/PastStudentSidebar/Sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/Signin/SignIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/Signin/SignIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/StudentDashboard/StudentDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/StudentDashboard/StudentDashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/UnionStudentDashboard/UnionStudentDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/UnionStudentDashboard/UnionStudentDashboard.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="294a3b9c-7728-46ab-88d8-2f363f532b99" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +33,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1626371604403</updated>
-      <workItem from="1626371606252" duration="16615000" />
+      <workItem from="1626371606252" duration="17236000" />
     </task>
     <servers />
   </component>
