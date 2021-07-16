@@ -77,6 +77,8 @@ import UnionViewReceivedDonation from './Views/UnionDonation/View_MyrequestingRe
 import UnionViewPendingDonation from './Views/UnionDonation/View_Myrequesting'
 import UnionViewNotReceivedDonation from './Views/UnionDonation/View_MyrequestingNotrecived'
 
+//import CouncellorDashboard from './Views/CouncellorDashbord/CouncellorDashboard'
+
 
 function App() {
     return (
@@ -338,6 +340,11 @@ function App() {
                 <Route path="/unionviewNotReceived_donation" exact>
                     <UnionViewNotReceivedDonation />
                 </Route>
+
+                <Route path="/coundash" exact>
+                    <CouncellorDashboard />
+                </Route>
+
 
             </Switch>
         </Router>
