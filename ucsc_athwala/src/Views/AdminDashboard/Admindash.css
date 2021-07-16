@@ -55,7 +55,7 @@
     font-size: 20px;
     text-align: center;
 }
-.name{
+.nameA{
     font-size: 20px;
     text-align: center;
     position:relative; left:25px;
@@ -103,7 +103,7 @@
   .chartTitle {
     margin-bottom: 20px;
   }
-  .widgetSm{
+  .widgetSm5{
     flex: 1;
     -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
@@ -111,11 +111,11 @@
     width: 50%;
     position:relative; left:200px;
 }
-.widgetSmImg{
+.widgetSmImg4{
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    object-fit: cover;
+    position: relative;bottom: 0px;left: 0px;
 }
 
   
