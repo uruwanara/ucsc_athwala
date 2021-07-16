@@ -65,7 +65,7 @@ export default function SignUp() {
                 },
             });
 
-        }
+        }else{
         const user={
             "username": fname+lname,
             "fname": fname,
@@ -86,7 +86,7 @@ export default function SignUp() {
         }).catch((err)=>{
 
         })
-
+    }
     }
 
 

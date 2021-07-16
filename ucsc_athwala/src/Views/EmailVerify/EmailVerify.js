@@ -134,7 +134,7 @@ export default function SignUp() {
                                     color="primary"
                                     className={classes.submit}
                                 >
-                                    Sign Up
+                                    Sign In
                                 </Button>
                             </Link>
                         </Grid>
