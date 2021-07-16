@@ -27,7 +27,7 @@ export default function JobCases(){
       <td>Software Engineer</td>
       <td>ICT Agency of Sri Lanka</td>
       <td>Software Engineer job from ICT Agency of Sri Lanka in Colombo, Sri Lanka</td>
-      <td>2020-05-10</td>
+      <td>2020-05-13</td>
       
       <td><button type="button" class="btn tb-btn">View</button></td>
     </tr>
@@ -59,7 +59,7 @@ export default function JobCases(){
       <td>Senior Software Engineer</td>
       <td>Wiley</td>
       <td>Senior Software Engineer - Analytics Engineering</td>
-      <td>2020-06-01</td>
+      <td>2020-06-12</td>
       
       <td><button type="button" class="btn tb-btn">View</button></td>
     </tr>

@@ -61,6 +61,9 @@ import PstViewDeviceCause from './Views/PastStudentDonation/View_Devicecause'
 import PstViewMoneyCause from './Views/PastStudentDonation/View_Moneycause'
 import PstViewOtherCause from './Views/PastStudentDonation/View_Othercause'
 
+import Coundashboard from './Views/Councillordashboard/Coundashboard'
+import CounContactStu from './Views/CouncillorContactStudent/CouncillorConStu'
+
 import UnionViewDonation from './Views/UnionDonation/Donation_page'
 import UnionViewNoteCause from './Views/UnionDonation/View_Notecause'
 import UnionViewClothCause from './Views/UnionDonation/View_Clothcause'
@@ -76,15 +79,16 @@ import UnionViewMyrequest from './Views/UnionDonation/MyRequesting'
 import UnionViewReceivedDonation from './Views/UnionDonation/View_MyrequestingReceived'
 import UnionViewPendingDonation from './Views/UnionDonation/View_Myrequesting'
 import UnionViewNotReceivedDonation from './Views/UnionDonation/View_MyrequestingNotrecived'
+import Land from './Views/LandingPage/home'
 
 
 function App() {
     return (
         <Router>
             <Switch>
-                {/*<Route path="/" exact>*/}
-                {/*    <HomePage/>*/}
-                {/*</Route>*/}
+            <Route path="/ucscathwala" exact>
+                    <Land />
+                </Route>
                 <Route path="/login" exact>
                     <Login />
                 </Route>
@@ -337,6 +341,14 @@ function App() {
 
                 <Route path="/unionviewNotReceived_donation" exact>
                     <UnionViewNotReceivedDonation />
+                </Route>
+
+                <Route path="/Coundashboard" exact>
+                    <Coundashboard  />
+                </Route>
+
+                <Route path="/CounContactStu" exact>
+                    <CounContactStu  />
                 </Route>
 
             </Switch>

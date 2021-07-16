@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link, useHistory } from "react-router-dom";
 
 export default function home(){
     return(
@@ -12,12 +13,14 @@ export default function home(){
                             <ul class="navbar-nav mr-4">
                                 <li class="nav-item">
                                     <a class="nav-link" data-value="about" href="#">Home</a></li>  
-                                <li class="nav-item">
+                                    <li class="nav-item">
+                                    <a class="nav-link" data-value="about" href="#">Donate As Visitor</a></li>  
+                                    <Link to='/login'><li class="nav-item">
                                     <a class="nav-link " data-value="portfolio"href="#">Login</a>    
-                                </li>
-                                <li class="nav-item"> 
-                                    <a class="nav-link " data-value="blog" href="#">SignUp</a></li>   
-                            </ul> 
+                                </li></Link>
+                                <Link to='/signup'><li class="nav-item"> 
+                                    <a class="nav-link " data-value="blog" href="#">SignUp</a></li></Link>
+                        </ul> 
 </div></nav>
         
 

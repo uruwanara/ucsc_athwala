@@ -5,7 +5,7 @@ export default function footer(){
     <div>
         <footer class="page-footer font-small blue">
 
-            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <div class="footer-copyright text-center py-3">©2021 Copyright:
             <a>UCSC Athwala</a>
             </div>
 

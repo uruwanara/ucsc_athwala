@@ -77,7 +77,7 @@ export default function SignIn() {
         }else if (response.data.data.userType==="ALUMNI"){
           history.push("/pstddashboard");
         }else if (response.data.data.userType==="COUNSELLOR"){
-          alert("Counsellor");
+          history.push("/Coundashboard");
         }else if(response.data.data.userType==="UNIONST"){
           history.push("/ustddashboard");
         }

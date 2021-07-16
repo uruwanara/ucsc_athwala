@@ -7,7 +7,7 @@ export default function home(){
         <div class="homeoverlay">
             <div class="container">
             <div class="homedescription ">
-                <h1>Hello ,Welcome To UCSC Athwela</h1>
+                <h1  style={{color:'#ff6411'}}>Hello ,Welcome To UCSC Athwela</h1>
                     <p>this is a student supporting system which provide main functionality of 
                         donation, product, auction, fundrasing to help the student community of
                         UCSC.
