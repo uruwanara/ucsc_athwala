@@ -22,6 +22,7 @@ export default function Cases(){
       <td>2021-07-11</td>
       <td>2021-08-11</td>
       <td><button onClick={()=>{ history.push("/pstviewNoteCause_details")}} type="button" class="btn tb-btn">View</button></td>
+
     </tr>
     <tr>
       <td>Office Trousers</td>
@@ -29,20 +30,25 @@ export default function Cases(){
       <td>2021-07-11</td>
       <td>2021-08-11</td>
       <td><button onClick={()=>{ history.push("/pstviewClothCause_details")}} type="button" class="btn tb-btn">View</button></td>
+
     </tr>
     <tr>
       <td>Mobile phone</td>
       <td>I'm a first year student. i need mobile phone</td>
       <td>2021-07-11</td>
       <td>2021-08-11</td>
+
       <td><button onClick={()=>{ history.push("/pstviewDeviceCause_details")}} type="button" class="btn tb-btn">View</button></td>
+
     </tr>
     <tr>
       <td>Course fees</td>
       <td>help with money for course fees</td>
       <td>2021-07-11</td>
       <td>2021-08-11</td>
+
       <td><button onClick={()=>{ history.push("/pstviewMoneyCause_details")}} type="button" class="btn tb-btn">View</button></td>
+
     </tr>
     <tr>
       <td>SE Lecture note</td>
@@ -64,6 +70,7 @@ export default function Cases(){
       <td>2021-07-11</td>
       <td>2021-08-11</td>
       <td><button onClick={()=>{ history.push("/pstviewNoteCause_details")}} type="button" class="btn tb-btn">View</button></td>
+
     </tr>
   </tbody>
 </table>
