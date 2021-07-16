@@ -6,12 +6,12 @@ import {
 } from "react-router-dom";
 
 import Login from './Views/Signin/SignIn'
-
 import SignUp from './Views/SignUp/SignUp'
 import StdDashBoard from './Views/StudentDashboard/StudentDashboard'
 import UnionDashboard from './Views/UnionStudentDashboard/UnionStudentDashboard'
 import StdContactCounsellor from './Views/StdContactCounsellor/StdContactCounsellor'
 import StdLearningGroup from './Views/StdLearningGroups/StdLearningGroups'
+
 import ViewEleProduct from './Views/Product/ProductPageViewEles'
 import ViewNoteProduct from './Views/Product/ProductPageViewNotes'
 // import SellNoteProduct from './Views/Product/ProductPageSellNote'
@@ -27,19 +27,6 @@ import ViewClothCause from './Views/Donation/View_Clothcause'
 import ViewDeviceCause from './Views/Donation/View_Devicecause'
 import ViewMoneyCause from './Views/Donation/View_Moneycause'
 import ViewOtherCause from './Views/Donation/View_Othercause'
-
-
-import Stdcreateauc from './Views/Auction/Createauctionstd';
-import AdminDashboard from './Views/AdminDashboard/Admindash';
-import Viewauctionstd from './Views/Auction/Studentviewauction';
-import Auctionstd from './Views/Auction/Auctionstd';
-import Pstviewauction from './Views/Auction/pstviewauction';
-import Auctionpst from './Views/Auction/pstauction';
-import Univiewauction from './Views/Auction/unionviewauc';
-import Unionauction from './Views/Auction/unionauction';
-import Unicreateauc from './Views/Auction/Createauctionuni';
-import Accauction from './Views/AdminDashboard/Acceptauction';
-
 import ViewReceivedDonation from './Views/Donation/View_MyrequestingReceived'
 import ViewPendingDonation from './Views/Donation/View_Myrequesting'
 import ViewNotReceivedDonation from './Views/Donation/View_MyrequestingNotrecived'
@@ -113,7 +100,6 @@ function App() {
                     <UnionStudentDashboard />
                 </Route>
 
-
                 <Route path="/funddashboard" exact>
                     <FundraisingDashboard />
                 </Route>
@@ -141,8 +127,7 @@ function App() {
                 <Route path="/stdcntcoun" exact>
                     <StdContactCounsellor/>
                 </Route>
-
-              <Route path="/requestNote" exact>
+                <Route path="/requestNote" exact>
                     <RequestNote />
                 </Route>
 
@@ -186,16 +171,13 @@ function App() {
                     <ViewOtherCause />
                 </Route>
 
-
                 <Route path="/viewReceived_donation" exact>
                     <ViewReceivedDonation />
                 </Route>
 
-
                 <Route path="/viewPending_donation" exact>
                     <ViewPendingDonation />
                 </Route>
-
 
                 <Route path="/viewNotReceived_donation" exact>
                     <ViewNotReceivedDonation />
@@ -226,37 +208,6 @@ function App() {
                     <SellEleProduct />
                 </Route>
 
-
-                <Route path="/stdcreateauc" exact>
-                    <Stdcreateauc />
-                </Route>
-                <Route path="/admindashboard" exact>
-                    <AdminDashboard />
-                </Route>
-                <Route path="/viewauctionstd" exact>
-                    <Viewauctionstd />
-                </Route>
-                <Route path="/auctionstd" exact>
-                    <Auctionstd />
-                </Route>
-                <Route path="/viewauctionpst" exact>
-                    <Pstviewauction />
-                </Route>
-                <Route path="/auctionpst" exact>
-                    <Auctionpst />
-                </Route>
-                <Route path="/univiewauction" exact>
-                    <Univiewauction />
-                </Route>
-                <Route path="/uniauction" exact>
-                    <Unionauction />
-                </Route>
-                <Route path="/unicreateauc" exact>
-                    <Unicreateauc />
-                </Route>
-                <Route path="/accauction" exact>
-                    <Accauction />
-                </Route>
 
                 <Route path="/unionDashbord" exact>
                     <UnionDashboard />
@@ -306,7 +257,7 @@ function App() {
                 <Route path="/pstDonation" exact>
                     <PstViewDonation />
                 </Route>
-
+                
                 <Route path="/pstviewNoteCause_details" exact>
                     <PstViewNoteCause />
                 </Route>

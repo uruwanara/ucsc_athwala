@@ -38,14 +38,14 @@
   body{
     overflow-x: hidden;
   }
-  .widgetSm1{
+  .widgetSm{
     flex: 1;
     -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
     padding: 20px;
     width: 75%;
     height: 900px;
-    position:sticky; left:280px;top:0px ;
+    position:sticky; left:200px;top:0px ;
     overflow-y: hidden;
     overflow-x: hidden;
     
@@ -77,8 +77,8 @@ img {
   .laptop{
     position:relative;bottom:10px ;
   }
-  .box20{
-    position:relative;bottom:380px ;left: 750px; 
+  .box2{
+    position:relative;bottom:382px ;left: 75%; 
   }
   .clock{
     position:relative;bottom:75px ;right: 50px;
@@ -92,7 +92,7 @@ img {
   .day1{
     position:relative;bottom:30px ;left: 0%;
   }
-  .line10{
+  .line1{
     position:relative;bottom:450px ;left: 0%;
   }
   .button {
