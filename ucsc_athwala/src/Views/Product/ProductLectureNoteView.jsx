@@ -1,7 +1,9 @@
 import React from 'react';
 import Event from '../../image/note1.jpg';
+import {Link, useHistory } from "react-router-dom";
 
 export default function ProductCases(){
+  const history = useHistory();
     return(
     <div>
         <table class="table table-striped">
@@ -23,7 +25,7 @@ export default function ProductCases(){
       <td>Rs : 100.00</td>
       <td>2021-07-11</td>
      
-      <td><button  type="button" class="btn tb-btn">View</button></td>
+      <td><button  onClick={()=>{ history.push("/LectureNoteProduct")}} type="button" class="btn tb-btn">View</button></td>
     </tr>
     <tr>
       <td>SE Lecture note</td>
