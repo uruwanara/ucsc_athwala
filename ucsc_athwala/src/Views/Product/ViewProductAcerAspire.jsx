@@ -2,7 +2,7 @@ import React from 'react';
 import './ProductView.css';
 import Side from '../StudentSidebar/Sidebar';
 import Nav from '../Navbar/Navbar';
-import Note from '../../image/device.jpg';
+import Note from '../../image/laptopAcer.jpeg';
 
 
 export default function StuDashboard(){
@@ -17,18 +17,17 @@ export default function StuDashboard(){
                             
                             <div className="col-md-7">
                                 <div className="card" style={{backgroundColor:'transparent',border:0}}>
-                                        <h3>Laptop</h3>
+                                        <h3>Acer Laptop</h3>
                                         <br />
-                                        <h6>HP Pavilion Laptop - 13t-bb000</h6>
-                                        
+                                        <h6>Acer Aspire 5 A514-54G</h6>
+                                        <h6>Price : Rs. 55 500.00</h6>
+                                      
                                         <p class="card-text card-text-custom">
-                                        - Windows 10 Home
-                                        <br />
-                                        - 11th generation Intel® Core™ processors
-                                        <br />
-                                        - 13.3-inch FHD display
-                                        <br />
-                                        - Fan redesign with improved air flow
+                                        Acer Core i5 1135G7 processor. 
+                                        8GB DDR4, 1TB, 128GB SSD.
+                                        14" FHD IPS.
+                                        WIN 10.
+                                        Silver.
                                         </p><br></br>
                                 </div>
                             </div>
@@ -45,19 +44,19 @@ export default function StuDashboard(){
                                         <h3>Contact Details</h3>
                                         <div className="row">
                                             <div className="col-md-4"><label>Name : </label></div>
-                                            <div className="col-md-8"><label>Nimasha</label></div>
+                                            <div className="col-md-8"><label>Thilini</label></div>
                                         </div>
                                         <div className="row">
                                             <div className="col-md-4"><label>Batch No</label></div>
-                                            <div className="col-md-8"><label>16 Batch</label></div>
+                                            <div className="col-md-8"><label>15 Batch</label></div>
                                         </div>
                                         <div className="row">
                                             <div className="col-md-4"><label>Contact Number: </label></div>
-                                            <div className="col-md-8"><label>071 6119055</label></div>
+                                            <div className="col-md-8"><label>071 8948010</label></div>
                                         </div>
                                         <div className="row">
                                             <div className="col-md-4"><label>Email Address : </label></div>
-                                            <div className="col-md-8"><label>nimashasupunpraba@gmail.com</label></div>
+                                            <div className="col-md-8"><label>thiliniayodya95@gmail.com</label></div>
                                         </div>
                                       
                                 </div>

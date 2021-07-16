@@ -1,21 +1,16 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
+import {React,useState} from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Paper from '@material-ui/core/Paper';
-import logo from "../Signin/Img/ico.png";
-
+import logo from "../Signin/Img/logo.png";
+import axios from 'axios';
+import { useSnackbar } from 'notistack';
+import {Link, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -51,6 +46,50 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
     const classes = useStyles();
 
+    const history =useHistory();
+    const [fname, setFname] = useState("");
+    const [lname, setLname] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [ustype, setUsrType] = useState("");
+
+    // eslint-disable-next-line
+    const {enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+    const signUp=()=>{
+        if(!(email.includes("@stu.ucsc.cmb.ac.lk")|| email.includes("@ucsc.lk"))){
+            enqueueSnackbar('Email Not Valid. Use your UCSC Email', {
+                variant: 'error',anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right',
+                },
+            });
+
+        }
+        const user={
+            "username": fname+lname,
+            "fname": fname,
+            "lname": lname,
+            "userType": ustype,
+            "email": email,
+            "password": password
+        }
+        axios.post("http://localhost:5000/api/users/create",user,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then((response)=>{
+            console.log(response.data.data.userType);
+                history.push("/everify");
+
+        }).catch((err)=>{
+
+        })
+
+    }
+
+
     return (
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
@@ -73,6 +112,8 @@ export default function SignUp() {
                                 id="firstName"
                                 label="First Name"
                                 autoFocus
+                                onChange={(e) => {setFname(e.target.value)}}
+
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -84,6 +125,7 @@ export default function SignUp() {
                                 label="Last Name"
                                 name="lastName"
                                 autoComplete="lname"
+                                onChange={(e) => {setLname(e.target.value)}}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -95,6 +137,7 @@ export default function SignUp() {
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
+                                onChange={(e) => {setEmail(e.target.value)}}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -107,32 +150,32 @@ export default function SignUp() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                onChange={(e) => {setPassword(e.target.value)}}
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <Autocomplete
                                 id="combo-box-demo"
                                 options={userTypes}
-
-
                                 getOptionLabel={(option) => option.uType}
                                 style={{ width: 300 }}
                                 renderInput={(params) => <TextField {...params} label="I am a" variant="outlined" />}
+                                onChange={(e,newValue) => {setUsrType(newValue.name)}}
                             />
                         </Grid>
                     </Grid>
                     <Button
-                        type="submit"
                         fullWidth
                         variant="contained"
                         color="primary"
+                        onClick={signUp}
                         className={classes.submit}
                     >
                         Sign Up
                     </Button>
                     <Grid container justifyContent="flex-end">
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link to="/login" >
                                 Already have an account? Sign in
                             </Link>
                         </Grid>
@@ -146,4 +189,4 @@ export default function SignUp() {
     );
 }
 
-const userTypes= [{ uType: 'UCSC Student'},{ uType: 'UCSC Alumni'},{ uType: 'UCSC Counsellor'},];
+const userTypes= [{ uType: 'UCSC Student',name:"STUDENT"},{ uType: 'UCSC Alumni',name:"ALUMNI"},{ uType: 'UCSC Counsellor',name:"COUNSELLOR"}];

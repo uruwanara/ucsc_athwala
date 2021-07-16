@@ -15,7 +15,7 @@ export default function PastStuDashboard(){
             <div style={{display:'flex'}}>
                 <Side />
                 <div className="container container-custom">
-                    <div><h5 className="welcome">Hi Nimasha Supunpraba !</h5></div>
+                    <div><h5 className="welcome">Hi Alumni,  Nimasha Supunpraba !</h5></div>
 
                     <div>
                         <div className="title"><h5>Create Job Vacancy</h5></div>
@@ -36,7 +36,7 @@ export default function PastStuDashboard(){
                                 <div class="card" style={{backgroundColor:'#e9ecef',border:0}}>
                                 {/* <div><p class="card-text text-center" style={{margin:10,color:'#343a40',alignSelf:'left',fontFamily:'Poppins, sans-serif'}}>Raised : Rs.5000</p></div> */}
                                 {/* <div><p class="card-text text-center" style={{margin:10,color:'#343a40',alignSelf:'left',fontFamily:'Poppins, sans-serif'}}>Goal : Rs.15000</p></div> */}
-                                <div className="btn-custom" style={{alignSelf:'center'}}><button type="button" class="btn btn-md">Add New Job Advertisment</button></div>
+                                <div className="btn-pst" style={{alignSelf:'center'}}><button type="button" class="btn btn-md">Add New Job Advertisment</button></div>
                                 </div>
                         </div>
                     </div> 

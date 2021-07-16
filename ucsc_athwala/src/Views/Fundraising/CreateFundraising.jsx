@@ -5,6 +5,7 @@ import Nav from '../Navbar/Navbar';
 import UnionStudentSidebar from '../UnionSidebar/UnionStudentSidebar';
 
 
+
 function CreateFundraising() {
     return (
         <div>
@@ -92,10 +93,10 @@ function CreateFundraising() {
 
 
                         
-                        <div className="col-12 d-flex flex-row-reverse mt-4 btn-custom">
-                            <div className="btn-custom ml-1"><button input type="submit" className="btn">Create Fundrasing</button>
+                        <div className="col-12 d-flex flex-row-reverse mt-4">
+                            <div><button input type="submit" className="btn btn1 m-1">Create Fundrasing</button>
                             </div>
-                            <div className="btn-custom mr-1"><button input type="reset" className="btn">Reset Details</button>
+                            <div><button input type="reset" className=" btn btn1 m-1">Reset Details</button>
                             </div>
                         </div>
                         

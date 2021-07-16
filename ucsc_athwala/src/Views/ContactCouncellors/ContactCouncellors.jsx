@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function ContactCouncellor(){
     const [shown, setShown] = React.useState(false)
+    const [shown1, setShown1] = React.useState(false)
     const classes = useStyles();
     return(
 
@@ -27,10 +28,19 @@ export default function ContactCouncellor(){
                         className={classes.button}
 
                         button onClick={() => setShown(!shown)}>Contact Councellor</Button>
-                    <div>
-                        {shown ? <VideoModal /> : null}
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.button}
 
-                    </div>
+                        button onClick={() => setShown1(!shown1)}>Join a Learning Group</Button>
+                    <div>
+                        {shown1 ? <VideoModal2 /> : null}
+
+                    </div><div>
+                    {shown ? <VideoModal /> : null}
+
+                </div>
                 </div>
             </div>
         </div>
@@ -41,6 +51,20 @@ const VideoModal = (props) => {
     return <div>
         <iframe allow="camera; microphone; display-capture; autoplay; clipboard-write"
                 src="https://meet.jit.si/ucscathwala124578"
+                marginWidth="1000px"
+                width="100%"
+                height="700px"
+                id="myId"
+                className="myClassname"
+                display="initial"
+                position="relative"
+        />
+    </div>
+}
+const VideoModal2 = (props) => {
+    return <div>
+        <iframe allow="camera; microphone; display-capture; autoplay; clipboard-write"
+                src="https://meet.jit.si/ucscathwalaLearningGroup456"
                 marginWidth="1000px"
                 width="100%"
                 height="700px"

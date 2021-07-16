@@ -1,0 +1,28 @@
+ /* form{
+    background-color:#e7c582;
+} */
+
+
+.btn-custom > button:hover {
+    background-color: #ff6411;
+    border: 1px solid #ff6411;
+    color: white;
+  }
+ 
+
+  div label{
+      color: #081d62;
+      font-weight: bold;
+  }
+
+  .btn1{
+    background-color: #ff6411 !important;
+    /* border: 5px solid #ff6411; */
+    border-radius: 50px !important;
+    color: white !important;
+  }
+  
+  .btn1:hover {
+    background-color: #df6f06;
+    color: white;
+  }

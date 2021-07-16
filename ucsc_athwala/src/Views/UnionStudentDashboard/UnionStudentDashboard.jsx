@@ -9,8 +9,14 @@ import Event from '../../image/Vaani-Vizha.jpg';
 import UnionStudentSidebar from '../UnionSidebar/UnionStudentSidebar';
 
 
+import {Link, useHistory } from "react-router-dom";
+
+
 
 function UnionStudentDashboard() {
+
+    const history = useHistory();
+
     return (
         <div>
             <div><Nav /></div>
@@ -20,7 +26,7 @@ function UnionStudentDashboard() {
 
                 
                 <div className="container container-custom">
-                    <div><h5 className="welcome">Hi Abises Weerasekera!!</h5></div>
+                    <div><h5 className="welcome">Hi Union Member, Abises Weerasekera!!</h5></div>
                     <div className="title"><h5>Explore and donate today</h5></div>
 
                     <div class="card-group">
@@ -59,9 +65,10 @@ function UnionStudentDashboard() {
                     <div>
                         <div className="title"><h5>Fundraising event</h5></div>
 
-                        <div className="btn-custom mt-3 mb-3">
-                            <button type="button" className="btn btn-md">Add a New Fundraising</button>
-
+                        <div>
+                            <Link to="/ustddashboard/FundraisingDashboard">
+                            <button type="button" className="btn btn1 mt-2 mb-2">Add a New Fundraising</button>
+                            </Link>
                         </div>
 
                         <div class="card-group">
@@ -77,7 +84,7 @@ function UnionStudentDashboard() {
                             <div class="card" style={{ backgroundColor: '#e9ecef', border: 0 }}>
                                 <div><p class="card-text text-center" style={{ margin: 10, color: '#343a40', alignSelf: 'left', fontFamily: 'Poppins, sans-serif' }}>Raised : Rs.5000</p></div>
                                 <div><p class="card-text text-center" style={{ margin: 10, color: '#343a40', alignSelf: 'left', fontFamily: 'Poppins, sans-serif' }}>Goal : Rs.15000</p></div>
-                                <div className="btn-custom" style={{ alignSelf: 'center' }}><button type="button" class="btn btn-md">Donate today</button></div>
+                                <div className="btn-union" style={{ alignSelf: 'center' }}><button type="button" class="btn btn-md">Donate today</button></div>
                             </div>
                         </div>
                     </div>

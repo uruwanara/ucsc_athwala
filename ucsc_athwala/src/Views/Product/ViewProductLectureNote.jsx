@@ -3,9 +3,11 @@ import './ProductView.css';
 import Side from '../StudentSidebar/Sidebar';
 import Nav from '../Navbar/Navbar';
 import Note from '../../image/note1.jpg';
+import {Link, useHistory } from "react-router-dom";
 
 
 export default function StuDashboard(){
+    const history = useHistory();
     return(
         <div>
             <div><Nav /></div>
@@ -18,6 +20,7 @@ export default function StuDashboard(){
                             <div className="col-md-7">
                                 <div className="card" style={{backgroundColor:'transparent',border:0}}>
                                         <h3>DSA part 02 Lecture Note</h3>
+                                        <h6>Price : Rs. 100.00</h6>
                                         <p class="card-text card-text-custom">
                                         I,m a second year student. I have exam on next month. I miss some lectures because i was in sick condition.
                                         so i need DSA part 02 lecture notes.

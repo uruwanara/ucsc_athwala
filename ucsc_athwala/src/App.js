@@ -6,12 +6,12 @@ import {
 } from "react-router-dom";
 
 import Login from './Views/Signin/SignIn'
-// import SignUp from './Views/SignUp/SignUp'
+
+import SignUp from './Views/SignUp/SignUp'
 import StdDashBoard from './Views/StudentDashboard/StudentDashboard'
 import UnionDashboard from './Views/UnionStudentDashboard/UnionStudentDashboard'
-// import StdContactCounsellor from './Views/StdContactCounsellor/StdContactCounsellor'
-// import StdLearningGroup from './Views/StdLearningGroups/StdLearningGroups'
-
+import StdContactCounsellor from './Views/StdContactCounsellor/StdContactCounsellor'
+import StdLearningGroup from './Views/StdLearningGroups/StdLearningGroups'
 import ViewEleProduct from './Views/Product/ProductPageViewEles'
 import ViewNoteProduct from './Views/Product/ProductPageViewNotes'
 // import SellNoteProduct from './Views/Product/ProductPageSellNote'
@@ -27,21 +27,8 @@ import ViewClothCause from './Views/Donation/View_Clothcause'
 import ViewDeviceCause from './Views/Donation/View_Devicecause'
 import ViewMoneyCause from './Views/Donation/View_Moneycause'
 import ViewOtherCause from './Views/Donation/View_Othercause'
-// import ViewReceivedDonation from './Views/Donation/View_MyrequestingReceived'
-import ViewPendingDonation from './Views/Donation/View_Myrequesting'
-// import ViewNotReceivedDonation from './Views/Donation/View_MyrequestingNotrecived'
-import Viewdonations from './Views/Donation/Donation_page'
 
-import UnionStudentDashboard from './Views/UnionStudentDashboard/UnionStudentDashboard'
-// import FundraisingDashboard from './Views/Fundraising/FundraisingDashboard'
-import CreateFundraising from './Views/Fundraising/CreateFundraising'
-import ViewFundraising from './Views/Fundraising/ViewFundraising'
-// import ViewStuFundraising from './Views/Fundraising/ViewStuFundraising'
-// import EditFundraising from './Views/Fundraising/EditFundraising'
-// import Home from './Views/Home/Home'
-import SellNoteProduct from './Views/Product/ProductPageSellNote'
-import SellEleProduct from './Views/Product/ProductPageSellEle'
-// import Chat from './Views/chat/chatpage'
+
 import Stdcreateauc from './Views/Auction/Createauctionstd';
 import AdminDashboard from './Views/AdminDashboard/Admindash';
 import Viewauctionstd from './Views/Auction/Studentviewauction';
@@ -52,6 +39,57 @@ import Univiewauction from './Views/Auction/unionviewauc';
 import Unionauction from './Views/Auction/unionauction';
 import Unicreateauc from './Views/Auction/Createauctionuni';
 import Accauction from './Views/AdminDashboard/Acceptauction';
+
+import ViewReceivedDonation from './Views/Donation/View_MyrequestingReceived'
+import ViewPendingDonation from './Views/Donation/View_Myrequesting'
+import ViewNotReceivedDonation from './Views/Donation/View_MyrequestingNotrecived'
+import Viewdonations from './Views/Donation/Donation_page'
+
+import UnionStudentDashboard from './Views/UnionStudentDashboard/UnionStudentDashboard'
+import FundraisingDashboard from './Views/Fundraising/FundraisingDashboard'
+import CreateFundraising from './Views/Fundraising/CreateFundraising'
+import ViewFundraising from './Views/Fundraising/ViewFundraising'
+import ViewStuFundraising from './Views/Fundraising/ViewStuFundraising'
+import EditFundraising from './Views/Fundraising/EditFundraising'
+import Home from './Views/Home/Home'
+import SellNoteProduct from './Views/Product/ProductPageSellNote'
+import SellEleProduct from './Views/Product/ProductPageSellEle'
+import Chat from './Views/chat/chatpage'
+import Job from './Views/job/jobPage'
+import Everify from './Views/EmailVerify/EmailVerify'
+import SamsungEleProduct from './Views/Product/ViewProductSamsungPhone'
+import NokiaEleProduct from './Views/Product/ViewProductNokia C20'
+import LectureNoteProduct from './Views/Product/ViewProductLectureNote'
+import HuwaweiITabEleProduct from './Views/Product/ViewProductHuaweiTab'
+import HuwaweiP30EleProduct from './Views/Product/ViewProductHuawei P30 Lite'
+import HPProEleProduct from './Views/Product/ViewProductHPProbook'
+import HP15EleProduct from './Views/Product/ViewProductHP15s'
+import AcerEleProduct from './Views/Product/ViewProductAcerAspire'
+import PastStuDashboard from "./Views/PastStudentDashboard/PastStudentDashboard";
+
+import PstViewDonation from './Views/PastStudentDonation/Donation_page'
+import PstViewNoteCause from './Views/PastStudentDonation/View_Notecause'
+import PstViewClothCause from './Views/PastStudentDonation/View_Clothcause'
+import PstViewDeviceCause from './Views/PastStudentDonation/View_Devicecause'
+import PstViewMoneyCause from './Views/PastStudentDonation/View_Moneycause'
+import PstViewOtherCause from './Views/PastStudentDonation/View_Othercause'
+
+import UnionViewDonation from './Views/UnionDonation/Donation_page'
+import UnionViewNoteCause from './Views/UnionDonation/View_Notecause'
+import UnionViewClothCause from './Views/UnionDonation/View_Clothcause'
+import UnionViewDeviceCause from './Views/UnionDonation/View_Devicecause'
+import UnionViewMoneyCause from './Views/UnionDonation/View_Moneycause'
+import UnionViewOtherCause from './Views/UnionDonation/View_Othercause'
+import UnionRequestNote from './Views/UnionDonation/Request_Note'
+import UnionRequestCloth from './Views/UnionDonation/Request_Cloth'
+import UnionRequestDevice from './Views/UnionDonation/Request_Device'
+import UnionRequestMoney from './Views/UnionDonation/Request_Money'
+import UnionRequestOther from './Views/UnionDonation/Request_Other'
+import UnionViewMyrequest from './Views/UnionDonation/MyRequesting'
+import UnionViewReceivedDonation from './Views/UnionDonation/View_MyrequestingReceived'
+import UnionViewPendingDonation from './Views/UnionDonation/View_Myrequesting'
+import UnionViewNotReceivedDonation from './Views/UnionDonation/View_MyrequestingNotrecived'
+
 
 function App() {
     return (
@@ -75,9 +113,10 @@ function App() {
                     <UnionStudentDashboard />
                 </Route>
 
-                {/* <Route path="/funddashboard" exact>
+
+                <Route path="/funddashboard" exact>
                     <FundraisingDashboard />
-                </Route> */}
+                </Route>
 
                 <Route path="/createfundraising" exact>
                     <CreateFundraising />
@@ -87,22 +126,23 @@ function App() {
                     <ViewFundraising />
                 </Route>
 
-                {/* <Route path="/editfundraising" exact>
+                <Route path="/editfundraising" exact>
                     <EditFundraising />
-                </Route> */}
+                </Route>
 
-                {/* <Route path="/viewstufundraising" exact>
+                <Route path="/viewstufundraising" exact>
                     <ViewStuFundraising />
-                </Route> */}
+                </Route>
 
-                {/* <Route path="/home" exact>
+                <Route path="/home" exact>
                     <Home />
-                </Route> */}
+                </Route>
 
-                {/* <Route path="/stdcntcoun" exact>
+                <Route path="/stdcntcoun" exact>
                     <StdContactCounsellor/>
-                </Route> */}
-                <Route path="/requestNote" exact>
+                </Route>
+
+              <Route path="/requestNote" exact>
                     <RequestNote />
                 </Route>
 
@@ -146,26 +186,29 @@ function App() {
                     <ViewOtherCause />
                 </Route>
 
-                {/* <Route path="/viewReceived_donation" exact>
+
+                <Route path="/viewReceived_donation" exact>
                     <ViewReceivedDonation />
-                </Route> */}
+                </Route>
+
 
                 <Route path="/viewPending_donation" exact>
                     <ViewPendingDonation />
                 </Route>
 
-                {/* <Route path="/viewNotReceived_donation" exact>
+
+                <Route path="/viewNotReceived_donation" exact>
                     <ViewNotReceivedDonation />
-                </Route> */}
+                </Route>
 
-                {/* <Route path="/stdlrngrp" exact>
+                <Route path="/stdlrngrp" exact>
                 <StdLearningGroup />
-                </Route> */}
+                </Route>
 
 
-                {/* <Route path="/signup" exact>
+                <Route path="/signup" exact>
                     <SignUp />
-                </Route> */}
+                </Route>
 
                 <Route path="/ViewEleProduct" exact>
                     <ViewEleProduct />
@@ -184,14 +227,6 @@ function App() {
                 </Route>
 
 
-                <Route path="/unionDashobard" exact>
-                    <UnionDashboard />
-                </Route>
-
-                {/* <Route path="/Chat" exact>
-                    <Chat/>
-
-                </Route> */}
                 <Route path="/stdcreateauc" exact>
                     <Stdcreateauc />
                 </Route>
@@ -222,6 +257,137 @@ function App() {
                 <Route path="/accauction" exact>
                     <Accauction />
                 </Route>
+
+                <Route path="/unionDashbord" exact>
+                    <UnionDashboard />
+                </Route>
+
+                <Route path="/Chat" exact>
+                    <Chat/>
+
+                </Route>
+
+
+                <Route path="/Job" exact>
+                    <Job/>
+                </Route>
+                 <Route path="/everify" exact>
+                    <Everify />
+                </Route>
+                <Route path="/SamsungEleProduct" exact>
+                    <SamsungEleProduct />
+                </Route>
+                <Route path="/NokiaEleProduct" exact>
+                    <NokiaEleProduct />
+                </Route>
+                <Route path="/LectureNoteProduct" exact>
+                    <LectureNoteProduct />
+                </Route>
+                <Route path="/HuwaweiITabEleProduct" exact>
+                    <HuwaweiITabEleProduct />
+                </Route>
+                <Route path="/HuwaweiP30EleProduct" exact>
+                    <HuwaweiP30EleProduct />
+                </Route>
+                <Route path="/HPProEleProduct" exact>
+                    <HPProEleProduct />
+                </Route>
+                <Route path="/HP15EleProduct" exact>
+                    <HP15EleProduct />
+                </Route>
+                <Route path="/AcerEleProduct" exact>
+                    <AcerEleProduct />
+                </Route>
+
+                <Route path="/pstddashboard" exact>
+                    <PastStuDashboard />
+                </Route>
+
+                <Route path="/pstDonation" exact>
+                    <PstViewDonation />
+                </Route>
+
+                <Route path="/pstviewNoteCause_details" exact>
+                    <PstViewNoteCause />
+                </Route>
+
+                <Route path="/pstviewClothCause_details" exact>
+                    <PstViewClothCause />
+                </Route>
+
+                <Route path="/pstviewDeviceCause_details" exact>
+                    <PstViewDeviceCause />
+                </Route>
+
+                <Route path="/pstviewMoneyCause_details" exact>
+                    <PstViewMoneyCause />
+                </Route>
+
+                <Route path="/pstviewOtherCause_details" exact>
+                    <PstViewOtherCause />
+                </Route>
+
+
+                <Route path="/unionviewcauses" exact>
+                    <UnionViewDonation />
+                </Route>
+
+                <Route path="/unionviewNoteCause_details" exact>
+                    <UnionViewNoteCause />
+                </Route>
+
+                <Route path="/unionviewClothCause_details" exact>
+                    <UnionViewClothCause />
+                </Route>
+
+                <Route path="/unionviewDeviceCause_details" exact>
+                    <UnionViewDeviceCause />
+                </Route>
+
+                <Route path="/unionviewMoneyCause_details" exact>
+                    <UnionViewMoneyCause />
+                </Route>
+
+                <Route path="/unionviewOtherCause_details" exact>
+                    <UnionViewOtherCause />
+                </Route>
+
+                <Route path="/unionrequestNote" exact>
+                    <UnionRequestNote />
+                </Route>
+
+                <Route path="/unionrequestCloth" exact>
+                    <UnionRequestCloth />
+                </Route>
+
+                <Route path="/unionrequestDevice" exact>
+                    <UnionRequestDevice />
+                </Route>
+
+                <Route path="/unionrequestMoney" exact>
+                    <UnionRequestMoney />
+                </Route>
+
+                <Route path="/unionrequestOther" exact>
+                    <UnionRequestOther />
+                </Route>
+
+                <Route path="/unionviewMyrequest" exact>
+                    <UnionViewMyrequest />
+                </Route>
+
+                <Route path="/unionviewReceived_donation" exact>
+                    <UnionViewReceivedDonation />
+                </Route>
+
+                <Route path="/unionviewPending_donation" exact>
+                    <UnionViewPendingDonation />
+                </Route>
+
+                <Route path="/unionviewNotReceived_donation" exact>
+                    <UnionViewNotReceivedDonation />
+                </Route>
+
             </Switch>
         </Router>
     );
