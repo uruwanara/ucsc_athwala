@@ -57,3 +57,20 @@
     color: white;
     
   }
+
+  .btn-pst > button{
+    background: #FF8008;
+    background: -webkit-linear-gradient(to top, #fd8a0f, #ff6411);
+    background: linear-gradient(to top, #fd8e18, #ff6411);
+    color: white;
+    border-radius: 15px;
+    margin-top: 5.5rem;
+
+  }
+
+  .btn-pst > button:hover{
+    background-color: #ff6411;
+    border:1px solid #ff6411;
+    color: white;
+    
+  }

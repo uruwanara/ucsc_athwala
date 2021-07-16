@@ -1,6 +1,6 @@
 import React from 'react';
 import './Donation.css';
-import Side from '../PastStudentSidebar/Sidebar';
+import Side from '../UnionSidebar/UnionStudentSidebar';
 import Nav from '../Navbar/Navbar';
 import Note from '../../image/note.jpg';
 

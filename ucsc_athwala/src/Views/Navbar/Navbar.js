@@ -6,7 +6,7 @@ export default function Navbar() {
     return(
         <div>
            <nav className="navbar navbar-expand-sm justify-content-end navbar-custom">
-               <div><h5 style={{paddingRight:1250,color:'#000000', fontWeight: 'bold',textShadow:'2px 2px #ffffff'}}>UCSC Athwala </h5></div>
+               <div><h5 style={{paddingRight:1250,color:'#ffffff', fontWeight: 'bold',fontFamily:'Poppins, sans-serif'}}>UCSC Athwala </h5></div>
                <div><ul className="navbar-nav">
                     
                 <li className="nav-item nav-item-custom">
