@@ -1,18 +1,21 @@
 import React from 'react';
 import './auction.css';
-import Side from '../StudentSidebar/Sidebar';
+import TextField from '@material-ui/core/TextField';
+import Note from '../../image/note.jpg';
+import Cloth from '../../image/cloth.jpg';
+import Device from '../../image/device.jpg';
+import Money from '../../image/money.jpg';
 import Nav from '../Navbar/Navbar';
+import Event from '../../image/Vaani-Vizha.jpg';
 
-
-export default function Auctionstd(){
+export default function StuDashboard(){
     return(
         <body>
         <div>
             <div><Nav /></div>
-            <Side />
             <div className="Auction">
-            <p ><b>Bid now!</b></p></div>
-            <div className="widgetSm1">
+            <p ><b><center>Bid now!</center></b></p></div>
+            <div className="widgetSm">
                 <p>Seller Name</p>
                 <div className="cs"><b>Uthpala Ruwanara</b></div> <img
                 src="https://cdn.mos.cms.futurecdn.net/6t8Zh249QiFmVnkQdCCtHK.jpg"/>
@@ -27,7 +30,7 @@ export default function Auctionstd(){
                 <div className="laptop"><p>30,000/=</p></div>
                 
                 </div>
-                <div className="box20"><b><p>Auction Started At</p></b>
+                <div className="box2"><b><p>Auction Started At</p></b>
                 <div className="laptop"><p>June 20 2021 at 10.00 A.M</p></div>
                 <div className="clock"><h1><i class="bi bi-clock"></i></h1></div>
                 
@@ -35,7 +38,7 @@ export default function Auctionstd(){
                 <div className="day"><p>August 1 2021 at 10.00 A.M</p></div>
                 <div className="sandclock"><h1><i class="bi bi-hourglass-split"></i></h1></div>
                 </div>
-                <div className="line10"><hr></hr></div>
+                <div className="line1"><hr></hr></div>
                 {/* <div className="bu1"><button class="button">Bid</button></div><div className="bu2"><button class="button">Back</button></div> */}
                 <div className="box3"><br></br><h1><i class="bi bi-cash-coin"></i></h1><div className="bid"><h1>Highest Bid</h1></div>
                 <p>Abises Weerasekara</p>
