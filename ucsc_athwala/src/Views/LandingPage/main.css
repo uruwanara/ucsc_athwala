@@ -1,0 +1,77 @@
+.navbar{ background:#ff6411;}
+
+.nav-link , .navbar-brand{ color: #f4f4f4; cursor: pointer;}
+
+.nav-link{ margin-right: 1em !important; font-weight: normal; font-family: 'Poppins', sans-serif;}
+
+.nav-link:hover{ color: #000000; }
+
+.navbar-collapse{ justify-content: flex-end;}
+
+.navbar-toggler{  background:#fff !important;}
+
+.homeheader{
+    background-image: url('../../image//landing.jpg');
+    height: 600px;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+.homeoverlay{
+    position: absolute;
+    min-height: 100%;
+    min-width: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(244, 244, 244, 0.234);
+}
+
+.homedescription{
+    position: absolute;
+    top: 30%;
+    margin: auto;
+    padding: 2em;
+    
+}
+.homedescription h1{
+ color:#000000 ;
+}
+.homedescription p{
+ color:rgb(255, 255, 255);
+ font-size: 20px;
+ width: 50%;
+ line-height: 1.5;
+}
+
+.homeabout{
+    margin: 4em 0;
+    padding: 1em;
+    position: relative;
+   }
+   .homeabout h1{
+    color:#F97300;
+    margin: 2em;
+   }
+   .homeabout img{
+    height: 100%;
+       width: 100%;
+       border-radius: 50%
+   }
+   .homeabout span{
+    display: block;
+    color: #888;
+    position: absolute;
+    left: 115px;
+   }
+   .homeabout .desc{
+    padding: 2em;
+    border-left:4px solid #10828C;
+   }
+   .homeabout .desc h3{
+    color: #10828C;
+   }
+   .homeabout .desc p{
+    line-height:2;
+    color:#888;
+   }
