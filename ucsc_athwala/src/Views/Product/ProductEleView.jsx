@@ -7,8 +7,10 @@ import EventLaptopAcer from '../../image/laptopAcer.jpeg';
 import EventLaptopHP15 from '../../image/laptopHP15.jpg';
 import EventMobileN from '../../image/mobileN.jpeg';
 import EventMobileH from '../../image/mobileH.jpg';
+import {Link, useHistory } from "react-router-dom";
 
 export default function ProductCases(){
+  const history = useHistory();
     return(
     <div>
         <table class="table table-striped">
@@ -30,7 +32,7 @@ export default function ProductCases(){
       <td>Rs. 60 000.00</td>
       <td>2021-06-08</td>
      
-      <td><button type="button" class="btn tb-btn">View</button></td>
+      <td><button onClick={()=>{ history.push("/HPProEleProduct")}} type="button" class="btn tb-btn">View</button></td>
     </tr>
     <tr>
       <td>Huawei Tablet</td>
@@ -39,7 +41,7 @@ export default function ProductCases(){
       <td>Rs. 32 000.00</td>
       <td>2021-04-21</td>
       
-      <td><button type="button" class="btn tb-btn">View</button></td>
+      <td><button onClick={()=>{ history.push("/HuwaweiITabEleProduct")}} type="button" class="btn tb-btn">View</button></td>
     </tr>
     <tr>
       <td>Samsung Phone</td>
@@ -48,7 +50,7 @@ export default function ProductCases(){
       <td>Rs. 17 000.00</td>
       <td>2021-04-03</td>
      
-      <td><button type="button" class="btn tb-btn">View</button></td>
+      <td><button onClick={()=>{ history.push("/SamsungEleProduct")}} type="button" class="btn tb-btn">View</button></td>
     </tr>
     <tr>
       <td>Acer Laptop</td>
@@ -57,7 +59,7 @@ export default function ProductCases(){
       <td>Rs. 55 500.00</td>
       <td>2021-02-29</td>
      
-      <td><button type="button" class="btn tb-btn">View</button></td>
+      <td><button onClick={()=>{ history.push("/AcerEleProduct")}} type="button" class="btn tb-btn">View</button></td>
     </tr>
     <tr>
       <td>HP Laptop</td>
@@ -66,7 +68,7 @@ export default function ProductCases(){
       <td>Rs. 37 000.00</td>
       <td>2020-12-16</td>
       
-      <td><button type="button" class="btn tb-btn">View</button></td>
+      <td><button onClick={()=>{ history.push("/HP15EleProduc")}} type="button" class="btn tb-btn">View</button></td>
     </tr>
     <tr>
       <td>Nokia phone</td>
@@ -75,7 +77,7 @@ export default function ProductCases(){
       <td>Rs. 10 000.00</td>
       <td>2020-11-17</td>
       
-      <td><button type="button" class="btn tb-btn">View</button></td>
+      <td><button onClick={()=>{ history.push("/NokiaEleProduct")}} type="button" class="btn tb-btn">View</button></td>
     </tr>
     <tr>
       <td>Huawei Phone</td>
@@ -84,7 +86,7 @@ export default function ProductCases(){
       <td>Rs. 12 000.00</td>
       <td>2020-10-28</td>
       
-      <td><button type="button" class="btn tb-btn">View</button></td>
+      <td><button onClick={()=>{ history.push("/HuwaweiP30EleProduct")}} type="button" class="btn tb-btn">View</button></td>
     </tr>
   </tbody>
 </table>

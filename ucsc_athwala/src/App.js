@@ -224,8 +224,8 @@ function App() {
                 <Route path="/HP15EleProduct" exact>
                     <HP15EleProduct />
                 </Route>
-                <Route path="/HP15EleProduct" exact>
-                    <HP15EleProduct />
+                <Route path="/AcerEleProduct" exact>
+                    <AcerEleProduct />
                 </Route>
 
                 <Route path="/pstddashboard" exact>
