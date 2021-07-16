@@ -16,58 +16,58 @@ export default function JobCases(){
   </thead>
   <tbody>
     <tr>
-      <td>DSA Lecture note</td>
-      <td>99X</td>
-      <td>DSA 2 lecture note.</td>
+      <td>Senior Software Engineer</td>
+      <td>IFS</td>
+      <td>Lead/Senior Software Engineer - C#, .Net, Data Structures, Algorithm Development</td>
+      <td>2021-06-11</td>
+     
+      <td><button type="button" class="btn tb-btn">View</button></td>
+    </tr>
+    <tr>
+      <td>Software Engineer</td>
+      <td>ICT Agency of Sri Lanka</td>
+      <td>Software Engineer job from ICT Agency of Sri Lanka in Colombo, Sri Lanka</td>
+      <td>2020-05-10</td>
+      
+      <td><button type="button" class="btn tb-btn">View</button></td>
+    </tr>
+    <tr>
+      <td>Software Engineer (Java)</td>
+      <td>Hitachi Digital Payment Solutions Ltd</td>
+      <td> Hiring now for Software Engineer (Java) at Hitachi Digital Payment Solutions Ltd Apply today.</td>
+      <td>2021-04-11</td>
+     
+      <td><button type="button" class="btn tb-btn">View</button></td>
+    </tr>
+    <tr>
+      <td>SOFTWARE ENGINEER</td>
+      <td>Sysco Labs</td>
+      <td>SOFTWARE ENGINEER job from Sysco Labs in Colombo, Sri Lanka</td>
       <td>2021-07-11</td>
      
       <td><button type="button" class="btn tb-btn">View</button></td>
     </tr>
     <tr>
-      <td>SE Lecture note</td>
-      <td>WOS2</td>
-      <td>Software engineering 2 lecture note.</td>
+      <td>Software Engineer</td>
+      <td>WSO2</td>
+      <td>Software Engineer - Integration job from WSO2 in Colombo, Sri Lanka</td>
       <td>2021-07-11</td>
       
       <td><button type="button" class="btn tb-btn">View</button></td>
     </tr>
     <tr>
-      <td>DSA Lecture note</td>
-      <td>Epic</td>
-      <td> DSA 2 lecture note.</td>
-      <td>2021-07-11</td>
-     
-      <td><button type="button" class="btn tb-btn">View</button></td>
-    </tr>
-    <tr>
-      <td>Database Lecture note</td>
-      <td>99X</td>
-      <td>Database 1 lecture note.</td>
-      <td>2021-07-11</td>
-     
-      <td><button type="button" class="btn tb-btn">View</button></td>
-    </tr>
-    <tr>
-      <td>Database Lecture note</td>
-      <td>VishuvzlMart</td>
-      <td>Database 2 lecture note.</td>
-      <td>2021-07-11</td>
+      <td>Senior Software Engineer</td>
+      <td>Wiley</td>
+      <td>Senior Software Engineer - Analytics Engineering</td>
+      <td>2020-06-01</td>
       
       <td><button type="button" class="btn tb-btn">View</button></td>
     </tr>
     <tr>
-      <td>DSA Lecture note</td>
-      <td>Peason</td>
-      <td>DSA 1 lecture note.</td>
-      <td>2021-07-11</td>
-      
-      <td><button type="button" class="btn tb-btn">View</button></td>
-    </tr>
-    <tr>
-      <td>DSA Lecture note</td>
-      <td>Map</td>
-      <td>DSA 3 lecture note.</td>
-      <td>2021-07-11</td>
+      <td>Associate/Senior/Software Engineer</td>
+      <td>Wiley Sri Lanka</td>
+      <td>Salesforce - Associate/Senior/Software Engineer from Java or .Net background</td>
+      <td>2021-05-11</td>
       
       <td><button type="button" class="btn tb-btn">View</button></td>
     </tr>
