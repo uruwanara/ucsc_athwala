@@ -7,6 +7,7 @@ export default function UnionStudentSidebar() {
     const history = useHistory();
     return (
         <div className="sidebar-custom">
+
             <div><h5>Union Member</h5></div>
             <Link to="/unionDashbord"> <i  className="fa fa-tachometer" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Dashboard </Link>
             <Link to="/unionviewcauses"> <i className="fa fa-users" aria-hidden="true" style={{color:'#ff6411' ,padding:10}}></i> Donation</Link>
@@ -19,17 +20,6 @@ export default function UnionStudentSidebar() {
             <Link to=""><i className="fa fa-list-alt" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> UCSC help stack</Link>
             <Link to=""><i className="fa fa-question-circle" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> QA support</Link>
             <Link to="/stdcntcoun"><i className="fa fa-video-camera" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Contact Councellor</Link>
-
-<<<<<<< Updated upstream
-=======
-            <Link to="/unionDashbord"> <i className="fa fa-tachometer" aria-hidden="true" style={{ color: '#ff6411', padding: 10 }}></i> Dashboard</Link>
-            <Link to="/unionviewcauses"> <i className="fa fa-users" aria-hidden="true" style={{ color: '#ff6411', padding: 10 }}></i> Donation</Link>
-            <Link to="/ViewEleProduct"><i className="fa fa-shopping-cart" aria-hidden="true" style={{ color: '#ff6411', padding: 10 }}></i> Product</Link>
-              <Link to="/univiewauction"> <i className="fa fa-gavel" aria-hidden="true" style={{ color: '#ff6411', padding: 10 }}></i> Auction</Link>
->>>>>>> Stashed changes
-
-
-
-        </div>
+</div>
     );
 }

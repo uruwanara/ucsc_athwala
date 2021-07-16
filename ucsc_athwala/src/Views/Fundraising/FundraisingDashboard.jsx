@@ -1,6 +1,6 @@
 import React from 'react';
 import Nav from '../Navbar/Navbar';
-import Side from '../UnionSidebar/UnionStudentSidebar';
+import Side from '../StudentSidebar/Sidebar';
 // import './FundraisingDashboard.css';
 import Viewfund from '../../image/view_fund.png';
 import Createfund from '../../image/create_fund.jpg';

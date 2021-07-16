@@ -8,8 +8,8 @@ export default function Side() {
 
     return(
     <div className="sidebar-custom">
+          
 
-        <div><h5>UCSC STUDENT</h5></div>
         <Link to="/stddashboard"> <i  className="fa fa-tachometer" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Dashboard </Link>
         <Link to="/viewcauses"> <i className="fa fa-users" aria-hidden="true" style={{color:'#ff6411' ,padding:10}}></i> Donation</Link>
         <Link to="/ViewEleProduct"><i className="fa fa-shopping-cart" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Product</Link>
