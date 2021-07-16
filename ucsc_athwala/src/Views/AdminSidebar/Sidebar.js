@@ -1,13 +1,15 @@
 import React from 'react';
 import '../../css/sidebar.css';
+import {Link, useHistory } from "react-router-dom";
 
 export default function Side() {
+    const history = useHistory();
     return(
     <div className="sidebar-custom">           
                 <a href="#about"> <i className="fa fa-tachometer" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Dashboard</a>
                 <a href="#services"> <i className="fa fa-users" aria-hidden="true" style={{color:'#ff6411' ,padding:10}}></i> Donation</a>
                 <a href="#clients"> <i className="fa fa-shopping-cart" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Product</a>
-                <a href="#contact"> <i className="fa fa-gavel" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Auction</a>
+                <Link to="/accauction"> <i className="fa fa-gavel" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Auction</Link>
                 <a href="#contact"> <i className="fa fa-flag" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Union members</a>
                 <a href="#contact"> <i className="fa fa-video-camera" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Notification</a>
                 <a href="#contact"> <i className="fa fa-comments" aria-hidden="true" style={{color:'#ff6411',padding:10}}></i> Reports</a>

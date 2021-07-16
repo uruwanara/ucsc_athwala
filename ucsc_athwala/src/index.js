@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SingIn from './Views/ContactCouncellors/ContactCouncellors';
-import { useHistory } from "react-router-dom";
+import App from './App'
 
 ReactDOM.render(
   <React.StrictMode>
-    <SingIn/>
-      <script src='https://meet.jit.si/external_api.js'></script>
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );
