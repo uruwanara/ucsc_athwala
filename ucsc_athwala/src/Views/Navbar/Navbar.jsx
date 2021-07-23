@@ -28,6 +28,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import PersonPinOutlinedIcon from '@material-ui/icons/PersonPinOutlined';
+import NotificationsActiveOutlinedIcon from '@material-ui/icons/NotificationsActiveOutlined';
 
 
 
@@ -109,19 +110,34 @@ function Navbar() {
 
 
   const [auth, setAuth] = React.useState(true);
+  const [auth1, setAuth1] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorE2, setAnchorE2] = React.useState(null);
   const open1 = Boolean(anchorEl);
+  const open2 = Boolean(anchorE2);
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
+  };
+
+  const handleChange1 = (event) => {
+    setAuth1(event.target.checked);
   };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
+  const handleMenu1 = (event) => {
+    setAnchorE2(event.currentTarget);
+  };
+
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleClose1 = () => {
+    setAnchorE2(null);
   };
 
   const handleDrawerOpen = () => {
@@ -146,7 +162,7 @@ function Navbar() {
       >
 
         <Toolbar>
-
+ {/*******************************Start of the Line Menu icon**********************/}
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -158,13 +174,16 @@ function Navbar() {
           >
             <MenuIcon />
           </IconButton>
+ {/*******************************End of the Line Menu icon**********************/}
 
 
+          {/*******************************Start of the UCSC Athwala icon**********************/}
           <Typography variant="h6">
             <Box mr={1}>
               <Avatar alt="Remy Sharp" src={Logo} className={classes.medium} fontSize="large" />
             </Box>
           </Typography>
+          {/*******************************End of the UCSC Athwala icon**********************/}
 
 
           <Typography variant="h4" noWrap className={classes.flex1} ml={3}>
@@ -172,18 +191,50 @@ function Navbar() {
           </Typography>
 
 
-          <Box mr={2}>
-            <IconButton aria-label="show 5 new notifications" color="inherit">
-              <Badge badgeContent={5} color="secondary">
-                <NotificationsIcon
-                  fontSize="large"
-                >
-                </NotificationsIcon>
-              </Badge>
-            </IconButton>
-          </Box>
+          {/*******************************Start of the notification icon**********************/}
+          {/************auth1, setAuth1, anchorE2, setAnchorE2,handleMenu1,handleClose1 and handleChange1 are for the Notification icon*****************/}
+          {auth1 && (<div>
+
+            <Box mr={2}>
+
+              <IconButton aria-label="show 5 new notifications" color="inherit" onClick={handleMenu1}>
+                <Badge badgeContent={5} color="secondary">
+                  <NotificationsIcon
+                    fontSize="large"
+                  >
+                  </NotificationsIcon>
+                </Badge>
+              </IconButton>
+
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorE2}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={open2}
+                onClose={handleClose1}
+              >
+                <MenuItem onClick={handleClose1}>   Notification 1</MenuItem>
+                <MenuItem onClick={handleClose1}>   Notification 2</MenuItem>
+                <MenuItem onClick={handleClose1}>   Notification 3</MenuItem>
+                <MenuItem onClick={handleClose1}><NotificationsActiveOutlinedIcon />View all</MenuItem>
+              </Menu>
+
+            </Box>
+
+          </div>
+          )}
+          {/*******************************End of the notification icon**********************/}
 
 
+ {/*******************************Start of the Avatar icon**********************/}
           {auth && (
             <div>
               <IconButton
@@ -220,19 +271,20 @@ function Navbar() {
             </div>
           )}
 
-
+ {/*******************************End of the Avatar icon**********************/}
         </Toolbar>
 
-      </AppBar>
+      </AppBar >
       {/********************************End of the Navigation bar**************************************/}
 
 
-      <Drawer
+      < Drawer
         variant="permanent"
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
           [classes.drawerClose]: !open,
-        })}
+        })
+        }
         classes={{
           paper: clsx({
             [classes.drawerOpen]: open,
@@ -263,7 +315,7 @@ function Navbar() {
             </ListItem>
           ))}
         </List>
-      </Drawer>
+      </Drawer >
       {/* <main className={classes.content}>
         <div className={classes.toolbar} />
         <Typography paragraph>
