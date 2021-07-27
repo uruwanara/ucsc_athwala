@@ -19,7 +19,7 @@ export default function PastStuDashboard(){
   return(
       <div>
           <div><Nav /></div>
-          <div style={{display:'flex'}}>
+          
               <Side />
               <div style={{display:'flex'}}>
                 <Side />
@@ -30,13 +30,13 @@ export default function PastStuDashboard(){
                         color="secondary"
                         className={classes.button}
 
-                        button onClick={() => setShown1(!shown1)}>Contact Counsellor</Button>
+                        button onClick={() => setShown1(!shown1)}>Contact Student: Dhanu Anjana</Button>
                     <div>
                         <div></div>
                         {shown1 ? <VideoModal2 /> : null}
                     </div>
                 </div>
-            </div>
+            
           </div>
       </div>
   );

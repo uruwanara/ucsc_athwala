@@ -1,6 +1,6 @@
 import React from 'react';
 import Team from '../../image/about.jpg';
-
+import logo from "../Signin/Img/ico.png";
 export default function about(){
     return(
     <div class='row homeabout'>
@@ -8,7 +8,7 @@ export default function about(){
             <img src={Team} class="img-fluid"></img>
         </div>
         <div class="col-lg-8 col-md-8 col-sm-12 desc">
-     
+            
             <h3>About Us</h3>
             <p>
             we are third year undergraduate of university Of Colombo 
