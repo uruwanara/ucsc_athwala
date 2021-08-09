@@ -80,14 +80,22 @@ import UnionViewReceivedDonation from './Views/UnionDonation/View_MyrequestingRe
 import UnionViewPendingDonation from './Views/UnionDonation/View_Myrequesting'
 import UnionViewNotReceivedDonation from './Views/UnionDonation/View_MyrequestingNotrecived'
 import Land from './Views/LandingPage/home'
+import Navside from './Views/StudentSidebar/Navbar';
+import Navbar from './Views/StudentSidebar/Navbar';
+import StudentDashboard from './Views/StudentDashboard/StudentDashboard';
+
 
 
 function App() {
     return (
-        <Router>
-            <Switch>
+        <div>
+            {/*} <Router>
+             <Switch>
             <Route path="/ucscathwala" exact>
-                    <Land />
+                    <Land /> 
+                </Route>
+                <Route path="/navside" exact>
+                    <Navside />
                 </Route>
                 <Route path="/login" exact>
                     <Login />
@@ -352,7 +360,26 @@ function App() {
                 </Route>
 
             </Switch>
-        </Router>
+    </Router>*/}
+
+
+
+            <Router>
+                <Switch>
+       
+{/* Call the student dashboard in url by typing 'http://localhost:3000/stdashboard' */}
+                    <Route path="/stdashboard" exact>
+                        <Navbar />
+                    </Route>
+
+                </Switch>
+            </Router>
+
+
+
+
+
+        </div>
     );
 }
 
