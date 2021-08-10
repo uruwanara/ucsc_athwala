@@ -81,7 +81,10 @@ import UnionViewPendingDonation from './Views/UnionDonation/View_Myrequesting'
 import UnionViewNotReceivedDonation from './Views/UnionDonation/View_MyrequestingNotrecived'
 import Land from './Views/LandingPage/home'
 import Navside from './Views/StudentSidebar/Navbar';
+
 import Navbar from './Views/StudentSidebar/Navbar';
+import UNavbar from './Views/UnionSidebar/Navbar';
+
 import StudentDashboard from './Views/StudentDashboard/StudentDashboard';
 
 
@@ -366,10 +369,15 @@ function App() {
 
             <Router>
                 <Switch>
-       
-{/* Call the student dashboard in url by typing 'http://localhost:3000/stdashboard' */}
+
+                    {/* Call the student dashboard in url by typing 'http://localhost:3000/stdashboard' */}
                     <Route path="/stdashboard" exact>
                         <Navbar />
+                    </Route>
+
+                    {/* Call the Union student dashboard in url by typing 'http://localhost:3000/ustdashboard' */}
+                    <Route path="/ustdashboard" exact>
+                        <UNavbar />
                     </Route>
 
                 </Switch>

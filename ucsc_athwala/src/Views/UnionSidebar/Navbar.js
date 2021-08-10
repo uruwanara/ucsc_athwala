@@ -23,6 +23,7 @@ import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import PersonPinOutlinedIcon from '@material-ui/icons/PersonPinOutlined';
 import NotificationsActiveOutlinedIcon from '@material-ui/icons/NotificationsActiveOutlined';
 import Side from './Sidedrawer';
+import UnionStudentDashboard from '../UnionStudentDashboard/UnionStudentDashboard';
 
 
 const drawerWidth = 240;
@@ -89,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
 }));
-function Navbar() {
+function UNavbar() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
@@ -145,7 +146,7 @@ function Navbar() {
 
         <Toolbar>
 
- {/*******************************Start of the Line Menu icon**********************/}
+          {/*******************************Start of the Line Menu icon**********************/}
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -157,7 +158,7 @@ function Navbar() {
           >
             <MenuIcon />
           </IconButton>
- {/*******************************End of the Line Menu icon**********************/}
+          {/*******************************End of the Line Menu icon**********************/}
 
 
           {/*******************************Start of the UCSC Athwala icon**********************/}
@@ -217,7 +218,7 @@ function Navbar() {
           {/*******************************End of the notification icon**********************/}
 
 
- {/*******************************Start of the Avatar icon**********************/}
+          {/*******************************Start of the Avatar icon**********************/}
           {auth && (
             <div>
               <IconButton
@@ -253,14 +254,14 @@ function Navbar() {
           )}
 
 
- {/*******************************End of the Avatar icon**********************/}
+          {/*******************************End of the Avatar icon**********************/}
         </Toolbar>
 
       </AppBar>
       {/********************************End of the Navigation bar**************************************/}
 
 
-      
+
       < Drawer
         variant="permanent"
         className={clsx(classes.drawer, {
@@ -281,11 +282,11 @@ function Navbar() {
           </IconButton>
         </div>
         <Divider />
-       <Side />
+        <Side />
       </Drawer>
-      {/* <main className={classes.content}>
+      <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Typography paragraph>
+        {/* <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           lit sed ullamcorper morbi tincidunt. Lorem
           donec massa sapien faucibus et molestie ac.
@@ -293,9 +294,11 @@ function Navbar() {
         <Typography paragraph>
           Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
-      </main> */}
+        </Typography> */}
+        <UnionStudentDashboard />
+
+      </main>
     </div >
   );
 }
-export default Navbar;
+export default UNavbar;

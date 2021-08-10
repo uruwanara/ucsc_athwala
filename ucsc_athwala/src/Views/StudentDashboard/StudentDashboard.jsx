@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -23,6 +22,7 @@ import { Box } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { ButtonBase } from '@material-ui/core';
+import { Divider } from '@material-ui/core';
 
 
 
@@ -81,7 +81,7 @@ function StudentDashboard() {
             </Typography>
 
 
-{/******************************* Start of the Explore more cards **********************/}
+            {/******************************* Start of the Explore more cards **********************/}
             <Typography variant="h5" align="left" color="initial">
                 Explore and Donate today
             </Typography>
@@ -230,11 +230,14 @@ function StudentDashboard() {
                 </Grid>
 
             </div>
-{/********************** End of the Explore more cards **********************************/}
+            {/********************** End of the Explore more cards **********************************/}
 
 
-{/********************** Start of the Fundraising part **********************************/}
-            <Box mt={4}>
+            {/********************** Start of the Fundraising part **********************************/}
+            <Box mt={5}>
+                <Divider light={true} component="h2" color="secondary" />
+            </Box>
+            <Box mt={3}>
                 <Typography variant="h5" color="initial" >
                     Fundraising Events
                 </Typography>
@@ -266,7 +269,7 @@ function StudentDashboard() {
                                     <Box mb={1}>
                                         <LinearProgress variant="determinate" value={50} />
                                     </Box>
-                                    
+
                                     <div className={classes.rootdiv}>
                                         <Grid container spacing={1}>
 
@@ -311,7 +314,7 @@ function StudentDashboard() {
                 </Paper>
 
             </div>
-{/********************** End of the Fundraising part **********************************/}
+            {/********************** End of the Fundraising part **********************************/}
 
 
         </React.Fragment>
