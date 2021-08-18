@@ -162,7 +162,7 @@ function Navbar() {
       >
 
         <Toolbar>
- {/*******************************Start of the Line Menu icon**********************/}
+          {/*******************************Start of the Line Menu icon**********************/}
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -174,7 +174,7 @@ function Navbar() {
           >
             <MenuIcon />
           </IconButton>
- {/*******************************End of the Line Menu icon**********************/}
+          {/*******************************End of the Line Menu icon**********************/}
 
 
           {/*******************************Start of the UCSC Athwala icon**********************/}
@@ -224,6 +224,7 @@ function Navbar() {
                 <MenuItem onClick={handleClose1}>   Notification 1</MenuItem>
                 <MenuItem onClick={handleClose1}>   Notification 2</MenuItem>
                 <MenuItem onClick={handleClose1}>   Notification 3</MenuItem>
+                <Divider />
                 <MenuItem onClick={handleClose1}><NotificationsActiveOutlinedIcon />View all</MenuItem>
               </Menu>
 
@@ -234,7 +235,7 @@ function Navbar() {
           {/*******************************End of the notification icon**********************/}
 
 
- {/*******************************Start of the Avatar icon**********************/}
+          {/*******************************Start of the Avatar icon**********************/}
           {auth && (
             <div>
               <IconButton
@@ -264,6 +265,7 @@ function Navbar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}><PersonPinOutlinedIcon /> My Profile</MenuItem>
+                <Divider />
                 <MenuItem onClick={handleClose}><ExitToAppOutlinedIcon /> Log out</MenuItem>
               </Menu>
 
@@ -271,7 +273,7 @@ function Navbar() {
             </div>
           )}
 
- {/*******************************End of the Avatar icon**********************/}
+          {/*******************************End of the Avatar icon**********************/}
         </Toolbar>
 
       </AppBar >

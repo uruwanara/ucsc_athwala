@@ -15,6 +15,8 @@ import ChatIcon from '@material-ui/icons/Chat';
 import ForumIcon from '@material-ui/icons/Forum';
 import HelpIcon from '@material-ui/icons/Help';
 
+import { BrowserRouter } from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
   Nounderline :{
@@ -34,6 +36,7 @@ export default function Side(){
     return(
       <div>
           <List>
+          <BrowserRouter>
               <Link to="/stddashboard" className={classes.Nounderline}>
                 <ListItem button >
                 <ListItemIcon><DashboardIcon style={{ fill: "blue"}}/></ListItemIcon>
@@ -128,7 +131,7 @@ export default function Side(){
                 <ListItemText primary="Contact Councellor" />
                 </ListItem>
               </Link>
-
+              </BrowserRouter>
           </List>
       </div>
 
