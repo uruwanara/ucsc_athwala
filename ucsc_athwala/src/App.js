@@ -80,25 +80,27 @@ import UnionViewReceivedDonation from './Views/UnionDonation/View_MyrequestingRe
 import UnionViewPendingDonation from './Views/UnionDonation/View_Myrequesting'
 import UnionViewNotReceivedDonation from './Views/UnionDonation/View_MyrequestingNotrecived'
 import Land from './Views/LandingPage/home'
-import Navside from './Views/StudentSidebar/Navbar';
-
-import Navbar from './Views/StudentSidebar/Navbar';
 import UNavbar from './Views/UnionSidebar/Navbar';
-
 import StudentDashboard from './Views/StudentDashboard/StudentDashboard';
-
+import StdNavside from './Views/StudentSidebar/Navbar';
 
 
 function App() {
     return (
         <div>
-            {/*} <Router>
+            <Router>
              <Switch>
-            <Route path="/ucscathwala" exact>
+            {/*<Route path="/ucscathwala" exact>
                     <Land /> 
                 </Route>
                 <Route path="/navside" exact>
                     <Navside />
+                </Route>
+                <Route path="/navside" exact>
+                    <Navside />
+                </Route>
+                <Route path="/requestcategories" exact>
+                    <RequestDonationCategory />
                 </Route>
                 <Route path="/login" exact>
                     <Login />
@@ -360,33 +362,13 @@ function App() {
 
                 <Route path="/CounContactStu" exact>
                     <CounContactStu  />
+    </Route>*/}
+                <Route path="/std">
+                    <StdNavside />
                 </Route>
 
             </Switch>
-    </Router>*/}
-
-
-
-            <Router>
-                <Switch>
-
-                    {/* Call the student dashboard in url by typing 'http://localhost:3000/stdashboard' */}
-                    <Route path="/stdashboard" exact>
-                        <Navbar />
-                    </Route>
-
-                    {/* Call the Union student dashboard in url by typing 'http://localhost:3000/ustdashboard' */}
-                    <Route path="/ustdashboard" exact>
-                        <UNavbar />
-                    </Route>
-
-                </Switch>
-            </Router>
-
-
-
-
-
+    </Router>
         </div>
     );
 }
