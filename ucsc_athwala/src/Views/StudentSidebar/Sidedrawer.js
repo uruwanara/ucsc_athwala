@@ -14,18 +14,23 @@ import VideocamIcon from '@material-ui/icons/Videocam';
 import ChatIcon from '@material-ui/icons/Chat';
 import ForumIcon from '@material-ui/icons/Forum';
 import HelpIcon from '@material-ui/icons/Help';
+import Blue from '@material-ui/core/colors/blue'
 
 import { BrowserRouter } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
   Nounderline :{
-
+    color:Blue[900],
+    fontWeight:'bolder',
+    fontFamily:'Poppins, sans-serif',
     "&:hover": {
       textDecoration: "none"
     },
-  }
-
+  },
+  Listicon:{
+    color:Blue[600],
+  },
 
 }));
 
@@ -36,17 +41,16 @@ export default function Side(){
     return(
       <div>
           <List>
-          <BrowserRouter>
-              <Link to="/stddashboard" className={classes.Nounderline}>
+              <Link to="/std/stddashboard" className={classes.Nounderline}>
                 <ListItem button >
-                <ListItemIcon><DashboardIcon style={{ fill: "blue"}}/></ListItemIcon>
-                <ListItemText primary="Dashboard" />
+                <ListItemIcon><DashboardIcon className={classes.Listicon}/></ListItemIcon>
+                <ListItemText primary="Dashboard"/>
                 </ListItem>
               </Link>
               
-              <Link to="/viewcauses" className={classes.Nounderline}>
+              <Link to="/std/viewcauses" className={classes.Nounderline}>
                 <ListItem button>
-                <ListItemIcon><PeopleAltIcon style={{ fill: "blue"}}/></ListItemIcon>
+                <ListItemIcon><PeopleAltIcon className={classes.Listicon}/></ListItemIcon>
                 <ListItemText primary="Donation" />
                 </ListItem>
               </Link>
@@ -54,7 +58,7 @@ export default function Side(){
               <Link to = "/ViewEleProduct" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <ShopIcon style={{ fill: "blue"}}/>
+                    <ShopIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Product" />
                 </ListItem>
@@ -63,7 +67,7 @@ export default function Side(){
               <Link to = "" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <GavelIcon style={{ fill: "blue"}}/>
+                    <GavelIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Auction" />
                 </ListItem>
@@ -72,7 +76,7 @@ export default function Side(){
               <Link to = "/viewstufundraising" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <GavelIcon style={{ fill: "blue"}}/>
+                    <GavelIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Fundraising" />
                 </ListItem>
@@ -81,7 +85,7 @@ export default function Side(){
               <Link to="/Job" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <PanToolIcon style={{ fill: "blue"}}/>
+                    <PanToolIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Job oppertunity" />
                 </ListItem>
@@ -90,7 +94,7 @@ export default function Side(){
               <Link to="/stdlrngrp" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <VideocamIcon style={{ fill: "blue"}}/>
+                    <VideocamIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Learning Groups" />
                 </ListItem>
@@ -99,7 +103,7 @@ export default function Side(){
               <Link to="/Chat" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <ChatIcon style={{ fill: "blue"}}/>
+                    <ChatIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Chat" />
                 </ListItem>
@@ -108,7 +112,7 @@ export default function Side(){
               <Link to="" className={classes.Nounderline}> 
                 <ListItem button>
                 <ListItemIcon>
-                    <ForumIcon style={{ fill: "blue"}}/>
+                    <ForumIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="UCSC help stack" />
                 </ListItem>
@@ -117,7 +121,7 @@ export default function Side(){
               <Link to="" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <HelpIcon style={{ fill: "blue"}}/>
+                    <HelpIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="QA support" />
                 </ListItem>
@@ -126,12 +130,11 @@ export default function Side(){
               <Link to="/stdcntcoun" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <HelpIcon style={{ fill: "blue"}}/>
+                    <HelpIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Contact Councellor" />
                 </ListItem>
               </Link>
-              </BrowserRouter>
           </List>
       </div>
 

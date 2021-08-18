@@ -1,11 +1,10 @@
+import React from 'react';
+import clsx from 'clsx';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
-
-import React from 'react';
-import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -29,13 +28,16 @@ import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import PersonPinOutlinedIcon from '@material-ui/icons/PersonPinOutlined';
 import NotificationsActiveOutlinedIcon from '@material-ui/icons/NotificationsActiveOutlined';
 import Side from './Sidedrawer';
-import Container from '@material-ui/core/Container'
-import { Grid } from '@material-ui/core';
-import StudentDashboard from '../StudentDashboard/StudentDashboard';
-
-
-import Donation from '../Donation/Donation_page';
-
+import Donation from '../Donation/Donation_page'
+import Dashboard from '../StudentDashboard/StudentDashboard'
+import MyCause from '../Donation/Donation_MyCauses';
+import Category from '../Donation/RequestCategory';
+import NoteCause from '../Donation/View_Notecause';
+import ClothCause from '../Donation/View_Clothcause';
+import DeviceCause from '../Donation/View_Devicecause';
+import MoneyCause from '../Donation/View_Moneycause';
+import OtherCause from '../Donation/View_Othercause';
+import ViewMyRequests from '../Donation/View_Myrequesting';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -101,6 +103,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
 }));
+
 function Navbar() {
   const classes = useStyles();
   const theme = useTheme();
@@ -146,85 +149,84 @@ function Navbar() {
   };
   return (
     <Router>
-      <div className={classes.root}> {/* devide to flex, start from here*/}
-        <CssBaseline />
-        {/*************************Start of the navigation bar from here**************************************/}
-        <AppBar
-          position="fixed"
-          className={clsx(classes.appBar, {
-            [classes.appBarShift]: open,
-          })}
-        >
+    <div className={classes.root}>{/* devide to flex, start from here*/}
+      <CssBaseline />
+      {/*************************Start of the navigation bar from here**************************************/}
+      <AppBar
+        position="fixed"
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: open,
+        })}
+      >
 
-          <Toolbar>
+        <Toolbar>
 
-            {/*******************************Start of the Line Menu icon**********************/}
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              className={clsx(classes.menuButton, {
-                [classes.hide]: open,
-              })}
-            >
-              <MenuIcon />
-            </IconButton>
-            {/*******************************End of the Line Menu icon**********************/}
-
-
-            {/*******************************Start of the UCSC Athwala icon**********************/}
-            <Typography variant="h6">
-              <Box mr={1}>
-                <Avatar alt="Remy Sharp" src={Logo} className={classes.medium} fontSize="large" />
-              </Box>
-            </Typography>
-            {/*******************************End of the UCSC Athwala icon**********************/}
+ {/*******************************Start of the Line Menu icon**********************/}
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            className={clsx(classes.menuButton, {
+              [classes.hide]: open,
+            })}
+          >
+            <MenuIcon />
+          </IconButton>
+ {/*******************************End of the Line Menu icon**********************/}
 
 
-            <Typography variant="h4" noWrap className={classes.flex1} ml={3}>
-              UCSC අත්වැල
-            </Typography>
+          {/*******************************Start of the UCSC Athwala icon**********************/}
+          <Typography variant="h6">
+            <Box mr={1}>
+              <Avatar alt="Remy Sharp" src={Logo} className={classes.medium} fontSize="large" />
+            </Box>
+          </Typography>
+          {/*******************************End of the UCSC Athwala icon**********************/}
 
 
-            {/*******************************Start of the notification icon**********************/}
-            {/************auth1, setAuth1, anchorE2, setAnchorE2,handleMenu1,handleClose1 and handleChange1 are for the Notification icon*****************/}
-            {auth1 && (<div>
+          <Typography variant="h4" noWrap className={classes.flex1} ml={3}>
+            UCSC අත්වැල
+          </Typography>
 
-              <Box mr={2}>
 
-                <IconButton aria-label="show 5 new notifications" color="inherit" onClick={handleMenu1}>
-                  <Badge badgeContent={5} color="secondary">
-                    <NotificationsIcon
-                      fontSize="large"
-                    >
-                    </NotificationsIcon>
-                  </Badge>
-                </IconButton>
+          {/*******************************Start of the notification icon**********************/}
+          {/************auth1, setAuth1, anchorE2, setAnchorE2,handleMenu1,handleClose1 and handleChange1 are for the Notification icon*****************/}
+          {auth1 && (<div>
 
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorE2}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={open2}
-                  onClose={handleClose1}
-                >
-                  <MenuItem onClick={handleClose1}>   Notification 1</MenuItem>
-                  <MenuItem onClick={handleClose1}>   Notification 2</MenuItem>
-                  <MenuItem onClick={handleClose1}>   Notification 3</MenuItem>
-                  <Divider />
-                  <MenuItem onClick={handleClose1}><NotificationsActiveOutlinedIcon />View all</MenuItem>
-                </Menu>
+            <Box mr={2}>
 
-              </Box>
+              <IconButton aria-label="show 5 new notifications" color="inherit" onClick={handleMenu1}>
+                <Badge badgeContent={5} color="secondary">
+                  <NotificationsIcon
+                    fontSize="large"
+                  >
+                  </NotificationsIcon>
+                </Badge>
+              </IconButton>
+
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorE2}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={open2}
+                onClose={handleClose1}
+              >
+                <MenuItem onClick={handleClose1}>   Notification 1</MenuItem>
+                <MenuItem onClick={handleClose1}>   Notification 2</MenuItem>
+                <MenuItem onClick={handleClose1}>   Notification 3</MenuItem>
+                <MenuItem onClick={handleClose1}><NotificationsActiveOutlinedIcon />View all</MenuItem>
+              </Menu>
+
+            </Box>
 
             </div>
             )}
@@ -290,18 +292,17 @@ function Navbar() {
             }),
           }}
         >
-          <div className={classes.toolbar}>
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-            </IconButton>
-          </div>
-          <Divider />
-          <Side />
-        </Drawer>
-        {/*************operational***************** */}
-        {/* <main className={classes.content}>
+        <div className={classes.toolbar}>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          </IconButton>
+        </div>
+        <Divider />
+       <Side />
+      </Drawer>
+      <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Typography paragraph>
+        {/*<Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           lit sed ullamcorper morbi tincidunt. Lorem
           donec massa sapien faucibus et molestie ac.
@@ -309,47 +310,43 @@ function Navbar() {
         <Typography paragraph>
           Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
-      </main> */}
-        {/*************operational***************** */}
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <StudentDashboard/>
-          {/* <Switch>
-            <Route path="/abc">
-              {/* <formA /> */}
-
-          {/* </Route>
-            <Route path="/bca"> */}
-          {/*            
-            </Route>
-          </Switch> */}
-
-
-
-        </main>
-      </div >
+        </Typography>*/} 
+        <Switch>
+          <Route path="/std/stddashboard" exact>
+            <Dashboard />
+          </Route>
+          <Route path="/std/viewcauses" exact>
+            <Donation />
+          </Route>
+          <Route path='/std/viewMyrequest' exact>
+              <MyCause />
+          </Route>
+          <Route path='/std/requestcategories' exact>
+              <Category />
+          </Route>
+          <Route path='/std/viewNoteCause_details' exact>
+              <NoteCause />
+          </Route >
+          <Route path="/std/viewClothCause_details" exact>
+            <ClothCause />
+          </Route>
+          <Route path="/std/viewDeviceCause_details" exact>
+            <DeviceCause />
+          </Route>
+          <Route path="/std/viewMoneyCause_details" exact>
+            <MoneyCause />
+          </Route>
+          <Route path="/std/viewOtherCause_details" exact>
+            <OtherCause />
+          </Route> 
+          <Route path="/std/viewdetails_mydonation" exact>
+            <ViewMyRequests />
+          </Route> 
+        </Switch>
+          
+      </main>
+    </div >
     </Router>
   );
 }
-export default Navbar;
-
-// Below functions are only for demonstrations
-function formA() {
-  return (
-    <div>
-      <h2>This is formA powerde by dhanu</h2>
-
-    </div>
-  );
-}
-
-function formB() {
-  return (
-    <div>
-      <h2>This is form powered by uthpala</h2>
-
-    </div>
-  );
-}
-
+export default Navbar; 
