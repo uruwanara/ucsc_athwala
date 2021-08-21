@@ -9,6 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import  Button from '@material-ui/core/Button';
 import LinearProgress  from '@material-ui/core/LinearProgress';
+import {MoneyDoneeDetails,Description} from './View_Casues';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -83,60 +84,12 @@ export default function View_Clothcause(){
                                 />   
                             </Card>
                         </Grid>
-                        <Grid item xs={6}>
-                        <Card className={classes.card}>
-                                <CardContent >
-                                    <Typography variant="h3" className={classes.title}>
-                                    Course fees
-                                    </Typography>
-                                    <Typography variant="subtitle2" className={classes.title}>
-                                    I'm a second year student. I follow Bussiness Managment course. 
-                                    i did some part time job to pay the fees but due to this pandemic situation 
-                                    i couldn't find my fees. i have to pay the course fees in next month. 
-                                    so if someone like to help, please donate me.
-                                    </Typography>
-                                </CardContent>   
-                            </Card>
-                            
-                        </Grid>
+                       <Description />
                     </Grid>
+                    
 
                     <Grid container spacing={2} >
-                        <Grid item xs={6}>
-                            <Card className={classes.card}>
-                            <CardContent>
-                                    <Typography variant="h5" className={classes.title}>
-                                       Donee's details
-                                    </Typography>
-                                    <div style={{display:"flex"}}>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelname}>Amount </Typography> 
-                                        </div>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelvalue}>7800</Typography> 
-                                        </div>  
-                                    </div>
-                                    <div style={{display:"flex"}}>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelname}>Special Note </Typography> 
-                                        </div>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelvalue}>Imdeiate</Typography> 
-                                        </div>  
-                                    </div>
-                                    <div style={{display:"flex"}}>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelname}>Before around</Typography> 
-                                        </div>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelvalue}>2021-10-13</Typography> 
-                                        </div>  
-                                    </div>
-                                    
-                                    
-                                </CardContent>    
-                            </Card>
-                        </Grid>
+                        <MoneyDoneeDetails />
                         <Grid item xs={6}>
                         <Card className={classes.card}>
                                 <CardContent>

@@ -8,6 +8,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import  Button from '@material-ui/core/Button';
+import {NoteDoneeDetails,Description} from './View_Casues';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -77,66 +78,14 @@ export default function View_Notecause(){
                                 />   
                             </Card>
                         </Grid>
-                        <Grid item xs={6}>
-                        <Card className={classes.card}>
-                                <CardContent >
-                                    <Typography variant="h3" className={classes.title}>
-                                        DSA Lecture note
-                                    </Typography>
-                                    <Typography variant="subtitle2" className={classes.title}>
-                                        I,m a second year student. I have exam on next month. I miss some lectures because i was in sick condition.
-                                        so i need DSA part 02 lecture notes.
-                                    </Typography>
-                                </CardContent>   
-                            </Card>
-                            
-                        </Grid>
+
+                        <Description />
                     </Grid>
+                    
 
                     <Grid container spacing={2} >
-                        <Grid item xs={6}>
-                            <Card className={classes.card}>
-                            <CardContent>
-                                    <Typography variant="h5" className={classes.title}>
-                                       Donee's details
-                                    </Typography>
-                                    <div style={{display:"flex"}}>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelname}>Study year</Typography> 
-                                        </div>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelvalue}>2 nd year</Typography> 
-                                        </div>  
-                                    </div>
-                                    <div style={{display:"flex"}}>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelname}>Subject</Typography> 
-                                        </div>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelvalue}>DSA part 02</Typography> 
-                                        </div>  
-                                    </div>
-                                    <div style={{display:"flex"}}>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelname}>Specific lessons</Typography> 
-                                        </div>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelvalue}>All the lessons</Typography> 
-                                        </div>  
-                                    </div>
-                                    <div style={{display:"flex"}}>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelname}>Before around</Typography> 
-                                        </div>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelvalue}>2021-10-13</Typography> 
-                                        </div>  
-                                    </div>
-                                    
-                                    
-                                </CardContent>    
-                            </Card>
-                        </Grid>
+                        <NoteDoneeDetails />
+                        
                         <Grid item xs={6}>
                         <Card className={classes.card}>
                                 <CardContent>

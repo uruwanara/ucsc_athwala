@@ -8,6 +8,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import  Button from '@material-ui/core/Button';
+import { Description,ClothDoneeDetails } from './View_Casues';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -77,66 +78,13 @@ export default function View_Clothcause(){
                                 />   
                             </Card>
                         </Grid>
-                        <Grid item xs={6}>
-                        <Card className={classes.card}>
-                                <CardContent >
-                                    <Typography variant="h3" className={classes.title}>
-                                     Office Trousers
-                                    </Typography>
-                                    <Typography variant="subtitle2" className={classes.title}>
-                                    I'm a second year student. I have presentation on next month. i need office trousers for that. if someone 
-                                            has additional one please donate me.
-                                    </Typography>
-                                </CardContent>   
-                            </Card>
-                            
-                        </Grid>
+                        <Description />
                     </Grid>
 
+                     
+
                     <Grid container spacing={2} >
-                        <Grid item xs={6}>
-                            <Card className={classes.card}>
-                            <CardContent>
-                                    <Typography variant="h5" className={classes.title}>
-                                       Donee's details
-                                    </Typography>
-                                    <div style={{display:"flex"}}>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelname}>Cloth type </Typography> 
-                                        </div>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelvalue}>Trouser</Typography> 
-                                        </div>  
-                                    </div>
-                                    <div style={{display:"flex"}}>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelname}>Gender </Typography> 
-                                        </div>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelvalue}>Female</Typography> 
-                                        </div>  
-                                    </div>
-                                    <div style={{display:"flex"}}>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelname}>Size</Typography> 
-                                        </div>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelvalue}>M (Width:20" Length:28")</Typography> 
-                                        </div>  
-                                    </div>
-                                    <div style={{display:"flex"}}>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelname}>Before around</Typography> 
-                                        </div>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelvalue}>2021-10-13</Typography> 
-                                        </div>  
-                                    </div>
-                                    
-                                    
-                                </CardContent>    
-                            </Card>
-                        </Grid>
+                        <ClothDoneeDetails />
                         <Grid item xs={6}>
                         <Card className={classes.card}>
                                 <CardContent>
