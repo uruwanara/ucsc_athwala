@@ -1,67 +1,181 @@
 import React from 'react';
 import './Donation.css';
-import Side from '../StudentSidebar/Sidebar';
-import Nav from '../Navbar/Navbar';
 import Money from '../../image/money.jpg';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import  Button from '@material-ui/core/Button';
+import LinearProgress  from '@material-ui/core/LinearProgress';
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+      }, flex1: {
+        flexGrow: 1,
+      },
+      toolbar: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        padding: theme.spacing(0, 1),
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar,
+      },
+      content: {
+        flexGrow: 1,
+        padding: theme.spacing(3),
+      },
+      title:{
+        color:"#546e7a",
+        marginTop:10,
+        marginBottom:20,
+        fontFamily:"Poppins, sans-serif",
+      },
 
-export default function StuDashboard(){
+      card:{
+        backgroundColor:"white",
+        border:"none",
+        boxShadow:"none"
+      },
+
+      labelname: {
+          marginLeft:40,
+          marginBottom:10,
+          color:"000000",
+          fontFamily:"Poppins, sans-serif",
+          width:"150px"
+      },
+
+      labelvalue:{
+        marginLeft:100,
+        marginBottom:10,
+        color:"000000",
+        fontFamily:"Poppins, sans-serif",
+        width:"200px"
+      },
+
+      contactbtn:{
+          textTransform:"none",
+          fontFamily:"Poppins, sans-serif",
+      },
+
+      progressbar:{
+          marginTop:10,
+          marginBottom:20,
+      }
+  
+  }));
+
+export default function View_Clothcause(){
+    const classes = useStyles();
     return(
         <div>
-            <div><Nav /></div>
-            <div style={{display:'flex'}}>
-                <Side />
-                <div className="container container-custom"> 
-                    
-                        <div className="row" style={{ backgroundColor:'#f5f3f4'}}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                            <Card className={classes.card}>
+                                <CardMedia
+                                    component="img"
+                                    height="250"
+                                    src= {Money}
+                                />   
+                            </Card>
+                        </Grid>
+                        <Grid item xs={6}>
+                        <Card className={classes.card}>
+                                <CardContent >
+                                    <Typography variant="h3" className={classes.title}>
+                                    Course fees
+                                    </Typography>
+                                    <Typography variant="subtitle2" className={classes.title}>
+                                    I'm a second year student. I follow Bussiness Managment course. 
+                                    i did some part time job to pay the fees but due to this pandemic situation 
+                                    i couldn't find my fees. i have to pay the course fees in next month. 
+                                    so if someone like to help, please donate me.
+                                    </Typography>
+                                </CardContent>   
+                            </Card>
                             
-                            <div className="col-md-7">
-                                <div className="card" style={{backgroundColor:'transparent',border:0}}>
-                                        <h3>help with money for course fees </h3>
-                                        <p class="card-text card-text-custom">
-                                            I'm a second year student. I follow Bussiness Managment course. i did some part time job to 
-                                            pay the fees but due to this pandemic situation i couldn't find my fees. i have to pay the course 
-                                            fees in next month. so if someone like to help, please donate me. 
-                                        </p><br></br>
-                                </div>
-                            </div>
-                            <div className="col-md-4">
-                                <div className="card" style={{ backgroundColor:'transparent',border:0}}>
-                                    <img src={Money} alt="cap" class="card-img-top" style={{height:200,width:300,alignSelf:'center',marginTop:20}} ></img>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
+                        </Grid>
+                    </Grid>
+
+                    <Grid container spacing={2} >
+                        <Grid item xs={6}>
+                            <Card className={classes.card}>
+                            <CardContent>
+                                    <Typography variant="h5" className={classes.title}>
+                                       Donee's details
+                                    </Typography>
+                                    <div style={{display:"flex"}}>
+                                        <div>
+                                            <Typography variant="subtitle2" className={classes.labelname}>Amount </Typography> 
+                                        </div>
+                                        <div>
+                                            <Typography variant="subtitle2" className={classes.labelvalue}>7800</Typography> 
+                                        </div>  
+                                    </div>
+                                    <div style={{display:"flex"}}>
+                                        <div>
+                                            <Typography variant="subtitle2" className={classes.labelname}>Special Note </Typography> 
+                                        </div>
+                                        <div>
+                                            <Typography variant="subtitle2" className={classes.labelvalue}>Imdeiate</Typography> 
+                                        </div>  
+                                    </div>
+                                    <div style={{display:"flex"}}>
+                                        <div>
+                                            <Typography variant="subtitle2" className={classes.labelname}>Before around</Typography> 
+                                        </div>
+                                        <div>
+                                            <Typography variant="subtitle2" className={classes.labelvalue}>2021-10-13</Typography> 
+                                        </div>  
+                                    </div>
+                                    
+                                    
+                                </CardContent>    
+                            </Card>
+                        </Grid>
+                        <Grid item xs={6}>
+                        <Card className={classes.card}>
+                                <CardContent>
+                                    <div >
+                                        <Typography variant="h5" className={classes.title}>
+                                        Donate Now
+                                        </Typography>
+                                        <Grid container spacing={6}>
+
+                                            <Grid item md={6}>
+                                                <Typography variant="subtitle2" color="initial" className={classes.title}>
+                                                    Current amount Rs.3400
+                                                </Typography>
+                                            </Grid>
+                                            <Grid item md={6}>
+                                                <Typography variant="subtitle2" color="initial" className={classes.title}>
+                                                    Goal amount Rs. 7800
+                                                </Typography>
+                                            </Grid>
+                                        </Grid>
+                                    </div>
+                                    <div className={classes.progressbar}>
+                                        <LinearProgress variant="determinate" value={50} /> 
+                                        </div>
+                                    <div>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        component="label"
+                                        className={classes.contactbtn}
+                                        >
+                                        Donate now
+                                    </Button>
+                                    </div>
+                                </CardContent>   
+                            </Card>
                             
-                            <div className="col-md-6">
-                                <div className="card" style={{backgroundColor:'transparent',border:0}}>
-                                        <h3>My Details</h3>
-                                        <div className="row">
-                                            <div className="col-md-4"><label>Amount : </label></div>
-                                            <div className="col-md-8"><label>7800</label></div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-4"><label>Special Note : </label></div>
-                                            <div className="col-md-8"><label>Imdeiate</label></div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-4"><label>Before around : </label></div>
-                                            <div className="col-md-8"><label>2021-08-12</label></div>
-                                        </div>
-                                </div>
-                            </div>
-                            <div className="col-md-5">
-                                <div className="card" style={{ backgroundColor:'transparent',border:0}}>
-                                    <h3>Donate me</h3>
-                                        <div className="row">
-                                            <div className="col-md-12"><button type="button" className="btn btn-custom">Donate Now</button></div>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                </div>
-            </div>
+                        </Grid>
+                    </Grid>
         </div>
     );
 }
