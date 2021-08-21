@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, useHistory } from "react-router-dom";
+import {Link} from "react-router-dom";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -17,8 +17,9 @@ import Other from '../../image/other.jpg';
 import TextTruncate from 'react-text-truncate';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import TextField from '@material-ui/core/TextField';
-import QueueIcon from '@material-ui/icons/Queue';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import {RequestButton,MyCauseButton,MyDonationButton} from './Donation_button';
+
 
 
 const useStyles = makeStyles((theme) =>({
@@ -123,7 +124,6 @@ const students = [
 
 
 export default function Cases(){
-  const history = useHistory();
   const classes = useStyles();
 
   function FormRow (props){
@@ -132,16 +132,16 @@ export default function Cases(){
       link = "/std/viewNoteCause_details";
     }
     else if (props.type == 'cloth'){
-      link = "/viewClothCause_details";
+      link = "/std/viewClothCause_details";
     }
     else if (props.type == 'device'){
-      link = "/viewDeviceCause_details";
+      link = "/std/viewDeviceCause_details";
     }
     else if (props.type == 'money'){
-      link = "/viewMoneyCause_details";
+      link = "/std/viewMoneyCause_details";
     }
     else if (props.type == 'other'){
-      link = "/viewOtherCause_details";
+      link = "/std/viewOtherCause_details";
     }
     return (
       <React.Fragment>
@@ -188,99 +188,13 @@ export default function Cases(){
 
     return(
     <div>
-        {/*<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Description</th>
-      <th scope="col">Posted Date</th>
-      <th scope="col">Required Date</th>
-      <th scope="col">View Details</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>DSA Lecture note</td>
-      <td>i'm 2nd year student.I need DSA 2 lecture note.</td>
-      <td>2021-07-11</td>
-      <td>2021-08-11</td>
-      <td><button onClick={()=>{ history.push("/viewNoteCause_details")}} type="button" class="btn tb-btn">View</button></td>
-    </tr>
-    <tr>
-      <td>Office Trousers</td>
-      <td>i'm 2nd year student.I need Office Trousers</td>
-      <td>2021-07-11</td>
-      <td>2021-08-11</td>
-      <td><button onClick={()=>{ history.push("/viewClothCause_details")}} type="button" class="btn tb-btn">View</button></td>
-    </tr>
-    <tr>
-      <td>Mobile phone</td>
-      <td>I'm a first year student. i need mobile phone</td>
-      <td>2021-07-11</td>
-      <td>2021-08-11</td>
-      <td><button onClick={()=>{ history.push("/viewDeviceCause_details")}} type="button" class="btn tb-btn">View</button></td>
-    </tr>
-    <tr>
-      <td>Course fees</td>
-      <td>help with money for course fees</td>
-      <td>2021-07-11</td>
-      <td>2021-08-11</td>
-      <td><button onClick={()=>{ history.push("/viewMoneyCause_details")}} type="button" class="btn tb-btn">View</button></td>
-    </tr>
-    <tr>
-      <td>SE Lecture note</td>
-      <td>i'm 2nd year student.I need SE 2 lecture note.</td>
-      <td>2021-07-11</td>
-      <td>2021-08-11</td>
-      <td><button onClick={()=>{ history.push("/viewNoteCause_details")}} type="button" class="btn tb-btn">View</button></td>
-    </tr>
-    <tr>
-      <td>help for my brother's recovery</td>
-      <td>I,m a second year student. My brother got accident last month.</td>
-      <td>2021-07-11</td>
-      <td>2021-08-11</td>
-      <td><button onClick={()=>{ history.push("/viewOtherCause_details")}} type="button" class="btn tb-btn">View</button></td>
-    </tr>
-    <tr>
-      <td>Database Lecture note</td>
-      <td>i'm 1st year student.I need Database lecture note.</td>
-      <td>2021-07-11</td>
-      <td>2021-08-11</td>
-      <td><button onClick={()=>{ history.push("/viewNoteCause_details")}} type="button" class="btn tb-btn">View</button></td>
-    </tr>
-  </tbody>
-    </table>*/}
         <div><Typography variant="h5" className={classes.title}>All Causes</Typography></div>
             <div>
               <div style={{float:"left"}}>
               <Grid container spacing={4}>
-                <Grid item s={4}>
-                      <Button size="large" 
-                        className={classes.filterbutton} 
-                        onClick={()=>{ history.push("/requestcategories")}}
-                        startIcon={<QueueIcon />}
-                        >
-                          Request Donation
-                        </Button>
-                </Grid>
-                <Grid item s={4}>
-                      <Button size="large" 
-                        className={classes.filterbutton} 
-                        onClick={()=>{ history.push("/viewMyrequest")}}
-                        startIcon={<FavoriteBorderIcon />}
-                        >
-                          My Causes
-                        </Button>
-                </Grid>
-                <Grid item s={4}>
-                      <Button size="large" 
-                        className={classes.filterbutton} 
-                        onClick={()=>{ history.push("")}}
-                        startIcon={<FavoriteBorderIcon />}
-                        >
-                          My Donations
-                        </Button>
-                </Grid>
+                <RequestButton />
+                <MyCauseButton />
+                <MyDonationButton />
               </Grid>
               
               </div>
@@ -303,21 +217,13 @@ export default function Cases(){
             </div>
               
         <div className={classes.root}>
-              
-              
-
-
-              <Grid container spacing={6}>
-                
-              {students.map(student => (  
+          <Grid container spacing={6}>
+            {students.map(student => (  
                       <FormRow title={student.title} description={student.description} image={student.image} type={student.type}/> 
               ))}
                 
-              </Grid>
-            </div>
-
-   
-
+          </Grid>
+        </div>
     </div>
 
     );
