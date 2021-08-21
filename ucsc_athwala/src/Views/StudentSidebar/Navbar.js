@@ -38,6 +38,7 @@ import DeviceCause from '../Donation/View_Devicecause';
 import MoneyCause from '../Donation/View_Moneycause';
 import OtherCause from '../Donation/View_Othercause';
 import ViewMyRequests from '../Donation/View_Myrequesting';
+import RequestNote from '../Donation/Request_Noteform';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -342,6 +343,10 @@ function Navbar() {
           <Route path="/std/viewdetails_mydonation" exact>
             <ViewMyRequests />
           </Route> 
+          <Route path="/std/requestNote" exact>
+            <RequestNote />
+          </Route>
+
         </Switch>
           
       </main>
