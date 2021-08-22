@@ -83,6 +83,7 @@ import Land from './Views/LandingPage/home'
 import UNavbar from './Views/UnionSidebar/Navbar';
 import StudentDashboard from './Views/StudentDashboard/StudentDashboard';
 import StdNavside from './Views/StudentSidebar/Navbar';
+import UStdNavside from './Views/UnionSidebar/Navbar';
 
 
 function App() {
@@ -365,6 +366,9 @@ function App() {
     </Route>*/}
                 <Route path="/std">
                     <StdNavside />
+                </Route>
+                <Route path="/ustd">
+                    <UStdNavside />
                 </Route>
 
             </Switch>
