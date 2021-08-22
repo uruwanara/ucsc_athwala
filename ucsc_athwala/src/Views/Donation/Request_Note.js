@@ -1,25 +1,23 @@
 import React from 'react';
-import './Donation.css';
-import Nav from '../Navbar/Navbar';
-import Side from '../StudentSidebar/Sidebar';
-import Tab from './Donation_tab';
 import Noteform from './Request_Noteform';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles} from '@material-ui/core/styles';
+  
+const useStyles = makeStyles({
+  title:{
+    margin:20,
+  }
+
+});
+
 
 export default function RequestNote(){
+  const classes = useStyles();
     return(
-    <div>
-        <div><Nav /></div>
-            <div style={{display:'flex'}}>
-               <Side />
-                <div className="container-fluid container-custom">
-                    <Tab />
-                    <div style={{marginTop:30}}>
-                      <Noteform />  
-                    </div>
-
-                </div>
-            </div>
-    </div>
+        
+        <div>
+            <Noteform />       
+        </div>
     );
 }
 
