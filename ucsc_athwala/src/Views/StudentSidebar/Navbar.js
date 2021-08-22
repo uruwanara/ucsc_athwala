@@ -38,7 +38,11 @@ import DeviceCause from '../Donation/View_Devicecause';
 import MoneyCause from '../Donation/View_Moneycause';
 import OtherCause from '../Donation/View_Othercause';
 import ViewMyRequests from '../Donation/View_Myrequesting';
-import RequestNote from '../Donation/Request_Noteform';
+import RequestNote from '../Donation/Request_Note';
+import RequestCloth from '../Donation/Request_Cloth';
+import RequestDevice from '../Donation/Request_Device';
+import RequestMoney from '../Donation/Request_Money';
+import RequestOther from '../Donation/Request_Other';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -345,6 +349,18 @@ function Navbar() {
           </Route> 
           <Route path="/std/requestNote" exact>
             <RequestNote />
+          </Route>
+          <Route path="/std/requestCloth" exact>
+            <RequestCloth />
+          </Route>
+          <Route path="/std/requestDevice" exact>
+            <RequestDevice />
+          </Route>
+          <Route path="/std/requestMoney" exact>
+            <RequestMoney />
+          </Route>
+          <Route path="/std/requestOther" exact>
+            <RequestOther />
           </Route>
 
         </Switch>

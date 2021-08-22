@@ -1,61 +1,169 @@
 import React from 'react';
-import './Donation.css';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
+import BorderColorIcon from '@material-ui/icons/BorderColor';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
-export default function RequestMoney(){
-    return(
-    <div>
-    <form style={{marginLeft:150}}>
-        <div style={{marginBottom:5,fontFamily:'Poppins, sans-serif'}}><h4>Request form</h4></div>
 
-        <div class="form-row">
-            <div class="form-group col-md-8">
-                <label for="title" class="label-custom">Title*</label>
-                <input type="text" class="form-control input-custom" id="title" placeholder="title" required></input>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-8">
-                <label for="description" class="label-custom">Description*</label>
-                <input type="text" class="form-control input-custom" id="description" placeholder="decription" required></input>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-8">
-                <label for="amount" class="label-custom">Amount*</label>
-                <input type="Number" class="form-control input-custom" id="amount" placeholder="amount" required></input>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-8">
-                <label for="date" class="label-custom">Before (around)</label>
-                <input type="date" class="form-control input-custom" id="date" placeholder="date"></input>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-8">
-                <label for="amount" class="label-custom">Any special Note</label>
-                <input type="text" class="form-control input-custom" id="amount" placeholder="any note.." required></input>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="form-check ">
-            <input class="form-check-input" type="checkbox" id="gridCheck"></input>
-                <label class="form-check-label" for="gridCheck">
-                    I Don't need to show my identity to others.
-                </label>
-            </div>
-            <div class="form-check ">
-            <input class="form-check-input" type="checkbox" id="gridCheck"></input>
-                <label class="form-check-label" for="gridCheck">
-                    show this in public donation section
-                </label>
-            </div>
-        </div>
-       
-        <button type="submit" class="btn btn-custom">Request</button>
-    </form>
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(4),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
-    </div>
-    );
+
+
+export default function SignUp() {
+  const classes = useStyles();
+
+  const [title, setTitle] = React.useState("");
+  const [description, setDescription] = React.useState("");
+  const [amount, setAmount] = React.useState("");
+  const [note, setNote] = React.useState("");
+  const [date, setDate] = React.useState("");
+  const [acceptTerm, setacceptTerm] = React.useState(false);
+
+  const handleSubmit = (event) => {
+     event.preventDefault(); 
+    console.log(`
+        title: ${title}
+        description: ${description}
+        amount: ${amount}
+        note: ${note}
+        date: ${date}
+        acceptTerm: ${acceptTerm}
+    `); 
+  }
+
+  return (
+    
+    <Container component="main" maxWidth="sm">
+      <CssBaseline />
+
+      <div className={classes.paper}>
+      <Avatar className={classes.avatar}>
+          <BorderColorIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Request Form
+        </Typography>
+
+        <form className={classes.form} onSubmit={handleSubmit}>
+          <Grid container spacing={2}>
+
+            <Grid item xs={12} >
+              <TextField
+                autoComplete="title"
+                name="title"
+                variant="outlined"
+                required
+                fullWidth
+                id="title"
+                label="Title"
+                value={title}
+                autoFocus
+                onChange={e => setTitle(e.target.value)}
+              />
+            </Grid>
+
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="description"
+                label="Description"
+                name="description"
+                value={description}
+                autoComplete="description"
+                onChange={e => setDescription(e.target.value)}
+              />
+            </Grid>
+
+            <Grid item xs={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                type="number"
+                id="amount"
+                label="Amount"
+                name="amount"
+                value={amount}
+                autoComplete="amount"
+                onChange={e => setAmount(e.target.value)}
+              />
+            </Grid>
+
+            <Grid item xs={6}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                name="note"
+                label="Any Special Note"
+                value={note}
+                id="note"
+                autoComplete="note"
+                onChange={e => setNote(e.target.value)}
+              />
+            </Grid>
+
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                name="date"
+                required
+                value={date}
+                id="date"
+                autoComplete="date"
+                label="Before date"
+                onFocus={(e) => (e.currentTarget.type = "date")}
+                onBlur={(e) => (e.currentTarget.type = "text")}
+                onChange={e => setDate(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox required name="acceptTerm" color="primary"  onChange={e => setacceptTerm(true)}/>}
+                label="I confirm that this informations are true"
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Submit
+          </Button>
+         
+        </form>
+      </div>
+    </Container>
+  );
 }
 
