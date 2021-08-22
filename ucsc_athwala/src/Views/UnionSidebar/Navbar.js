@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
 }));
-function UNavbar() {
+function UStdNavside() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
@@ -301,4 +301,4 @@ function UNavbar() {
     </div >
   );
 }
-export default UNavbar;
+export default UStdNavside;

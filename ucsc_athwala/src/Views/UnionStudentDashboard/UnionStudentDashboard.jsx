@@ -236,7 +236,7 @@ function UnionStudentDashboard() {
 
             {/********************** Start of the Fundraising part **********************************/}
             <Box mt={5}>
-            <Divider light={true} component="h2" color="secondary"/>
+                <Divider light={true} component="h2" color="secondary" />
             </Box>
             <Box mt={3}>
                 <Typography variant="h5" color="initial" >
@@ -244,7 +244,7 @@ function UnionStudentDashboard() {
                 </Typography>
             </Box>
             <Box display="flex" flexDirection="row" my={2}>
-                <Button variant="contained" color="primary" size="medium"  startIcon={<AddCircleOutlineOutlinedIcon/>}>
+                <Button variant="contained" color="primary" size="medium" startIcon={<AddCircleOutlineOutlinedIcon />}>
                     Create a new fundraising event
                 </Button>
             </Box>
@@ -278,20 +278,27 @@ function UnionStudentDashboard() {
                                     <div className={classes.rootdiv}>
                                         <Grid container spacing={1}>
 
-                                            <Grid item md={4}>
+                                            <Grid item md={3}>
                                                 <Typography variant="subtitle2" color="initial">
-                                                    Raised amount Rs. 100,000
+                                                    Raised : Rs. 100,000
                                                 </Typography>
                                             </Grid>
-                                            <Grid item md={4}>
+                                            <Grid item md={3}>
                                                 <Typography variant="subtitle2" color="initial">
-                                                    Goal amount Rs. 200,000
+                                                    Goal : Rs. 200,000
                                                 </Typography>
                                             </Grid>
-                                            <Grid item md={4}>
+                                            <Grid item md={3}>
+                                                <Box flexDirection="row" >
+                                                    <Button variant="contained" color="primary" size="medium" >
+                                                        View Donate
+                                                    </Button>
+                                                </Box>
+                                            </Grid>
+                                            <Grid item md={3}>
                                                 <Box flexDirection="row">
-                                                    <Button variant="contained" color="primary" size="medium" fullWidth >
-                                                        View & Donate Now
+                                                    <Button variant="contained" color="secondary" size="medium"  alignContent='flex-end'>
+                                                        End by force
                                                     </Button>
                                                 </Box>
                                             </Grid>
