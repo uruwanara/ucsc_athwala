@@ -24,6 +24,12 @@ import PersonPinOutlinedIcon from '@material-ui/icons/PersonPinOutlined';
 import NotificationsActiveOutlinedIcon from '@material-ui/icons/NotificationsActiveOutlined';
 import Side from './Sidedrawer';
 import UnionStudentDashboard from '../UnionStudentDashboard/UnionStudentDashboard';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import UStuViewFundraising from '../Fundraising/UStuViewFundraising';
 
 
 const drawerWidth = 240;
@@ -134,159 +140,160 @@ function UStdNavside() {
     setOpen(false);
   };
   return (
-    <div className={classes.root}> {/* devide to flex, start from here*/}
-      <CssBaseline />
-      {/*************************Start of the navigation bar from here**************************************/}
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
+    <Router>
+      <div className={classes.root}> {/* devide to flex, start from here*/}
+        <CssBaseline />
+        {/*************************Start of the navigation bar from here**************************************/}
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
 
-        <Toolbar>
+          <Toolbar>
 
-          {/*******************************Start of the Line Menu icon**********************/}
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          {/*******************************End of the Line Menu icon**********************/}
-
-
-          {/*******************************Start of the UCSC Athwala icon**********************/}
-          <Typography variant="h6">
-            <Box mr={1}>
-              <Avatar alt="Remy Sharp" src={Logo} className={classes.medium} fontSize="large" />
-            </Box>
-          </Typography>
-          {/*******************************End of the UCSC Athwala icon**********************/}
+            {/*******************************Start of the Line Menu icon**********************/}
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, {
+                [classes.hide]: open,
+              })}
+            >
+              <MenuIcon />
+            </IconButton>
+            {/*******************************End of the Line Menu icon**********************/}
 
 
-          <Typography variant="h4" noWrap className={classes.flex1} ml={3}>
-            UCSC අත්වැල
-          </Typography>
+            {/*******************************Start of the UCSC Athwala icon**********************/}
+            <Typography variant="h6">
+              <Box mr={1}>
+                <Avatar alt="Remy Sharp" src={Logo} className={classes.medium} fontSize="large" />
+              </Box>
+            </Typography>
+            {/*******************************End of the UCSC Athwala icon**********************/}
 
 
-          {/*******************************Start of the notification icon**********************/}
-          {/************auth1, setAuth1, anchorE2, setAnchorE2,handleMenu1,handleClose1 and handleChange1 are for the Notification icon*****************/}
-          {auth1 && (<div>
-
-            <Box mr={2}>
-
-              <IconButton aria-label="show 5 new notifications" color="inherit" onClick={handleMenu1}>
-                <Badge badgeContent={5} color="secondary">
-                  <NotificationsIcon
-                    fontSize="large"
-                  >
-                  </NotificationsIcon>
-                </Badge>
-              </IconButton>
-
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorE2}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open2}
-                onClose={handleClose1}
-              >
-                <MenuItem onClick={handleClose1}>   Notification 1</MenuItem>
-                <MenuItem onClick={handleClose1}>   Notification 2</MenuItem>
-                <MenuItem onClick={handleClose1}>   Notification 3</MenuItem>
-                <MenuItem onClick={handleClose1}><NotificationsActiveOutlinedIcon />View all</MenuItem>
-              </Menu>
-
-            </Box>
-
-          </div>
-          )}
-          {/*******************************End of the notification icon**********************/}
+            <Typography variant="h4" noWrap className={classes.flex1} ml={3}>
+              UCSC අත්වැල
+            </Typography>
 
 
-          {/*******************************Start of the Avatar icon**********************/}
-          {auth && (
-            <div>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle
-                  fontSize="large">
-                </AccountCircle>
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open1}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}><PersonPinOutlinedIcon /> My Profile</MenuItem>
-                <MenuItem onClick={handleClose}><ExitToAppOutlinedIcon /> Log out</MenuItem>
-              </Menu>
+            {/*******************************Start of the notification icon**********************/}
+            {/************auth1, setAuth1, anchorE2, setAnchorE2,handleMenu1,handleClose1 and handleChange1 are for the Notification icon*****************/}
+            {auth1 && (<div>
+
+              <Box mr={2}>
+
+                <IconButton aria-label="show 5 new notifications" color="inherit" onClick={handleMenu1}>
+                  <Badge badgeContent={5} color="secondary">
+                    <NotificationsIcon
+                      fontSize="large"
+                    >
+                    </NotificationsIcon>
+                  </Badge>
+                </IconButton>
+
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorE2}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={open2}
+                  onClose={handleClose1}
+                >
+                  <MenuItem onClick={handleClose1}>   Notification 1</MenuItem>
+                  <MenuItem onClick={handleClose1}>   Notification 2</MenuItem>
+                  <MenuItem onClick={handleClose1}>   Notification 3</MenuItem>
+                  <MenuItem onClick={handleClose1}><NotificationsActiveOutlinedIcon />View all</MenuItem>
+                </Menu>
+
+              </Box>
+
             </div>
-          )}
+            )}
+            {/*******************************End of the notification icon**********************/}
 
 
-          {/*******************************End of the Avatar icon**********************/}
-        </Toolbar>
+            {/*******************************Start of the Avatar icon**********************/}
+            {auth && (
+              <div>
+                <IconButton
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleMenu}
+                  color="inherit"
+                >
+                  <AccountCircle
+                    fontSize="large">
+                  </AccountCircle>
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={open1}
+                  onClose={handleClose}
+                >
+                  <MenuItem onClick={handleClose}><PersonPinOutlinedIcon /> My Profile</MenuItem>
+                  <MenuItem onClick={handleClose}><ExitToAppOutlinedIcon /> Log out</MenuItem>
+                </Menu>
+              </div>
+            )}
 
-      </AppBar>
-      {/********************************End of the Navigation bar**************************************/}
+
+            {/*******************************End of the Avatar icon**********************/}
+          </Toolbar>
+
+        </AppBar>
+        {/********************************End of the Navigation bar**************************************/}
 
 
 
-      < Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })
-        }
-        classes={{
-          paper: clsx({
+        < Drawer
+          variant="permanent"
+          className={clsx(classes.drawer, {
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open,
-          }),
-        }}
-      >
-        <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        <Side />
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        {/* <Typography paragraph>
+          })
+          }
+          classes={{
+            paper: clsx({
+              [classes.drawerOpen]: open,
+              [classes.drawerClose]: !open,
+            }),
+          }}
+        >
+          <div className={classes.toolbar}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            </IconButton>
+          </div>
+          <Divider />
+          <Side />
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          {/* <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           lit sed ullamcorper morbi tincidunt. Lorem
           donec massa sapien faucibus et molestie ac.
@@ -295,10 +302,23 @@ function UStdNavside() {
           Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography> */}
-        <UnionStudentDashboard />
 
-      </main>
-    </div >
+          <Switch>
+
+            <Route path="/std/ustddashboard" exact>
+              <UnionStudentDashboard />
+            </Route>
+            
+            <Route path="ustu/ustuviewfundraising" exact>
+              <UStuViewFundraising />
+            </Route>
+
+          </Switch>
+
+        </main>
+      </div >
+    </Router>
+
   );
 }
 export default UStdNavside;
