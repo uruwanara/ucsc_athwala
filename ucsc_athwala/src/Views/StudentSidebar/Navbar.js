@@ -43,6 +43,11 @@ import RequestCloth from '../Donation/Request_Cloth';
 import RequestDevice from '../Donation/Request_Device';
 import RequestMoney from '../Donation/Request_Money';
 import RequestOther from '../Donation/Request_Other';
+import MyDonation from '../Donation/My_donation';
+import JobOpertunity from '../job/jobPage';
+import ViewJob from '../job/Viewjobs';
+import ViewQA from '../QA/View_QAform';
+import Helpstack from '../HelpStack/HelpStack'
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -362,11 +367,26 @@ function Navbar() {
           <Route path="/std/requestOther" exact>
             <RequestOther />
           </Route>
+          <Route path="/std/myDonation" exact>
+            <MyDonation />
+          </Route>
+          <Route path="/std/JobOpertunity" exact>
+            <JobOpertunity />
+          </Route>
+          <Route path="/std/jobview" exact>
+            <ViewJob />
+          </Route>
+          <Route path="/std/viewQA" exact>
+            <ViewQA />
+          </Route>
+          <Route path="/std/helpstack">
+            <Helpstack />
+          </Route>
 
         </Switch>
           
       </main>
-    </div >
+    </div>
     </Router>
   );
 }
