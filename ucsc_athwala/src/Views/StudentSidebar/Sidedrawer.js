@@ -82,7 +82,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to="/Job" className={classes.Nounderline}>
+              <Link to="/std/JobOpertunity" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <PanToolIcon className={classes.Listicon}/>
@@ -109,7 +109,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to="" className={classes.Nounderline}> 
+              <Link to="/std/helpstack/default" className={classes.Nounderline}> 
                 <ListItem button>
                 <ListItemIcon>
                     <ForumIcon className={classes.Listicon}/>
@@ -118,7 +118,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to="" className={classes.Nounderline}>
+              <Link to="/std/viewQA" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <HelpIcon className={classes.Listicon}/>
