@@ -66,7 +66,7 @@ export function MyDonationButton(){
         <Grid item s={4}>
                       <Button size="large" 
                         className={classes.filterbutton} 
-                        onClick={()=>{ history.push("")}}
+                        onClick={()=>{ history.push("/std/myDonation")}}
                         startIcon={<FavoriteBorderIcon />}
                         >
                           My Donations
