@@ -309,7 +309,7 @@ function UStdNavside() {
               <UnionStudentDashboard />
             </Route>
             
-            <Route path="ustu/ustuviewfundraising" exact>
+            <Route path="ustd/ustdviewfundraising" exact>
               <UStuViewFundraising />
             </Route>
 
