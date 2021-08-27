@@ -1,5 +1,10 @@
 import React from 'react';
 import clsx from 'clsx';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -23,6 +28,7 @@ import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import PersonPinOutlinedIcon from '@material-ui/icons/PersonPinOutlined';
 import NotificationsActiveOutlinedIcon from '@material-ui/icons/NotificationsActiveOutlined';
 import Side from './Sidedrawer';
+import Dashboard from '../AdminDashboard/Admindash';
 
 
 const drawerWidth = 240;
@@ -283,9 +289,9 @@ function Navbar() {
         <Divider />
        <Side />
       </Drawer>
-      {/* <main className={classes.content}>
+      { <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Typography paragraph>
+        {/* <Typography paragraph> 
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           lit sed ullamcorper morbi tincidunt. Lorem
           donec massa sapien faucibus et molestie ac.
@@ -293,8 +299,14 @@ function Navbar() {
         <Typography paragraph>
           Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
-      </main> */}
+        </Typography>*/}
+          <Switch>
+          <Route path="/admin/admindashboard" exact>
+            <Dashboard />
+          </Route>
+          </Switch>
+
+        </main> }
     </div >
   );
 }

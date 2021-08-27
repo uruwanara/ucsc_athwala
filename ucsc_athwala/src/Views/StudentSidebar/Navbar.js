@@ -28,8 +28,9 @@ import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import PersonPinOutlinedIcon from '@material-ui/icons/PersonPinOutlined';
 import NotificationsActiveOutlinedIcon from '@material-ui/icons/NotificationsActiveOutlined';
 import Side from './Sidedrawer';
-import Donation from '../Donation/Donation_page'
-import Dashboard from '../StudentDashboard/StudentDashboard'
+import Donation from '../Donation/Donation_page';
+import Auction from '../Auction/Auction';
+import Dashboard from '../StudentDashboard/StudentDashboard';
 import MyCause from '../Donation/Donation_MyCauses';
 import Category from '../Donation/RequestCategory';
 import NoteCause from '../Donation/View_Notecause';
@@ -383,6 +384,9 @@ function Navbar() {
             <Helpstack />
           </Route>
 
+          <Route path="/std/viewauc" exact>
+            <Auction />
+          </Route>
         </Switch>
           
       </main>
