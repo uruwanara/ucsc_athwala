@@ -48,6 +48,7 @@ import JobOpertunity from '../job/jobPage';
 import ViewJob from '../job/Viewjobs';
 import ViewQA from '../QA/View_QAform';
 import Helpstack from '../HelpStack/HelpStack'
+import StuFundraising from '../Fundraising/StuViewFundraising.jsx';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -381,6 +382,9 @@ function Navbar() {
           </Route>
           <Route path="/std/helpstack">
             <Helpstack />
+          </Route>
+          <Route path="/std/viewfundraising">
+            <StuFundraising />
           </Route>
 
         </Switch>
