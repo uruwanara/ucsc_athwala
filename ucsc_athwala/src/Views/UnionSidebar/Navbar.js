@@ -305,11 +305,11 @@ function UStdNavside() {
 
           <Switch>
 
-            <Route path="/std/ustddashboard" exact>
+            <Route path="/ustd/ustddashboard" exact>
               <UnionStudentDashboard />
             </Route>
             
-            <Route path="ustd/ustdviewfundraising" exact>
+            <Route path="/ustd/ustdviewfundraising" exact>
               <UStuViewFundraising />
             </Route>
 

@@ -35,14 +35,14 @@ export default function Side(){
     return(
       <div>
           <List>
-              <Link to="/unionDashbord" className={classes.Nounderline}>
+              <Link to="/ustd/ustddashboard" className={classes.Nounderline}>
                 <ListItem button >
                 <ListItemIcon><DashboardIcon style={{ fill: "blue"}}/></ListItemIcon>
                 <ListItemText primary="Dashboard" />
                 </ListItem>
               </Link>
               
-              <Link to="/unionviewcauses" className={classes.Nounderline}>
+              <Link to="/ustd/viewcauses" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon><PeopleAltIcon style={{ fill: "blue"}}/></ListItemIcon>
                 <ListItemText primary="Donation" />
@@ -67,7 +67,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to = "/funddashboard" className={classes.Nounderline}>
+              <Link to = "/ustd/ustdviewfundraising" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <GavelIcon style={{ fill: "blue"}}/>
