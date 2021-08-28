@@ -50,6 +50,7 @@ import ViewJob from '../job/Viewjobs';
 import ViewQA from '../QA/View_QAform';
 import Helpstack from '../HelpStack/HelpStack'
 import StuFundraising from '../Fundraising/StuViewFundraising.jsx';
+import ViewProductEle from '../Product/Product_Page_View';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -391,6 +392,11 @@ function Navbar() {
           <Route path="/std/viewauc" exact>
             <Auction />
           </Route>
+
+          <Route path="/std/ViewProductEle" exact>
+            <ViewProductEle />
+          </Route>
+
         </Switch>
           
       </main>
