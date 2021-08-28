@@ -51,6 +51,7 @@ import ViewQA from '../QA/View_QAform';
 import Helpstack from '../HelpStack/HelpStack'
 import StuFundraising from '../Fundraising/StuViewFundraising.jsx';
 import ViewProductEle from '../Product/Product_Page_View';
+import ViewProductDetails from '../Product/View_Product_Details';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -397,6 +398,10 @@ function Navbar() {
             <ViewProductEle />
           </Route>
 
+          <Route path="/std/ViewProductDetails" exact>
+            <ViewProductDetails />
+          </Route>
+          
         </Switch>
           
       </main>
