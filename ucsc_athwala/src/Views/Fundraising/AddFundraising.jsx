@@ -121,7 +121,7 @@ import TextField from '@material-ui/core/TextField';
 import { Box } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
-// import NumberFormat from 'react-number-format';
+import NumberFormat from 'react-number-format';
 // import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 // import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 // import DatePicker from '@material-ui/lab/DatePicker';
@@ -137,34 +137,34 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-// function NumberFormatCustom(props) {
-//     const { inputRef, onChange, ...other } = props;
+function NumberFormatCustom(props) {
+    const { inputRef, onChange, ...other } = props;
 
-//     return (
-//         // <NumberFormat
-//         //     {...other}
-//         //     getInputRef={inputRef}
-//         //     onValueChange={(values) => {
-//         //         onChange({
-//         //             target: {
-//         //                 name: props.name,
-//         //                 value: values.value,
-//         //             },
-//         //         });
-//         //     }}
-//         //     thousandSeparator
-//         //     isNumericString
-//         //     prefix="Rs "
+    return (
+        <NumberFormat
+            {...other}
+            getInputRef={inputRef}
+            onValueChange={(values) => {
+                onChange({
+                    target: {
+                        name: props.name,
+                        value: values.value,
+                    },
+                });
+            }}
+            thousandSeparator
+            isNumericString
+            prefix="Rs "
 
-//         // />
-//     );
-// }
+        />
+    );
+}
 
-// NumberFormatCustom.propTypes = {
-//     inputRef: PropTypes.func.isRequired,
-//     name: PropTypes.string.isRequired,
-//     onChange: PropTypes.func.isRequired,
-// };
+NumberFormatCustom.propTypes = {
+    inputRef: PropTypes.func.isRequired,
+    name: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+};
 
 
 
@@ -226,21 +226,23 @@ function AddFundraising() {
                         </Grid>
 
                         <Grid item xs={12} sm={3}>
-                            <input required type="file" name="myImage" accept="image/png, image/gif, image/jpeg" />
-
+                            {/* <label for="input_image"><h6 style="color:black;">Upload an Image</h6></label> */}
+                            <Typography variant="subtitle1" color="primary">Upload an image
+                                <input id="input_image" required type="file" name="myImage" accept="image/png, image/gif, image/jpeg" />
+                            </Typography>
                         </Grid>
 
                         <Grid item xs={12} sm={6}>
 
                             <TextField
                                 label="Goal Amount in Rs."
-                                // value={values.numberformat}
+                                value={values.numberformat}
                                 onChange={handleChange}
                                 name="numberformat"
                                 id="formatted-numberformat-input"
-                                // InputProps={{
-                                //     inputComponent: NumberFormatCustom,
-                                // }}
+                                InputProps={{
+                                    inputComponent: NumberFormatCustom,
+                                }}
                                 multiline
                                 variant="outlined"
                                 placeholder="Rs 10000"
@@ -251,13 +253,13 @@ function AddFundraising() {
 
                             <TextField
                                 label="Starting Amount in Rs."
-                                // value={values.numberformat}
+                                value={values.numberformat}
                                 onChange={handleChange}
                                 name="numberformat"
                                 id="formatted-numberformat-input"
-                                // InputProps={{
-                                //     inputComponent: NumberFormatCustom,
-                                // }}
+                                InputProps={{
+                                    inputComponent: NumberFormatCustom,
+                                }}
                                 multiline
                                 variant="outlined"
                                 placeholder="Rs 100"
@@ -265,31 +267,8 @@ function AddFundraising() {
 
                             />
                         </Grid>
-                        <Grid item xs={12} sm={6}>
-                            {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <DatePicker
-                                label="Basic example"
-                                value={date_value}
-                                onChange={(newValue) => {
-                                    // setDate_Value(newValue);
-                                }}
-                                renderInput={(params) => <TextField {...params} />}
-                            />
-                        </LocalizationProvider> */}
 
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <TimePicker
-                                label="Basic example"
-                                value={time_value}
-                                onChange={(newValue) => {
-                                    // setTime_Value(newValue);
-                                }}
-                                renderInput={(params) => <TextField {...params} />}
-                            />
-                        </LocalizationProvider> */}
-                        </Grid>
+
 
                     </Grid>
 
