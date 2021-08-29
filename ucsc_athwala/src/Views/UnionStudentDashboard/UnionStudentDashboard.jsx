@@ -24,6 +24,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { ButtonBase } from '@material-ui/core';
 import { Divider } from '@material-ui/core';
+import {Link} from "react-router-dom";
 
 
 
@@ -244,9 +245,11 @@ function UnionStudentDashboard() {
                 </Typography>
             </Box>
             <Box display="flex" flexDirection="row" my={2}>
-                <Button variant="contained" color="primary" size="medium" startIcon={<AddCircleOutlineOutlinedIcon />}>
-                    Create a new fundraising event
-                </Button>
+                <Link to="/ustd/addfundraising">
+                    <Button variant="contained" color="primary" size="medium" startIcon={<AddCircleOutlineOutlinedIcon />}>
+                        Create a new fundraising event
+                    </Button>
+                </Link>
             </Box>
 
             <div className={classes.rootdiv}>
@@ -297,7 +300,7 @@ function UnionStudentDashboard() {
                                             </Grid>
                                             <Grid item md={3}>
                                                 <Box flexDirection="row">
-                                                    <Button variant="contained" color="secondary" size="medium"  alignContent='flex-end'>
+                                                    <Button variant="contained" color="secondary" size="medium" alignContent='flex-end'>
                                                         End by force
                                                     </Button>
                                                 </Box>

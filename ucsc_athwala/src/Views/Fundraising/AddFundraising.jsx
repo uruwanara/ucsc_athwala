@@ -118,13 +118,15 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField';
-import { Box } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import NumberFormat from 'react-number-format';
+import { Restore } from '@material-ui/icons';
 // import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 // import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 // import DatePicker from '@material-ui/lab/DatePicker';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -136,6 +138,18 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
     },
 }));
+
+// const use_timeStyles = makeStyles((theme) => ({
+//     container: {
+//       display: 'flex',
+//       flexWrap: 'wrap',
+//     },
+//     textField: {
+//     //   marginLeft: theme.spacing(1),
+//     //   marginRight: theme.spacing(1),
+//     //   width: 200,
+//     },
+//   }));
 
 function NumberFormatCustom(props) {
     const { inputRef, onChange, ...other } = props;
@@ -188,7 +202,14 @@ function AddFundraising() {
 
     //set time_value
     // const [time_value, setTime_Value] = React.useState(null);
+    const defaultProps = {
+        bgcolor: 'background.paper',
+        m: 1,
+        border: 1,
+        // style: { width: '5rem', height: '5rem' },
+    };
 
+    // const classes_time = use_timeStyles();
 
     return (
 
@@ -196,84 +217,135 @@ function AddFundraising() {
             <Typography variant="h4" align="center" color="initial">Let's Create a New fundrasing programme</Typography>
             <Box component="hr" />
             <Box component="br" />
-            <form className={classes.root}>
-                <Card>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12} sm={12}>
-                            <TextField
-                                id="outlined-textarea"
-                                label="Fundraising Name"
-                                placeholder="Enter meaningful topic"
-                                multiline
-                                variant="outlined"
-                                fullWidth
-                                dataType="date"
-                            />
-                        </Grid>
+            <Box borderColor="primary.main" {...defaultProps}>
+                <Box m={1}>
+                    <form className={classes.root}>
+                        <Card>
+                            <Box component="div" m={1}>
+                                <Grid m={1} container justify="space-between" spacing={3}>
+                                    <Grid item xs={12} sm={12}>
+                                        <TextField
+                                            id="outlined-textarea"
+                                            label="Fundraising Name"
+                                            placeholder="Enter meaningful topic"
+                                            multiline
+                                            variant="outlined"
+                                            fullWidth
+                                            dataType="date"
+                                        />
+                                    </Grid>
 
 
-                        <Grid item xs={12} sm={9}>
-                            <TextField
-                                id="outlined-multiline-static"
-                                label="Fundraising Description"
-                                multiline
-                                rows={3}
-                                placeholder="Why/Who organise etc.."
-                                variant="outlined"
-                                fullWidth
+                                    <Grid item xs={12} sm={9}>
+                                        <TextField
+                                            id="outlined-multiline-static"
+                                            label="Fundraising Description"
+                                            multiline
+                                            rows={3}
+                                            placeholder="Why/Who organise etc.."
+                                            variant="outlined"
+                                            fullWidth
 
-                            />
-                        </Grid>
+                                        />
+                                    </Grid>
 
-                        <Grid item xs={12} sm={3}>
-                            {/* <label for="input_image"><h6 style="color:black;">Upload an Image</h6></label> */}
-                            <Typography variant="subtitle1" color="primary">Upload an image
-                                <input id="input_image" required type="file" name="myImage" accept="image/png, image/gif, image/jpeg" />
-                            </Typography>
-                        </Grid>
+                                    <Grid item xs={12} sm={3}>
+                                        {/* <label for="input_image"><h6 style="color:black;">Upload an Image</h6></label> */}
+                                        <Typography variant="subtitle1" color="primary">Upload an image
+                                            <input id="input_image" required type="file" name="myImage" accept="image/png, image/gif, image/jpeg" />
+                                        </Typography>
+                                    </Grid>
 
-                        <Grid item xs={12} sm={6}>
+                                    <Grid item xs={12} sm={3}>
 
-                            <TextField
-                                label="Goal Amount in Rs."
-                                value={values.numberformat}
-                                onChange={handleChange}
-                                name="numberformat"
-                                id="formatted-numberformat-input"
-                                InputProps={{
-                                    inputComponent: NumberFormatCustom,
-                                }}
-                                multiline
-                                variant="outlined"
-                                placeholder="Rs 10000"
-                                fullWidth
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
+                                        <TextField
+                                            label="Goal Amount in Rs."
+                                            value={values.numberformat}
+                                            onChange={handleChange}
+                                            name="numberformat"
+                                            id="formatted-numberformat-input"
+                                            InputProps={{
+                                                inputComponent: NumberFormatCustom,
+                                            }}
+                                            multiline
+                                            variant="outlined"
+                                            placeholder="Rs 10000"
+                                            fullWidth
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} sm={3}>
 
-                            <TextField
-                                label="Starting Amount in Rs."
-                                value={values.numberformat}
-                                onChange={handleChange}
-                                name="numberformat"
-                                id="formatted-numberformat-input"
-                                InputProps={{
-                                    inputComponent: NumberFormatCustom,
-                                }}
-                                multiline
-                                variant="outlined"
-                                placeholder="Rs 100"
-                                fullWidth
+                                        <TextField
+                                            label="Starting Amount in Rs."
+                                            value={values.numberformat}
+                                            onChange={handleChange}
+                                            name="numberformat"
+                                            id="formatted-numberformat-input"
+                                            InputProps={{
+                                                inputComponent: NumberFormatCustom,
+                                            }}
+                                            multiline
+                                            variant="outlined"
+                                            placeholder="Rs 100"
+                                            fullWidth
 
-                            />
-                        </Grid>
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} sm={3}>
+
+                                        <TextField
+                                            id="date"
+                                            label="Expire Date"
+                                            type="date"
+                                            defaultValue="weqwe"
+                                            // className={classes_time.textField}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                            variant="outlined"
+                                            fullWidth
+                                        />
+
+                                    </Grid>
+
+                                    <Grid item xs={12} sm={3}>
+                                        <TextField
+                                            id="time"
+                                            label="Expire Time"
+                                            type="time"
+
+                                            // className={classes.textField}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                            inputProps={{
+                                                step: 300, // 5 min
+                                            }}
+                                            variant="outlined"
+                                            fullWidth
+                                        />
+                                    </Grid>
+
+                                    <Grid item xs={12} sm={12}>
+                                        <Box display="flex" justifyContent="flex-end">
+
+                                            <Box>
+                                                <Button variant="contained" color="primary" endIcon={<CheckCircleIcon>send</CheckCircleIcon>}>
+                                                    Create Fundraising
+                                                </Button>
+                                            </Box>
 
 
+                                        </Box>
+                                    </Grid>
 
-                    </Grid>
 
-                </Card>
-            </form>
+                                </Grid>
+                            </Box>
+                        </Card>
+                    </form>
+                </Box>
+            </Box>
         </React.Fragment>
     );
 }
