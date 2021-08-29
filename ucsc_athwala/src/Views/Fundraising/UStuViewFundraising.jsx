@@ -320,8 +320,8 @@ import Pirith from '../../image/Pirith.jpg';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import { LinearProgress } from "@material-ui/core";
-
-
+import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
+import {Link} from "react-router-dom";
 
 
 
@@ -357,6 +357,19 @@ function UStuFundraising() {
         <React.Fragment>
             <Typography variant="h2" color="initial" align="center">
                 Fundraising Viewer
+            </Typography>
+
+            <Box my={2}>
+                <Link to="/ustd/addfundraising">
+                <Button variant="contained" color="primary" size="medium" startIcon={<AddCircleOutlineOutlinedIcon />}>
+                    Create a new fundraising event
+                </Button>
+                </Link>
+            </Box>
+
+            <Box component="br" />
+            <Typography align="center" variant="h4" color="initial">
+                Available Fundraisngs
             </Typography>
 
             <Card className={classes.root} mt={4}>
