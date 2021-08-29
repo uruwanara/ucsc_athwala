@@ -79,7 +79,7 @@ function StudentDashboard() {
                 Student Dashboard
             </Typography>
             <Typography variant="h6" align="right" color="initial" gutterBottom display="block">
-                {userData.username}
+                {userData.username||"Loading"}
             </Typography>
 
 
