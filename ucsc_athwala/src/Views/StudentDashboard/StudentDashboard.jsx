@@ -70,6 +70,8 @@ function StudentDashboard() {
 
     const classes = useStyles();
 
+   const userData=JSON.parse(localStorage.getItem("userData"))
+
     return (
         <React.Fragment>
 
@@ -77,7 +79,7 @@ function StudentDashboard() {
                 Student Dashboard
             </Typography>
             <Typography variant="h6" align="right" color="initial" gutterBottom display="block">
-                Hi Uthpala Ruwanara Welcome!!!
+                {userData.username||"Loading"}
             </Typography>
 
 

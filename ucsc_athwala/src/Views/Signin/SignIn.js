@@ -69,11 +69,14 @@ export default function SignIn() {
       }
     }).then((response)=>{
       console.log(response.data.data.userType);
+      console.log(response.data.data.fname)
       console.log(response.data.status);
+      localStorage.setItem("userData",JSON.stringify(response.data.data))
+
       if(response.data.status==="success"){
         if(response.data.data.userType==="STUDENT"){
           console.log("1");
-          history.push("/stddashboard");
+          history.push("/std/stddashboard");
         }else if (response.data.data.userType==="ALUMNI"){
           history.push("/pstddashboard");
         }else if (response.data.data.userType==="COUNSELLOR"){
