@@ -30,6 +30,9 @@ import NotificationsActiveOutlinedIcon from '@material-ui/icons/NotificationsAct
 import Side from './Sidedrawer';
 import Donation from '../Donation/Donation_page';
 import Auction from '../Auction/Auction';
+import Bid from '../Auction/bid';
+import Crtauc from '../Auction/createauction';
+import Myauc from '../Auction/myauc';
 import Dashboard from '../StudentDashboard/StudentDashboard';
 import MyCause from '../Donation/Donation_MyCauses';
 import Category from '../Donation/RequestCategory';
@@ -393,6 +396,9 @@ function Navbar() {
           <Route path="/std/viewauc" exact>
             <Auction />
           </Route>
+          <Route path="/std/myauc" exact>
+            <Myauc />
+          </Route>
 
           <Route path="/std/ViewProductEle" exact>
             <ViewProductEle />
@@ -401,7 +407,12 @@ function Navbar() {
           <Route path="/std/ViewProductDetails" exact>
             <ViewProductDetails />
           </Route>
-          
+          <Route path="/std/crtauc" exact>
+            <Crtauc />
+          </Route>
+          <Route path="/std/bid" exact>
+            <Bid />
+          </Route>
         </Switch>
           
       </main>

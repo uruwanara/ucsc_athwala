@@ -8,7 +8,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import  Button from '@material-ui/core/Button';
-import {NoteDoneeDetails,Description} from './View_Casues';
+import {NoteDoneeDetails,Description} from './details';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -68,8 +68,7 @@ export default function View_Notecause(){
    const classes = useStyles();
     return(
         <div>
-                   
-                   <Grid container spacing={2}>
+                    <Grid container spacing={2}>
                         <Grid item xs={6}>
                             <Card className={classes.card}>
                                 <CardMedia
@@ -79,9 +78,10 @@ export default function View_Notecause(){
                                 />   
                             </Card>
                         </Grid>
-                        
+
                         <Description />
                     </Grid>
+                    
 
                     <Grid container spacing={2} >
                         <NoteDoneeDetails />
@@ -89,16 +89,26 @@ export default function View_Notecause(){
                         <Grid item xs={6}>
                         <Card className={classes.card}>
                                 <CardContent>
-                                <Typography variant="h5" className={classes.title}>
-                                       Donation details
+                                    <div>
+                                        {/* <Typography variant="h5" className={classes.title}>
+                                        Bid Now 
                                     </Typography>
-                                <div style={{display:"flex"}}>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelname}>Donation Status</Typography> 
-                                        </div>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelvalue}>Pending</Typography> 
-                                        </div>  
+                                    <Typography variant="subtitle2" className={classes.title}>
+                                        Your bid value should greater than highest bid
+                                    </Typography> */}
+                                    </div>
+                                    <div>
+                                    {/* <Typography variant="subtitle2" className={classes.title}>
+                                       Or You can cotact donee to donate
+                                    </Typography> */}
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        component="label"
+                                        className={classes.contactbtn}
+                                        >
+                                        Approve
+                                    </Button>
                                     </div>
                                 </CardContent>   
                             </Card>

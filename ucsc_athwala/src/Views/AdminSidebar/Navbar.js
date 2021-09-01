@@ -29,6 +29,9 @@ import PersonPinOutlinedIcon from '@material-ui/icons/PersonPinOutlined';
 import NotificationsActiveOutlinedIcon from '@material-ui/icons/NotificationsActiveOutlined';
 import Side from './Sidedrawer';
 import Dashboard from '../AdminDashboard/Admindash';
+import Adminauc from '../Auction/adminauc';
+import Approve from '../Auction/approve';
+
 
 
 const drawerWidth = 240;
@@ -303,6 +306,12 @@ function Navbar() {
           <Switch>
           <Route path="/admin/admindashboard" exact>
             <Dashboard />
+          </Route>
+          <Route path="/admin/adminauc" exact>
+            <Adminauc />
+          </Route>
+          <Route path="/admin/approve" exact>
+            <Approve />
           </Route>
           </Switch>
 

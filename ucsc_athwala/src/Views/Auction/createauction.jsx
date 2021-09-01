@@ -10,7 +10,7 @@ import BorderColorIcon from '@material-ui/icons/BorderColor';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import GavelIcon from '@material-ui/icons/Gavel';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -41,7 +41,7 @@ export default function SignUp() {
   const [description, setDescription] = React.useState("");
   const [year, setYear] = React.useState("");
   const [subject, setSubject] = React.useState("");
-  const [lesson, setLesson] = React.useState("");
+  const [BasePrice, setbaseprice] = React.useState("");
   const [date, setDate] = React.useState("");
   const [acceptTerm, setacceptTerm] = React.useState(false);
 
@@ -52,7 +52,7 @@ export default function SignUp() {
         description: ${description}
         year: ${year}
         subject: ${subject}
-        lesson: ${lesson}
+        Baseprice: ${BasePrice}
         date: ${date}
         acceptTerm: ${acceptTerm}
     `); 
@@ -65,10 +65,10 @@ export default function SignUp() {
 
       <div className={classes.paper}>
       <Avatar className={classes.avatar}>
-          <BorderColorIcon />
+          <GavelIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Request Lecture Note
+          Create Auction
         </Typography>
 
         <form className={classes.form} onSubmit={handleSubmit}>
@@ -103,7 +103,7 @@ export default function SignUp() {
               />
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -117,7 +117,7 @@ export default function SignUp() {
               />
             </Grid>
 
-            <Grid item xs={6}>
+            {/* <Grid item xs={6}>
               <TextField
                 variant="outlined"
                 required
@@ -129,18 +129,19 @@ export default function SignUp() {
                 autoComplete="subject"
                 onChange={e => setSubject(e.target.value)}
               />
-            </Grid>
+            </Grid> */}
 
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
+                required
                 fullWidth
-                name="lesson"
-                label="Lesson"
-                value={lesson}
+                name="Baseprice"
+                label="Base price"
+                value={BasePrice}
                 id="lesson"
                 autoComplete="lesson"
-                onChange={e => setLesson(e.target.value)}
+                onChange={e => setbaseprice(e.target.value)}
               />
             </Grid>
 
@@ -159,6 +160,14 @@ export default function SignUp() {
                 onChange={e => setDate(e.target.value)}
               />
             </Grid>
+            <Button
+            fullWidth
+                variant="contained"
+                component="label">
+                Upload File
+              <input
+                type="file"/>
+                </Button>
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox required name="acceptTerm" color="primary"  onChange={e => setacceptTerm(true)}/>}
