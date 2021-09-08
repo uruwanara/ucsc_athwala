@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import {useHistory } from "react-router-dom";
 import QueueIcon from '@material-ui/icons/Queue';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 
 const useStyles = makeStyles({
     filterbutton: {
@@ -32,10 +34,10 @@ export function RequestButton(){
         <Grid item s={4}>
             <Button size="large" 
             className={classes.filterbutton} 
-            onClick={()=>{ history.push("/std/requestcategories")}}
-                startIcon={<QueueIcon />}
+            onClick={()=>{ history.push("/std/crtauc")}}
+                startIcon={<AddCircleIcon />}
             >
-                Request Donation
+                Create Auction
             </Button>
         </Grid>
     );
@@ -49,47 +51,47 @@ export function MyCauseButton(){
         <Grid item s={4}>
                       <Button size="large" 
                         className={classes.filterbutton} 
-                        onClick={()=>{ history.push("/std/viewMyrequest")}}
-                        startIcon={<FavoriteBorderIcon />}
+                        onClick={()=>{ history.push("/std/myauc")}}
+                        startIcon={<AccountBalanceWalletIcon />}
                         >
-                          My Causes
+                          My Auctions
                         </Button>
                 </Grid>
     );
 
 }
 
-export function MyDonationButton(){
-    const classes = useStyles();
-    const history = useHistory();
-    return(
-        <Grid item s={4}>
-                      <Button size="large" 
-                        className={classes.filterbutton} 
-                        onClick={()=>{ history.push("")}}
-                        startIcon={<FavoriteBorderIcon />}
-                        >
-                          My Donations
-                        </Button>
-</Grid>
-    );
+// export function MyDonationButton(){
+//     const classes = useStyles();
+//     const history = useHistory();
+//     return(
+//         <Grid item s={4}>
+//                       <Button size="large" 
+//                         className={classes.filterbutton} 
+//                         onClick={()=>{ history.push("")}}
+//                         startIcon={<FavoriteBorderIcon />}
+//                         >
+//                           My Donations
+//                         </Button>
+// </Grid>
+//     );
 
-}
+// }
 
-export function AllCauseButton(){
-    const classes = useStyles();
-    const history = useHistory();
-    return(
-        <Grid item s={4}>
-              <Button size="large" 
-                className={classes.filterbutton} 
-                onClick={()=>{ history.push("/std/viewcauses")}}
-                startIcon={<FavoriteBorderIcon />}
-                >
-                  All Causes
-                </Button>
-        </Grid>
-    );
+// export function AllCauseButton(){
+//     const classes = useStyles();
+//     const history = useHistory();
+//     return(
+//         <Grid item s={4}>
+//               <Button size="large" 
+//                 className={classes.filterbutton} 
+//                 onClick={()=>{ history.push("/std/viewcauses")}}
+//                 startIcon={<FavoriteBorderIcon />}
+//                 >
+//                   All Causes
+//                 </Button>
+//         </Grid>
+//     );
 
-}
+// }
 

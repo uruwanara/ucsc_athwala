@@ -23,7 +23,7 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import {RequestButton,MyCauseButton,MyDonationButton} from './Donation_button';
 import GavelIcon from '@material-ui/icons/Gavel';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-
+import DoneAllIcon from '@material-ui/icons/DoneAll';
 
 
 
@@ -171,10 +171,10 @@ export default function Cases(){
             {/* { <Link to={link}> } */}
             <Button size="small" 
             className={classes.donateButton} 
-            startIcon={<GavelIcon />}
-            color='secondary' href="/std/bid" component={Link}
+            startIcon={<DoneAllIcon />}
+            color='secondary' href="/admin/approve" component={Link}
             >
-              Bid Now
+              Approve Now 
             </Button>
            {/* { </Link>  } */}
 
@@ -192,8 +192,8 @@ export default function Cases(){
             <div>
               <div style={{float:"left"}}>
               <Grid container spacing={4}>
-                <RequestButton  />
-                <MyCauseButton />
+                {/* <RequestButton  />
+                <MyCauseButton /> */}
                 {/* <MyDonationButton /> */}
               </Grid>
               
