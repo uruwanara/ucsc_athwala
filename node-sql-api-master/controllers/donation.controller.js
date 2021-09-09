@@ -41,7 +41,7 @@ exports.findOne = (req, res) => {
 exports.delete = (req, res) => {
     const donationID =req.params.donationID;
 
-    connection.query('SELECT donationType,title,description,createdAt,updatedAt FROM don where donationID = ? ;',
+    connection.query('DELETE * FROM  don WHERE donationID = ? ;',
         [donationID],
         (err, result,fields) => {
             if (err) {
