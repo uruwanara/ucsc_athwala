@@ -20,6 +20,8 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.users = require("./user.model.js")(sequelize, Sequelize);
+db.donation = require("./donation.model.js")(sequelize, Sequelize);
 db.validations = require("./authtoken.model.js")(sequelize, Sequelize);
+
 
 module.exports = db;
