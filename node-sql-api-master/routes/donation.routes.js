@@ -12,7 +12,7 @@ module.exports = donationRoutes => {
     // router.post("/update/:username", users.update);
     //
     // // Delete a user with username
-    router.post("/delete/:username", users.delete);
+  //  router.post("/delete/:username", users.delete);
 
     donationRoutes.use('/api/donations', router);
 };
