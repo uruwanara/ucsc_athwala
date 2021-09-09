@@ -1,12 +1,12 @@
-module.exports = donationRoutes => {
-    const donation = require("../controllers/donation.controller");
+module.exports = sampleRoutes => {
+    const sample = require("../controllers/sample.controller");
 
     var router = require("express").Router();
 
-    router.post("/create", donation.create);
+    router.post("/create", sample.create);
 
     // Retrieve a single user with username
-     router.get("/:donationID", donation.findOne);
+     router.get("/:donationID", sample.findOne);
 
     // // Update a user with username
     // router.post("/update/:username", users.update);
@@ -14,5 +14,5 @@ module.exports = donationRoutes => {
     // // Delete a user with username
   //  router.post("/delete/:username", users.delete);
 
-    donationRoutes.use('/api/donations', router);
+    sampleRoutes.use('/api/samples', router);
 };
