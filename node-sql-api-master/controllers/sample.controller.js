@@ -53,6 +53,19 @@ exports.delete = (req, res) => {
     );
 };
 
+exports.allFind = (req, res) => {
+    connection.query('SELECT * FROM donations;',
+        (err, result,fields) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(result);
+            }
+        }
+    );
+
+};
+
 
 
 
