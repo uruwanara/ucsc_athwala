@@ -377,6 +377,9 @@ function App() {
                 <Route path="/ustd">
                     <UStdNavside />
                 </Route>
+                <Route path="/login" exact>
+                    <Login />
+                </Route>
 
             </Switch>
     </Router>
