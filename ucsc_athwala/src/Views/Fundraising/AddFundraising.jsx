@@ -231,7 +231,7 @@ function AddFundraising() {
                                             multiline
                                             variant="outlined"
                                             fullWidth
-                                            dataType="date"
+                                            // dataType="date"
                                         />
                                     </Grid>
 
