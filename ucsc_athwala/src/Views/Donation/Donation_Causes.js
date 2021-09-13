@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect} from 'react';
 import {Link} from "react-router-dom";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -19,6 +19,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import TextField from '@material-ui/core/TextField';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import {RequestButton,MyCauseButton,MyDonationButton} from './Donation_button';
+import axios from "axios";
 
 
 
@@ -125,6 +126,21 @@ const students = [
 
 export default function Cases(){
   const classes = useStyles();
+
+  useEffect(() =>{
+    fetchData();
+  },[]);
+
+  const fetchData = async () => {
+        
+    const response = await fetch(`http://localhost:5000/api/samples/viewall`, {
+      method: "GET",
+    });
+    const result = await response.json();
+    console.log(result);
+  };
+
+  
 
   function FormRow (props){
     var link;
