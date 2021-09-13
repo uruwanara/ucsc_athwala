@@ -55,6 +55,11 @@ import Helpstack from '../HelpStack/HelpStack'
 import StuFundraising from '../Fundraising/StuViewFundraising.jsx';
 import ViewProductEle from '../Product/Product_Page_View';
 import ViewProductDetails from '../Product/View_Product_Details';
+import SelectAdPost from '../Product/Select_ad_post';
+import PostDeviceForm from '../Product/Post_Device_Form';
+import PostNoteForm from '../Product/Post_Note_Form';
+import PostOtherForm from '../Product/Post_Other_Form';
+
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -412,6 +417,18 @@ function Navbar() {
           </Route>
           <Route path="/std/bid" exact>
             <Bid />
+          </Route>
+          <Route path="/std/SelectAdPost" exact>
+            <SelectAdPost />
+          </Route>
+          <Route path="/std/PostDeviceForm" exact>
+            <PostDeviceForm />
+          </Route>
+          <Route path="/std/PostNoteForm" exact>
+            <PostNoteForm/>
+          </Route>
+          <Route path="/std/PostOtherForm" exact>
+            <PostOtherForm />
           </Route>
         </Switch>
           
