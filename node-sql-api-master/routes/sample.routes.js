@@ -2,14 +2,15 @@ module.exports = sampleRoutes => {
     const sample = require("../controllers/sample.controller");
 
     var router = require("express").Router();
-
+    router.get("/viewall", sample.viewall);
     router.post("/create", sample.create);
 
     // Retrieve a single user with username
     router.get("/:donationID", sample.findOne);
 
-     //Retrive all the donation details
-    router.get("/viewall", sample.allFind);
+    
+
+   
 
     // // Update a user with username
     // router.post("/update/:username", users.update);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect, useState} from 'react';
 import './Donation.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Note from '../../image/note.jpg';
@@ -8,7 +8,9 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import  Button from '@material-ui/core/Button';
-import {NoteDoneeDetails,Description} from './View_Casues';
+import {NoteDoneeDetails,Description,ClothDoneeDetails,DeviceDoneeDetails,MoneyDoneeDetails,OtherDoneeDetails} from './View_Casues';
+import axios from "axios";
+import { useLocation } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -66,6 +68,135 @@ const useStyles = makeStyles((theme) => ({
 
 export default function View_Notecause(){
    const classes = useStyles();
+
+  const [description,setDescription] = useState();
+  const [title,setTitle] = useState();
+  const [type, setType] = useState();
+  const search = useLocation().search;
+  const [date, setDate] = React.useState();
+  const [status, setStatus] = React.useState();
+
+  const [clothType, setClothType] = React.useState();
+  const [gender, setGender] = React.useState();
+  const [size, setSize] = React.useState();
+  
+  const [year, setYear] = React.useState();
+  const [subject, setSubject] = React.useState();
+  const [lesson, setLesson] = React.useState();
+
+  const [brand, setBrand] = React.useState();
+  const [model, setModel] = React.useState();
+
+  const [amount, setAmount] = React.useState();
+  const [note, setNote] = React.useState();
+
+  const [reason, setReason] = React.useState();
+
+  useEffect(() => {
+    const donationid = new URLSearchParams(search).get("id");
+    fetchDescription(donationid);
+  },[]);
+
+    const fetchDescription = (donationid) => {
+        const description={
+            "donationID": donationid,   
+        }
+        axios.post("http://localhost:5000/api/donations/select",description,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+              }
+            }).then((response) => {
+                console.log(response.data[0].donationType);
+                setDescription(response.data[0].description);
+                setTitle(response.data[0].title);
+                setType(response.data[0].donationType);
+
+                if(response.data[0].donationType){
+                    const details={
+                      "donationID": donationid,
+                      "type": response.data[0].donationType,
+                    }
+          
+                    axios.post("http://localhost:5000/api/donations/view",details,{
+                      headers:{
+                          "access-control-allow-origin" : "*",
+                          "Content-type": "application/json; charset=UTF-8"
+                        }
+                      }).then((res) => {
+                          console.log(res.data);
+
+                          if(response.data[0].donationType=='cloth'){
+                            setClothType(res.data[0].cloth_type);
+                            setGender(res.data[0].gender);
+                            setSize(res.data[0].size);
+                            setDate(res.data[0].before_date);
+                            setStatus(res.data[0].status);
+                          }
+                          else if(response.data[0].donationType=='note'){
+                            setYear(res.data[0].year);
+                            setSubject(res.data[0].subject);
+                            setLesson(res.data[0].lesson);
+                            setDate(res.data[0].before_date);
+                            setStatus(res.data[0].status);
+                          }
+                          else if(response.data[0].donationType=='device'){
+                            setModel(res.data[0].model);
+                            setBrand(res.data[0].brand);
+                            setDate(res.data[0].before_date);
+                            setStatus(res.data[0].status);
+                          }
+                          else if(response.data[0].donationType=='money'){
+                            setAmount(res.data[0].amount);
+                            setNote(res.data[0].note);
+                            setDate(res.data[0].before_date);
+                            setStatus(res.data[0].status);
+                          }
+                          else if(response.data[0].donationType=='other'){
+                              setReason(res.data[0].reason);
+                              setStatus(res.data[0].status);
+                          }
+                      });
+
+
+                }
+                else{
+                  console.log("error");
+                }
+            });
+    };
+
+    const details =() =>{
+      if(type === "note"){
+        return(
+          <>
+          <NoteDoneeDetails year={year} subject={subject} lesson={lesson} date={date}/>
+          </>
+        );
+      }
+      if(type === "cloth"){
+        return(
+          <><ClothDoneeDetails clothType={clothType} gender={gender} size={size} date={date}/></>
+        );
+      }
+      if(type === "device"){
+        return(
+          <><DeviceDoneeDetails model={model} brand={brand} date={date}/></>
+        );
+      }
+      if(type === "money"){
+        return(
+          <><MoneyDoneeDetails amount={amount} note={note} date={date}/></>
+        );
+      }
+      if(type === "other"){
+        return(
+          <><OtherDoneeDetails reason={reason} date={date}/></>
+        );
+      }
+  
+    }
+
     return(
         <div>
                    
@@ -80,11 +211,12 @@ export default function View_Notecause(){
                             </Card>
                         </Grid>
                         
-                        <Description />
+                        <Description description={description} title={title}/>
                     </Grid>
 
                     <Grid container spacing={2} >
-                        <NoteDoneeDetails />
+
+                        {details()}
                         
                         <Grid item xs={6}>
                         <Card className={classes.card}>
@@ -97,7 +229,7 @@ export default function View_Notecause(){
                                             <Typography variant="subtitle2" className={classes.labelname}>Donation Status</Typography> 
                                         </div>
                                         <div>
-                                            <Typography variant="subtitle2" className={classes.labelvalue}>Pending</Typography> 
+                                            <Typography variant="subtitle2" className={classes.labelvalue}>{status}</Typography> 
                                         </div>  
                                     </div>
                                 </CardContent>   

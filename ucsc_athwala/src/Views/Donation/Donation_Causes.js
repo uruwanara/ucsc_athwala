@@ -1,4 +1,4 @@
-import React ,{useEffect} from 'react';
+import React ,{useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -32,7 +32,11 @@ const useStyles = makeStyles((theme) =>({
   donateButton:{
     color: "#FFFFFF",
     backgroundColor: "transparent",
-    textTransform: "none"
+    textTransform: "none",
+    "&:hover": {
+      textDecoration: "none"
+    },
+
   },
   cardFooter: {
     backgroundColor: "#757de8",
@@ -70,7 +74,7 @@ const useStyles = makeStyles((theme) =>({
   }
 }));
 
-const students = [  
+{/*const students = [  
     {  
       'id': 1,
       'type' : 'note' , 
@@ -121,11 +125,16 @@ const students = [
       'description': 'i am 2nd year student.I need Office Trousers' , 
       'image' :Cloth,
     }, 
-]; 
+]; */}
+
 
 
 export default function Cases(){
   const classes = useStyles();
+
+  const userData=JSON.parse(localStorage.getItem("userData"));
+
+  const [mapset, SetMap] = useState([]);
 
   useEffect(() =>{
     fetchData();
@@ -133,31 +142,59 @@ export default function Cases(){
 
   const fetchData = async () => {
         
-    const response = await fetch(`http://localhost:5000/api/samples/viewall`, {
+    const response = await fetch(`http://localhost:5000/api/donations/viewall`, {
       method: "GET",
     });
     const result = await response.json();
     console.log(result);
+    SetMap(result);
   };
+
+  const tabButton =() =>{
+    if(userData.userType === "STUDENT"){
+      return(
+        <>
+        <RequestButton />
+        <MyCauseButton />
+        <MyDonationButton />
+        </>
+      );
+    }
+    if(userData.userType === "ALUMNI"){
+      return(
+        <>
+        <MyDonationButton />
+        </>
+      );
+    }
+
+  }
 
   
 
   function FormRow (props){
     var link;
+    var id = props.id;
+    var imglink;
     if(props.type == 'note'){
-      link = "/std/viewNoteCause_details";
+      link = "/std/viewNoteCause_details?id="+id;
+      imglink = Note;
     }
     else if (props.type == 'cloth'){
-      link = "/std/viewClothCause_details";
+      link = "/std/viewClothCause_details?id="+id;
+      imglink = Cloth;
     }
     else if (props.type == 'device'){
-      link = "/std/viewDeviceCause_details";
+      link = "/std/viewDeviceCause_details?id="+id;
+      imglink = Device;
     }
     else if (props.type == 'money'){
-      link = "/std/viewMoneyCause_details";
+      link = "/std/viewMoneyCause_details?id="+id;
+      imglink = Money;
     }
     else if (props.type == 'other'){
-      link = "/std/viewOtherCause_details";
+      link = "/std/viewOtherCause_details?id="+id;
+      imglink = Other;
     }
     return (
       <React.Fragment>
@@ -168,7 +205,7 @@ export default function Cases(){
             <CardMedia
               component="img"
               height="100"
-              src= {props.image}
+              src= {imglink}
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
@@ -208,9 +245,7 @@ export default function Cases(){
             <div>
               <div style={{float:"left"}}>
               <Grid container spacing={4}>
-                <RequestButton />
-                <MyCauseButton />
-                <MyDonationButton />
+                  {tabButton()}
               </Grid>
               
               </div>
@@ -234,8 +269,8 @@ export default function Cases(){
               
         <div className={classes.root}>
           <Grid container spacing={6}>
-            {students.map(student => (  
-                      <FormRow title={student.title} description={student.description} image={student.image} type={student.type}/> 
+            {mapset.map(student => (  
+                      <FormRow title={student.title} description={student.description} type={student.donationType} id={student.donationID}/> 
               ))}
                 
           </Grid>
