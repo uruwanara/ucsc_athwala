@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect,useState} from 'react';
 import {Link, useHistory } from "react-router-dom";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -21,6 +21,7 @@ import QueueIcon from '@material-ui/icons/Queue';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import PageviewIcon from '@material-ui/icons/Pageview';
 import {RequestButton,AllCauseButton,MyDonationButton} from './Donation_button';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) =>({
   root: {
@@ -78,7 +79,7 @@ const useStyles = makeStyles((theme) =>({
   }
 }));
 
-const students = [  
+{/*const students = [  
     {  
       'id': 1,
       'type' : 'cloth' ,   
@@ -120,13 +121,50 @@ const students = [
       'image' :Other,
       'status':'Not received', 
     },
-];
+];*/}
 
 export default function MyCases(){
   const history = useHistory();
   const classes = useStyles();
+  const [mapset, SetMap] = useState([]);
+
+  useEffect(() =>{
+    fetchData();
+  },[]);
+
+  const fetchData = () => {
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    const stid = userData.id;
+
+    axios.get("http://localhost:5000/api/donations/viewmyall", {
+    params: {id:stid},
+    }).then((response) => {
+        console.log(response.data);
+        SetMap(response.data);
+        
+    })
+  };{}
 
   const FormRow = (props)=> {
+
+    var id = props.id;
+    var imglink;
+    if(props.type == 'note'){
+      imglink = Note;
+    }
+    else if (props.type == 'cloth'){
+      imglink = Cloth;
+    }
+    else if (props.type == 'device'){
+      imglink = Device;
+    }
+    else if (props.type == 'money'){
+      imglink = Money;
+    }
+    else if (props.type == 'other'){
+      imglink = Other;
+    }
+
     return (
       <React.Fragment>
         <Grid item xs={4}>
@@ -136,7 +174,7 @@ export default function MyCases(){
             <CardMedia
               component="img"
               height="100"
-              src= {props.image}
+              src= {imglink}
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
@@ -156,13 +194,10 @@ export default function MyCases(){
             <Button size="small" 
             className={classes.statusbutton} 
             startIcon={<PageviewIcon />}
-            onClick={()=>{ history.push("/std/viewdetails_mydonation")}}
+            onClick={()=>{ history.push("/std/viewdetails_mydonation?id="+id)}}
             >
               View Details
             </Button>
-            <Typography variant="subtitle2" component="h6">
-                status
-              </Typography>
           </CardActions>
 
       </Card>
@@ -204,8 +239,8 @@ export default function MyCases(){
     <div className={classes.root}>
         <Grid container spacing={6}>
           
-        {students.map(student => (  
-                <FormRow title={student.title} description={student.description} image={student.image} type={student.type} status={student.status}/> 
+        {mapset.map(student => (  
+                <FormRow title={student.title} description={student.description} type={student.donationType} id={student.donationID}/> 
         ))}
           
         </Grid>
