@@ -27,4 +27,47 @@ exports.create = (req, res) => {
     });
 }
 
+exports.viewall = (req, res) => {
+    connection.query('SELECT * from fundraising;',
+        (err, result, fileds) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(result);
+            }
+        })
+}
 
+exports.viewbyid = (req,res) => {
+    const fundID =req.params.fundID;
+   
+    
+    connection.query( 'SELECT * FROM fundraising WHERE fundID = ? ;',
+    [fundID],
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    }
+
+    );
+};
+
+exports.deletebyid = (req,res) => {
+    const fundID =req.params.fundID;
+   
+    
+    connection.query( 'DELETE FROM fundraising WHERE fundID = ? ;',
+    [fundID],
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    }
+
+    );
+};

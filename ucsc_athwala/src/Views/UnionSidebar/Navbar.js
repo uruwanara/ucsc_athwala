@@ -31,6 +31,7 @@ import {
 } from "react-router-dom";
 import UStuViewFundraising from '../Fundraising/UStuViewFundraising';
 import AddFundraising from '../Fundraising/AddFundraising';
+import EditFundraising from '../Fundraising/EditFundraising';
 
 
 const drawerWidth = 240;
@@ -316,6 +317,10 @@ function UStdNavside() {
 
             <Route path="/ustd/addfundraising" exact>
               <AddFundraising />
+            </Route>
+
+            <Route path="/ustd/editfundraising" exact>
+              <EditFundraising />
             </Route>
 
           </Switch>
