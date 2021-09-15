@@ -76,7 +76,7 @@ function UnionStudentDashboard() {
         <React.Fragment>
 
             <Typography variant="h4" align="center" color="initial" gutterBottom>
-                Student Dashboard
+                Union Student Dashboard
             </Typography>
             <Typography variant="h6" align="right" color="initial" gutterBottom display="block">
                 Hi Uthpala Ruwanara Welcome!!!
