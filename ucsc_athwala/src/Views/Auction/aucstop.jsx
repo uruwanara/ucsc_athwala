@@ -9,7 +9,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import  Button from '@material-ui/core/Button';
-import {NoteDoneeDetails,Description} from './details';
+import {NoteDoneeDetails,Description} from './aucmore';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -102,10 +102,10 @@ export default function View_Notecause(){
                                         Current Highest Bid : 60,000/=
                                     </Typography>
                                     <Typography variant="subtitle2" className={classes.title}>
-                                        Your bid value should greater than highest bid
+                                        {/* Your bid value should greater than highest bid */}
                                     </Typography>
                                     </div>
-                                    <Grid item xs={12} >
+                                    {/* <Grid item xs={12} >
                                 <TextField
                                      autoComplete="title"
                                      name="title"
@@ -118,7 +118,7 @@ export default function View_Notecause(){
                                     // // autoFocus
                                     // onChange={e => setTitle(e.target.value)}
                                 />
-                                </Grid>
+                                </Grid> */}
                                 <br></br>
                                     <div>
                                     {/* <Typography variant="subtitle2" className={classes.title}>
@@ -130,8 +130,18 @@ export default function View_Notecause(){
                                         component="label"
                                         className={classes.contactbtn}
                                         >
-                                        Bid Now 
+                                        Stop Auction 
                                     </Button>
+                                    <div id='button'>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        component="label"
+                                        className={classes.contactbtn}
+                                        >
+                                        Change remaining Days
+                                    </Button>
+                                    </div>
                                     </div>
                                 </CardContent>   
                             </Card>

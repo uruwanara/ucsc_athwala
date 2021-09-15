@@ -6,6 +6,7 @@ import {useHistory } from "react-router-dom";
 import QueueIcon from '@material-ui/icons/Queue';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import FlagIcon from '@material-ui/icons/Flag';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 
 const useStyles = makeStyles({
@@ -61,22 +62,22 @@ export function MyCauseButton(){
 
 }
 
-// export function MyDonationButton(){
-//     const classes = useStyles();
-//     const history = useHistory();
-//     return(
-//         <Grid item s={4}>
-//                       <Button size="large" 
-//                         className={classes.filterbutton} 
-//                         onClick={()=>{ history.push("")}}
-//                         startIcon={<FavoriteBorderIcon />}
-//                         >
-//                           My Donations
-//                         </Button>
-// </Grid>
-//     );
+ export function MyDonationButton(){
+     const classes = useStyles();
+     const history = useHistory();
+     return(
+         <Grid item s={4}>
+                       <Button size="large" 
+                         className={classes.filterbutton} 
+                         onClick={()=>{ history.push("/std/mybid")}}
+                         startIcon={<FlagIcon />}
+                         >
+                           My Bids
+                         </Button>
+ </Grid>
+     );
 
-// }
+ }
 
 // export function AllCauseButton(){
 //     const classes = useStyles();

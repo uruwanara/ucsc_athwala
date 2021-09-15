@@ -172,9 +172,9 @@ export default function Cases(){
             <Button size="small" 
             className={classes.donateButton} 
             startIcon={<GavelIcon />}
-            color='secondary' href="/std/bid" component={Link}
+            color='secondary' href="/std/aucstop" component={Link}
             >
-              Bid Now
+              View Auction
             </Button>
            {/* { </Link>  } */}
 
