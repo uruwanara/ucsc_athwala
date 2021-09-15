@@ -52,7 +52,7 @@ export function ProductPostButton(){
         <Grid item s={4}>
             <Button  size="large" 
             className={classes.productfilterbutton} 
-            onClick={()=>{ history.push("/std/SelectAdCategory")}}
+            onClick={()=>{ history.push("/std/SelectAdPost")}}
                 startIcon={<AddCircleIcon />}
             >
                 Add Advertisment
