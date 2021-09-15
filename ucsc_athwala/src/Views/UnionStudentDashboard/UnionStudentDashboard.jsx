@@ -23,8 +23,8 @@ import { Box } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { ButtonBase } from '@material-ui/core';
-import { Divider } from '@material-ui/core';
-import {Link} from "react-router-dom";
+import { Divider, Dialog, DialogTitle } from '@material-ui/core';
+import { Link } from "react-router-dom";
 
 
 
@@ -252,78 +252,80 @@ function UnionStudentDashboard() {
                 </Link>
             </Box>
 
-            <div className={classes.rootdiv}>
+            <div>
 
-                <Paper className={classes.paper2}>
+                <Paper>
 
-                    <Grid container spacing={2} md={12}>
-                        <Grid item>
+                    <Grid justify="space-between" container spacing={3} m={1}>
+                        <Grid item sm={4} xs={12}>
                             <ButtonBase className={classes.image} style={{ height: 'fixed' }}>
                                 <img className={classes.img} alt="vaniwilla" src={Vaniwilla} />
                             </ButtonBase>
                         </Grid>
-                        <Grid item xs={12} sm container>
+                        {/* <Grid item xs={12} sm container> */}
 
-                            <Grid item xs container direction="column" spacing={2}>
+                        <Grid item sm={8} xs={12} container direction="row">
 
-                                <Grid item xs>
-                                    <Typography gutterBottom variant="h6" color="primary">
-                                        Vani Vizha Tamil Festival 2021
-                                    </Typography>
-                                    <Typography variant="body1" gutterBottom align="justify">
-                                        First year students of UCSC organize Vani Viza tamil festival every year.In this year they are planing to held it on
-                                        23rd of August, 2021. This event will be a good opperunity to create unity among the badges.
-                                    </Typography>
-                                    <Box mb={1}>
-                                        <LinearProgress variant="determinate" value={50} />
-                                    </Box>
+                            <Grid item xs={12}>
+                                <Typography gutterBottom variant="h6" color="primary">
+                                    Vani Vizha Tamil Festival 2021
+                                </Typography>
+                                <Typography variant="body1" gutterBottom align="justify">
+                                    First year students of UCSC organize Vani Viza tamil festival every year.In this year they are planing to held it on
+                                    23rd of August, 2021. This event will be a good opperunity to create unity among the badges.
+                                </Typography>
 
-                                    <div className={classes.rootdiv}>
-                                        <Grid container spacing={1}>
+                                <Box mb={1} mr={1}>
+                                    <LinearProgress variant="determinate" value={50} />
+                                </Box>
+                            </Grid>
+                            <Grid item xs={12}>
+                                {/* <div className={classes.rootdiv}> */}
+                                    <Grid container spacing={1}>
 
-                                            <Grid item md={3}>
-                                                <Typography variant="subtitle2" color="initial">
-                                                    Raised : Rs. 100,000
-                                                </Typography>
-                                            </Grid>
-                                            <Grid item md={3}>
-                                                <Typography variant="subtitle2" color="initial">
-                                                    Goal : Rs. 200,000
-                                                </Typography>
-                                            </Grid>
-                                            <Grid item md={3}>
-                                                <Box flexDirection="row" >
-                                                    <Button variant="contained" color="primary" size="medium" >
-                                                        View Donate
-                                                    </Button>
-                                                </Box>
-                                            </Grid>
-                                            <Grid item md={3}>
-                                                <Box flexDirection="row">
-                                                    <Button variant="contained" color="secondary" size="medium" alignContent='flex-end'>
-                                                        End by force
-                                                    </Button>
-                                                </Box>
-                                            </Grid>
-
+                                        <Grid item sm={3}>
+                                            <Typography variant="subtitle2" color="initial">
+                                                Raised : Rs. 100,000
+                                            </Typography>
                                         </Grid>
-                                    </div>
+                                        <Grid item sm={3}>
+                                            <Typography variant="subtitle2" color="initial">
+                                                Goal : Rs. 200,000
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item sm={3}>
+                                            <Box flexDirection="row" >
+                                                <Button variant="contained" color="primary" size="medium" >
+                                                    View Donate
+                                                </Button>
+                                            </Box>
+                                        </Grid>
+                                        <Grid item sm={3}>
+                                            <Box flexDirection="row">
+                                                <Button variant="contained" color="secondary" size="medium" alignContent='flex-end'>
+                                                    End by force
+                                                </Button>
+                                            </Box>
+                                        </Grid>
 
-                                </Grid>
-                                {/* <Grid item>
+                                    </Grid>
+                                {/* </div> */}
+
+                            </Grid>
+                            {/* <Grid item>
                                     <Typography variant="subtitle2" style={{ cursor: 'pointer' }}>
                                         Goal
                                     </Typography>
                                 </Grid> */}
-                            </Grid>
+                        </Grid>
 
-                            {/* <Grid item>
+                        {/* <Grid item>
                                 <Typography variant="subtitle1">Raised Rs.10000</Typography>
                                 <Typography variant="subtitle1">Goal Rs.15000</Typography>
 
                             </Grid> */}
 
-                        </Grid>
+                        {/* </Grid> */}
                     </Grid>
 
                 </Paper>
