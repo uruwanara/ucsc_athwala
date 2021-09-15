@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState,useEffect} from 'react';
 import './Donation.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Note from '../../image/note.jpg';
@@ -62,18 +62,18 @@ const useStyles = makeStyles((theme) => ({
   
   }));
 
-export function Description(){
+export function Description(props){
     const classes = useStyles();
+
     return(
                         <Grid item xs={6}>
                         <Card className={classes.card}>
                                 <CardContent >
                                     <Typography variant="h3" className={classes.title}>
-                                        Topic of Donation 
+                                        {props.title} 
                                     </Typography>
                                     <Typography variant="subtitle2" className={classes.title}>
-                                        this is the descripton of Donation. students need to describe their problem. 
-                                        this will help to other students to help with donation. 
+                                        {props.description}
                                     </Typography>
                                 </CardContent>   
                             </Card>
@@ -82,7 +82,7 @@ export function Description(){
     )
 }
 
-export function NoteDoneeDetails(){
+export function NoteDoneeDetails(props){
     const classes = useStyles();
     return(
         <Grid item xs={6}>
@@ -91,19 +91,19 @@ export function NoteDoneeDetails(){
                     <Typography variant="h5" className={classes.title}>Donee's details</Typography>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Study year</Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>2 nd year</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.year} year</Typography></div>  
                     </div>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Subject</Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>DSA part 02</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.subject}</Typography></div>  
                     </div>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Specific lessons</Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>All the lessons</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.lesson}</Typography></div>  
                     </div>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Before around</Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>2021-10-13</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.date}</Typography></div>  
                     </div>                    
                 </CardContent>    
             </Card>
@@ -111,8 +111,10 @@ export function NoteDoneeDetails(){
     )
 }
 
-export function ClothDoneeDetails(){
+export function ClothDoneeDetails(props){
     const classes = useStyles();
+
+
     return(
         <Grid item xs={6}>
             <Card className={classes.card}>
@@ -120,19 +122,19 @@ export function ClothDoneeDetails(){
                     <Typography variant="h5" className={classes.title}>Donee's details</Typography>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Cloth type </Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>Trouser</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.clothType}</Typography></div>  
                     </div>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Gender </Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>Female</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.gender}</Typography></div>  
                     </div>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Size</Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>M (Width:20" Length:28")</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.size}</Typography></div>  
                     </div>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Before around</Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>2021-10-13</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.date}</Typography></div>  
                     </div>
                                     
                                     
@@ -142,7 +144,7 @@ export function ClothDoneeDetails(){
     )
 }
 
-export function DeviceDoneeDetails(){
+export function DeviceDoneeDetails(props){
     const classes = useStyles();
     return(
         <Grid item xs={6}>
@@ -151,15 +153,15 @@ export function DeviceDoneeDetails(){
                     <Typography variant="h5" className={classes.title}>Donee's details</Typography>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Model of device </Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>Android</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.model}</Typography></div>  
                         </div>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Brand name </Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>Any</Typography> </div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.brand}</Typography> </div>  
                     </div>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Before around</Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>2021-10-13</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.date}</Typography></div>  
                     </div>
                                     
                                     
@@ -169,7 +171,7 @@ export function DeviceDoneeDetails(){
     )
 }
 
-export function MoneyDoneeDetails(){
+export function MoneyDoneeDetails(props){
     const classes = useStyles();
     return(
         <Grid item xs={6}>
@@ -178,15 +180,15 @@ export function MoneyDoneeDetails(){
                     <Typography variant="h5" className={classes.title}>Donee's details</Typography>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Amount </Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>7800</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.amount}</Typography></div>  
                     </div>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Special Note </Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>Imdeiate</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.note}</Typography></div>  
                     </div>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Before around</Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>2021-10-13</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.date}</Typography></div>  
                     </div>               
                 </CardContent>    
             </Card>
@@ -194,7 +196,7 @@ export function MoneyDoneeDetails(){
     )
 }
 
-export function OtherDoneeDetails(){
+export function OtherDoneeDetails(props){
     const classes = useStyles();
     return(
         <Grid item xs={6}>
@@ -202,12 +204,12 @@ export function OtherDoneeDetails(){
                 <CardContent>
                     <Typography variant="h5" className={classes.title}>Donee's details</Typography>
                     <div style={{display:"flex"}}>
-                        <div><Typography variant="subtitle2" className={classes.labelname}>Donation Amount </Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>7800</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelname}>Reason </Typography></div>
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.reason}</Typography></div>  
                     </div>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Before around</Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>2021-10-13</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.date}</Typography></div>  
                     </div>               
                 </CardContent>    
             </Card>

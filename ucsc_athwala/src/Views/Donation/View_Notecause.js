@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState,useEffect} from 'react';
 import './Donation.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Note from '../../image/note.jpg';
@@ -9,6 +9,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import  Button from '@material-ui/core/Button';
 import {NoteDoneeDetails,Description} from './View_Casues';
+import { useLocation } from 'react-router';
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -65,7 +67,57 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export default function View_Notecause(){
-   const classes = useStyles();
+    const classes = useStyles();
+    const [description,setDescription] = useState();
+    const [title,setTitle] = useState();
+    const [year, setYear] = React.useState();
+    const [subject, setSubject] = React.useState();
+    const [lesson, setLesson] = React.useState();
+    const [date, setDate] = React.useState();
+    const search = useLocation().search;
+
+    useEffect(() => {
+        const donationid = new URLSearchParams(search).get("id");
+        fetchDescription(donationid);
+        fetchDetails(donationid);
+    },[]);
+
+    const fetchDescription = (donationid) => {
+        const description={
+            "donationID": donationid,
+        }
+        axios.post("http://localhost:5000/api/donations/select",description,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+              }
+            }).then((response) => {
+                console.log(response.data);
+                setDescription(response.data[0].description);
+                setTitle(response.data[0].title);
+            })
+    };
+
+    const fetchDetails = (donationid) => {
+        const details={
+            "donationID": donationid,
+            "type":'note'
+        }
+        axios.post("http://localhost:5000/api/donations/view",details,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+              }
+            }).then((response) => {
+                console.log(response.data);
+                setYear(response.data[0].year);
+                setSubject(response.data[0].subject);
+                setLesson(response.data[0].lesson);
+                setDate(response.data[0].before_date);
+
+            })
+    };
+
     return(
         <div>
                     <Grid container spacing={2}>
@@ -79,12 +131,12 @@ export default function View_Notecause(){
                             </Card>
                         </Grid>
 
-                        <Description />
+                        <Description description={description} title={title}/>
                     </Grid>
                     
 
                     <Grid container spacing={2} >
-                        <NoteDoneeDetails />
+                        <NoteDoneeDetails year={year} subject={subject} lesson={lesson} date={date}/>
                         
                         <Grid item xs={6}>
                         <Card className={classes.card}>

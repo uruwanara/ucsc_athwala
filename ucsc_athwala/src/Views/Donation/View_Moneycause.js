@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect,useState} from 'react';
 import './Donation.css';
 import Money from '../../image/money.jpg';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,6 +10,8 @@ import CardContent from '@material-ui/core/CardContent';
 import  Button from '@material-ui/core/Button';
 import LinearProgress  from '@material-ui/core/LinearProgress';
 import {MoneyDoneeDetails,Description} from './View_Casues';
+import { useLocation } from 'react-router';
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -72,6 +74,54 @@ const useStyles = makeStyles((theme) => ({
 
 export default function View_Clothcause(){
     const classes = useStyles();
+
+    const [description,setDescription] = useState();
+    const [title,setTitle] = useState();
+    const [amount, setAmount] = React.useState();
+    const [note, setNote] = React.useState();
+    const [date, setDate] = React.useState();
+    const search = useLocation().search;
+
+    useEffect(() => {
+        const donationid = new URLSearchParams(search).get("id");
+        fetchDescription(donationid);
+        fetchDetails(donationid);
+    },[]);
+
+    const fetchDescription = (donationid) => {
+        const description={
+            "donationID": donationid,
+        }
+        axios.post("http://localhost:5000/api/donations/select",description,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+              }
+            }).then((response) => {
+                console.log(response.data);
+                setDescription(response.data[0].description);
+                setTitle(response.data[0].title);
+            })
+    };
+
+    const fetchDetails = (donationid) => {
+        const details={
+            "donationID": donationid,
+            "type":'money'
+        }
+        axios.post("http://localhost:5000/api/donations/view",details,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+              }
+            }).then((response) => {
+                console.log(response.data);
+                setAmount(response.data[0].amount);
+                setNote(response.data[0].note);
+                setDate(response.data[0].before_date);
+            })
+    };
+
     return(
         <div>
                     <Grid container spacing={2}>
@@ -84,12 +134,13 @@ export default function View_Clothcause(){
                                 />   
                             </Card>
                         </Grid>
-                       <Description />
+                       <Description description={description} title={title}/>
                     </Grid>
                     
 
                     <Grid container spacing={2} >
-                        <MoneyDoneeDetails />
+                        <MoneyDoneeDetails amount={amount} note={note} date={date}/>
+
                         <Grid item xs={6}>
                         <Card className={classes.card}>
                                 <CardContent>

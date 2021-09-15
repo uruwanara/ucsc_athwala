@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel  from '@material-ui/core/InputLabel';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -61,6 +62,38 @@ export default function SignUp() {
         date: ${date}
         acceptTerm: ${acceptTerm}
     `); 
+
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    
+    const requestCloth={
+        "studentID":userData.id,
+        "title": title,
+        "description": description,
+        "clothType": clothType,
+        "gender": gender,
+        "size": size,
+        "date":date,
+    }
+      axios.post("http://localhost:5000/api/donations/clothrequest",requestCloth,{
+          headers:{
+              "access-control-allow-origin" : "*",
+              "Content-type": "application/json; charset=UTF-8"
+          }
+      }).then((response)=>{
+          console.log(response.data);
+          if(response.data==='success'){
+            setTitle("");
+            setDescription("");
+            setClothType("");
+            setGender("");
+            setSize("");
+            setDate("");
+            setacceptTerm(false);
+          }
+
+      }).catch((err)=>{
+
+      })
   }
 
   return (
@@ -137,9 +170,9 @@ export default function SignUp() {
                 onChange={e => setGender(e.target.value)}
               >
                 <option aria-label="None" value="" />
-                <option value={'male'}>Male</option>
-                <option value={'female'}>Female</option>
-                <option value={'notSay'}>I prefer not to say</option>
+                <option value={'Male'}>Male</option>
+                <option value={'Female'}>Female</option>
+                <option value={'NotSay'}>I prefer not to say</option>
               </Select></FormControl>
             </Grid>
 

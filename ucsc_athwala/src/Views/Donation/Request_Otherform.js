@@ -10,7 +10,7 @@ import BorderColorIcon from '@material-ui/icons/BorderColor';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -51,7 +51,35 @@ export default function SignUp() {
         reason: ${reason}
         date: ${date}
         acceptTerm: ${acceptTerm}
-    `); 
+    `);
+    
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    
+    const requestOther={
+        "studentID":userData.id,
+        "title": title,
+        "description": description,
+        "reason": reason,
+        "date":date,
+    }
+      axios.post("http://localhost:5000/api/donations/otherrequest",requestOther,{
+          headers:{
+              "access-control-allow-origin" : "*",
+              "Content-type": "application/json; charset=UTF-8"
+          }
+      }).then((response)=>{
+          console.log(response.data);
+          if(response.data==='success'){
+            setTitle("");
+            setDescription("");
+            setReason("");
+            setDate("");
+            setacceptTerm(false);
+          }
+
+      }).catch((err)=>{
+
+      })
   }
 
   return (
