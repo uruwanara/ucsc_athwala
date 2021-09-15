@@ -35,7 +35,7 @@ export default function Side(){
     return(
       <div>
           <List>
-              <Link to="/pstddashboard" className={classes.Nounderline}>
+              <Link to="/pst/PastDashboard" className={classes.Nounderline}>
                 <ListItem button >
                 <ListItemIcon><DashboardIcon style={{ fill: "blue"}}/></ListItemIcon>
                 <ListItemText primary="Dashboard" />
