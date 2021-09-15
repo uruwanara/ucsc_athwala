@@ -52,25 +52,24 @@ exports.delete = (req, res) => {
         }
     );
 };
-
-exports.allFind = (req, res) => {
-    connection.query('SELECT * FROM donations;',
-        (err, result,fields) => {
-            if (err) {
-                res.send(err);
-            } else {
-                res.send(result);
-            }
-        }
-    );
-
+exports.abc = (req, res) => {
+    res.send("fnndfnidnfidnifnid");
 };
 
 
 
 
-
-
+exports.viewall = (req, res) => {
+    connection.query('Select * from donations;',
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    }
+);
+};
 
 
 
