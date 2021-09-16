@@ -59,10 +59,6 @@ export default function QAform(){
                 </Grid>
                 <Grid container md={12} spacing={2}>
                     <QuestionList />
-                    <QuestionList />
-                    <QuestionList />
-                    <QuestionList />
-                    <QuestionList />
                 </Grid>
                 
                 </div>

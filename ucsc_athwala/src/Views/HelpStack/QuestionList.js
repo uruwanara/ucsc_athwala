@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect,useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -36,30 +36,54 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NestedList() {
   const classes = useStyles();
+
+  const [questionset, SetQuestion] = useState([]);
+
+  useEffect(() =>{
+    fetchData();
+  },[]);
+
+  const fetchData = async () => {
+        
+    const response = await fetch(`http://localhost:5000/api/helpstacks/viewallquestion`, {
+      method: "GET",
+    });
+    const result = await response.json();
+    console.log(result);
+    SetQuestion(result);
+
+  };
+
+  function Questionlist(props){
+    const id = props.id;
+    var link = "/std/helpstack/viewQuestionAnswer?id="+id;
+    return(
+      <List >
+      <ListItem className={classes.link}>
+          <ListItemIcon><HelpIcon color="secondary"/></ListItemIcon>
+              <Grid item md={10}>
+                  <Link to={link} className={classes.Nounderline}>
+                      <ListItemText className={classes.linktext}>{props.title}</ListItemText>
+                  </Link>
+              </Grid>
+              <Grid item md={2}>
+                  <Link to={link} className={classes.Nounderline}>
+                      <ListItemText >{props.ansCount} answers</ListItemText>
+                  </Link>
+              </Grid>       
+      </ListItem>
+      </List>
+    );
+
+  }
+
+
   return (
     
         <Grid item md={12}>
-            <List >
-
-            <ListItem className={classes.link}>
-                <ListItemIcon><HelpIcon color="secondary"/></ListItemIcon>
-                    <Grid item md={10}>
-                        <Link to='/std/helpstack/viewQuestionAnswer' className={classes.Nounderline}>
-                            <ListItemText className={classes.linktext}>how can I get field and value from nested array and query them to find doc in mongodb?</ListItemText>
-                        </Link>
-                    </Grid>
-                    <Grid item md={2}>
-                        <Link to='' className={classes.Nounderline}>
-                            <ListItemText >2 Answers</ListItemText>
-                        </Link>
-                    </Grid>
-                    
-                    
-            </ListItem>
-            
-            </List>
-
-           
+            {questionset.map(question => (  
+                      <Questionlist id={question.q_id} title={question.title} ansCount={question.ansCount}/> 
+              ))}
         </Grid>
     
   );
