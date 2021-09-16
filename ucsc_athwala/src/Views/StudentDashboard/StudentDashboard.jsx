@@ -36,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
     media: {
         height: 140,
     },
+    media1: {
+        height: '100%',
+    },
     button: {
         margin: theme.spacing(1),
     },
@@ -70,7 +73,7 @@ function StudentDashboard() {
 
     const classes = useStyles();
 
-   const userData=JSON.parse(localStorage.getItem("userData"))
+    const userData = JSON.parse(localStorage.getItem("userData"))
 
     return (
         <React.Fragment>
@@ -79,7 +82,7 @@ function StudentDashboard() {
                 Student Dashboard
             </Typography>
             <Typography variant="h6" align="right" color="initial" gutterBottom display="block">
-                {userData.username||"Loading"}
+                {userData.username || "Loading"}
             </Typography>
 
 
@@ -246,76 +249,88 @@ function StudentDashboard() {
             </Box>
 
 
-            <div className={classes.rootdiv}>
 
-                <Paper className={classes.paper2}>
+            <Paper>
 
-                    <Grid container spacing={2} md={12}>
-                        <Grid item>
-                            <ButtonBase className={classes.image} style={{ height: 'fixed' }}>
-                                <img className={classes.img} alt="vaniwilla" src={Vaniwilla} />
-                            </ButtonBase>
-                        </Grid>
-                        <Grid item xs={12} sm container>
+                <Grid container m={1} spacing={1}>
+                    <Grid item sm={4} xs={12}>
+                        {/* <ButtonBase className={classes.image} style={{ height: 'fixed' }}>
+            <img className={classes.img} alt="vaniwilla" src={Vaniwilla} />
+        </ButtonBase> */}
 
-                            <Grid item xs container direction="column" spacing={2}>
+                        <CardMedia
+                            className={classes.media1}
+                            image={Vaniwilla}
+                            title="Paella dish"
+                        />
 
-                                <Grid item xs>
-                                    <Typography gutterBottom variant="h6" color="primary">
-                                        Vani Vizha Tamil Festival 2021
-                                    </Typography>
-                                    <Typography variant="body1" gutterBottom align="justify">
-                                        First year students of UCSC organize Vani Viza tamil festival every year.In this year they are planing to held it on
-                                        23rd of August, 2021. This event will be a good opperunity to create unity among the badges.
-                                    </Typography>
-                                    <Box mb={1}>
-                                        <LinearProgress variant="determinate" value={50} />
-                                    </Box>
-
-                                    <div className={classes.rootdiv}>
-                                        <Grid container spacing={1}>
-
-                                            <Grid item md={4}>
-                                                <Typography variant="subtitle2" color="initial">
-                                                    Raised amount Rs. 100,000
-                                                </Typography>
-                                            </Grid>
-                                            <Grid item md={4}>
-                                                <Typography variant="subtitle2" color="initial">
-                                                    Goal amount Rs. 200,000
-                                                </Typography>
-                                            </Grid>
-                                            <Grid item md={4}>
-                                                <Box flexDirection="row">
-                                                    <Button variant="contained" color="primary" size="medium" fullWidth >
-                                                        View & Donate Now
-                                                    </Button>
-                                                </Box>
-                                            </Grid>
-
-                                        </Grid>
-                                    </div>
-
-                                </Grid>
-                                {/* <Grid item>
-                                    <Typography variant="subtitle2" style={{ cursor: 'pointer' }}>
-                                        Goal
-                                    </Typography>
-                                </Grid> */}
-                            </Grid>
-
-                            {/* <Grid item>
-                                <Typography variant="subtitle1">Raised Rs.10000</Typography>
-                                <Typography variant="subtitle1">Goal Rs.15000</Typography>
-
-                            </Grid> */}
-
-                        </Grid>
                     </Grid>
 
-                </Paper>
 
-            </div>
+                    <Grid item sm={8} xs={12} container direction="row">
+
+                        <Grid item xs={12}>
+                            <Box mr={1}>
+                                <Typography gutterBottom variant="h6" color="primary">
+                                    Vani Vizha Tamil Festival 2021
+                                </Typography>
+                                <Typography variant="body1" gutterBottom align="justify">
+                                    First year students of UCSC organize Vani Viza tamil festival every year.In this year they are planing to held it on
+                                    23rd of August, 2021. This event will be a good opperunity to create unity among the badges.
+                                </Typography>
+                            </Box>
+                            <Box mb={1} mr={1}>
+                                <Typography variant="body2" color="initial">50% completed
+                                </Typography>
+                                <LinearProgress variant="determinate" value={50} />
+                            </Box>
+                        </Grid>
+                        <Grid item xs={12}>
+                            {/* <div className={classes.rootdiv}> */}
+                            <Grid container spacing={1}>
+
+                                <Grid item sm={4} xm={12}>
+                                    <Box justifyContent="flex-start">
+                                        {/* <Box> */}
+                                        <Typography variant="subtitle2" color="initial">
+                                            Goal Amount: Rs. 200,000
+                                        </Typography>
+                                        {/* </Box> */}
+                                    </Box>
+                                </Grid>
+                                <Grid item sm={8} xm={12}>
+                                    <Box display="flex" justifyContent="flex-end" mr={1} mb={1}>
+                                        <Box>
+                                            <Button variant="contained" color="primary" size="medium" >
+                                                View more & Donate
+                                            </Button>
+                                        </Box>
+{/* 
+                                        <Box mr={1}>
+                                            <Button variant="contained" color="secondary" size="medium" alignContent='flex-end'>
+                                                End now
+                                            </Button>
+                                        </Box>
+                                        <Box>
+                                            <Button variant="contained" color="secondary" size="medium" alignContent='flex-end'>
+                                                Edit now
+                                            </Button>
+                                        </Box> */}
+                                    </Box>
+                                </Grid>
+
+                            </Grid>
+                            {/* </div> */}
+
+                        </Grid>
+
+                    </Grid>
+                </Grid>
+
+            </Paper>
+
+
+
             {/********************** End of the Fundraising part **********************************/}
 
 

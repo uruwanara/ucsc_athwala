@@ -92,14 +92,14 @@
 //                         </div>
 
 
-                        
+
 //                         <div className="col-12 d-flex flex-row-reverse mt-4 ml-1">
 //                             <div><button input type="submit" className="btn btn1 m-1">Update Fundraising</button>
 //                             </div>
 //                             <div><button input type="reset" className=" btn btn1 m-1">Reset Details</button>
 //                             </div>
 //                         </div>
-                        
+
 //                     </form>
 
 //                 </div>
@@ -168,7 +168,7 @@ NumberFormatCustom.propTypes = {
 };
 
 
-function EditFundraising(){
+function EditFundraising() {
 
     const classes = useStyles();
     const [values, setValues] = React.useState({
@@ -201,7 +201,7 @@ function EditFundraising(){
     return (
 
         <React.Fragment>
-            <Typography variant="h4" align="center" color="initial">Let's Create a New fundrasing programme</Typography>
+            <Typography variant="h4" align="center" color="initial">Edit your fundrasing programme</Typography>
             <Box component="hr" />
             <Box component="br" />
             <Box borderColor="primary.main" {...defaultProps}>
@@ -218,7 +218,7 @@ function EditFundraising(){
                                             multiline
                                             variant="outlined"
                                             fullWidth
-                                            // dataType="date"
+                                        // dataType="date"
                                         />
                                     </Grid>
 
@@ -317,9 +317,14 @@ function EditFundraising(){
                                     <Grid item xs={12} sm={12}>
                                         <Box display="flex" justifyContent="flex-end">
 
-                                            <Box>
+                                            <Box  mx={1} >
                                                 <Button variant="contained" color="primary" endIcon={<CheckCircleIcon>send</CheckCircleIcon>}>
                                                     Edit Fundraising
+                                                </Button>
+                                            </Box>
+                                            <Box>
+                                                <Button variant="contained" color="primary"endIcon={<CheckCircleIcon>send</CheckCircleIcon>}>
+                                                    Reset Fundraising
                                                 </Button>
                                             </Box>
 
