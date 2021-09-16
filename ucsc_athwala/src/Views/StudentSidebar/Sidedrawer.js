@@ -100,7 +100,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to="/Chat" className={classes.Nounderline}>
+              <Link to="/stdchat" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <ChatIcon className={classes.Listicon}/>
