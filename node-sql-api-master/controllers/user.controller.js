@@ -76,6 +76,34 @@ exports.create = (req, res) => {
                     err.message || "Some error occurred while creating the user."
             });
         });
+
+
+
+    var http = require('http');
+   var options = {
+         headers: {'PRIVATE-KEY': 'ee34c264-42b5-4410-a76c-7459e91c0e09'}
+        "username": user.username,
+        "first_name": user.fname,
+        "last_name": user.lname ,
+        "secret": "Ur0771110052"
+    };
+
+    callback = function(response) {
+        var str = '';
+
+        //another chunk of data has been received, so append it to `str`
+        response.on('data', function (chunk) {
+            str += chunk;
+        });
+
+        //the whole response has been received, so we just print it out here
+        response.on('end', function () {
+            console.log(str);
+        });
+    }
+
+    http.request(options, callback).end();
+
 };
 
 // Find a single User with an id
