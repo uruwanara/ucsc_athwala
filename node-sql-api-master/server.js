@@ -33,6 +33,7 @@ require("./routes/auth.routes")(app);
 require("./routes/sample.routes")(app);
 require("./routes/donation.routes")(app);
 require("./routes/fundraising.routes")(app);
+require("./routes/helpstack.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 5000;
