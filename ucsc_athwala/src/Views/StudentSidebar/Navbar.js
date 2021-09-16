@@ -61,6 +61,7 @@ import SelectAdPost from '../Product/Select_ad_post';
 import PostDeviceForm from '../Product/Post_Device_Form';
 import PostNoteForm from '../Product/Post_Note_Form';
 import PostOtherForm from '../Product/Post_Other_Form';
+import Chat from '../chat/chat.jsx';
 
 
 const drawerWidth = 240;
@@ -434,6 +435,10 @@ function Navbar() {
           </Route>
           <Route path="/std/PostNoteForm" exact>
             <PostNoteForm/>
+          </Route>
+
+          <Route path="/std/stdchat" exact>
+            <Chat/>
           </Route>
           <Route path="/std/PostOtherForm" exact>
             <PostOtherForm />
