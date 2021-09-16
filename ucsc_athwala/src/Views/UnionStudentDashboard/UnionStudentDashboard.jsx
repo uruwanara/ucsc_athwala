@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
     rootdiv: {
         flexGrow: 1,
     },
+    media1: {
+        height: '100%',
+    },
     media: {
         height: 140,
     },
@@ -71,15 +74,19 @@ const useStyles = makeStyles((theme) => ({
 function UnionStudentDashboard() {
 
     const classes = useStyles();
+//retrieve data from localstorage
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    console.log(userData);
 
     return (
         <React.Fragment>
 
             <Typography variant="h4" align="center" color="initial" gutterBottom>
-                Union Student Dashboard
+                Union Student Dashboard 
             </Typography>
+         
             <Typography variant="h6" align="right" color="initial" gutterBottom display="block">
-                Hi Uthpala Ruwanara Welcome!!!
+                Hi {userData.username} Welcome!!!
             </Typography>
 
 
@@ -252,21 +259,29 @@ function UnionStudentDashboard() {
                 </Link>
             </Box>
 
-            <div>
+            {/* <div> */}
 
-                <Paper>
+            <Paper>
 
-                    <Grid justify="space-between" container spacing={3} m={1}>
-                        <Grid item sm={4} xs={12}>
-                            <ButtonBase className={classes.image} style={{ height: 'fixed' }}>
-                                <img className={classes.img} alt="vaniwilla" src={Vaniwilla} />
-                            </ButtonBase>
-                        </Grid>
-                        {/* <Grid item xs={12} sm container> */}
+                <Grid container m={1} spacing={1}>
+                    <Grid item sm={4} xs={12}>
+                        {/* <ButtonBase className={classes.image} style={{ height: 'fixed' }}>
+                            <img className={classes.img} alt="vaniwilla" src={Vaniwilla} />
+                        </ButtonBase> */}
+                   
+                        <CardMedia
+                            className={classes.media1}
+                            image={Vaniwilla}
+                            title="Paella dish"
+                        />
+                      
+                    </Grid>
 
-                        <Grid item sm={8} xs={12} container direction="row">
 
-                            <Grid item xs={12}>
+                    <Grid item sm={8} xs={12} container direction="row">
+
+                        <Grid item xs={12}>
+                            <Box mr={1}>
                                 <Typography gutterBottom variant="h6" color="primary">
                                     Vani Vizha Tamil Festival 2021
                                 </Typography>
@@ -274,63 +289,59 @@ function UnionStudentDashboard() {
                                     First year students of UCSC organize Vani Viza tamil festival every year.In this year they are planing to held it on
                                     23rd of August, 2021. This event will be a good opperunity to create unity among the badges.
                                 </Typography>
+                            </Box>
+                            <Box mb={1} mr={1}>
+                                <Typography variant="body2" color="initial">50% completed
+                                </Typography>
+                                <LinearProgress variant="determinate" value={50} />
+                            </Box>
+                        </Grid>
+                        <Grid item xs={12}>
+                            {/* <div className={classes.rootdiv}> */}
+                            <Grid container spacing={1}>
 
-                                <Box mb={1} mr={1}>
-                                    <LinearProgress variant="determinate" value={50} />
-                                </Box>
+                                <Grid item sm={4} xm={12}>
+                                    <Box justifyContent="flex-start">
+                                        {/* <Box> */}
+                                        <Typography variant="subtitle2" color="initial">
+                                            Goal Amount: Rs. 200,000
+                                        </Typography>
+                                        {/* </Box> */}
+                                    </Box>
+                                </Grid>
+                                <Grid item sm={8} xm={12}>
+                                    <Box display="flex" justifyContent="flex-end" mr={1} mb={1}>
+                                        <Box mr={1}>
+                                            <Button variant="contained" color="primary" size="medium" >
+                                                View & Donate
+                                            </Button>
+                                        </Box>
+
+                                        <Box mr={1}>
+                                            <Button variant="contained" color="secondary" size="medium" alignContent='flex-end'>
+                                                End now
+                                            </Button>
+                                        </Box>
+                                        <Box>
+                                            <Button variant="contained" color="secondary" size="medium" alignContent='flex-end'>
+                                                Edit now
+                                            </Button>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+
                             </Grid>
-                            <Grid item xs={12}>
-                                {/* <div className={classes.rootdiv}> */}
-                                    <Grid container spacing={1}>
+                            {/* </div> */}
 
-                                        <Grid item sm={3}>
-                                            <Typography variant="subtitle2" color="initial">
-                                                Raised : Rs. 100,000
-                                            </Typography>
-                                        </Grid>
-                                        <Grid item sm={3}>
-                                            <Typography variant="subtitle2" color="initial">
-                                                Goal : Rs. 200,000
-                                            </Typography>
-                                        </Grid>
-                                        <Grid item sm={3}>
-                                            <Box flexDirection="row" >
-                                                <Button variant="contained" color="primary" size="medium" >
-                                                    View Donate
-                                                </Button>
-                                            </Box>
-                                        </Grid>
-                                        <Grid item sm={3}>
-                                            <Box flexDirection="row">
-                                                <Button variant="contained" color="secondary" size="medium" alignContent='flex-end'>
-                                                    End by force
-                                                </Button>
-                                            </Box>
-                                        </Grid>
-
-                                    </Grid>
-                                {/* </div> */}
-
-                            </Grid>
-                            {/* <Grid item>
-                                    <Typography variant="subtitle2" style={{ cursor: 'pointer' }}>
-                                        Goal
-                                    </Typography>
-                                </Grid> */}
                         </Grid>
 
-                        {/* <Grid item>
-                                <Typography variant="subtitle1">Raised Rs.10000</Typography>
-                                <Typography variant="subtitle1">Goal Rs.15000</Typography>
-
-                            </Grid> */}
-
-                        {/* </Grid> */}
                     </Grid>
+                </Grid>
 
-                </Paper>
+            </Paper>
 
-            </div>
+
+            {/* </div> */}
             {/********************** End of the Fundraising part **********************************/}
 
 

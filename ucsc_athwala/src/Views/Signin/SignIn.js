@@ -82,7 +82,7 @@ export default function SignIn() {
         }else if (response.data.data.userType==="COUNSELLOR"){
           history.push("/Coundashboard");
         }else if(response.data.data.userType==="UNIONST"){
-          history.push("/ustddashboard");
+          history.push("/ustd/ustddashboard");
         }
       }else  if(response.data.message==="unauthorized") {
         enqueueSnackbar('Please Sign In to your Email and Verify the account', {
