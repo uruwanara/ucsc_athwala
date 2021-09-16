@@ -87,6 +87,7 @@ import StudentDashboard from './Views/StudentDashboard/StudentDashboard';
 import StdNavside from './Views/StudentSidebar/Navbar';
 import UStdNavside from './Views/UnionSidebar/Navbar';
 import AdminNavside from './Views/AdminSidebar/Navbar';
+import PstNavside from './Views/PastStudentSidebar/Navbar';
 
 
 
@@ -379,6 +380,9 @@ function App() {
                 </Route>
                 <Route path="/login" exact>
                     <Login />
+                </Route>
+                <Route path="/pst">
+                    <PstNavside />
                 </Route>
 
             </Switch>
