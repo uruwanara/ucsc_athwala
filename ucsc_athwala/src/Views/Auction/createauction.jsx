@@ -11,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import GavelIcon from '@material-ui/icons/Gavel';
+import { TextareaAutosize } from '@material-ui/core';
+import './Donation.css';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -88,9 +90,12 @@ export default function SignUp() {
                 onChange={e => setTitle(e.target.value)}
               />
             </Grid>
-
-            <Grid item xs={12}>
+            <Grid item xs={12} >
+    
               <TextField
+              multiline
+              rows={8}
+              rowsMax={Infinity}
                 variant="outlined"
                 required
                 fullWidth
@@ -101,7 +106,9 @@ export default function SignUp() {
                 autoComplete="description"
                 onChange={e => setDescription(e.target.value)}
               />
+              
             </Grid>
+            
 
             <Grid item xs={12}>
               <TextField
@@ -137,9 +144,9 @@ export default function SignUp() {
                 required
                 fullWidth
                 name="Baseprice"
-                label="Base price"
+                label="Baseprice"
                 value={BasePrice}
-                id="lesson"
+                id="Baseprices"
                 autoComplete="lesson"
                 onChange={e => setbaseprice(e.target.value)}
               />
@@ -160,14 +167,15 @@ export default function SignUp() {
                 onChange={e => setDate(e.target.value)}
               />
             </Grid>
-            <Button
+            
+            {/* <Button
             fullWidth
                 variant="contained"
                 component="label">
                 Upload File
               <input
                 type="file"/>
-                </Button>
+                </Button> */}
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox required name="acceptTerm" color="primary"  onChange={e => setacceptTerm(true)}/>}
