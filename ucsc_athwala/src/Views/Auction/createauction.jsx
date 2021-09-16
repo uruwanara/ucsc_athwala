@@ -13,6 +13,7 @@ import Container from '@material-ui/core/Container';
 import GavelIcon from '@material-ui/icons/Gavel';
 import { TextareaAutosize } from '@material-ui/core';
 import './Donation.css';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -42,7 +43,7 @@ export default function SignUp() {
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [year, setYear] = React.useState("");
-  const [subject, setSubject] = React.useState("");
+  // const [subject, setSubject] = React.useState("");
   const [BasePrice, setbaseprice] = React.useState("");
   const [date, setDate] = React.useState("");
   const [acceptTerm, setacceptTerm] = React.useState(false);
@@ -50,14 +51,43 @@ export default function SignUp() {
   const handleSubmit = (event) => {
      event.preventDefault(); 
     console.log(`
-        title: ${title}
-        description: ${description}
-        year: ${year}
-        subject: ${subject}
-        Baseprice: ${BasePrice}
-        date: ${date}
-        acceptTerm: ${acceptTerm}
-    `); 
+    title: ${title}
+    description: ${description}
+    year: ${year}
+    Baseprice: ${BasePrice}
+    date: ${date}
+    acceptTerm: ${acceptTerm}
+    `);
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    
+    const requestNote={
+        "studentID":userData.id,
+        "title": title,
+        "description": description,
+        "year": year,
+        "Baseprice": BasePrice,
+        "date":date,
+    }
+      axios.post("http://localhost:5000/api/auction/createauc",requestNote,{
+          headers:{
+              "access-control-allow-origin" : "*",
+              "Content-type": "application/json; charset=UTF-8"
+          }
+      }).then((response)=>{
+          console.log(response.data);
+          if(response.data==='success'){
+            setTitle("");
+            setDescription("");
+            setYear("");
+            // setSubject("");
+            setbaseprice("");
+            setDate("");
+            setacceptTerm(false);
+          }
+
+      }).catch((err)=>{
+
+      }) 
   }
 
   return (

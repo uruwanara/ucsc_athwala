@@ -67,44 +67,22 @@ exports.noteRequest = (req,res) => {
     const title = req.body.title;
     const description = req.body.description;
     const year = req.body.year;
-    const subject = req.body.subject;
-    const lesson = req.body.lesson;
+    // const subject = req.body.subject;
+    const Baseprice = req.body.Baseprice;
     const date = req.body.date;
-    const type = 'note';
+    // const type = 'note';
     
-    connection.query( 'insert into donations (donationType,title,description,student_id) values(?,?,?,?);',
-    [type,title,description,studentID],
+    connection.query( 'insert into auction (title,description,year,baseprice,date,student_id) values(?,?,?,?,?,?);',
+    [title,description,year,Baseprice,date,studentID],
     (err, result,fields) => {
         if (err) {
             res.send(err);
         } 
         else{
-            connection.query( 'SELECT donationID from donations order by donationID DESC LIMIT 1; ',
-                    (err1, results,fields) => {
-                        if (err1) {
-                            res.send(err1);
-                        } else {
-                            let donationIDmax = results[0].donationID;
-                            connection.query( 'insert into note (donation_id,year,subject,lesson,before_date) values(?,?,?,?,?); ',
-                                [donationIDmax,year,subject,lesson,date],
-                                (err2, result,fields) => {
-                                    if (err2) {
-                                        res.send(err2);
-                                    } else {
-                                        res.send("success");
-                                    }
-                                }
-                            );
-                        }
-                    }
+            res.send("success");
+                }
+                }
             );
-        }
-    }
-    );
-
-    
-
-    
 };
 
 exports.clothRequest = (req,res) => {
