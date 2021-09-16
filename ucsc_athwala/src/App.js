@@ -7,6 +7,7 @@ import {
 
 import Login from './Views/Signin/SignIn'
 import SignUp from './Views/SignUp/SignUp'
+/*
 import StdDashBoard from './Views/StudentDashboard/StudentDashboard'
 import UnionDashboard from './Views/UnionStudentDashboard/UnionStudentDashboard'
 import StdContactCounsellor from './Views/StdContactCounsellor/StdContactCounsellor'
@@ -84,6 +85,7 @@ import UnionViewNotReceivedDonation from './Views/UnionDonation/View_Myrequestin
 import Land from './Views/Landing/home'
 import UNavbar from './Views/UnionSidebar/Navbar';
 import StudentDashboard from './Views/StudentDashboard/StudentDashboard';
+*/
 import StdNavside from './Views/StudentSidebar/Navbar';
 import UStdNavside from './Views/UnionSidebar/Navbar';
 import AdminNavside from './Views/AdminSidebar/Navbar';
@@ -384,9 +386,7 @@ function App() {
                 <Route path="/pst">
                     <PstNavside />
                 </Route>
-                <Route path="/ucsc_athwala" exact>
-                    <Land /> 
-                </Route>
+
                 <Route path="/signup" exact>
                     <SignUp />
                 </Route>
