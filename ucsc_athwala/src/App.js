@@ -81,11 +81,10 @@ import UnionRequestOther from './Views/UnionDonation/Request_Other'
 import UnionViewMyrequest from './Views/UnionDonation/MyRequesting'
 import UnionViewReceivedDonation from './Views/UnionDonation/View_MyrequestingReceived'
 import UnionViewPendingDonation from './Views/UnionDonation/View_Myrequesting'
-import UnionViewNotReceivedDonation from './Views/UnionDonation/View_MyrequestingNotrecived'
-import Land from './Views/Landing/home'
+import UnionViewNotReceivedDonation from './Views/UnionDonation/View_MyrequestingNotrecived'*/
+import Land from './Views/LandingPage/home'
 import UNavbar from './Views/UnionSidebar/Navbar';
 import StudentDashboard from './Views/StudentDashboard/StudentDashboard';
-*/
 import StdNavside from './Views/StudentSidebar/Navbar';
 import UStdNavside from './Views/UnionSidebar/Navbar';
 import AdminNavside from './Views/AdminSidebar/Navbar';
@@ -387,6 +386,9 @@ function App() {
                     <PstNavside />
                 </Route>
 
+                { <Route path="/ucsc_athwala" exact>
+                    <Land /> 
+                </Route> }
                 <Route path="/signup" exact>
                     <SignUp />
                 </Route>

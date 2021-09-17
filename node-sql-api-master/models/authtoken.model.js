@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
     const AuthToken = sequelize.define("authtoken", {
         token: {
-            type: Sequelize.STRING
+            type: Sequelize.INTEGER
         },
         email: {
             type: Sequelize.STRING,

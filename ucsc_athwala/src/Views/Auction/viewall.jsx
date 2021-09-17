@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect, useState} from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -76,24 +76,24 @@ const useStyles = makeStyles((theme) =>({
 
 const students = [  
     {  
-      'id': 1,
-      'title': 'Mobile Phone',   
-       'description': 'i am 2nd year student.I need DSA 2 lecture note' , 
+      //  'id': 1,
+      //  'title': 'Mobile Phone',   
+      //  'description': 'i am 2nd year student.I need DSA 2 lecture note' , 
       'image' :Phone,
     },  
      
-    {  
-      'id': 3,    
-      'title': 'Laptop',   
-       'description': 'I am a first year student. i need mobile phone' ,
-      'image' :Device,   
-    }, 
-    {  
-      'id': 4,    
-      'title': 'Charger',   
-       'description': 'help with money for course fees' , 
-      'image' :Charger, 
-    }, 
+    // {  
+    //   'id': 3,    
+    //   'title': 'Laptop',   
+    //    'description': 'I am a first year student. i need mobile phone' ,
+    //   'image' :Device,   
+    // }, 
+    // {  
+    //   'id': 4,    
+    //   'title': 'Charger',   
+    //    'description': 'help with money for course fees' , 
+    //   'image' :Charger, 
+    // }, 
     // {  
     //   'id': 5,    
     //   'title': 'DSA Lecture note',   
@@ -120,12 +120,31 @@ const students = [
     //   'image' :Cloth,
     // }, 
 ]; 
-
-
 export default function Cases(){
   const classes = useStyles();
 
+  const userData=JSON.parse(localStorage.getItem("userData"));
+
+  const [mapset, SetMap] = useState([]);
+
+  useEffect(() =>{
+    fetchData();
+  },[]);
+
+  const fetchData = async () => {
+        
+    const response = await fetch(`http://localhost:5000/api/auction/viewall`, {
+      method: "GET",
+    });
+    const result = await response.json();
+    console.log(result);
+    SetMap(result);
+  };
+
+
   function FormRow (props){
+  
+    
     // var link;
     // if(props.type == 'note'){
     //   link = "/std/viewNoteCause_details";
@@ -157,13 +176,6 @@ export default function Cases(){
               <Typography gutterBottom variant="h5" component="h2">
                 {props.title}
               </Typography>
-              
-              <TextTruncate
-                  line={1}
-                  element="span"
-                  truncateText="…"
-                  text={props.description}
-              />
             </CardContent>
           </CardActionArea>
 
@@ -216,10 +228,10 @@ export default function Cases(){
               </div>
             </div>
               
-        <div className={classes.root}>
+            <div className={classes.root}>
           <Grid container spacing={6}>
-            {students.map(student => (  
-                      <FormRow title={student.title} description={student.description} image={student.image} type={student.type}/> 
+            {mapset.map(student => (  
+                      <FormRow title={student.title } image={student.image}/> 
               ))}
                 
           </Grid>
