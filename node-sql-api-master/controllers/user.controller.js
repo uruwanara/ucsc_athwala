@@ -27,7 +27,7 @@ exports.create = (req, res) => {
         userType: req.body.userType,
         email: req.body.email,
         password: req.body.password,
-        isActive: false
+        isActive: false,
     };
 
     // Save user in the database
@@ -77,32 +77,70 @@ exports.create = (req, res) => {
             });
         });
 
+        res.send("cscscs")
+    /*
+        var http = require('http');
+       var options = {
+             headers: {'PRIVATE-KEY': 'ee34c264-42b5-4410-a76c-7459e91c0e09'}
+            "username": user.username,
+            "first_name": user.fname,
+            "last_name": user.lname ,
+            "secret": "Ur0771110052"
+        };
 
+        callback = function(response) {
+            var str = '';
 
-    var http = require('http');
-   var options = {
-         headers: {'PRIVATE-KEY': 'ee34c264-42b5-4410-a76c-7459e91c0e09'}
-        "username": user.username,
-        "first_name": user.fname,
-        "last_name": user.lname ,
-        "secret": "Ur0771110052"
-    };
+            //another chunk of data has been received, so append it to `str`
+            response.on('data', function (chunk) {
+                str += chunk;
+            });
 
-    callback = function(response) {
-        var str = '';
+            //the whole response has been received, so we just print it out here
+            response.on('end', function () {
+                console.log(str);
+            });
+        }
 
-        //another chunk of data has been received, so append it to `str`
-        response.on('data', function (chunk) {
-            str += chunk;
-        });
+        http.request(options, callback).end();
+    */
 
-        //the whole response has been received, so we just print it out here
-        response.on('end', function () {
-            console.log(str);
-        });
+    const https = require('https')
+
+    const data = new TextEncoder().encode(
+        JSON.stringify({
+            username: user.username,
+            first_name: user.fname,
+            last_name: user.lname ,
+            secret:user.secret
+        })
+    )
+
+    const options = {
+        hostname: 'api.chatengine.io',
+        path: '/users',
+        method: 'POST',
+        headers: {
+            'PRIVATE-KEY': 'ee34c264-42b5-4450-a76c-7459e91c0e09'
+        }
     }
 
-    http.request(options, callback).end();
+    const reqe= https.request(options, resp => {
+        console.log(`statusCode: ${res.statusCode}`)
+
+        resp.on('data', d => {
+            process.stdout.write(d)
+        })
+    })
+
+    reqe.on('error', error => {
+        console.error(error)
+    })
+
+    reqe.write(data)
+    reqe.end()
+    res.send("dsds");
+
 
 };
 
