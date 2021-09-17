@@ -1,3 +1,4 @@
+                                      
 
 
 import React from "react";
@@ -61,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 }
 ));
 
-function UAvailable_fundraising() {
+function Ended_fundraising() {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -70,12 +71,12 @@ function UAvailable_fundraising() {
 
             <Box component="br" />
             <Typography align="center" variant="h4" color="initial">
-                Available Fundraisings
+                Ended Fundraising
             </Typography>
             <Divider />
             <Box component="br" />
             <Link to="/ustd/funddashboard">
-                <Button className={classes.filterbutton} variant="contained" color="primary" startIcon={<ArrowBackIosIcon />}>
+                <Button variant="contained" className={classes.filterbutton} color="primary" startIcon={<ArrowBackIosIcon />}>
                     Back to Fundrasing dashboard
                 </Button>
             </Link>
@@ -86,8 +87,8 @@ function UAvailable_fundraising() {
                 <Grid container m={1} spacing={1}>
                     <Grid item sm={4} xs={12}>
                         {/* <ButtonBase className={classes.image} style={{ height: 'fixed' }}>
-                <img className={classes.img} alt="vaniwilla" src={Vaniwilla} />
-                 </ButtonBase> */}
+                        <img className={classes.img} alt="vaniwilla" src={Vaniwilla} />
+                        </ButtonBase> */}
 
                         <CardMedia
                             className={classes.media1}
@@ -121,7 +122,7 @@ function UAvailable_fundraising() {
                             <Grid container spacing={1}>
 
                                 <Grid item sm={4} xm={12}>
-                                    <Box justifyContent="flex-start">
+                                    <Box>
                                         {/* <Box> */}
                                         <Typography variant="subtitle2" color="initial">
                                             Goal Amount: Rs. 200,000
@@ -129,28 +130,22 @@ function UAvailable_fundraising() {
                                         {/* </Box> */}
                                     </Box>
                                 </Grid>
-                                <Grid item sm={8} xm={12}>
-                                    <Box display="flex" justifyContent="flex-end" mr={1} mb={1}>
-                                        <Box mr={1}>
-                                            <Link to="/ustd/funddashboard/donate">
-                                            <Button className={classes.filterbutton} variant="contained" color="primary" size="medium" >
-                                                View & Donate
-                                            </Button>
-                                            </Link>
-                                        </Box>
-
-                                        <Box mr={1}>
-                                            <Link to="/ustd/funddashboard/edit">
-                                                <Button className={classes.filterbutton} variant="contained" color="secondary" size="medium" alignContent='flex-end'>
-                                                    Edit now
-                                                </Button>
-                                            </Link>
-                                        </Box>
-                                        <Box>
-                                            <Button className={classes.filterbutton} variant="contained" color="secondary" size="medium" alignContent='flex-end'>
-                                                End now
-                                            </Button>
-                                        </Box>
+                                <Grid item sm={4} xm={12}>
+                                    <Box>
+                                        {/* <Box> */}
+                                        <Typography variant="subtitle2" color="initial">
+                                            Started Amount: Rs. 200
+                                        </Typography>
+                                        {/* </Box> */}
+                                    </Box>
+                                </Grid>
+                                <Grid item sm={4} xm={12}>
+                                    <Box>
+                                        {/* <Box> */}
+                                        <Typography variant="subtitle2" color="initial">
+                                            Current Amount : Rs.3000000
+                                        </Typography>
+                                        {/* </Box> */}
                                     </Box>
                                 </Grid>
 
@@ -160,6 +155,55 @@ function UAvailable_fundraising() {
                         </Grid>
 
                     </Grid>
+
+           
+                    <Grid container>
+                        <Box alignItems="center">
+                            <Typography variant="h6" color="initial" align="center" ml={1}>This fundraisng was created by Abises Weerasekera</Typography>
+                        </Box>
+                    </Grid>
+
+                    <Grid item container ml={1} spacing={1}>
+                        <Grid item sm={3} xs={6}>
+                            <Box>
+                                {/* <Box> */}
+                                <Typography variant="subtitle2" color="initial">
+                                    Start Date: 2021/09/02
+                                </Typography>
+                                {/* </Box> */}
+                            </Box>
+                        </Grid>
+                        <Grid item sm={3} xs={6}>
+                            <Box>
+                                {/* <Box> */}
+                                <Typography variant="subtitle2" color="initial">
+                                    Started Time: 02.00p.m
+                                </Typography>
+                                {/* </Box> */}
+                            </Box>
+                        </Grid>
+                        <Grid item sm={3} xs={6}>
+                            <Box>
+                                {/* <Box> */}
+                                <Typography variant="subtitle2" color="initial">
+                                    Ended Date: 2021/09/02
+                                </Typography>
+                                {/* </Box> */}
+                            </Box>
+                        </Grid>
+                        <Grid item sm={3} xs={6}>
+                            <Box>
+                                {/* <Box> */}
+                                <Typography variant="subtitle2" color="initial">
+                                    Ended Time: 12.00p.m
+                                </Typography>
+                                {/* </Box> */}
+                            </Box>
+                        </Grid>
+
+                    </Grid>
+
+
                 </Grid>
 
             </Paper>
@@ -169,4 +213,4 @@ function UAvailable_fundraising() {
     );
 }
 
-export default UAvailable_fundraising
+export default Ended_fundraising;

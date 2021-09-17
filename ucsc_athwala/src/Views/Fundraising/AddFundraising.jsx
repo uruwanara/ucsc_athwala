@@ -127,6 +127,9 @@ import { Restore } from '@material-ui/icons';
 // import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 // import DatePicker from '@material-ui/lab/DatePicker';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import { Divider } from '@material-ui/core';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -136,6 +139,18 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
+    },
+    filterbutton: {
+        backgroundColor: "#757de8",
+        color: "#FFFFFF",
+        textTransform: "none",
+
+        border: "none",
+        borderRadius: 20,
+        "&:hover": {
+            color: "#FFFFFF",
+            backgroundColor: "#757de8",
+        },
     },
 }));
 
@@ -215,7 +230,15 @@ function AddFundraising() {
 
         <React.Fragment>
             <Typography variant="h4" align="center" color="initial">Let's Create a New fundrasing programme</Typography>
-            <Box component="hr" />
+            <Divider />
+            <Box component="br" />
+
+            <Link to="/ustd/funddashboard">
+                <Button className={classes.filterbutton} variant="contained" color="primary" startIcon={<ArrowBackIosIcon />}>
+                    Back to Fundrasing dashboard
+                </Button>
+            </Link>
+
             <Box component="br" />
             <Box borderColor="primary.main" {...defaultProps}>
                 <Box m={1}>
@@ -231,7 +254,7 @@ function AddFundraising() {
                                             multiline
                                             variant="outlined"
                                             fullWidth
-                                            // dataType="date"
+                                        // dataType="date"
                                         />
                                     </Grid>
 
@@ -330,7 +353,7 @@ function AddFundraising() {
                                         <Box display="flex" justifyContent="flex-end">
 
                                             <Box>
-                                                <Button variant="contained" color="primary" endIcon={<CheckCircleIcon>send</CheckCircleIcon>}>
+                                                <Button className={classes.filterbutton} variant="contained" color="primary" endIcon={<CheckCircleIcon>send</CheckCircleIcon>}>
                                                     Create Fundraising
                                                 </Button>
                                             </Box>

@@ -61,6 +61,7 @@ import SelectAdPost from '../Product/Select_ad_post';
 import PostDeviceForm from '../Product/Post_Device_Form';
 import PostNoteForm from '../Product/Post_Note_Form';
 import PostOtherForm from '../Product/Post_Other_Form';
+import Studonate_fundraising from '../Fundraising/Stu_donate_fundraising';
 
 
 const drawerWidth = 240;
@@ -173,84 +174,84 @@ function Navbar() {
   };
   return (
     <Router>
-    <div className={classes.root}>{/* devide to flex, start from here*/}
-      <CssBaseline />
-      {/*************************Start of the navigation bar from here**************************************/}
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
+      <div className={classes.root}>{/* devide to flex, start from here*/}
+        <CssBaseline />
+        {/*************************Start of the navigation bar from here**************************************/}
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
 
-        <Toolbar>
+          <Toolbar>
 
- {/*******************************Start of the Line Menu icon**********************/}
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
- {/*******************************End of the Line Menu icon**********************/}
-
-
-          {/*******************************Start of the UCSC Athwala icon**********************/}
-          <Typography variant="h6">
-            <Box mr={1}>
-              <Avatar alt="Remy Sharp" src={Logo} className={classes.medium} fontSize="large" />
-            </Box>
-          </Typography>
-          {/*******************************End of the UCSC Athwala icon**********************/}
+            {/*******************************Start of the Line Menu icon**********************/}
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, {
+                [classes.hide]: open,
+              })}
+            >
+              <MenuIcon />
+            </IconButton>
+            {/*******************************End of the Line Menu icon**********************/}
 
 
-          <Typography variant="h4" noWrap className={classes.flex1} ml={3}>
-            UCSC අත්වැල
-          </Typography>
+            {/*******************************Start of the UCSC Athwala icon**********************/}
+            <Typography variant="h6">
+              <Box mr={1}>
+                <Avatar alt="Remy Sharp" src={Logo} className={classes.medium} fontSize="large" />
+              </Box>
+            </Typography>
+            {/*******************************End of the UCSC Athwala icon**********************/}
 
 
-          {/*******************************Start of the notification icon**********************/}
-          {/************auth1, setAuth1, anchorE2, setAnchorE2,handleMenu1,handleClose1 and handleChange1 are for the Notification icon*****************/}
-          {auth1 && (<div>
+            <Typography variant="h4" noWrap className={classes.flex1} ml={3}>
+              UCSC අත්වැල
+            </Typography>
 
-            <Box mr={2}>
 
-              <IconButton aria-label="show 5 new notifications" color="inherit" onClick={handleMenu1}>
-                <Badge badgeContent={5} color="secondary">
-                  <NotificationsIcon
-                    fontSize="large"
-                  >
-                  </NotificationsIcon>
-                </Badge>
-              </IconButton>
+            {/*******************************Start of the notification icon**********************/}
+            {/************auth1, setAuth1, anchorE2, setAnchorE2,handleMenu1,handleClose1 and handleChange1 are for the Notification icon*****************/}
+            {auth1 && (<div>
 
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorE2}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open2}
-                onClose={handleClose1}
-              >
-                <MenuItem onClick={handleClose1}>   Notification 1</MenuItem>
-                <MenuItem onClick={handleClose1}>   Notification 2</MenuItem>
-                <MenuItem onClick={handleClose1}>   Notification 3</MenuItem>
-                <MenuItem onClick={handleClose1}><NotificationsActiveOutlinedIcon />View all</MenuItem>
-              </Menu>
+              <Box mr={2}>
 
-            </Box>
+                <IconButton aria-label="show 5 new notifications" color="inherit" onClick={handleMenu1}>
+                  <Badge badgeContent={5} color="secondary">
+                    <NotificationsIcon
+                      fontSize="large"
+                    >
+                    </NotificationsIcon>
+                  </Badge>
+                </IconButton>
+
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorE2}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={open2}
+                  onClose={handleClose1}
+                >
+                  <MenuItem onClick={handleClose1}>   Notification 1</MenuItem>
+                  <MenuItem onClick={handleClose1}>   Notification 2</MenuItem>
+                  <MenuItem onClick={handleClose1}>   Notification 3</MenuItem>
+                  <MenuItem onClick={handleClose1}><NotificationsActiveOutlinedIcon />View all</MenuItem>
+                </Menu>
+
+              </Box>
 
             </div>
             )}
@@ -287,7 +288,7 @@ function Navbar() {
                   onClose={handleClose}
                 >
                   <MenuItem onClick={handleClose}><PersonPinOutlinedIcon /> My Profile</MenuItem>
-                  <Divider/>
+                  <Divider />
                   <MenuItem onClick={handleClose}><ExitToAppOutlinedIcon /> Log out</MenuItem>
                 </Menu>
               </div>
@@ -316,17 +317,17 @@ function Navbar() {
             }),
           }}
         >
-        <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-       <Side />
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        {/*<Typography paragraph>
+          <div className={classes.toolbar}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            </IconButton>
+          </div>
+          <Divider />
+          <Side />
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          {/*<Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           lit sed ullamcorper morbi tincidunt. Lorem
           donec massa sapien faucibus et molestie ac.
@@ -334,114 +335,117 @@ function Navbar() {
         <Typography paragraph>
           Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>*/} 
-        <Switch>
-          <Route path="/std/stddashboard" exact>
-            <Dashboard />
-          </Route>
-          <Route path="/std/viewcauses" exact>
-            <Donation />
-          </Route>
-          <Route path='/std/viewMyrequest' exact>
+        </Typography>*/}
+          <Switch>
+            <Route path="/std/stddashboard" exact>
+              <Dashboard />
+            </Route>
+            <Route path="/std/viewcauses" exact>
+              <Donation />
+            </Route>
+            <Route path='/std/viewMyrequest' exact>
               <MyCause />
-          </Route>
-          <Route path='/std/requestcategories' exact>
+            </Route>
+            <Route path='/std/requestcategories' exact>
               <Category />
-          </Route>
-          <Route path='/std/viewNoteCause_details' exact>
+            </Route>
+            <Route path='/std/viewNoteCause_details' exact>
               <NoteCause />
-          </Route >
-          <Route path="/std/viewClothCause_details" exact>
-            <ClothCause />
-          </Route>
-          <Route path="/std/viewDeviceCause_details" exact>
-            <DeviceCause />
-          </Route>
-          <Route path="/std/viewMoneyCause_details" exact>
-            <MoneyCause />
-          </Route>
-          <Route path="/std/viewOtherCause_details" exact>
-            <OtherCause />
-          </Route> 
-          <Route path="/std/viewdetails_mydonation" exact>
-            <ViewMyRequests />
-          </Route> 
-          <Route path="/std/requestNote" exact>
-            <RequestNote />
-          </Route>
-          <Route path="/std/requestCloth" exact>
-            <RequestCloth />
-          </Route>
-          <Route path="/std/requestDevice" exact>
-            <RequestDevice />
-          </Route>
-          <Route path="/std/requestMoney" exact>
-            <RequestMoney />
-          </Route>
-          <Route path="/std/requestOther" exact>
-            <RequestOther />
-          </Route>
-          <Route path="/std/myDonation" exact>
-            <MyDonation />
-          </Route>
-          <Route path="/std/JobOpertunity" exact>
-            <JobOpertunity />
-          </Route>
-          <Route path="/std/jobview" exact>
-            <ViewJob />
-          </Route>
-          <Route path="/std/viewQA" exact>
-            <ViewQA />
-          </Route>
-          <Route path="/std/helpstack">
-            <Helpstack />
-          </Route>
-          <Route path="/std/viewfundraising">
-            <StuFundraising />
-          </Route>
+            </Route >
+            <Route path="/std/viewClothCause_details" exact>
+              <ClothCause />
+            </Route>
+            <Route path="/std/viewDeviceCause_details" exact>
+              <DeviceCause />
+            </Route>
+            <Route path="/std/viewMoneyCause_details" exact>
+              <MoneyCause />
+            </Route>
+            <Route path="/std/viewOtherCause_details" exact>
+              <OtherCause />
+            </Route>
+            <Route path="/std/viewdetails_mydonation" exact>
+              <ViewMyRequests />
+            </Route>
+            <Route path="/std/requestNote" exact>
+              <RequestNote />
+            </Route>
+            <Route path="/std/requestCloth" exact>
+              <RequestCloth />
+            </Route>
+            <Route path="/std/requestDevice" exact>
+              <RequestDevice />
+            </Route>
+            <Route path="/std/requestMoney" exact>
+              <RequestMoney />
+            </Route>
+            <Route path="/std/requestOther" exact>
+              <RequestOther />
+            </Route>
+            <Route path="/std/myDonation" exact>
+              <MyDonation />
+            </Route>
+            <Route path="/std/JobOpertunity" exact>
+              <JobOpertunity />
+            </Route>
+            <Route path="/std/jobview" exact>
+              <ViewJob />
+            </Route>
+            <Route path="/std/viewQA" exact>
+              <ViewQA />
+            </Route>
+            <Route path="/std/helpstack">
+              <Helpstack />
+            </Route>
+            <Route path="/std/stdfundraising">
+              <StuFundraising />
+            </Route>
+            <Route path="/std/donatefundraising">
+              <Studonate_fundraising />
+            </Route>
 
-          <Route path="/std/viewauc" exact>
-            <Auction />
-          </Route>
-          <Route path="/std/myauc" exact>
-            <Myauc />
-          </Route>
+            <Route path="/std/viewauc" exact>
+              <Auction />
+            </Route>
+            <Route path="/std/myauc" exact>
+              <Myauc />
+            </Route>
 
-          <Route path="/std/ViewProductEle" exact>
-            <ViewProductEle />
-          </Route>
+            <Route path="/std/ViewProductEle" exact>
+              <ViewProductEle />
+            </Route>
 
-          <Route path="/std/ViewProductDetails" exact>
-            <ViewProductDetails />
-          </Route>
-          <Route path="/std/crtauc" exact>
-            <Crtauc />
-          </Route>
-          <Route path="/std/aucstop" exact>
-            <Aucstop />
-          </Route>
-          <Route path="/std/bid" exact>
-            <Bid />
-          </Route>
-          <Route path="/std/mybid" exact>
-            <Mybid />
-          </Route>
-          <Route path="/std/SelectAdPost" exact>
-            <SelectAdPost />
-          </Route>
-          <Route path="/std/PostDeviceForm" exact>
-            <PostDeviceForm />
-          </Route>
-          <Route path="/std/PostNoteForm" exact>
-            <PostNoteForm/>
-          </Route>
-          <Route path="/std/PostOtherForm" exact>
-            <PostOtherForm />
-          </Route>
-        </Switch>
-      </main>
-    </div>
+            <Route path="/std/ViewProductDetails" exact>
+              <ViewProductDetails />
+            </Route>
+            <Route path="/std/crtauc" exact>
+              <Crtauc />
+            </Route>
+            <Route path="/std/aucstop" exact>
+              <Aucstop />
+            </Route>
+            <Route path="/std/bid" exact>
+              <Bid />
+            </Route>
+            <Route path="/std/mybid" exact>
+              <Mybid />
+            </Route>
+            <Route path="/std/SelectAdPost" exact>
+              <SelectAdPost />
+            </Route>
+            <Route path="/std/PostDeviceForm" exact>
+              <PostDeviceForm />
+            </Route>
+            <Route path="/std/PostNoteForm" exact>
+              <PostNoteForm />
+            </Route>
+            <Route path="/std/PostOtherForm" exact>
+              <PostOtherForm />
+            </Route>
+          </Switch>
+        </main>
+      </div>
     </Router>
   );
 }
-export default Navbar; 
+export default Navbar;

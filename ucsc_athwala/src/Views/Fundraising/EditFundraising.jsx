@@ -125,6 +125,9 @@ import Card from '@material-ui/core/Card';
 import NumberFormat from 'react-number-format';
 import { Restore } from '@material-ui/icons';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import Link from '@material-ui/core/Link';
+import Divider from '@material-ui/core/Divider';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -134,6 +137,18 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
+    },
+    filterbutton: {
+        backgroundColor: "#757de8",
+        color: "#FFFFFF",
+        textTransform: "none",
+
+        border: "none",
+        borderRadius: 20,
+        "&:hover": {
+            color: "#FFFFFF",
+            backgroundColor: "#757de8",
+        },
     },
 }));
 
@@ -202,8 +217,19 @@ function EditFundraising() {
 
         <React.Fragment>
             <Typography variant="h4" align="center" color="initial">Edit your fundrasing programme</Typography>
-            <Box component="hr" />
+            <Divider />
             <Box component="br" />
+            
+            <Link to="/ustd/funddashboard/">
+                <Button variant="contained" className={classes.filterbutton} startIcon={<ArrowBackIosIcon />}>
+                    Back to Fundrasing dashboard
+                </Button>
+            </Link>
+           
+
+            
+            <Box component="br" />
+
             <Box borderColor="primary.main" {...defaultProps}>
                 <Box m={1}>
                     <form className={classes.root}>
@@ -317,14 +343,9 @@ function EditFundraising() {
                                     <Grid item xs={12} sm={12}>
                                         <Box display="flex" justifyContent="flex-end">
 
-                                            <Box  mx={1} >
-                                                <Button variant="contained" color="primary" endIcon={<CheckCircleIcon>send</CheckCircleIcon>}>
-                                                    Edit Fundraising
-                                                </Button>
-                                            </Box>
                                             <Box>
-                                                <Button variant="contained" color="primary"endIcon={<CheckCircleIcon>send</CheckCircleIcon>}>
-                                                    Reset Fundraising
+                                                <Button className={classes.filterbutton} variant="contained" color="primary" endIcon={<CheckCircleIcon>send</CheckCircleIcon>}>
+                                                    Update Fundraising
                                                 </Button>
                                             </Box>
 
