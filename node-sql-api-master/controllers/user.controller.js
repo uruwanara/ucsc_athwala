@@ -7,7 +7,7 @@ const { Base64 } = require('js-base64');
 const BASE_URL = "localhost:5000/api/login/validate/";
 const sendGridMail = require('@sendgrid/mail');
 sendGridMail.setApiKey('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');
-
+const axios =require('axios');
 // Create and Save a new user
 exports.create = (req, res) => {
     // Validate request
@@ -74,9 +74,31 @@ exports.create = (req, res) => {
                 message:
                     err.message || "Some error occurred while creating the user."
             });
-        });
+        })
+        .then(async function createUser() {
 
-        res.send("cscscs")
+        const data = {
+            username: user.username,
+            secret:  "Ur0771110052",
+            first_name: user.fname,
+            last_name: user.lname,
+        };
+        var config = {
+            method: "post",
+            url: "https://api.chatengine.io/users/",
+            headers: {
+                "PRIVATE-KEY": "ee34c264-42b5-4410-a76c-7459e91c0e09",
+            },
+            data: data,
+        };
+        try {
+            const resp = await axios(config);
+            return resp.data;
+        } catch (err) {
+            console.error(err);
+        }
+
+    });
     /*
         var http = require('http');
        var options = {
@@ -103,7 +125,7 @@ exports.create = (req, res) => {
 
         http.request(options, callback).end();
     */
-
+/*
     const https = require('https')
 
     const data = new TextEncoder().encode(
@@ -139,9 +161,15 @@ exports.create = (req, res) => {
     reqe.write(data)
     reqe.end()
     res.send("dsds");
+*/
 
 
 };
+
+
+
+
+
 
 // Find a single User with an id
 exports.findOne = (req, res) => {
