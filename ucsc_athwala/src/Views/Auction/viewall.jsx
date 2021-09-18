@@ -23,6 +23,7 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import {RequestButton,MyCauseButton,MyDonationButton} from './Donation_button';
 import GavelIcon from '@material-ui/icons/Gavel';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -141,9 +142,11 @@ export default function Cases(){
     SetMap(result);
   };
 
+  
 
   function FormRow (props){
   
+    let history = useHistory();
     
     // var link;
     // if(props.type == 'note'){
@@ -161,8 +164,14 @@ export default function Cases(){
     // else if (props.type == 'other'){
     //   link = "/std/viewOtherCause_details";
     // }
+
+    const viewMore=(id)=>{
+      history.push(`/std/bid/${id}`);
+    }
+    console.log(props.title);
     return (
       <React.Fragment>
+          
         <Grid item xs={4}>
         <Card className={classes.root}>
 
@@ -178,13 +187,15 @@ export default function Cases(){
               </Typography>
             </CardContent>
           </CardActionArea>
+          
 
           <CardActions className={classes.cardFooter}>
             {/* { <Link to={link}> } */}
             <Button size="small" 
             className={classes.donateButton} 
             startIcon={<GavelIcon />}
-            color='secondary' href="/std/bid" component={Link}
+            color='secondary'
+            onClick={()=>viewMore(props.id)}
             >
               Bid Now
             </Button>
@@ -231,7 +242,7 @@ export default function Cases(){
             <div className={classes.root}>
           <Grid container spacing={6}>
             {mapset.map(student => (  
-                      <FormRow title={student.title } image={student.image}/> 
+                      <FormRow  title={student.title } id={student.auction_id } image={student.image}/> 
               ))}
                 
           </Grid>

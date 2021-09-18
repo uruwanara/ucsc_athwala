@@ -421,7 +421,7 @@ function Navbar() {
           <Route path="/std/aucstop" exact>
             <Aucstop />
           </Route>
-          <Route path="/std/bid" exact>
+          <Route path="/std/bid/:auction_id">
             <Bid />
           </Route>
           <Route path="/std/mybid" exact>

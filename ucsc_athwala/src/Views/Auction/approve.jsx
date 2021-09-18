@@ -8,7 +8,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import  Button from '@material-ui/core/Button';
-import {NoteDoneeDetails,Description} from './details';
+import {NoteDoneeDetails,Description} from './aucmore';
 
 const useStyles = makeStyles((theme) => ({
     root: {
