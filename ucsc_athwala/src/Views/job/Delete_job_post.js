@@ -10,7 +10,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
 import {useSnackbar} from "notistack";
-
+import {useHistory } from "react-router-dom";
+import { useLocation } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,8 +36,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function CreateJob() {
+export default function DeleteJob() {
   const classes = useStyles();
+  const history = useHistory();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -50,45 +52,51 @@ export default function CreateJob() {
   const [email, setEmail] = useState("");
   const [web, setWeb] = useState("");
   const [linkdin, setLinkdin] = useState("");
+  const search = useLocation().search;
 
   const {enqueueSnackbar, closeSnackbar } = useSnackbar();
 
+  const jobpostid = new URLSearchParams(search).get("id");
+
+    useEffect(() => {
+        fetchDetails(jobpostid);
+    },[]);
+
+    const fetchDetails = (jobpostid) => {
+        const postdetails={
+            "postid": jobpostid,
+        }
+        axios.post("http://localhost:5000/api/jobposts/viewpost",postdetails,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+              }
+            }).then((response) => {
+                console.log(response.data);
+                setTitle(response.data[0].title);
+                setDescription(response.data[0].description);
+                setCompany(response.data[0].company);
+                setRequirement1(response.data[0].req1);
+                setRequirement2(response.data[0].req2);
+                setRequirement3(response.data[0].req3);
+                setRequirement4(response.data[0].req4);
+                setOther(response.data[0].reqOther);
+                setPhone(response.data[0].tel);
+                setEmail(response.data[0].mail);
+                setWeb(response.data[0].website);
+                setLinkdin(response.data[0].linkdin);
+
+            })
+    };
+
   const handleSubmit = (event) => {
      event.preventDefault(); 
-    console.log(`
-        title: ${title}
-        description: ${description}
-        company:${company}
-        requirement1: ${requirement1}
-        requirement2: ${requirement2}
-        requirement3: ${requirement3}
-        requirement4: ${requirement4}
-        other: ${other}
-        phone: ${phone}
-        email: ${email}
-        web: ${web}
-        linkdin: ${linkdin}
-    `); 
 
-    const userData=JSON.parse(localStorage.getItem("userData"));
-    
-    const jobpost={
-      "pstudentID":userData.id,
-      "title": title,
-      "description": description,
-      "company":company,
-      "requirement1":requirement1,
-      "requirement2": requirement2,
-      "requirement3": requirement3,
-      "requirement4": requirement4,
-      "other": other,
-      "phone": phone,
-      "email": email,
-      "web": web,
-      "linkdin":linkdin
-    }
+     const jobpost={
+        "postID":jobpostid,
+      }
 
-    axios.post("http://localhost:5000/api/jobposts/create",jobpost,{
+    axios.post("http://localhost:5000/api/jobposts/delete",jobpost,{
           headers:{
               "access-control-allow-origin" : "*",
               "Content-type": "application/json; charset=UTF-8"
@@ -96,28 +104,14 @@ export default function CreateJob() {
       }).then((response)=>{
           console.log(response.data);
           if(response.data==='success'){
-            setTitle("");
-            setDescription("");
-            setCompany("");
-            setRequirement1("");
-            setRequirement2("");
-            setRequirement3("");
-            setRequirement4("");
-            setOther("");
-            setPhone("");
-            setEmail("");
-            setWeb("");
-            setLinkdin("");
-
-            enqueueSnackbar('Successfully Create the job post advertisment', {
+            enqueueSnackbar('Successfully Deleted', {
               variant: 'success', anchorOrigin: {
                 vertical: 'bottom',
                 horizontal: 'center',
               }
             })
-
+            history.push("/pst/myJobOpertunity")    
           }
-
       }).catch((err)=>{
 
       })
@@ -149,8 +143,9 @@ export default function CreateJob() {
                 id="title"
                 label="Title"
                 value={title}
-                autoFocus
-                onChange={e => setTitle(e.target.value)}
+                inputProps={
+					{ readOnly: true, }
+				}
               />
             </Grid>
 
@@ -166,7 +161,9 @@ export default function CreateJob() {
                 autoComplete="description"
                 multiline
                 rows ={5}
-                onChange={e => setDescription(e.target.value)}
+                inputProps={
+					{ readOnly: true, }
+				}
               />
             </Grid>
 
@@ -180,7 +177,9 @@ export default function CreateJob() {
                 name="company"
                 value={company}
                 autoComplete="company"
-                onChange={e => setCompany(e.target.value)}
+                inputProps={
+					{ readOnly: true, }
+				}
               />
             </Grid>
 
@@ -193,7 +192,9 @@ export default function CreateJob() {
                 name="requirement1"
                 value={requirement1}
                 autoComplete="requirement1"
-                onChange={e => setRequirement1(e.target.value)}
+                inputProps={
+					{ readOnly: true, }
+				}
               />
             </Grid>
 
@@ -206,7 +207,9 @@ export default function CreateJob() {
                 value={requirement2}
                 id="requirement2"
                 autoComplete="requirement2"
-                onChange={e => setRequirement2(e.target.value)}
+                inputProps={
+					{ readOnly: true, }
+				}
               />
             </Grid>
 
@@ -219,7 +222,9 @@ export default function CreateJob() {
                 value={requirement3}
                 id="requirement3"
                 autoComplete="requirement3"
-                onChange={e => setRequirement3(e.target.value)}
+                inputProps={
+					{ readOnly: true, }
+				}
               />
             </Grid>
 
@@ -232,7 +237,9 @@ export default function CreateJob() {
                 value={requirement4}
                 id="requirement4"
                 autoComplete="requirement4"
-                onChange={e => setRequirement4(e.target.value)}
+                inputProps={
+					{ readOnly: true, }
+				}
               />
             </Grid>
 
@@ -245,7 +252,9 @@ export default function CreateJob() {
                 value={other}
                 id="other"
                 autoComplete="other"
-                onChange={e => setOther(e.target.value)}
+                inputProps={
+					{ readOnly: true, }
+				}
               />
             </Grid>
 
@@ -259,7 +268,9 @@ export default function CreateJob() {
                 value={phone}
                 id="phone"
                 autoComplete="phone"
-                onChange={e => setPhone(e.target.value)}
+                inputProps={
+					{ readOnly: true, }
+				}
               />
             </Grid>
 
@@ -273,7 +284,9 @@ export default function CreateJob() {
                 value={email}
                 id="email"
                 autoComplete="email"
-                onChange={e => setEmail(e.target.value)}
+                inputProps={
+					{ readOnly: true, }
+				}
               />
             </Grid>
 
@@ -286,7 +299,9 @@ export default function CreateJob() {
                 value={web}
                 id="web"
                 autoComplete="web"
-                onChange={e => setWeb(e.target.value)}
+                inputProps={
+					{ readOnly: true, }
+				}
               />
             </Grid>
 
@@ -299,7 +314,9 @@ export default function CreateJob() {
                 value={linkdin}
                 id="linkdin"
                 autoComplete="linkdin"
-                onChange={e => setLinkdin(e.target.value)}
+                inputProps={
+					{ readOnly: true, }
+				}
               />
             </Grid>
 
@@ -312,7 +329,7 @@ export default function CreateJob() {
             color="primary"
             className={classes.submit}
           >
-            Submit
+            Delete
           </Button>
          
         </form>

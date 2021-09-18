@@ -10,7 +10,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
 import {useSnackbar} from "notistack";
-
+import {useHistory } from "react-router-dom";
+import { useLocation } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CreateJob() {
   const classes = useStyles();
+  const history = useHistory();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -50,8 +52,42 @@ export default function CreateJob() {
   const [email, setEmail] = useState("");
   const [web, setWeb] = useState("");
   const [linkdin, setLinkdin] = useState("");
+  const search = useLocation().search;
 
   const {enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+  const jobpostid = new URLSearchParams(search).get("id");
+
+    useEffect(() => {
+        fetchDetails(jobpostid);
+    },[]);
+
+    const fetchDetails = (jobpostid) => {
+        const postdetails={
+            "postid": jobpostid,
+        }
+        axios.post("http://localhost:5000/api/jobposts/viewpost",postdetails,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+              }
+            }).then((response) => {
+                console.log(response.data);
+                setTitle(response.data[0].title);
+                setDescription(response.data[0].description);
+                setCompany(response.data[0].company);
+                setRequirement1(response.data[0].req1);
+                setRequirement2(response.data[0].req2);
+                setRequirement3(response.data[0].req3);
+                setRequirement4(response.data[0].req4);
+                setOther(response.data[0].reqOther);
+                setPhone(response.data[0].tel);
+                setEmail(response.data[0].mail);
+                setWeb(response.data[0].website);
+                setLinkdin(response.data[0].linkdin);
+
+            })
+    };
 
   const handleSubmit = (event) => {
      event.preventDefault(); 
@@ -73,7 +109,7 @@ export default function CreateJob() {
     const userData=JSON.parse(localStorage.getItem("userData"));
     
     const jobpost={
-      "pstudentID":userData.id,
+      "postID":jobpostid,
       "title": title,
       "description": description,
       "company":company,
@@ -88,7 +124,7 @@ export default function CreateJob() {
       "linkdin":linkdin
     }
 
-    axios.post("http://localhost:5000/api/jobposts/create",jobpost,{
+    axios.post("http://localhost:5000/api/jobposts/update",jobpost,{
           headers:{
               "access-control-allow-origin" : "*",
               "Content-type": "application/json; charset=UTF-8"
@@ -96,27 +132,16 @@ export default function CreateJob() {
       }).then((response)=>{
           console.log(response.data);
           if(response.data==='success'){
-            setTitle("");
-            setDescription("");
-            setCompany("");
-            setRequirement1("");
-            setRequirement2("");
-            setRequirement3("");
-            setRequirement4("");
-            setOther("");
-            setPhone("");
-            setEmail("");
-            setWeb("");
-            setLinkdin("");
-
-            enqueueSnackbar('Successfully Create the job post advertisment', {
+            enqueueSnackbar('Successfully Update', {
               variant: 'success', anchorOrigin: {
                 vertical: 'bottom',
                 horizontal: 'center',
               }
             })
-
+            history.push("/pst/myJobOpertunity")    
           }
+
+
 
       }).catch((err)=>{
 
@@ -312,7 +337,7 @@ export default function CreateJob() {
             color="primary"
             className={classes.submit}
           >
-            Submit
+            Update
           </Button>
          
         </form>
