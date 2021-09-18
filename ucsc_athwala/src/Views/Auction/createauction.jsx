@@ -38,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function SignUp() {
+  
   const classes = useStyles();
-
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [year, setYear] = React.useState("");
@@ -198,14 +198,17 @@ export default function SignUp() {
               />
             </Grid>
             
-            {/* <Button
+            { <Button
             fullWidth
                 variant="contained"
                 component="label">
                 Upload File
               <input
-                type="file"/>
-                </Button> */}
+        type="file"
+        name="myImage"
+
+      />
+                </Button> }
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox required name="acceptTerm" color="primary"  onChange={e => setacceptTerm(true)}/>}

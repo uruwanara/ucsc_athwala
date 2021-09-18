@@ -42,10 +42,10 @@ export default function Side(){
                 </ListItem>
               </Link>
               
-              <Link to="/Job" className={classes.Nounderline}>
+              <Link to="/pst/Job" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon><PeopleAltIcon style={{ fill: "blue"}}/></ListItemIcon>
-                <ListItemText primary="Job Vacancy" />
+                <ListItemText primary="New job advertisment" />
                 </ListItem>
               </Link>
 
@@ -76,7 +76,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to="/Job" className={classes.Nounderline}>
+              <Link to="/pst/JobOpertunity" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <PanToolIcon style={{ fill: "blue"}}/>

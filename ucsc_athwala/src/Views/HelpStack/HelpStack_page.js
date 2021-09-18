@@ -37,6 +37,30 @@ const useStyles = makeStyles ({
 
 export default function QAform(){
     const classes = useStyles();
+    const userData=JSON.parse(localStorage.getItem("userData"));
+
+    const askbutton = () => {
+        if(userData.userType == "STUDENT" || userData.userType == "UNIONST" ){
+            return(
+                <div>
+                            <Link to = '/std/helpstack/askQuestion'>
+                            <Button size="large" 
+                            className={classes.filterbutton} 
+                            >
+                            Ask Question
+                            </Button>
+                            </Link>
+                </div>
+            )
+        }
+        else if (userData.userType == "ALUMNI"){
+            return(
+                <div>
+                </div>
+            )
+
+        }
+    }
         return(
                 <div>
 
@@ -46,15 +70,7 @@ export default function QAform(){
                     </Grid>
 
                     <Grid item md={6}>
-                        <div>
-                            <Link to = '/std/helpstack/askQuestion'>
-                            <Button size="large" 
-                            className={classes.filterbutton} 
-                            >
-                            Ask Question
-                            </Button>
-                            </Link>
-                        </div>
+                        {askbutton()}
                     </Grid>
                 </Grid>
                 <Grid container md={12} spacing={2}>

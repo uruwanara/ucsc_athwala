@@ -143,12 +143,13 @@ export default function MyCases(){
         SetMap(response.data);
         
     })
-  };{}
+  };
 
   const FormRow = (props)=> {
-
+    const userData=JSON.parse(localStorage.getItem("userData"));
     var id = props.id;
     var imglink;
+    var link;
     if(props.type == 'note'){
       imglink = Note;
     }
@@ -163,6 +164,12 @@ export default function MyCases(){
     }
     else if (props.type == 'other'){
       imglink = Other;
+    }
+    if(userData.userType === "STUDENT"){
+      link = "/std/viewdetails_mydonation?id="+id;
+    }
+    if(userData.userType === "UNIONST"){
+      link = "/ustd/viewdetails_mydonation?id="+id;
     }
 
     return (
@@ -194,7 +201,7 @@ export default function MyCases(){
             <Button size="small" 
             className={classes.statusbutton} 
             startIcon={<PageviewIcon />}
-            onClick={()=>{ history.push("/std/viewdetails_mydonation?id="+id)}}
+            onClick={()=>{ history.push(link)}}
             >
               View Details
             </Button>

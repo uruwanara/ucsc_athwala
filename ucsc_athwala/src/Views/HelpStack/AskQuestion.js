@@ -4,7 +4,9 @@ import { makeStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import  TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import {useSnackbar} from "notistack";
+import axios from 'axios';
 
 const useStyles = makeStyles ({
     title:{
@@ -45,6 +47,8 @@ export default function AskQuestion(){
 
     const [title, setTitle] = React.useState("");
   const [body, setBody] = React.useState("");
+  const userData=JSON.parse(localStorage.getItem("userData"));
+  const {enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const handleSubmit = (event) => {
      event.preventDefault(); 
@@ -52,6 +56,33 @@ export default function AskQuestion(){
         title: ${title}
         body: ${body}
     `);
+
+    const myquestion={
+        "studentID": userData.id,
+        "title":title,
+        "question":body
+    }
+      axios.post("http://localhost:5000/api/helpstacks/askquestion",myquestion,{
+          headers:{
+              "access-control-allow-origin" : "*",
+              "Content-type": "application/json; charset=UTF-8"
+          }
+      }).then((response)=>{
+          console.log(response.data);
+          if(response.data==='success'){
+            setTitle("");
+            setBody("");
+            enqueueSnackbar('Successfully Post your Qoestion', {
+                variant: 'success', anchorOrigin: {
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }
+              })
+          }
+
+      }).catch((err)=>{
+
+      })
  }
 
     return(
@@ -61,7 +92,7 @@ export default function AskQuestion(){
                 <Typography variant="h5" className={classes.title}>Ask Public Question</Typography>
             </Grid>
         </Grid> 
-        <from onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit} >
         <Grid container  spacing ={3} justify="center" >
             <Grid item md={10}>
             <TextField
@@ -111,7 +142,7 @@ export default function AskQuestion(){
             
 
         </Grid>
-        </from>
+        </form>
 
         <Grid container spacing ={3}>
             <Grid item md={6}>

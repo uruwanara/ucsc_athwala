@@ -18,6 +18,8 @@ module.exports = donationRoutes => {
     //request note 
     router.post("/createauc",auction.noteRequest);
 
+    router.get("/viewall", auction.viewall);
+
     //request cloth 
     // router.post("/clothrequest",donation.clothRequest);
 

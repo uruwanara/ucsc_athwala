@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect,useState} from 'react'
 import {Link, useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -87,87 +87,121 @@ const useStyles = makeStyles((theme) =>({
   }));
 
 
-  const students = [  
+//   const students = [  
     
-    {  
-        'id': 1,
-        'type' : 'Electric devices' , 
-        'title': 'HP Laptop',   
-        'description': 'HP Probook 450 G7' , 
-        'price': 'Rs. 60 000.00',  
-        'image' :EventLaptopHP,
-    },  
-    {  
-      'id': 3, 
-      'type' : 'Electric devices' ,   
-      'title': 'Mobile phone',   
-      'description': 'I am a first year student. i need mobile phone' ,
-      'price': 'Rs. 60 000.00', 
-      'image' :Device,   
-    }, 
-    {  
-      'id': 4, 
-      'type' : 'money' ,   
-      'title': 'Course fees',   
-      'description': 'help with money for course fees' , 
-      'price': 'Rs. 60 000.00', 
-      'image' :Money, 
-    }, 
-    {  
-      'id': 5,
-      'type' : 'Lecture note' ,    
-      'title': 'DSA Lecture note',   
-      'description': 'im 2nd year student.I need DSA 2 lecture note' ,
-      'price': 'Rs. 60 000.00',   
-      'image' :Note,
-    },
-    {  
-      'id': 6,  
-      'type' : 'other' ,  
-      'title': 'help for my brothers ',   
-      'description': 'I am a second year student. My brother got accident last month.' ,
-      'price': 'Rs. 60 000.00',  
-      'image' :Other,  
-    },
-    {  
-      'id': 7,  
-      'type' : 'note' ,  
-      'title': 'Database Lecture note',   
-      'description': 'im 2nd year student.I need database lecture note' ,  
-      'price': 'Rs. 60 000.00', 
-      'image' :Note, 
-    },
-    {  
-      'id': 2, 
-      'type' : 'cloth' ,   
-      'title': 'Office Trousers',   
-      'description': 'i am 2nd year student.I need Office Trousers' , 
-      'price': 'Rs. 60 000.00', 
-      'image' :Cloth,
-    }, 
-]; 
+//     {  
+//         'id': 1,
+//         'type' : 'Electric devices' , 
+//         'title': 'HP Laptop',   
+//         'description': 'HP Probook 450 G7' , 
+//         'price': 'Rs. 60 000.00',  
+//         'image' :EventLaptopHP,
+//     },  
+//     {  
+//       'id': 3, 
+//       'type' : 'Electric devices' ,   
+//       'title': 'Mobile phone',   
+//       'description': 'I am a first year student. i need mobile phone' ,
+//       'price': 'Rs. 60 000.00', 
+//       'image' :Device,   
+//     }, 
+//     {  
+//       'id': 4, 
+//       'type' : 'money' ,   
+//       'title': 'Course fees',   
+//       'description': 'help with money for course fees' , 
+//       'price': 'Rs. 60 000.00', 
+//       'image' :Money, 
+//     }, 
+//     {  
+//       'id': 5,
+//       'type' : 'Lecture note' ,    
+//       'title': 'DSA Lecture note',   
+//       'description': 'im 2nd year student.I need DSA 2 lecture note' ,
+//       'price': 'Rs. 60 000.00',   
+//       'image' :Note,
+//     },
+//     {  
+//       'id': 6,  
+//       'type' : 'other' ,  
+//       'title': 'help for my brothers ',   
+//       'description': 'I am a second year student. My brother got accident last month.' ,
+//       'price': 'Rs. 60 000.00',  
+//       'image' :Other,  
+//     },
+//     {  
+//       'id': 7,  
+//       'type' : 'note' ,  
+//       'title': 'Database Lecture note',   
+//       'description': 'im 2nd year student.I need database lecture note' ,  
+//       'price': 'Rs. 60 000.00', 
+//       'image' :Note, 
+//     },
+//     {  
+//       'id': 2, 
+//       'type' : 'cloth' ,   
+//       'title': 'Office Trousers',   
+//       'description': 'i am 2nd year student.I need Office Trousers' , 
+//       'price': 'Rs. 60 000.00', 
+//       'image' :Cloth,
+//     }, 
+// ]; 
 
 export default function ProductViews(){
 
     const history = useHistory();
     const classes = useStyles();
 
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    console.log(userData);
+
+    
+  const [mapset, SetMap] = useState([]);
+  const [filter, setFilter] = React.useState('');
+  const [open, setOpen] = React.useState(false);
+
+  const handleChange = (event) => {
+    setFilter(event.target.value);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  useEffect(() =>{
+    fetchData();
+  },[]);
+
+  const fetchData = async () => {
+        
+    const response = await fetch(`http://localhost:5000/api/products/viewall`, {
+      method: "GET",
+    });
+    const result = await response.json();
+    console.log(result);
+    SetMap(result);
+  };
+
     function FormRow (props){
         var link;
-        if(props.type == 'Electric devices'){
-          link = "/std/ViewProductDetails";
+        var id = props.id;
+        var imglink;
+
+        if(props.type == 'device'){
+          link = "/std/ViewProductDetails="+id;
+          imglink = EventLaptopHP;
         }
-        else if (props.type == 'cloth'){
-          link = "/std/viewClothCause_details";
-        }
-        else if (props.type == 'device'){
-          link = "/std/viewDeviceCause_details";
-        }
-        else if (props.type == 'money'){
-          link = "/std/viewMoneyCause_details";
+        else if (props.type == 'note'){
+          link = "/std/viewClothCause_details="+id;
+          imglink = Note;
         }
         else if (props.type == 'other'){
-          link = "/std/viewOtherCause_details";
+          link = "/std/viewOtherCause_details="+id;
+          imglink = Other;
         }
         return (
           <React.Fragment>
@@ -179,7 +213,7 @@ export default function ProductViews(){
                 <CardMedia
                   component="img"
                   height="200"
-                  src= {props.image}
+                  src= {imglink}
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
@@ -194,7 +228,7 @@ export default function ProductViews(){
                   />
                     
                     <Typography gutterBottom variant="h6" component="h2" className={classes.cardtext}>
-                    {props.price}
+                    Rs: {props.price}
                     
                   </Typography>
                   
@@ -256,8 +290,8 @@ export default function ProductViews(){
             </div>
             <div className={classes.root}>
           <Grid container spacing={6}>
-            {students.map(student => (  
-                      <FormRow title={student.title} description={student.description} price={student.price} image={student.image} type={student.type}/> 
+            {mapset.map(product => (  
+                      <FormRow title={product.title} description={product.description} price={product.price} id={product.product_id} type={product.product_type}/> 
               ))}
                 
           </Grid>
