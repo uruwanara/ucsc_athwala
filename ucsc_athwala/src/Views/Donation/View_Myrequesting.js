@@ -11,6 +11,7 @@ import  Button from '@material-ui/core/Button';
 import {NoteDoneeDetails,Description,ClothDoneeDetails,DeviceDoneeDetails,MoneyDoneeDetails,OtherDoneeDetails} from './View_Casues';
 import axios from "axios";
 import { useLocation } from 'react-router';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -62,7 +63,22 @@ const useStyles = makeStyles((theme) => ({
       contactbtn:{
           textTransform:"none",
           fontFamily:"Poppins, sans-serif",
+      },
+
+      contactform:{
+        marginTop:'30px',
+      },
+      formtxt:{
+        marginTop:'5px',
+        height:'fit-content'
+      },
+      formlbl:{
+        marginBottom:'5px',
+        marginTop:'5px',
+        height:'fit-content',
+        fontFamily:"Poppins, sans-serif",
       }
+
   
   }));
 
@@ -92,8 +108,20 @@ export default function View_Notecause(){
 
   const [reason, setReason] = React.useState();
 
+  const [donername,setDonername] = useState();
+  const [donate_at,setDonateat] = useState();
+  const [address , setAddress] = useState();
+  const [tel,setTel] = useState();
+
+  const [buttontxt,Setbuttontxt] = useState("Marked As Reeceived");
+  const [open, setOpen] = React.useState(false);
+  const [btncolor, setColor] = React.useState("primary");
+
+
+const donationid = new URLSearchParams(search).get("id");
+
   useEffect(() => {
-    const donationid = new URLSearchParams(search).get("id");
+    
     fetchDescription(donationid);
   },[]);
 
@@ -155,46 +183,208 @@ export default function View_Notecause(){
                           else if(response.data[0].donationType=='other'){
                               setReason(res.data[0].reason);
                               setStatus(res.data[0].status);
+                              setDate(res.data[0].before_date);
                           }
                       });
-
 
                 }
                 else{
                   console.log("error");
                 }
             });
+     
+            
     };
+
+  const handleSubmit = (event) => {
+      setOpen(false);
+      
+      
+      event.preventDefault(); 
+
+      const markstatus={
+        "donationID": donationid,
+        "type": type,
+    }
+    axios.post("http://localhost:5000/api/donations/markstatus",markstatus,{
+        headers:{
+            "access-control-allow-origin" : "*",
+            "Content-type": "application/json; charset=UTF-8"
+          }
+        }).then((response) => {
+            if(response.data === 'success'){
+              console.log("ddddddd");
+              setColor("secondary");
+              Setbuttontxt("Received");
+              setStatus("Received");
+            }
+    });
+
+
+
+  }
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
     const details =() =>{
       if(type === "note"){
         return(
           <>
-          <NoteDoneeDetails year={year} subject={subject} lesson={lesson} date={date}/>
+          <NoteDoneeDetails year={year} subject={subject} lesson={lesson} date={date} status={status} 
+          handleSubmit={handleSubmit}  
+          handleClickOpen={handleClickOpen} 
+          handleClose={handleClose}
+          buttontxt={buttontxt} open={open} btncolor={btncolor}
+          />
           </>
         );
       }
       if(type === "cloth"){
         return(
-          <><ClothDoneeDetails clothType={clothType} gender={gender} size={size} date={date}/></>
+          <><ClothDoneeDetails clothType={clothType} gender={gender} size={size} date={date} status={status}
+          handleSubmit={handleSubmit}  
+          handleClickOpen={handleClickOpen} 
+          handleClose={handleClose}
+          buttontxt={buttontxt} open={open} btncolor={btncolor}
+          /></>
         );
       }
       if(type === "device"){
         return(
-          <><DeviceDoneeDetails model={model} brand={brand} date={date}/></>
+          <><DeviceDoneeDetails model={model} brand={brand} date={date} status={status}
+          handleSubmit={handleSubmit}  
+          handleClickOpen={handleClickOpen} 
+          handleClose={handleClose}
+          buttontxt={buttontxt} open={open} btncolor={btncolor}
+          /></>
         );
       }
       if(type === "money"){
         return(
-          <><MoneyDoneeDetails amount={amount} note={note} date={date}/></>
+          <><MoneyDoneeDetails amount={amount} note={note} date={date} status={status}
+          handleSubmit={handleSubmit}  
+          handleClickOpen={handleClickOpen} 
+          handleClose={handleClose}
+          buttontxt={buttontxt} open={open} btncolor={btncolor}
+          /></>
         );
       }
       if(type === "other"){
         return(
-          <><OtherDoneeDetails reason={reason} date={date}/></>
+          <><OtherDoneeDetails reason={reason} date={date} status={status}
+          handleSubmit={handleSubmit}  
+          handleClickOpen={handleClickOpen} 
+          handleClose={handleClose}
+          buttontxt={buttontxt} open={open} btncolor={btncolor}
+          /></>
         );
       }
   
+    }
+
+    const donationstatus = () => {
+      if(status === 'Not Received'){
+          return(
+            <div style={{display:"flex"}}>
+              <div>
+                <Typography variant="subtitle2" className={classes.labelname}>Donation Status</Typography> 
+              </div>
+              <div>
+                <Typography variant="subtitle2" className={classes.labelvalue}>{status}</Typography> 
+              </div>                         
+            </div>
+             
+          );
+      }
+      else if(status === 'Pending' || status === 'Received'){
+          const doner={
+          "donationid":donationid,
+          }
+
+        axios.post("http://localhost:5000/api/donations/donerdetails",doner,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+              }
+            }).then((response) => {
+                console.log(response.data);
+                setDonername(response.data[0].fname+" "+ response.data[0].lname);
+                setDonateat(response.data[0].donate_at);
+                setAddress(response.data[0].address);
+                setTel(response.data[0].tel);
+        });
+
+        return(
+          <>
+          <div style={{display:"flex"}}>
+              <div>
+                <Typography variant="subtitle2" className={classes.labelname}>Donation Status</Typography> 
+              </div>
+              <div>
+                <Typography variant="subtitle2" className={classes.labelvalue}>{status}</Typography> 
+              </div>                         
+          </div>
+          <div >
+            
+              <form className={classes.contactform}>
+                <div>
+                  <Typography variant="h5" className={classes.title}>Doner details</Typography> 
+                  <Typography variant="subtitle2" className={classes.title}>Contact the doner Now!</Typography> 
+                </div>
+              <Typography variant="subtitle2" className={classes.formlbl}>Doner's name</Typography> 
+              <TextField
+                className={classes.formtxt}
+                name="name"
+                variant="outlined"
+                fullWidth
+                value={donername}
+                inputProps={
+                  { readOnly: true, }
+                }
+              />
+              <Typography variant="subtitle2" className={classes.formlbl}>Address</Typography> 
+              <TextField
+                className={classes.formtxt}
+                name="adress"
+                variant="outlined"
+                fullWidth
+                value={address}
+                inputProps={
+                  { readOnly: true, }
+                }
+              /> 
+              <Typography variant="subtitle2" className={classes.formlbl}>Phone number</Typography> 
+              <TextField
+                className={classes.formtxt}
+                name="tel"
+                variant="outlined"
+                fullWidth
+                value={tel}
+                inputProps={
+                  { readOnly: true, }
+                }
+              />  
+              <Typography variant="subtitle2" className={classes.formlbl}>Donate At</Typography> 
+              <TextField
+                className={classes.formtxt}
+                name="donate_at"
+                variant="outlined"
+                fullWidth
+                value={donate_at}
+                inputProps={
+                  { readOnly: true, }
+                }
+              /> 
+
+              </form>
+          </div>
+          </>
+        )
+      }
     }
 
     return(
@@ -222,20 +412,17 @@ export default function View_Notecause(){
                         <Card className={classes.card}>
                                 <CardContent>
                                 <Typography variant="h5" className={classes.title}>
-                                       Donation details
-                                    </Typography>
-                                <div style={{display:"flex"}}>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelname}>Donation Status</Typography> 
-                                        </div>
-                                        <div>
-                                            <Typography variant="subtitle2" className={classes.labelvalue}>{status}</Typography> 
-                                        </div>  
-                                    </div>
+                                  Donation details
+                                </Typography>
+                                  
+                                {donationstatus()}
+
                                 </CardContent>   
                             </Card>
                             
                         </Grid>
+
+                        
                     </Grid>
         </div>
     );
