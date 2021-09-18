@@ -62,6 +62,7 @@ import PostDeviceForm from '../Product/Post_Device_Form';
 import PostNoteForm from '../Product/Post_Note_Form';
 import PostOtherForm from '../Product/Post_Other_Form';
 import Studonate_fundraising from '../Fundraising/Stu_donate_fundraising';
+import Chat from '../chat/chat.jsx';
 
 
 const drawerWidth = 240;
@@ -351,100 +352,103 @@ function Navbar() {
             </Route>
             <Route path='/std/viewNoteCause_details' exact>
               <NoteCause />
-            </Route >
-            <Route path="/std/viewClothCause_details" exact>
-              <ClothCause />
-            </Route>
-            <Route path="/std/viewDeviceCause_details" exact>
-              <DeviceCause />
-            </Route>
-            <Route path="/std/viewMoneyCause_details" exact>
-              <MoneyCause />
-            </Route>
-            <Route path="/std/viewOtherCause_details" exact>
-              <OtherCause />
-            </Route>
-            <Route path="/std/viewdetails_mydonation" exact>
-              <ViewMyRequests />
-            </Route>
-            <Route path="/std/requestNote" exact>
-              <RequestNote />
-            </Route>
-            <Route path="/std/requestCloth" exact>
-              <RequestCloth />
-            </Route>
-            <Route path="/std/requestDevice" exact>
-              <RequestDevice />
-            </Route>
-            <Route path="/std/requestMoney" exact>
-              <RequestMoney />
-            </Route>
-            <Route path="/std/requestOther" exact>
-              <RequestOther />
-            </Route>
-            <Route path="/std/myDonation" exact>
-              <MyDonation />
-            </Route>
-            <Route path="/std/JobOpertunity" exact>
-              <JobOpertunity />
-            </Route>
-            <Route path="/std/jobview" exact>
-              <ViewJob />
-            </Route>
-            <Route path="/std/viewQA" exact>
-              <ViewQA />
-            </Route>
-            <Route path="/std/helpstack">
-              <Helpstack />
-            </Route>
-            <Route path="/std/stdfundraising">
+          </Route >
+          <Route path="/std/viewClothCause_details" exact>
+            <ClothCause />
+          </Route>
+          <Route path="/std/viewDeviceCause_details" exact>
+            <DeviceCause />
+          </Route>
+          <Route path="/std/viewMoneyCause_details" exact>
+            <MoneyCause />
+          </Route>
+          <Route path="/std/viewOtherCause_details" exact>
+            <OtherCause />
+          </Route> 
+          <Route path="/std/viewdetails_mydonation" exact>
+            <ViewMyRequests />
+          </Route> 
+          <Route path="/std/requestNote" exact>
+            <RequestNote />
+          </Route>
+          <Route path="/std/requestCloth" exact>
+            <RequestCloth />
+          </Route>
+          <Route path="/std/requestDevice" exact>
+            <RequestDevice />
+          </Route>
+          <Route path="/std/requestMoney" exact>
+            <RequestMoney />
+          </Route>
+          <Route path="/std/requestOther" exact>
+            <RequestOther />
+          </Route>
+          <Route path="/std/myDonation" exact>
+            <MyDonation />
+          </Route>
+          <Route path="/std/JobOpertunity" exact>
+            <JobOpertunity />
+          </Route>
+          <Route path="/std/jobview" exact>
+            <ViewJob />
+          </Route>
+          <Route path="/std/viewQA" exact>
+            <ViewQA />
+          </Route>
+          <Route path="/std/helpstack">
+            <Helpstack />
+          </Route>
+          <Route path="/std/stdfundraising">
               <StuFundraising />
             </Route>
             <Route path="/std/donatefundraising">
               <Studonate_fundraising />
             </Route>
+          <Route path="/std/viewauc" exact>
+            <Auction />
+          </Route>
+          <Route path="/std/myauc" exact>
+            <Myauc />
+          </Route>
 
-            <Route path="/std/viewauc" exact>
-              <Auction />
-            </Route>
-            <Route path="/std/myauc" exact>
-              <Myauc />
-            </Route>
+          <Route path="/std/ViewProductEle" exact>
+            <ViewProductEle />
+          </Route>
 
-            <Route path="/std/ViewProductEle" exact>
-              <ViewProductEle />
-            </Route>
+          <Route path="/std/ViewProductDetails" exact>
+            <ViewProductDetails />
+          </Route>
+          <Route path="/std/crtauc" exact>
+            <Crtauc />
+          </Route>
+          <Route path="/std/aucstop" exact>
+            <Aucstop />
+          </Route>
+          <Route path="/std/bid" exact>
+            <Bid />
+          </Route>
+          <Route path="/std/mybid" exact>
+            <Mybid />
+          </Route>
+          <Route path="/std/SelectAdPost" exact>
+            <SelectAdPost />
+          </Route>
+          <Route path="/std/PostDeviceForm" exact>
+            <PostDeviceForm />
+          </Route>
+          <Route path="/std/PostNoteForm" exact>
+            <PostNoteForm/>
+          </Route>
 
-            <Route path="/std/ViewProductDetails" exact>
-              <ViewProductDetails />
-            </Route>
-            <Route path="/std/crtauc" exact>
-              <Crtauc />
-            </Route>
-            <Route path="/std/aucstop" exact>
-              <Aucstop />
-            </Route>
-            <Route path="/std/bid" exact>
-              <Bid />
-            </Route>
-            <Route path="/std/mybid" exact>
-              <Mybid />
-            </Route>
-            <Route path="/std/SelectAdPost" exact>
-              <SelectAdPost />
-            </Route>
-            <Route path="/std/PostDeviceForm" exact>
-              <PostDeviceForm />
-            </Route>
-            <Route path="/std/PostNoteForm" exact>
-              <PostNoteForm />
-            </Route>
-            <Route path="/std/PostOtherForm" exact>
-              <PostOtherForm />
-            </Route>
-          </Switch>
-        </main>
-      </div>
+          <Route path="/std/stdchat" exact>
+            <Chat/>
+          </Route>
+          <Route path="/std/PostOtherForm" exact>
+            <PostOtherForm />
+          </Route>
+        </Switch>
+      </main>
+    </div>
     </Router>
   );
 }
