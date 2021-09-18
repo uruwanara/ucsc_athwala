@@ -78,7 +78,7 @@ export default function SignIn() {
           console.log("1");
           history.push("/std/stddashboard");
         }else if (response.data.data.userType==="ALUMNI"){
-          history.push("/pstddashboard");
+          history.push("/pst/PastDashboard");
         }else if (response.data.data.userType==="COUNSELLOR"){
           history.push("/Coundashboard");
         }else if(response.data.data.userType==="UNIONST"){

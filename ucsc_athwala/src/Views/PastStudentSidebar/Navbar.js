@@ -29,8 +29,12 @@ import PersonPinOutlinedIcon from '@material-ui/icons/PersonPinOutlined';
 import NotificationsActiveOutlinedIcon from '@material-ui/icons/NotificationsActiveOutlined';
 import Side from './Sidedrawer';
 import Dashboard from '../PastStudentDashboard/PastStudentDashboard';
-
-
+import NewjobAdd from '../job/Create_job_post';
+import JobOpertunity from '../job/jobPage';
+import ViewJob from '../job/Viewjobs';
+import MyJobOpertunity from '../job/MyjobOpp';
+import EditPost from '../job/Update_job_post';
+import DeletePost from '../job/Delete_job_post'
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -307,6 +311,25 @@ function Navbar() {
           <Route path="/pst/PastDashboard" exact>
             <Dashboard/>
           </Route>
+          <Route path="/pst/Job" exact>
+            <NewjobAdd />
+          </Route>
+          <Route path="/pst/JobOpertunity" exact>
+            <JobOpertunity />
+          </Route>
+          <Route path="/pst/jobview" exact>
+            <ViewJob />
+          </Route>
+          <Route path="/pst/myJobOpertunity" exact>
+            <MyJobOpertunity />
+          </Route>
+          <Route path="/pst/jobedit" exact>
+            <EditPost />
+          </Route>
+          <Route path="/pst/jobdelete" exact>
+            <DeletePost />
+          </Route>
+          
         </Switch>
       </main>
     </div >
