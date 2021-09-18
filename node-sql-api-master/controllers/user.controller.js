@@ -8,7 +8,6 @@ const BASE_URL = "localhost:5000/api/login/validate/";
 const sendGridMail = require('@sendgrid/mail');
 sendGridMail.setApiKey('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');
 
-
 // Create and Save a new user
 exports.create = (req, res) => {
     // Validate request
@@ -209,4 +208,3 @@ exports.delete = (req, res) => {
             });
         });
 };
-
