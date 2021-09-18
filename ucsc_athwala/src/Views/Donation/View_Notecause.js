@@ -11,6 +11,7 @@ import  Button from '@material-ui/core/Button';
 import {NoteDoneeDetails,Description} from './View_Casues';
 import { useLocation } from 'react-router';
 import axios from "axios";
+import ContactForm from './contactForm';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,6 +36,8 @@ const useStyles = makeStyles((theme) => ({
         marginTop:10,
         marginBottom:20,
         fontFamily:"Poppins, sans-serif",
+        marginTop:'40px',
+        marginBottom:'30px'
       },
 
       card:{
@@ -62,6 +65,12 @@ const useStyles = makeStyles((theme) => ({
       contactbtn:{
           textTransform:"none",
           fontFamily:"Poppins, sans-serif",
+      },
+      uploadbtn:{
+          marginTop:10,
+          marginBottom:20,
+          textTransform:'none',
+          fontFamily:"Poppins, sans-serif",
       }
   
   }));
@@ -69,15 +78,20 @@ const useStyles = makeStyles((theme) => ({
 export default function View_Notecause(){
     const classes = useStyles();
     const [description,setDescription] = useState();
+    const [requestStudentid,setRequestStudentid] = useState();
     const [title,setTitle] = useState();
     const [year, setYear] = React.useState();
     const [subject, setSubject] = React.useState();
     const [lesson, setLesson] = React.useState();
     const [date, setDate] = React.useState();
+    const [file , setFile] = useState([]);
     const search = useLocation().search;
+   
+    const donationid = new URLSearchParams(search).get("id");
+    const userData=JSON.parse(localStorage.getItem("userData"));
 
     useEffect(() => {
-        const donationid = new URLSearchParams(search).get("id");
+        
         fetchDescription(donationid);
         fetchDetails(donationid);
     },[]);
@@ -95,6 +109,7 @@ export default function View_Notecause(){
                 console.log(response.data);
                 setDescription(response.data[0].description);
                 setTitle(response.data[0].title);
+                setRequestStudentid(response.data[0].student_id);
             })
     };
 
@@ -118,6 +133,11 @@ export default function View_Notecause(){
             })
     };
 
+    const onChangeHandler = (event)=>{
+        console.log(event.target.files[0]);
+        setFile(event.target.files[0]);    
+    }
+
     return(
         <div>
                     <Grid container spacing={2}>
@@ -131,18 +151,18 @@ export default function View_Notecause(){
                             </Card>
                         </Grid>
 
-                        <Description description={description} title={title}/>
+                        <Description description={description} title={title} />
                     </Grid>
                     
 
                     <Grid container spacing={2} >
-                        <NoteDoneeDetails year={year} subject={subject} lesson={lesson} date={date}/>
+                        <NoteDoneeDetails year={year} subject={subject} lesson={lesson} date={date} requestStudentid={requestStudentid} userId = {userData.id}/>
                         
                         <Grid item xs={6}>
                         <Card className={classes.card}>
                                 <CardContent>
                                     <div>
-                                        <Typography variant="h5" className={classes.title}>
+                                    <Typography variant="h5" className={classes.title}>
                                         Donate Now
                                     </Typography>
                                     <Typography variant="subtitle2" className={classes.title}>
@@ -151,25 +171,34 @@ export default function View_Notecause(){
                                     <Button
                                         variant="contained"
                                         component="label"
+                                        color="primary"
+                                        className={classes.uploadbtn}
                                         >
                                         Upload File
                                         <input
                                             type="file"
+                                            name="file" 
+                                            onChange={onChangeHandler}
                                         />
+                                    </Button>
+                                    <br></br>
+                                    <Button
+                                        variant="contained"
+                                        component="label"
+                                        type="submit"
+                                        color="secondary"
+                                        className={classes.uploadbtn}
+                                        >
+                                        Upload File
                                     </Button>
                                     </div>
                                     <div>
                                     <Typography variant="subtitle2" className={classes.title}>
-                                       Or You can cotact donee to donate
+                                       Or Provide your details to contact you
                                     </Typography>
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        component="label"
-                                        className={classes.contactbtn}
-                                        >
-                                        Contact to pickup
-                                    </Button>
+
+                                    <ContactForm donationID={donationid} type='note'/>
+                                    
                                     </div>
                                 </CardContent>   
                             </Card>

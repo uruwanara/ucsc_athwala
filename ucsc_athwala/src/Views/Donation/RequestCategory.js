@@ -86,6 +86,30 @@ export default function View_Allcause(){
     const classes = useStyles();
     const history = useHistory();
 
+    var notelink;
+    var clothlink;
+    var devicelink;
+    var moneylink;
+    var otherlink;
+
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    
+    if(userData.userType === "STUDENT"){
+        notelink ="/std/requestNote";
+        clothlink = "/std/requestCloth";
+        devicelink = "/std/requestDevice";
+        moneylink = "/std/requestMoney";
+        otherlink = "/std/requestOther";
+
+      }
+      if(userData.userType === "UNIONST" ){
+        notelink ="/ustd/requestNote";
+        clothlink = "/ustd/requestCloth";
+        devicelink = "/ustd/requestDevice";
+        moneylink ="/ustd/requestMoney";
+        otherlink = "/ustd/requestOther";
+      }
+
     function FormRow1() {
         return (
           <React.Fragment>
@@ -109,7 +133,7 @@ export default function View_Allcause(){
                         <Button size="small" 
                             className={classes.categoryButton} 
                             startIcon={<AddCircleIcon />}
-                            onClick={()=>{ history.push("/std/requestNote")}}
+                            onClick={()=>{ history.push(notelink)}}
                             >
                                 Request Now
                         </Button>
@@ -136,7 +160,7 @@ export default function View_Allcause(){
                         <Button size="small" 
                             className={classes.categoryButton} 
                             startIcon={<AddCircleIcon />}
-                            onClick={()=>{ history.push("/std/requestCloth")}}
+                            onClick={()=>{ history.push(clothlink)}}
                             >
                                 Request Now
                         </Button>
@@ -163,7 +187,7 @@ export default function View_Allcause(){
                         <Button size="small" 
                             className={classes.categoryButton} 
                             startIcon={<AddCircleIcon />}
-                            onClick={()=>{ history.push("/std/requestDevice")}}
+                            onClick={()=>{ history.push(devicelink)}}
                             >
                                 Request Now
                         </Button>
@@ -197,7 +221,7 @@ export default function View_Allcause(){
                         <Button size="small" 
                             className={classes.categoryButton} 
                             startIcon={<AddCircleIcon />}
-                            onClick={()=>{ history.push("/std/requestMoney")}}
+                            onClick={()=>{ history.push(moneylink)}}
                             >
                                 Request Now
                         </Button>
@@ -224,7 +248,7 @@ export default function View_Allcause(){
                         <Button size="small" 
                             className={classes.categoryButton} 
                             startIcon={<AddCircleIcon />}
-                            onClick={()=>{ history.push("/std/requestOther")}}
+                            onClick={()=>{ history.push(otherlink)}}
                             >
                                 Request Now
                         </Button>
