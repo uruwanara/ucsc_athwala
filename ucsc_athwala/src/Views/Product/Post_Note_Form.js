@@ -10,6 +10,11 @@ import BorderColorIcon from '@material-ui/icons/BorderColor';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -145,7 +150,17 @@ export default function SignUp() {
             </Grid>
 
             <Grid item xs={12}>
-              <TextField
+            <FormControl fullWidth sx={{ m: 1 }}>
+          <InputLabel htmlFor="outlined-adornment-amount">Price* </InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-amount"
+            // value={values.amount}
+            // onChange={handleChange('amount')}
+            startAdornment={<InputAdornment position="start">Rs:</InputAdornment>}
+            label="Price"
+          />
+        </FormControl>
+              {/* <TextField
                 variant="outlined"
                 fullWidth
                 name="price"
@@ -157,7 +172,7 @@ export default function SignUp() {
                 onFocus={(e) => (e.currentTarget.type = "price")}
                 onBlur={(e) => (e.currentTarget.type = "text")}
                 onChange={e => setDate(e.target.value)}
-              />
+              /> */}
             </Grid>
             <Grid item xs={12}>
                 <Typography component="h1" variant="subtitle1">
