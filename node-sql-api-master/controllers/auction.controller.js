@@ -2,7 +2,7 @@ const db = require("../models");
 const connection = require("../dbConnection")
 
 exports.viewall = (req, res) => {
-    connection.query('Select * from donations;',
+    connection.query('Select * from auction where status = 1 ;',
     (err, result,fields) => {
         if (err) {
             res.send(err);
@@ -75,6 +75,7 @@ exports.noteRequest = (req,res) => {
     connection.query( 'insert into auction (title,description,year,baseprice,date,student_id) values(?,?,?,?,?,?);',
     [title,description,year,Baseprice,date,studentID],
     (err, result,fields) => {
+
         if (err) {
             res.send(err);
         } 
