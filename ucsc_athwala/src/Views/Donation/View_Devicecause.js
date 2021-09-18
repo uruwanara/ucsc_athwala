@@ -7,10 +7,10 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import  Button from '@material-ui/core/Button';
 import {DeviceDoneeDetails,Description} from './View_Casues';
 import { useLocation } from 'react-router';
 import axios from "axios";
+import ContactForm from './contactForm';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,6 +35,8 @@ const useStyles = makeStyles((theme) => ({
         marginTop:10,
         marginBottom:20,
         fontFamily:"Poppins, sans-serif",
+        marginTop:'40px',
+        marginBottom:'30px'
       },
 
       card:{
@@ -74,10 +76,14 @@ export default function View_Clothcause(){
     const [brand, setBrand] = React.useState();
     const [model, setModel] = React.useState();
     const [date, setDate] = React.useState();
+    const [requestStudentid,setRequestStudentid] = useState();
     const search = useLocation().search;
 
+    const donationid = new URLSearchParams(search).get("id");
+    const userData=JSON.parse(localStorage.getItem("userData"));
+
     useEffect(() => {
-        const donationid = new URLSearchParams(search).get("id");
+        
         fetchDescription(donationid);
         fetchDetails(donationid);
     },[]);
@@ -95,6 +101,7 @@ export default function View_Clothcause(){
                 console.log(response.data);
                 setDescription(response.data[0].description);
                 setTitle(response.data[0].title);
+                setRequestStudentid(response.data[0].student_id);
             })
     };
 
@@ -116,6 +123,10 @@ export default function View_Clothcause(){
             })
     };
 
+    const handleSubmit = (event) => {
+
+    };
+
     return(
         <div>
                     <Grid container spacing={2}>
@@ -133,7 +144,7 @@ export default function View_Clothcause(){
                     
 
                     <Grid container spacing={2} >
-                        <DeviceDoneeDetails model={model} brand={brand} date={date}/>
+                        <DeviceDoneeDetails model={model} brand={brand} date={date} requestStudentid={requestStudentid} userId = {userData.id}/>
 
                         <Grid item xs={6}>
                         <Card className={classes.card}>
@@ -147,14 +158,9 @@ export default function View_Clothcause(){
                                     <Typography variant="subtitle2" className={classes.title}>
                                        You can cotact donee to donate
                                     </Typography>
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        component="label"
-                                        className={classes.contactbtn}
-                                        >
-                                        Contact to pickup
-                                    </Button>
+
+                                    <ContactForm donationID={donationid} type='device'/>
+                                    
                                     </div>
                                 </CardContent>   
                             </Card>

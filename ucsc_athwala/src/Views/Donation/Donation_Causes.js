@@ -19,8 +19,11 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import TextField from '@material-ui/core/TextField';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import {RequestButton,MyCauseButton,MyDonationButton} from './Donation_button';
-import axios from "axios";
-
+import Searchbar from './Donation_search';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 
 const useStyles = makeStyles((theme) =>({
@@ -71,62 +74,17 @@ const useStyles = makeStyles((theme) =>({
     color:"#546e7a",
     marginTop:5,
     marginBottom:20,
-  }
+  },
+  topic:{
+    marginTop:'30px',
+    marginBottom:'20px',
+  },
+  formControl: {
+    minWidth: 120,
+    marginTop:'20px',
+    marginLeft:'60px'
+  },
 }));
-
-{/*const students = [  
-    {  
-      'id': 1,
-      'type' : 'note' , 
-      'title': 'DSA Lecture note',   
-      'description': 'i am 2nd year student.I need DSA 2 lecture note' , 
-      'image' :Note,
-    },  
-     
-    {  
-      'id': 3, 
-      'type' : 'device' ,   
-      'title': 'Mobile phone',   
-      'description': 'I am a first year student. i need mobile phone' ,
-      'image' :Device,   
-    }, 
-    {  
-      'id': 4, 
-      'type' : 'money' ,   
-      'title': 'Course fees',   
-      'description': 'help with money for course fees' , 
-      'image' :Money, 
-    }, 
-    {  
-      'id': 5,
-      'type' : 'note' ,    
-      'title': 'DSA Lecture note',   
-      'description': 'im 2nd year student.I need DSA 2 lecture note' ,  
-      'image' :Note,
-    },
-    {  
-      'id': 6,  
-      'type' : 'other' ,  
-      'title': 'help for my brothers recovery',   
-      'description': 'I am a second year student. My brother got accident last month.' , 
-      'image' :Other,  
-    },
-    {  
-      'id': 7,  
-      'type' : 'note' ,  
-      'title': 'Database Lecture note',   
-      'description': 'im 2nd year student.I need database lecture note' ,  
-      'image' :Note, 
-    },
-    {  
-      'id': 2, 
-      'type' : 'cloth' ,   
-      'title': 'Office Trousers',   
-      'description': 'i am 2nd year student.I need Office Trousers' , 
-      'image' :Cloth,
-    }, 
-]; */}
-
 
 
 export default function Cases(){
@@ -135,6 +93,20 @@ export default function Cases(){
   const userData=JSON.parse(localStorage.getItem("userData"));
 
   const [mapset, SetMap] = useState([]);
+  const [filter, setFilter] = React.useState('');
+  const [open, setOpen] = React.useState(false);
+
+  const handleChange = (event) => {
+    setFilter(event.target.value);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   useEffect(() =>{
     fetchData();
@@ -151,7 +123,7 @@ export default function Cases(){
   };
 
   const tabButton =() =>{
-    if(userData.userType === "STUDENT"){
+    if(userData.userType === "STUDENT" ||userData.userType === "UNIONST" ){
       return(
         <>
         <RequestButton />
@@ -170,30 +142,69 @@ export default function Cases(){
 
   }
 
-  
 
   function FormRow (props){
     var link;
     var id = props.id;
     var imglink;
     if(props.type == 'note'){
-      link = "/std/viewNoteCause_details?id="+id;
+      if(userData.userType === "STUDENT"){
+        link = "/std/viewNoteCause_details?id="+id;
+      }
+      else if(userData.userType === "UNIONST" ){
+        link = "/ustd/viewNoteCause_details?id="+id;
+      }
+      else if(userData.userType === "ALUMNI" ){
+        link = "/pstd/viewNoteCause_details?id="+id;
+      }
       imglink = Note;
     }
     else if (props.type == 'cloth'){
-      link = "/std/viewClothCause_details?id="+id;
+      if(userData.userType === "STUDENT"){
+        link = "/std/viewClothCause_details?id="+id;
+      }
+      else if(userData.userType === "UNIONST" ){
+        link = "/ustd/viewClothCause_details?id="+id;
+      }
+      else if(userData.userType === "ALUMNI" ){
+        link ="/pstd/viewClothCause_details?id="+id;
+      }
       imglink = Cloth;
     }
     else if (props.type == 'device'){
-      link = "/std/viewDeviceCause_details?id="+id;
+      if(userData.userType === "STUDENT"){
+        link = "/std/viewDeviceCause_details?id="+id;
+      }
+      else if(userData.userType === "UNIONST" ){
+        link = "/ustd/viewDeviceCause_details?id="+id;
+      }
+      else if(userData.userType === "ALUMNI" ){
+        link = "/pstd/viewDeviceCause_details?id="+id;
+      }
       imglink = Device;
     }
     else if (props.type == 'money'){
-      link = "/std/viewMoneyCause_details?id="+id;
+      if(userData.userType === "STUDENT"){
+        link = "/std/viewMoneyCause_details?id="+id;
+      }
+      else if(userData.userType === "UNIONST" ){
+        link = "/ustd/viewMoneyCause_details?id="+id;
+      }
+      else if(userData.userType === "ALUMNI" ){
+        link = "/pstd/viewMoneyCause_details?id="+id;
+      }
       imglink = Money;
     }
     else if (props.type == 'other'){
-      link = "/std/viewOtherCause_details?id="+id;
+      if(userData.userType === "STUDENT"){
+        link = "/std/viewOtherCause_details?id="+id;
+      }
+      else if(userData.userType === "UNIONST" ){
+        link = "/ustd/viewOtherCause_details?id="+id;
+      }
+      else if(userData.userType === "ALUMNI" ){
+        link = "/pstd/viewOtherCause_details?id="+id;
+      }
       imglink = Other;
     }
     return (
@@ -241,7 +252,32 @@ export default function Cases(){
 
     return(
     <div>
-        <div><Typography variant="h5" className={classes.title}>All Causes</Typography></div>
+        <Grid container spacing={2} className={classes.topic}>
+          <Grid item md={2}><Typography variant="h5" className={classes.title}>All Causes</Typography></Grid>
+          <Grid item md={8}><Searchbar /></Grid>
+          <Grid item md={2}>
+              <FormControl className={classes.formControl}>
+                <Select
+                  labelId="demo-controlled-open-select-label"
+                  id="demo-controlled-open-select"
+                  open={open}
+                  onClose={handleClose}
+                  onOpen={handleOpen}
+                  value={filter}
+                  onChange={handleChange}
+                >
+                  <MenuItem value={'all'}>All</MenuItem>
+                  <MenuItem value={'note'}>Lecture notes</MenuItem>
+                  <MenuItem value={'cloth'}>CLoths</MenuItem>
+                  <MenuItem value={'device'}>Devices</MenuItem>
+                  <MenuItem value={'money'}>Money</MenuItem>
+                  <MenuItem value={'other'}>Other</MenuItem>
+                </Select>
+              </FormControl>
+              
+          </Grid>
+        </Grid>
+
             <div>
               <div style={{float:"left"}}>
               <Grid container spacing={4}>
@@ -250,7 +286,7 @@ export default function Cases(){
               
               </div>
 
-              <div className={classes.filterbar}>
+              {/*<div className={classes.filterbar}>
                 <Grid container spacing={1} alignItems="flex-end" >
                   <Grid item>
                   <TextField id="outlined-basic" variant="outlined" size="small" className={classes.textfilter}/>
@@ -264,7 +300,7 @@ export default function Cases(){
                         </Button>
                   </Grid>
                 </Grid>
-              </div>
+              </div>*/}
             </div>
               
         <div className={classes.root}>

@@ -15,7 +15,7 @@ const useStyles = makeStyles({
         paddingLeft:10,
         paddingRight:10,
         border:"none",
-        borderRadius:20,
+        borderRadius:10,
         "&:hover": {
           color: "#FFFFFF",
           backgroundColor: "#757de8",
@@ -28,11 +28,22 @@ const useStyles = makeStyles({
 export function RequestButton(){
     const classes = useStyles();
     const history = useHistory();
+
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    var link;
+
+    if(userData.userType === "STUDENT"){
+      link = "/std/requestcategories";
+    }
+    if(userData.userType === "UNIONST" ){
+      link = "/ustd/requestcategories";
+    }
+
     return(
         <Grid item s={4}>
             <Button size="large" 
             className={classes.filterbutton} 
-            onClick={()=>{ history.push("/std/requestcategories")}}
+            onClick={()=>{ history.push(link)}}
                 startIcon={<QueueIcon />}
             >
                 Request Donation
@@ -45,11 +56,23 @@ export function RequestButton(){
 export function MyCauseButton(){
     const classes = useStyles();
     const history = useHistory();
+
+    const userData=JSON.parse(localStorage.getItem("userData"));
+
+    var link;
+
+    if(userData.userType === "STUDENT"){
+      link = "/std/viewMyrequest";
+    }
+    if(userData.userType === "UNIONST" ){
+      link = "/ustd/viewMyrequest";
+    }
+
     return(
         <Grid item s={4}>
                       <Button size="large" 
                         className={classes.filterbutton} 
-                        onClick={()=>{ history.push("/std/viewMyrequest")}}
+                        onClick={()=>{ history.push(link)}}
                         startIcon={<FavoriteBorderIcon />}
                         >
                           My Causes
@@ -62,11 +85,23 @@ export function MyCauseButton(){
 export function MyDonationButton(){
     const classes = useStyles();
     const history = useHistory();
+
+    const userData=JSON.parse(localStorage.getItem("userData"));
+
+    var link;
+
+    if(userData.userType === "STUDENT"){
+      link = "/std/myDonation";
+    }
+    if(userData.userType === "UNIONST" ){
+      link = "/ustd/myDonation";
+    }
+
     return(
         <Grid item s={4}>
                       <Button size="large" 
                         className={classes.filterbutton} 
-                        onClick={()=>{ history.push("/std/myDonation")}}
+                        onClick={()=>{ history.push(link)}}
                         startIcon={<FavoriteBorderIcon />}
                         >
                           My Donations
@@ -79,11 +114,23 @@ export function MyDonationButton(){
 export function AllCauseButton(){
     const classes = useStyles();
     const history = useHistory();
+
+    const userData=JSON.parse(localStorage.getItem("userData"));
+
+    var link;
+
+    if(userData.userType === "STUDENT"){
+      link = "/std/viewcauses";
+    }
+    if(userData.userType === "UNIONST" ){
+      link = "/ustd/viewcauses";
+    }
+
     return(
         <Grid item s={4}>
               <Button size="large" 
                 className={classes.filterbutton} 
-                onClick={()=>{ history.push("/std/viewcauses")}}
+                onClick={()=>{ history.push(link)}}
                 startIcon={<FavoriteBorderIcon />}
                 >
                   All Causes

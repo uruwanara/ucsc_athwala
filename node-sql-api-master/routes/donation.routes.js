@@ -30,7 +30,20 @@ module.exports = donationRoutes => {
     //request other
     router.post("/otherrequest",donation.otherRequest);
 
+    //search donations
+    router.post("/search",donation.search);
 
+    //send doner's contact details
+    router.post("/contact",donation.contact);
+
+    //get the doner's details
+    router.post("/donerdetails",donation.donerdetails);
+
+    //mark the donation status as received
+    router.post("/markstatus",donation.markstatus);
+
+    //get my donation history 
+    router.get("/donationhistory",donation.myhistory);
 
     donationRoutes.use('/api/donations', router);
 };

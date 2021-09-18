@@ -1,0 +1,14 @@
+.search input[placeholder] {
+    color:rgb(157, 150, 134);
+    font-weight: bold;
+    font-size: larger;
+}
+
+.searchArea button,
+.searchArea .closeIcon {
+  position: relative;
+  padding: 0px;
+  color: #6f718d;
+}
+
+
