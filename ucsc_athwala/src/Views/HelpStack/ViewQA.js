@@ -31,24 +31,40 @@ const useStyles = makeStyles({
         marginTop:30,
         marginBottom:20,
         fontSize:15,
+    },
+    answer:{
+        color:"#000000",
+        marginTop:40,
+        fontSize:14,
+        fontWeight:'normal',
+        fontFamily:"Poppins, sans-serif",
+        textAlign:'justify'
+    },
+    txtfield:{
+        fontFamily:"Poppins, sans-serif",
+    },
+    answerby:{
+        color:"#546e7a",
+        marginTop:5,
+        fontSize:14,
+        fontWeight:'normal',
+        fontFamily:"Poppins, sans-serif",
     }
 })
 
 export default function ViewQA(){
     const classes = useStyles();
 
-    const[vote, setVote] = useState(0);
     const search = useLocation().search;
     const[title, setTitle] = useState("");
     const[questionbody, setQuestionbody] = useState("");
     const[mapset, setMap] = useState([]);
+    const[answer,setMyanswer] = useState("");
 
-    function incrementVote(){
-          setVote(prevVote => prevVote + 1);
-    }
-
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    const questionid = new URLSearchParams(search).get("id");
     useEffect(() => {
-        const questionid = new URLSearchParams(search).get("id");
+        
         fetchQuestion(questionid);
         fetchAnswers(questionid);
     },[]);
@@ -72,47 +88,65 @@ export default function ViewQA(){
         })
     };
 
+    const handleSubmit = (event) => {
+        event.preventDefault(); 
+console.log("hriii");
+        const myanswer={
+            "questionid":questionid,
+            "userid": userData.id,
+            "answer":answer,
+        }
+          axios.post("http://localhost:5000/api/helpstacks/answerquestion",myanswer,{
+              headers:{
+                  "access-control-allow-origin" : "*",
+                  "Content-type": "application/json; charset=UTF-8"
+              }
+          }).then((response)=>{
+              console.log(response.data);
+              if(response.data==='success'){
+                setMyanswer("");
+                console.log("hriii");
+                fetchQuestion(questionid);
+                fetchAnswers(questionid);
+              }
+    
+          }).catch((err)=>{
+    
+          })
+
+    }
+
     return(
         <div>
             <Grid container md={12} spacing={4}>
                     <Grid item md={12}>
                         <div><Typography variant="h5" className={classes.title}>{title}</Typography></div>
                     </Grid>
-                    <Grid item md={2}>
-                        <button onClick={incrementVote} className={classes.votebutton}>Vote</button>
-                        <span className={classes.span}>{vote}</span>   
-                    </Grid>
-                    <Grid item md={10}>
+                    <Grid item md={12}>
                         <TextField
                             autoComplete="question"
                             name="question"
                             variant="outlined"
                             id="question"
                             value={questionbody}
+                            className={classes.txtfield}
                             fullWidth
                             multiline
                             rows ={5}
-                            autoFocus                           
+                            inputProps={
+                                { readOnly: true, }
+                            }                         
                         />  
                     </Grid>
 
                     {mapset.map(answer => (  
                         <>
                          <Grid item md={2}>
-                         <Typography variant="h5" className={classes.title}>Answer</Typography> 
+                         <Typography variant="h5" className={classes.title}>Answer By</Typography> 
+                         <Typography variant="h5" className={classes.answerby}>{answer.fname} {answer.lname}</Typography> 
                          </Grid>
                          <Grid item md={10}>
-                             <TextField
-                                 autoComplete="question"
-                                 name="question"
-                                 variant="outlined"
-                                 id="question"
-                                 value={answer.answer}
-                                 fullWidth
-                                 multiline
-                                 rows ={6}
-                                 autoFocus                           
-                             />  
+                         <Typography variant="subtitle1" className={classes.answer}>{answer.answer}</Typography>   
                          </Grid >
                          </>
                     ))}
@@ -129,7 +163,7 @@ export default function ViewQA(){
                     </Grid>
                 </Grid>
 
-        <from  >
+        <form  onSubmit={handleSubmit}>
         <Grid container  spacing ={3} >
 
             <Grid item md={12}>
@@ -143,10 +177,12 @@ export default function ViewQA(){
                 variant="outlined"
                 id="body"
                 label="body"
+                value={answer}
                 fullWidth
                 multiline
                 rows ={10}
                 autoFocus
+                onChange={e => setMyanswer(e.target.value)}
                 
               />
               
@@ -167,7 +203,7 @@ export default function ViewQA(){
             
 
         </Grid>
-        </from>
+        </form>
 
                     
 
