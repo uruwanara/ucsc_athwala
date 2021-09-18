@@ -67,7 +67,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to = "/ustd/ustdviewfundraising" className={classes.Nounderline}>
+              <Link to = "/ustd/funddashboard" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <GavelIcon style={{ fill: "blue"}}/>

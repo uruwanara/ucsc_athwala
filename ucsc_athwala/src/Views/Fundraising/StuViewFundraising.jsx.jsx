@@ -157,6 +157,177 @@
 
 // export default StuFundraising;
 
+// import React from "react";
+// import { makeStyles, useTheme } from "@material-ui/core/styles";
+// import Card from "@material-ui/core/Card";
+// import CardContent from "@material-ui/core/CardContent";
+// import CardMedia from "@material-ui/core/CardMedia";
+// import IconButton from "@material-ui/core/IconButton";
+// import Typography from "@material-ui/core/Typography";
+// import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
+// import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+// import SkipNextIcon from "@material-ui/icons/SkipNext";
+// import Vaniwilla from '../../image/Vaani-Vizha.jpg';
+// import Pirith from '../../image/Pirith.jpg';
+// import Box from '@material-ui/core/Box';
+// import Button from '@material-ui/core/Button';
+// import { LinearProgress } from "@material-ui/core";
+
+
+
+
+
+// const useStyles = makeStyles((theme) => ({
+//     root: {
+//         display: "flex"
+//     },
+//     details: {
+//         display: "flex",
+//         flexDirection: "column"
+//     },
+//     content: {
+//         flex: "1 0 auto"
+//     },
+//     cover: {
+//         // width: '75%',
+//     },
+//     controls: {
+//         display: "flex",
+//         alignItems: "center",
+//         // paddingLeft: theme.spacing(1),
+//         // paddingBottom: theme.spacing(1)
+//     },
+
+// }
+// ));
+
+// function StuViewFundraising() {
+//     const classes = useStyles();
+//     const theme = useTheme();
+
+//     return (
+//         <React.Fragment>
+//             <Typography variant="h2" color="initial" align="center">
+//                 Fundraising Viewer
+//             </Typography>
+
+//             <Card className={classes.root} mt={4}>
+
+//                 <CardMedia
+//                     className={classes.cover}
+//                     // image={Vaniwilla}
+//                     image={Vaniwilla}
+//                     title="Live from space album cover"
+//                     alt="dadd"
+//                     style={{ width: '25%' }}
+//                 />
+//                 <Box className={classes.details} style={{ width: '75%' }}>
+//                     <CardContent className={classes.content}>
+//                         <Box>
+//                             <Typography variant="h4" color="primary" align="center">
+//                                 Vani Vizha Tamil Festival 2021
+//                             </Typography>
+//                             <Typography variant="subtitle1" color="initial" justify="center" align="left" style={{ margin: theme.spacing(1) }}>
+//                                 First year students of UCSC organize Vani Viza tamil festival every year.In this year they are planing to held it on                             23rd of August, 2021. This event will be a good opperunity to create unity among the badges.
+//                             </Typography>
+
+//                         </Box>
+
+
+//                         <Box className={classes.controls} style={{ margin: theme.spacing(1) }}>
+//                             <Typography variant="h6" color="initial" style={{ width: '33.3333%' }} >Raised : Rs. 100,000</Typography>
+//                             <Typography variant="h6" color="initial" style={{ width: '33.3333%' }} >Goal : Rs. 200,000</Typography>
+//                             <Typography variant="h6" color="initial" style={{ width: '33.3333%' }} >start from : Rs. 100 </Typography>
+//                         </Box >
+//                         <Box style={{ margin: theme.spacing(1) }}>
+//                             <Typography variant="subtitle1">50% completed</Typography>
+//                             <LinearProgress variant="determinate" value={50} />
+//                         </Box>
+//                         <Box className={classes.controls} style={{ margin: theme.spacing(1) }}>
+//                             <Typography variant="h6" color="initial" style={{ width: '75%' }} >End on 2021/10/02 3.00 p.m</Typography>
+
+//                             <Button variant="contained" color="primary" style={{ width: '25%' }, { margin: theme.spacing(1) }}>
+//                                 Donate
+//                             </Button>
+//                             {/* <Button variant="contained" color="secondary" style={{ width: '16.6666%' }, { margin: theme.spacing(1) }}>
+//                                 End
+//                             </Button>
+//                             <Button variant="contained" color="warning.main" style={{ width: '16.6666%' }}>
+//                                 Edit
+//                             </Button> */}
+
+//                         </Box>
+
+
+//                     </CardContent>
+//                 </Box>
+
+//             </Card>
+
+//             <Box component="br" />
+//             <Box component="br" />
+
+//             <Card className={classes.root} mt={4}>
+
+//                 <CardMedia
+//                     className={classes.cover}
+//                     // image={Vaniwilla}
+//                     image={Pirith}
+//                     title="Live from space album cover"
+//                     alt="dadd"
+//                     style={{ width: '25%' }}
+//                 />
+//                 <Box className={classes.details} style={{ width: '75%' }}>
+//                     <CardContent className={classes.content}>
+//                         <Box>
+//                             <Typography variant="h4" color="primary" align="center">
+//                                 Annual Pirith Ceremony
+//                             </Typography>
+//                             <Typography variant="subtitle1" color="initial" justify="center" align="left" style={{ margin: theme.spacing(1) }}>
+//                                 Second year students of UCSC Pirith Ceremony every year. In this year they are planing to held it on                             23rd of August, 2021. This event will be a good opperunity to create unity among the badges.
+//                             </Typography>
+
+//                         </Box>
+
+
+//                         <Box className={classes.controls} style={{ margin: theme.spacing(1) }}>
+//                             <Typography variant="h6" color="initial" style={{ width: '33.3333%' }} >Raised : Rs. 200,000</Typography>
+//                             <Typography variant="h6" color="initial" style={{ width: '33.3333%' }} >Goal : Rs. 400,000</Typography>
+//                             <Typography variant="h6" color="initial" style={{ width: '33.3333%' }} >start from : Rs. 500 </Typography>
+//                         </Box >
+//                         <Box style={{ margin: theme.spacing(1) }}>
+//                             <Typography variant="subtitle1">50% completed</Typography>
+//                             <LinearProgress variant="determinate" value={50} />
+//                         </Box>
+//                         <Box className={classes.controls} style={{ margin: theme.spacing(1) }}>
+//                             <Typography variant="h6" color="initial" style={{ width: '75%' }} >End on 2021/10/02 3.00 p.m</Typography>
+
+//                             <Button variant="contained" color="primary" style={{ width: '25%' }, { margin: theme.spacing(1) }}>
+//                                 Donate
+//                             </Button>
+//                             {/* <Button variant="contained" color="secondary" style={{ width: '16.6666%' }, { margin: theme.spacing(1) }}>
+//                                 End
+//                             </Button>
+//                             <Button variant="contained" style={{ width: '16.6666%' }}>
+//                                 Edit
+//                             </Button> */}
+
+//                         </Box>
+
+
+//                     </CardContent>
+//                 </Box>
+
+//             </Card>
+
+//         </React.Fragment>
+//     );
+// }
+
+// export default StuViewFundraising;
+
+
+
 import React from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -172,10 +343,12 @@ import Pirith from '../../image/Pirith.jpg';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import { LinearProgress } from "@material-ui/core";
-
-
-
-
+import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
+import { Link } from "react-router-dom";
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import { Divider } from "@material-ui/core";
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -191,137 +364,122 @@ const useStyles = makeStyles((theme) => ({
     cover: {
         // width: '75%',
     },
+    media1: {
+        height: '100%',
+    },
     controls: {
         display: "flex",
         alignItems: "center",
         // paddingLeft: theme.spacing(1),
         // paddingBottom: theme.spacing(1)
     },
+    filterbutton: {
+        backgroundColor: "#757de8",
+        color: "#FFFFFF",
+        textTransform: "none",
+
+        border: "none",
+        borderRadius: 20,
+        "&:hover": {
+            color: "#FFFFFF",
+            backgroundColor: "#757de8",
+        },
+    },
 
 }
 ));
 
-function StuViewFundraising() {
+function StuFundraising() {
     const classes = useStyles();
     const theme = useTheme();
 
     return (
         <React.Fragment>
-            <Typography variant="h2" color="initial" align="center">
-                Fundraising Viewer
+
+            <Box component="br" />
+            <Typography align="center" variant="h4" color="initial">
+                Available Fundraisings
             </Typography>
-
-            <Card className={classes.root} mt={4}>
-
-                <CardMedia
-                    className={classes.cover}
-                    // image={Vaniwilla}
-                    image={Vaniwilla}
-                    title="Live from space album cover"
-                    alt="dadd"
-                    style={{ width: '25%' }}
-                />
-                <Box className={classes.details} style={{ width: '75%' }}>
-                    <CardContent className={classes.content}>
-                        <Box>
-                            <Typography variant="h4" color="primary" align="center">
-                                Vani Vizha Tamil Festival 2021
-                            </Typography>
-                            <Typography variant="subtitle1" color="initial" justify="center" align="left" style={{ margin: theme.spacing(1) }}>
-                                First year students of UCSC organize Vani Viza tamil festival every year.In this year they are planing to held it on                             23rd of August, 2021. This event will be a good opperunity to create unity among the badges.
-                            </Typography>
-
-                        </Box>
-
-
-                        <Box className={classes.controls} style={{ margin: theme.spacing(1) }}>
-                            <Typography variant="h6" color="initial" style={{ width: '33.3333%' }} >Raised : Rs. 100,000</Typography>
-                            <Typography variant="h6" color="initial" style={{ width: '33.3333%' }} >Goal : Rs. 200,000</Typography>
-                            <Typography variant="h6" color="initial" style={{ width: '33.3333%' }} >start from : Rs. 100 </Typography>
-                        </Box >
-                        <Box style={{ margin: theme.spacing(1) }}>
-                            <Typography variant="subtitle1">50% completed</Typography>
-                            <LinearProgress variant="determinate" value={50} />
-                        </Box>
-                        <Box className={classes.controls} style={{ margin: theme.spacing(1) }}>
-                            <Typography variant="h6" color="initial" style={{ width: '75%' }} >End on 2021/10/02 3.00 p.m</Typography>
-
-                            <Button variant="contained" color="primary" style={{ width: '25%' }, { margin: theme.spacing(1) }}>
-                                Donate
-                            </Button>
-                            {/* <Button variant="contained" color="secondary" style={{ width: '16.6666%' }, { margin: theme.spacing(1) }}>
-                                End
-                            </Button>
-                            <Button variant="contained" color="warning.main" style={{ width: '16.6666%' }}>
-                                Edit
-                            </Button> */}
-
-                        </Box>
-
-
-                    </CardContent>
-                </Box>
-
-            </Card>
-
+            <Divider />
             <Box component="br" />
-            <Box component="br" />
-
-            <Card className={classes.root} mt={4}>
-
-                <CardMedia
-                    className={classes.cover}
-                    // image={Vaniwilla}
-                    image={Pirith}
-                    title="Live from space album cover"
-                    alt="dadd"
-                    style={{ width: '25%' }}
-                />
-                <Box className={classes.details} style={{ width: '75%' }}>
-                    <CardContent className={classes.content}>
-                        <Box>
-                            <Typography variant="h4" color="primary" align="center">
-                                Annual Pirith Ceremony
-                            </Typography>
-                            <Typography variant="subtitle1" color="initial" justify="center" align="left" style={{ margin: theme.spacing(1) }}>
-                                Second year students of UCSC Pirith Ceremony every year. In this year they are planing to held it on                             23rd of August, 2021. This event will be a good opperunity to create unity among the badges.
-                            </Typography>
-
-                        </Box>
+            
 
 
-                        <Box className={classes.controls} style={{ margin: theme.spacing(1) }}>
-                            <Typography variant="h6" color="initial" style={{ width: '33.3333%' }} >Raised : Rs. 200,000</Typography>
-                            <Typography variant="h6" color="initial" style={{ width: '33.3333%' }} >Goal : Rs. 400,000</Typography>
-                            <Typography variant="h6" color="initial" style={{ width: '33.3333%' }} >start from : Rs. 500 </Typography>
-                        </Box >
-                        <Box style={{ margin: theme.spacing(1) }}>
-                            <Typography variant="subtitle1">50% completed</Typography>
-                            <LinearProgress variant="determinate" value={50} />
-                        </Box>
-                        <Box className={classes.controls} style={{ margin: theme.spacing(1) }}>
-                            <Typography variant="h6" color="initial" style={{ width: '75%' }} >End on 2021/10/02 3.00 p.m</Typography>
+            <Paper>
+                <Box component="br" />
+                <Grid container m={1} spacing={1}>
+                    <Grid item sm={4} xs={12}>
+                        {/* <ButtonBase className={classes.image} style={{ height: 'fixed' }}>
+                <img className={classes.img} alt="vaniwilla" src={Vaniwilla} />
+                 </ButtonBase> */}
 
-                            <Button variant="contained" color="primary" style={{ width: '25%' }, { margin: theme.spacing(1) }}>
-                                Donate
-                            </Button>
-                            {/* <Button variant="contained" color="secondary" style={{ width: '16.6666%' }, { margin: theme.spacing(1) }}>
-                                End
-                            </Button>
-                            <Button variant="contained" style={{ width: '16.6666%' }}>
-                                Edit
-                            </Button> */}
+                        <CardMedia
+                            className={classes.media1}
+                            image={Vaniwilla}
+                            title="Paella dish"
+                        />
 
-                        </Box>
+                    </Grid>
 
 
-                    </CardContent>
-                </Box>
+                    <Grid item sm={8} xs={12} container direction="row">
 
-            </Card>
+                        <Grid item xs={12}>
+                            <Box mr={1}>
+                                <Typography gutterBottom variant="h6" color="primary">
+                                    Vani Vizha Tamil Festival 2021
+                                </Typography>
+                                <Typography variant="body1" gutterBottom align="justify">
+                                    First year students of UCSC organize Vani Viza tamil festival every year.In this year they are planing to held it on
+                                    23rd of August, 2021. This event will be a good opperunity to create unity among the badges.
+                                </Typography>
+                            </Box>
+                            <Box mb={1} mr={1}>
+                                <Typography variant="body2" color="initial">50% completed
+                                </Typography>
+                                <LinearProgress variant="determinate" value={50} />
+                            </Box>
+                        </Grid>
+                        <Grid item xs={12}>
+                            {/* <div className={classes.rootdiv}> */}
+                            <Grid container spacing={1}>
+
+                                <Grid item sm={4} xm={12}>
+                                    <Box justifyContent="flex-start">
+                                        {/* <Box> */}
+                                        <Typography variant="subtitle2" color="initial">
+                                            Goal Amount: Rs. 200,000
+                                        </Typography>
+                                        {/* </Box> */}
+                                    </Box>
+                                </Grid>
+                                <Grid item sm={8} xm={12}>
+                                    <Box display="flex" justifyContent="flex-end" mr={1} mb={1}>
+                                        <Box mr={1}>
+                                            <Link to="/std/donatefundraising">
+                                            <Button className={classes.filterbutton} variant="contained" color="primary" size="medium" >
+                                                View & Donate
+                                            </Button>
+                                            </Link>
+                                        </Box>
+
+                                        
+                                    </Box>
+                                </Grid>
+
+                            </Grid>
+                            {/* </div> */}
+
+                        </Grid>
+
+                    </Grid>
+                </Grid>
+
+            </Paper>
+
 
         </React.Fragment>
     );
 }
 
-export default StuViewFundraising;
+export default StuFundraising;

@@ -73,7 +73,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to = "/viewstufundraising" className={classes.Nounderline}>
+              <Link to = "/std/stdfundraising" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <GavelIcon className={classes.Listicon}/>

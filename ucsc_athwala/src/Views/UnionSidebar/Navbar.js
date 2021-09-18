@@ -29,7 +29,8 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import UStuViewFundraising from '../Fundraising/UStuViewFundraising';
+import UAvailable_fundraising from '../Fundraising/UStuViewFundraising';
+import Union_Fund_dashboard from '../Fundraising/Union_fund_dashboard';
 import AddFundraising from '../Fundraising/AddFundraising';
 import EditFundraising from '../Fundraising/EditFundraising';
 
@@ -48,6 +49,9 @@ import RequestMoney from '../Donation/Request_Money';
 import RequestOther from '../Donation/Request_Other';
 import MyDonation from '../Donation/My_donation';
 import Donation from '../Donation/Donation_page';
+import Expired__fundraising from '../Fundraising/Expired_fundraising';
+import Ended_fundraising from '../Fundraising/Ended_fundraising';
+import UStudonate_fundraising from '../Fundraising/UStu_donate_fundraising';
 
 
 const drawerWidth = 240;
@@ -326,63 +330,76 @@ function UStdNavside() {
             <Route path="/ustd/ustddashboard" exact>
               <UnionStudentDashboard />
             </Route>
-            
-            <Route path="/ustd/ustdviewfundraising" exact>
-              <UStuViewFundraising />
+
+            <Route path="/ustd/funddashboard" exact>
+              {/* <UStuViewFundraising /> */}
+              <Union_Fund_dashboard />
             </Route>
 
-            <Route path="/ustd/addfundraising" exact>
+            <Route path="/ustd/funddashboard/create" exact>
               <AddFundraising />
             </Route>
-
-            <Route path="/ustd/editfundraising" exact>
+            <Route path="/ustd/funddashboard/available">
+              <UAvailable_fundraising />
+            </Route>
+            <Route path="/ustd/funddashboard/edit" exact>
               <EditFundraising />
             </Route>
+            <Route path="/ustd/funddashboard/ended" exact>
+              <Ended_fundraising/>
+            </Route>
+            <Route path="/ustd/funddashboard/donate" exact>
+              <UStudonate_fundraising/>
+            </Route>
+      
+            <Route path="/ustd/funddashboard/expired" exact>
+            <Expired__fundraising />
+            </Route>
             <Route path="/ustd/viewcauses" exact>
-            <Donation />
-          </Route>
-          <Route path='/ustd/viewMyrequest' exact>
+              <Donation />
+            </Route>
+            <Route path='/ustd/viewMyrequest' exact>
               <MyCause />
-          </Route>
-          <Route path='/ustd/requestcategories' exact>
+            </Route>
+            <Route path='/ustd/requestcategories' exact>
               <Category />
-          </Route>
-          <Route path='/ustd/viewNoteCause_details' exact>
+            </Route>
+            <Route path='/ustd/viewNoteCause_details' exact>
               <NoteCause />
-          </Route >
-          <Route path="/ustd/viewClothCause_details" exact>
-            <ClothCause />
-          </Route>
-          <Route path="/ustd/viewDeviceCause_details" exact>
-            <DeviceCause />
-          </Route>
-          <Route path="/ustd/viewMoneyCause_details" exact>
-            <MoneyCause />
-          </Route>
-          <Route path="/ustd/viewOtherCause_details" exact>
-            <OtherCause />
-          </Route> 
-          <Route path="/ustd/viewdetails_mydonation" exact>
-            <ViewMyRequests />
-          </Route> 
-          <Route path="/ustd/requestNote" exact>
-            <RequestNote />
-          </Route>
-          <Route path="/ustd/requestCloth" exact>
-            <RequestCloth />
-          </Route>
-          <Route path="/ustd/requestDevice" exact>
-            <RequestDevice />
-          </Route>
-          <Route path="/ustd/requestMoney" exact>
-            <RequestMoney />
-          </Route>
-          <Route path="/ustd/requestOther" exact>
-            <RequestOther />
-          </Route>
-          <Route path="/ustd/myDonation" exact>
-            <MyDonation />
-          </Route>
+            </Route >
+            <Route path="/ustd/viewClothCause_details" exact>
+              <ClothCause />
+            </Route>
+            <Route path="/ustd/viewDeviceCause_details" exact>
+              <DeviceCause />
+            </Route>
+            <Route path="/ustd/viewMoneyCause_details" exact>
+              <MoneyCause />
+            </Route>
+            <Route path="/ustd/viewOtherCause_details" exact>
+              <OtherCause />
+            </Route>
+            <Route path="/ustd/viewdetails_mydonation" exact>
+              <ViewMyRequests />
+            </Route>
+            <Route path="/ustd/requestNote" exact>
+              <RequestNote />
+            </Route>
+            <Route path="/ustd/requestCloth" exact>
+              <RequestCloth />
+            </Route>
+            <Route path="/ustd/requestDevice" exact>
+              <RequestDevice />
+            </Route>
+            <Route path="/ustd/requestMoney" exact>
+              <RequestMoney />
+            </Route>
+            <Route path="/ustd/requestOther" exact>
+              <RequestOther />
+            </Route>
+            <Route path="/ustd/myDonation" exact>
+              <MyDonation />
+            </Route>
 
           </Switch>
 
