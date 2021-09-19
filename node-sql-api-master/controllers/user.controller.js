@@ -8,6 +8,7 @@ const BASE_URL = "localhost:5000/api/login/validate/";
 const sendGridMail = require('@sendgrid/mail');
 sendGridMail.setApiKey('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');
 const axios =require('axios');
+const bcrypt =require('bcrypt');
 // Create and Save a new user
 exports.create = (req, res) => {
     // Validate request
@@ -18,14 +19,17 @@ exports.create = (req, res) => {
         return;
     }
 
+    const pw= bcrypt.hash(req.body.password, 10,);
     // Create a user
+    console.log(pw);
+
     const user = {
         username: req.body.username,
         fname: req.body.fname,
         lname: req.body.lname,
         userType: req.body.userType,
         email: req.body.email,
-        password: req.body.password,
+        password:pw,
         isActive: false,
     };
 
