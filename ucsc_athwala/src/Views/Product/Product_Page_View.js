@@ -222,11 +222,11 @@ export default function ProductViews(){
           imglink = EventLaptopHP;
         }
         else if (props.type == 'note'){
-          link = "/std/viewClothCause_detai="+id;
+          link = "/std/ViewProductDetailsNote?id="+id;
           imglink = Note;
         }
         else if (props.type == 'other'){
-          link = "/std/viewOtherCause_details="+id;
+          link = "/std/ViewProductDetailsOther?id="+id;
           imglink = Other;
         }
         return (

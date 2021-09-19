@@ -63,6 +63,8 @@ import PostNoteForm from '../Product/Post_Note_Form';
 import PostOtherForm from '../Product/Post_Other_Form';
 import Studonate_fundraising from '../Fundraising/Stu_donate_fundraising';
 import Chat from '../chat/chat.jsx';
+import ViewProductDetailsNote from '../Product/View_Product_Details_note';
+import ViewProductDetailsOther from '../Product/View_Product_Details_other';
 import Login from '../Signin/SignIn'
 import { useHistory } from "react-router-dom";
 import Land from '../LandingPage/home'  //Change the logout direction here
@@ -454,6 +456,12 @@ function Navbar() {
           </Route>
           <Route path="/std/PostOtherForm" exact>
             <PostOtherForm />
+          </Route>
+          <Route path="/std/ViewProductDetailsNote" exact>
+            <ViewProductDetailsNote />
+          </Route>
+          <Route path="/std/ViewProductDetailsOther" exact>
+            <ViewProductDetailsOther/>
           </Route>
             <Route path="/land" exact>
               <Land/>
