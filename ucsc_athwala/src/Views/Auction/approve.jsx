@@ -107,7 +107,7 @@ export default function View_Notecause(){
                                         component="label"
                                         className={classes.contactbtn}
                                         >
-                                        Approve
+                                        Approve now
                                     </Button>
                                     </div>
                                 </CardContent>   
