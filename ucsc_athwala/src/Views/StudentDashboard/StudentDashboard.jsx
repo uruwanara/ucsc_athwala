@@ -67,6 +67,18 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: '100%',
         maxHeight: '100%',
     },
+    filterbutton: {
+        backgroundColor: "#757de8",
+        color: "#FFFFFF",
+        textTransform: "none",
+
+        border: "none",
+        borderRadius: 20,
+        "&:hover": {
+            color: "#FFFFFF",
+            backgroundColor: "#757de8",
+        },
+    },
 }));
 
 function StudentDashboard() {
@@ -117,7 +129,7 @@ function StudentDashboard() {
                                             variant="contained"
                                             color="primary"
                                             size="large"
-                                            // className={classes.button}
+                                             className={classes.filterbutton}
                                             endIcon={<CardGiftcardIcon>donate</CardGiftcardIcon>}
                                         >
                                             Donate Now
@@ -152,7 +164,7 @@ function StudentDashboard() {
                                             variant="contained"
                                             color="primary"
                                             size="large"
-                                            // className={classes.button}
+                                             className={classes.filterbutton}
                                             endIcon={<CardGiftcardIcon>donate</CardGiftcardIcon>}
                                         >
                                             Donate Now
@@ -186,7 +198,7 @@ function StudentDashboard() {
                                             variant="contained"
                                             color="primary"
                                             size="large"
-                                            // className={classes.button}
+                                             className={classes.filterbutton}
                                             endIcon={<CardGiftcardIcon>donate</CardGiftcardIcon>}
                                         >
                                             Donate Now
@@ -220,7 +232,7 @@ function StudentDashboard() {
                                             variant="contained"
                                             color="primary"
                                             size="large"
-                                            // className={classes.button}
+                                             className={classes.filterbutton}
                                             endIcon={<CardGiftcardIcon>donate</CardGiftcardIcon>}
                                         >
                                             Donate Now
@@ -301,7 +313,7 @@ function StudentDashboard() {
                                 <Grid item sm={8} xm={12}>
                                     <Box display="flex" justifyContent="flex-end" mr={1} mb={1}>
                                         <Box>
-                                            <Button variant="contained" color="primary" size="medium" >
+                                            <Button  className={classes.filterbutton} variant="contained" color="primary" size="medium" >
                                                 View more & Donate
                                             </Button>
                                         </Box>
