@@ -12,7 +12,7 @@ import StdNavside from './Views/StudentSidebar/Navbar';
 import UStdNavside from './Views/UnionSidebar/Navbar';
 import AdminNavside from './Views/AdminSidebar/Navbar';
 import PstNavside from './Views/PastStudentSidebar/Navbar';
-
+import CounNavside from './Views/CouncellorSidebar/Navbar';
 
 
 function App() {
@@ -23,6 +23,10 @@ function App() {
             <Route path="/std">
                     <StdNavside />
                 </Route>
+                 <Route path="/coun">
+                     <CounNavside />
+                 </Route>
+
                 <Route path="/admin">
                     <AdminNavside />
                 </Route>
@@ -36,12 +40,16 @@ function App() {
                     <PstNavside />
                 </Route>
 
-                { <Route path="/ucsc_athwala" exact>
+                <Route path="/ucsc_athwala" exact>
                     <Land /> 
                 </Route> }
                 <Route path="/signup" exact>
                     <SignUp />
                 </Route>
+
+                 <Route path="/land" exact>
+                     <Land />
+                 </Route>
 
             </Switch>
     </Router>
