@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import {useHistory } from "react-router-dom";
 import ShopIcon from '@material-ui/icons/Shop';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 
 
 
@@ -56,6 +57,57 @@ export function ProductPostButton(){
                 startIcon={<AddCircleIcon />}
             >
                 Add Advertisment
+            </Button>
+        </Grid>
+    );
+
+}
+
+export function MyProductButton(){
+    const classes = useStyles();
+    const history = useHistory();
+    return(
+        <Grid item s={4}>
+            <Button  size="large" 
+            className={classes.productfilterbutton} 
+            onClick={()=>{ history.push("/std/ViewMyProduct")}}
+                startIcon={<ProductionQuantityLimitsIcon/>}
+            >
+                My Product
+            </Button>
+        </Grid>
+    );
+
+}
+
+export function MyProductBuyButton(){
+    const classes = useStyles();
+    const history = useHistory();
+    return(
+        <Grid item s={4}>
+            <Button  size="large" 
+            className={classes.productfilterbutton} 
+            onClick={()=>{ history.push("/std/ViewMyProductBuy")}}
+                startIcon={<ProductionQuantityLimitsIcon/>}
+            >
+                My Buy Product
+            </Button>
+        </Grid>
+    );
+
+}
+
+export function MyProductSellButton(){
+    const classes = useStyles();
+    const history = useHistory();
+    return(
+        <Grid item s={4}>
+            <Button  size="large" 
+            className={classes.productfilterbutton} 
+            onClick={()=>{ history.push("/std/ViewMyProduct")}}
+                startIcon={<ProductionQuantityLimitsIcon/>}
+            >
+                My Sell Product
             </Button>
         </Grid>
     );

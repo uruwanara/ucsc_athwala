@@ -2,7 +2,7 @@ import React, {useEffect,useState} from 'react'
 import {Link, useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import {ProductButton,ProductPostButton,MyProductButton} from './Product_button';
+import {ProductButton,ProductPostButton,MyProductButton,MyProductSellButton,MyProductBuyButton} from './Product_button';
 import Grid from '@material-ui/core/Grid';
 import SearchBar from './Product_search_bar';
 import Card from '@material-ui/core/Card';
@@ -21,6 +21,7 @@ import Note from '../../image/note.jpg';
 import Other from '../../image/other.jpg';
 import TextField from '@material-ui/core/TextField';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import axios from "axios";
 
 
 const useStyles = makeStyles((theme) =>({
@@ -159,6 +160,8 @@ export default function ProductViews(){
 
     const userData=JSON.parse(localStorage.getItem("userData"));
     console.log(userData);
+    const user_id = userData.id;
+    console.log(user_id);
 
     
   const [mapset, SetMap] = useState([]);
@@ -181,23 +184,27 @@ export default function ProductViews(){
     fetchData();
   },[]);
 
-  const fetchData = async () => {
+  const fetchData = () => {
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    const id = user_id;
+
+    axios.get("http://localhost:5000/api/products/viewmyallSellProduct", {
+    params: {id:id},
+    }).then((response) => {
+        console.log(response.data);
+        SetMap(response.data);
         
-    const response = await fetch(`http://localhost:5000/api/products/viewall`, {
-      method: "GET",
-    });
-    const result = await response.json();
-    console.log(result);
-    SetMap(result);
+    })
   };
+ 
 
   const tabButton =() =>{
     if(userData.userType === "STUDENT" ||userData.userType === "UNIONST"  ){
       return(
         <>
         <ProductButton />
-        <ProductPostButton />
-        <MyProductButton />
+        <MyProductSellButton />
+        <MyProductBuyButton/>
         </>
       );
     }
@@ -206,7 +213,7 @@ export default function ProductViews(){
         <>
         {/* <MyDonationButton /> */}
         <ProductButton />
-        <MyProductButton />
+        <MyProductBuyButton />
         </>
       );
     }
@@ -216,19 +223,19 @@ export default function ProductViews(){
 
     function FormRow (props){
         var link;
-        var id = props.id;
+        var product_id = props.product_id;
         var imglink;
 
         if(props.type == 'device'){
-          link = "/std/ViewProductDetails?id="+id;
+          link = "/std/ViewMyProductDetails?id="+product_id;
           imglink = EventLaptopHP;
         }
         else if (props.type == 'note'){
-          link = "/std/ViewProductDetailsNote?id="+id;
+          link = "/std/ViewMyProductDetailsNote?id="+product_id;
           imglink = Note;
         }
         else if (props.type == 'other'){
-          link = "/std/ViewProductDetailsOther?id="+id;
+          link = "/std/ViewMyProductDetailsOther?id="+product_id;
           imglink = Other;
         }
         return (
@@ -319,7 +326,7 @@ export default function ProductViews(){
             <div className={classes.root}>
           <Grid container spacing={6}>
             {mapset.map(product => (  
-                      <FormRow title={product.title} description={product.description} price={product.price} id={product.product_id} type={product.product_type}/> 
+                      <FormRow title={product.title} description={product.description} price={product.price} product_id={product.product_id} type={product.product_type}/> 
               ))}
                 
           </Grid>
