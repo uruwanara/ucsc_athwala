@@ -45,5 +45,23 @@ module.exports = donationRoutes => {
     //get my donation history 
     router.get("/donationhistory",donation.myhistory);
 
+    //edit note posts
+    router.post("/noteedit",donation.noteEdit);
+
+    //edit cloth posts
+    router.post("/clothedit",donation.clothEdit);
+
+    //edit device posts
+    router.post("/deviceedit",donation.deviceEdit);
+
+    //edit money posts
+    router.post("/moneyedit",donation.moneyEdit);
+
+    //edit other posts
+    router.post("/otheredit",donation.otherEdit);
+
+    //delete donation posts
+    router.post("/delete",donation.delete);
+
     donationRoutes.use('/api/donations', router);
 };

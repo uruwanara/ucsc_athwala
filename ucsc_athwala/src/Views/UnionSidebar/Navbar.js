@@ -54,6 +54,7 @@ import Ended_fundraising from '../Fundraising/Ended_fundraising';
 import UStudonate_fundraising from '../Fundraising/UStu_donate_fundraising';
 import { useHistory } from "react-router-dom";
 import Land from '../LandingPage/home'  //Change the logout direction here
+import Editform from '../Donation/edit_forms';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -410,6 +411,10 @@ function UStdNavside() {
             <Route path="/land" exact>
               <Land/>
             </Route>
+            <Route path="/ustd/editrequest" exact>
+            <Editform />
+            </Route>
+
           </Switch>
 
         </main>

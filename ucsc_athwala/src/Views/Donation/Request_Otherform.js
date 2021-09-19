@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function SignUp() {
+export default function RequestOther() {
   const classes = useStyles();
 
   const [title, setTitle] = React.useState("");
@@ -123,6 +123,8 @@ export default function SignUp() {
                 name="description"
                 value={description}
                 autoComplete="description"
+                multiline
+                rows ={5}
                 onChange={e => setDescription(e.target.value)}
               />
             </Grid>

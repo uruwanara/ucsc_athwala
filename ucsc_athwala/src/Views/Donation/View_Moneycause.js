@@ -11,7 +11,9 @@ import LinearProgress  from '@material-ui/core/LinearProgress';
 import {MoneyDoneeDetails,Description} from './View_Casues';
 import { useLocation } from 'react-router';
 import axios from "axios";
-import ContactForm from './contactForm';
+import { Button } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
       title:{
         color:"#546e7a",
         marginTop:10,
-        marginBottom:20,
+        marginBottom:10,
         fontFamily:"Poppins, sans-serif",
         marginTop:'40px',
         marginBottom:'30px'
@@ -70,6 +72,14 @@ const useStyles = makeStyles((theme) => ({
       progressbar:{
           marginTop:10,
           marginBottom:20,
+      },
+      progress:{
+          height:8,
+          borderRadius:10
+      },
+      subtitle:{
+        fontFamily:"Poppins, sans-serif",
+        fontSize:15
       }
   
   }));
@@ -82,11 +92,15 @@ export default function View_Clothcause(){
     const [amount, setAmount] = React.useState();
     const [note, setNote] = React.useState();
     const [date, setDate] = React.useState();
+    const [curramount , setCurramount] = React.useState();
     const [requestStudentid,setRequestStudentid] = useState();
     const search = useLocation().search;
 
     const donationid = new URLSearchParams(search).get("id");
     const userData=JSON.parse(localStorage.getItem("userData"));
+    const progress = (curramount/amount)*100;
+
+    const [donateamount, setDonateamount] = React.useState();
 
     useEffect(() => {
         
@@ -126,10 +140,11 @@ export default function View_Clothcause(){
                 setAmount(response.data[0].amount);
                 setNote(response.data[0].note);
                 setDate(response.data[0].before_date);
+                setCurramount(response.data[0].current_amount);
             })
     };
 
-    const handleSubmit = (event) => {
+    const handleDonate = (event) => {
 
     };
 
@@ -159,25 +174,58 @@ export default function View_Clothcause(){
                                         <Typography variant="h5" className={classes.title}>
                                         Donate Now
                                         </Typography>
-                                        <Grid container spacing={6}>
+                                        <Grid container spacing={2}>
 
                                             <Grid item md={6}>
-                                                <Typography variant="subtitle2" color="initial" className={classes.title}>
-                                                    Current amount Rs.3400
+                                                <Typography variant="subtitle2" color="initial" className={classes.subtitle}>
+                                                    Current amount {curramount}
                                                 </Typography>
                                             </Grid>
                                             <Grid item md={6}>
-                                                <Typography variant="subtitle2" color="initial" className={classes.title}>
-                                                    Goal amount Rs. 7800
+                                                <Typography variant="subtitle2" color="initial" className={classes.subtitle}>
+                                                    Goal amount Rs. {amount}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
                                     </div>
                                     <div className={classes.progressbar}>
-                                        <LinearProgress variant="determinate" value={50} /> 
+                                        <LinearProgress variant="determinate" value={progress} className={classes.progress}/> 
                                         </div>
                                     <div>
-                                    <ContactForm donationID={donationid} type='money'/>
+                                    <div>
+                                        <form>
+                                            <Grid container spacing={3}>
+                                            <Grid item xs={12} >
+                                                <TextField
+                                                    inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                                                    variant="outlined"
+                                                    fullWidth
+                                                    id="d_amount"
+                                                    label="amount"
+                                                    name="d_amount"
+                                                    value={donateamount}
+                                                    autoComplete="d_amount"
+                                                    onChange={e => setDonateamount(e.target.value)}
+                                                />
+                                            </Grid>
+
+                                            <Grid item xs={12}>
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                component="label"
+                                                className={classes.contactbtn}
+                                                onClick={handleDonate}
+                                                >
+                                                Donate
+                                            </Button>
+                                            </Grid>
+
+                                            </Grid>
+                                        </form>
+
+                                    </div>
+                                    
                                     
                                     </div>
                                 </CardContent>   

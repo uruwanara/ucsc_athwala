@@ -382,6 +382,174 @@ connection.query("select donations.donationID , donations.donationType , donatio
 
 }
 
+exports.noteEdit = (req,res) => {
+    const title = req.body.title;
+    const description = req.body.description;
+    const year = req.body.year;
+    const subject = req.body.subject;
+    const lesson = req.body.lesson;
+    const date = req.body.date;
+    const type = 'note';
+    const donationid = req.body.donationid;
+    
+    connection.query( 'update donations set donationType=?,title=?,description=? where donationID=?',
+    [type,title,description,donationid],
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } 
+        else{
+            connection.query( 'update note set year=?,subject=?,lesson=?,before_date=? where donation_id=?; ',
+            [year,subject,lesson,date,donationid],
+                    (err1, results,fields) => {
+                        if (err1) {
+                            res.send(err1);
+                        } else {
+                            res.send("success");
+                        }
+                    }
+            );
+        }
+    }
+    );   
+};
+
+exports.clothEdit = (req,res) => {
+    const donationid = req.body.donationid;
+    const title = req.body.title;
+    const description = req.body.description;
+    const clothType = req.body.clothType;
+    const gender = req.body.gender;
+    const size = req.body.size;
+    const date = req.body.date;
+    const type = 'cloth';
+    
+    connection.query( 'update donations set donationType=?,title=?,description=? where donationID=?;',
+    [type,title,description,donationid],
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            connection.query( 'update cloth set gender=?,size=?,before_date=?,cloth_type=? where donation_id=?; ',
+            [gender,size,date,clothType,donationid],
+            (err, results,fields) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send('success');
+                }
+            }
+            );
+        }
+    }
+    );
+};
+
+exports.deviceEdit = (req,res) => {
+    const donationid = req.body.donationid;
+    const title = req.body.title;
+    const description = req.body.description;
+    const model = req.body.model;
+    const brand = req.body.brand;
+    const date = req.body.date;
+    const type = 'device';
+    
+    connection.query( 'update donations set donationType=?,title=?,description=? where donationID=?;',
+    [type,title,description,donationid],
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            connection.query( 'update device set model=?,brand=?,before_date=? where donation_id=?;',
+            [model,brand,date,donationid],
+            (err, results,fields) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                   res.send("success");
+                }
+            }
+            );
+        }
+    }
+    );
+};
+
+exports.moneyEdit = (req,res) => {
+    const donationid = req.body.donationid;
+    const title = req.body.title;
+    const description = req.body.description;
+    const note = req.body.note;
+    const date = req.body.date;
+    const type = 'money';
+    
+    connection.query( 'update donations set donationType=?,title=?,description=? where donationID=?;',
+    [type,title,description,donationid],
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            connection.query( 'update money set note=?,before_date=? where donation_id=?;',
+            [note,date,donationid],
+            (err, results,fields) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send("success");
+                }
+            }
+            );
+        }
+    }
+    );
+};
+
+exports.otherEdit = (req,res) => {
+    const donationid = req.body.donationid;
+    const title = req.body.title;
+    const description = req.body.description;
+    const reason = req.body.reason;
+    const date = req.body.date;
+    const type = 'other';
+    
+    connection.query( 'update donations set donationType=?,title=?,description=? where donationID=?;',
+    [type,title,description,donationid],
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            connection.query( 'update other set reason=?,before_date=? where donation_id=?;',
+            [reason,date,donationid],
+            (err, results,fields) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                   res.send("success");
+                }
+            }
+            );
+        }
+    }
+    );
+};
+
+
+exports.delete = (req, res) => {
+    const donationID = req.body.donationID; 
+
+    connection.query("update donations set active = 0 where donationID = ?",
+    [donationID],
+    (err, result,fields) => { 
+        if (err) {
+            res.send(err);
+        } else {
+            res.send("success");
+        }
+    }
+);
+};
+
+
 
 
 

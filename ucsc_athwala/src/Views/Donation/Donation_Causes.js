@@ -36,10 +36,13 @@ const useStyles = makeStyles((theme) =>({
     color: "#FFFFFF",
     backgroundColor: "transparent",
     textTransform: "none",
-    "&:hover": {
-      textDecoration: "none"
-    },
+    
 
+  },
+  nounderline:{
+  "&:hover": {
+        textDecoration: "none"
+      },
   },
   cardFooter: {
     backgroundColor: "#757de8",
@@ -233,7 +236,7 @@ export default function Cases(){
           </CardActionArea>
 
           <CardActions className={classes.cardFooter}>
-            <Link to={link}>
+            <Link to={link} className={classes.nounderline}>
             <Button size="small" 
             className={classes.donateButton} 
             startIcon={<FavoriteBorderIcon />}

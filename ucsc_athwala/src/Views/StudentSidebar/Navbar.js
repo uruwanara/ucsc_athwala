@@ -68,6 +68,8 @@ import ViewProductDetailsOther from '../Product/View_Product_Details_other';
 import Login from '../Signin/SignIn'
 import { useHistory } from "react-router-dom";
 import Land from '../LandingPage/home'  //Change the logout direction here
+import Editform from '../Donation/edit_forms';
+
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -466,6 +468,9 @@ function Navbar() {
             <Route path="/land" exact>
               <Land/>
             </Route>
+          <Route path="/std/editrequest" exact>
+            <Editform />
+          </Route>
         </Switch>
       </main>
     </div>
