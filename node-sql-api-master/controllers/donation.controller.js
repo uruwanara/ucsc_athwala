@@ -321,7 +321,7 @@ exports.contact = (req, res) => {
             
         }
     }
-    );
+     );
 };
 
 exports.donerdetails = (req, res) => {

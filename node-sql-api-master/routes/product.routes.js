@@ -7,13 +7,13 @@ module.exports = productRoutes => {
     router.get("/viewall",product.viewAllProducts);
 
     //retrieve selected product details
-    router.get("/viewdetail", product.productDetails);
+    router.post("/viewdetail", product.productDetails);
 
      //retrieve selected product details more
-     router.get("/viewdetailmore", product.productDetailsMore);
+     router.post("/viewdetailmore", product.productDetailsMore);
 
      //retrive all the my Sell product
-    router.get("/viewmyallSellProduct",product.viewMyallSellProduct);
+    router.post("/viewmyallSellProduct",product.viewMyallSellProduct);
 
      //Sell note 
      router.post("/sellNote",product.sellNote);

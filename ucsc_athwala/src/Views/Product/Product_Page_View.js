@@ -191,17 +191,38 @@ export default function ProductViews(){
     SetMap(result);
   };
 
+  const tabButton =() =>{
+    if(userData.userType === "STUDENT" ||userData.userType === "UNIONST"  ){
+      return(
+        <>
+        <ProductButton />
+        <ProductPostButton />
+        </>
+      );
+    }
+    if(userData.userType === "ALUMNI"){
+      return(
+        <>
+        {/* <MyDonationButton /> */}
+        <ProductButton />
+        </>
+      );
+    }
+
+  }
+
+
     function FormRow (props){
         var link;
         var id = props.id;
         var imglink;
 
         if(props.type == 'device'){
-          link = "/std/ViewProductDetails="+id;
+          link = "/std/ViewProductDetails?id="+id;
           imglink = EventLaptopHP;
         }
         else if (props.type == 'note'){
-          link = "/std/viewClothCause_details="+id;
+          link = "/std/viewClothCause_detai="+id;
           imglink = Note;
         }
         else if (props.type == 'other'){
@@ -286,8 +307,8 @@ export default function ProductViews(){
             <div>
                 <div style={{float:"left"}}>
                     <Grid container spacing={4}>
-                        <ProductButton />
-                        <ProductPostButton />
+                        {tabButton()}
+                        
                     </Grid>  
                 </div>
 
