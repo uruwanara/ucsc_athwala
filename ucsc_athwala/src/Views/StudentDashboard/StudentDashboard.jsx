@@ -129,7 +129,7 @@ function StudentDashboard() {
                                             variant="contained"
                                             color="primary"
                                             size="large"
-                                             className={classes.filterbutton}
+                                            className={classes.filterbutton}
                                             endIcon={<CardGiftcardIcon>donate</CardGiftcardIcon>}
                                         >
                                             Donate Now
@@ -164,7 +164,7 @@ function StudentDashboard() {
                                             variant="contained"
                                             color="primary"
                                             size="large"
-                                             className={classes.filterbutton}
+                                            className={classes.filterbutton}
                                             endIcon={<CardGiftcardIcon>donate</CardGiftcardIcon>}
                                         >
                                             Donate Now
@@ -198,7 +198,7 @@ function StudentDashboard() {
                                             variant="contained"
                                             color="primary"
                                             size="large"
-                                             className={classes.filterbutton}
+                                            className={classes.filterbutton}
                                             endIcon={<CardGiftcardIcon>donate</CardGiftcardIcon>}
                                         >
                                             Donate Now
@@ -232,7 +232,7 @@ function StudentDashboard() {
                                             variant="contained"
                                             color="primary"
                                             size="large"
-                                             className={classes.filterbutton}
+                                            className={classes.filterbutton}
                                             endIcon={<CardGiftcardIcon>donate</CardGiftcardIcon>}
                                         >
                                             Donate Now
@@ -313,11 +313,11 @@ function StudentDashboard() {
                                 <Grid item sm={8} xm={12}>
                                     <Box display="flex" justifyContent="flex-end" mr={1} mb={1}>
                                         <Box>
-                                            <Button  className={classes.filterbutton} variant="contained" color="primary" size="medium" >
+                                            <Button className={classes.filterbutton} variant="contained" color="primary" size="medium" >
                                                 View more & Donate
                                             </Button>
                                         </Box>
-{/* 
+                                        {/* 
                                         <Box mr={1}>
                                             <Button variant="contained" color="secondary" size="medium" alignContent='flex-end'>
                                                 End now
