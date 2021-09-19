@@ -63,7 +63,9 @@ import PostNoteForm from '../Product/Post_Note_Form';
 import PostOtherForm from '../Product/Post_Other_Form';
 import Studonate_fundraising from '../Fundraising/Stu_donate_fundraising';
 import Chat from '../chat/chat.jsx';
-
+import Login from '../Signin/SignIn'
+import { useHistory } from "react-router-dom";
+import Land from '../LandingPage/home'  //Change the logout direction here
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -173,6 +175,13 @@ function Navbar() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const history= useHistory();
+  const logout=()=>{
+    history.push("/land");
+    localStorage.clear();
+  }
+
   return (
     <Router>
       <div className={classes.root}>{/* devide to flex, start from here*/}
@@ -290,7 +299,7 @@ function Navbar() {
                 >
                   <MenuItem onClick={handleClose}><PersonPinOutlinedIcon /> My Profile</MenuItem>
                   <Divider />
-                  <MenuItem onClick={handleClose}><ExitToAppOutlinedIcon /> Log out</MenuItem>
+                  <MenuItem onClick={logout} ><ExitToAppOutlinedIcon /> Log out</MenuItem>
                 </Menu>
               </div>
             )}
@@ -446,6 +455,9 @@ function Navbar() {
           <Route path="/std/PostOtherForm" exact>
             <PostOtherForm />
           </Route>
+            <Route path="/land" exact>
+              <Land/>
+            </Route>
         </Switch>
       </main>
     </div>

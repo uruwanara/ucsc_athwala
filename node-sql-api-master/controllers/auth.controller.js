@@ -5,7 +5,7 @@ const Op = db.Sequelize.Op;
 const { Base64 } = require('js-base64');
 const sendGridMail = require('@sendgrid/mail');
 sendGridMail.setApiKey('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');
-
+const SHA256 = require("crypto-js/sha256");
 
 // Login a user
 exports.login = (req, res) => {
@@ -29,7 +29,7 @@ exports.login = (req, res) => {
                 message: "Please confirm your email before login."
             });
         }
-        if (response.password === req.body.password) {
+        if (response.password === SHA256(req.body.password).toString()) {
             //Generate a token if the password matches
             res.status(200).send({
                 status: "success",
