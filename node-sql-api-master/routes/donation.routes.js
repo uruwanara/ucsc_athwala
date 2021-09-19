@@ -63,5 +63,14 @@ module.exports = donationRoutes => {
     //delete donation posts
     router.post("/delete",donation.delete);
 
+    //filter posts
+    router.get("/filter",donation.filter);
+
+    //search my donations
+    //router.post("/mysearch",donation.mysearch);
+
+    //filter my posts
+    //router.get("/myfilter",donation.myfilter)
+
     donationRoutes.use('/api/donations', router);
 };

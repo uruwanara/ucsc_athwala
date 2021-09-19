@@ -549,6 +549,84 @@ exports.delete = (req, res) => {
 );
 };
 
+exports.filter = (req,res) => {
+    const type = req.query.type; 
+
+    if(type=='all'){
+        connection.query("Select * from donations where active = 1 and status = 0;",
+            (err, result,fields) => { 
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(result);
+                }
+            }
+        );
+    }
+    else{
+        connection.query("Select * from donations where active = 1 and status = 0 and donationType = ?;",
+            [type],
+            (err, result,fields) => { 
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(result);
+                }
+            }
+        );
+    }
+
+    
+}
+
+{/*exports.mysearch = (req, res) => {
+    const message = req.body.search; 
+    const userid = req.body.userid;
+
+    connection.query("Select * from donations where (title "+ "like'%"+ message+"%'"+" or description "+"like'%"+ message+"%')" + " AND active = 1 and status = 0 where student_id = ?;",
+    [userid],
+    (err, result,fields) => { 
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    }
+);
+};
+
+exports.myfilter = (req,res) => {
+    const type = req.query.type; 
+    const id = req.query.id;
+
+    if(type=='all'){
+        connection.query("'Select * from donations where student_id = ?",
+        [id],
+            (err, result,fields) => { 
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(result);
+                }
+            }
+        );
+    }
+    else{
+        connection.query("'Select * from donations where donationType = ? and student_id = ?",
+            [type,id],
+            (err, result,fields) => { 
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(result);
+                }
+            }
+        );
+    }
+
+    
+}*/}
+
 
 
 
