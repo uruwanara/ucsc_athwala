@@ -7,6 +7,9 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
+import { useParams } from 'react-router-dom';
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -64,10 +67,15 @@ const useStyles = makeStyles((theme) => ({
 
 export function Description(){
     const classes = useStyles();
+    const { auction_id } = useParams();
+
     return(
                         <Grid item xs={6}>
                         <Card className={classes.card}>
                                 <CardContent >
+                                    <Typography variant="h3" className={classes.title}>
+                                        {auction_id} 
+                                    </Typography>
                                     <Typography variant="h3" className={classes.title}>
                                         Laptop 
                                     </Typography>
@@ -76,7 +84,13 @@ export function Description(){
                                         <p>intel® Core i5-10210U (up to 4.2 GHz  6 MB 4 cores) processor.</p>  
                                         <p>8 GB DDR4-2666 SDRAM(1x8GB), 1 TB 5400 RPM HDD.</p>
                                         <p>1 TB 5400 RPM HDD.</p>
-                                        <p>TB 5400 rpm SATA HDD Fingerprint Sensor.</p>
+                                        
+                                    </Typography>
+                                    <Typography variant="subtitle2" className={classes.title}>
+                                         <br />
+                                        <p>intel® Core i5-10210U (up to 4.2 GHz  6 MB 4 cores) processor.</p>  
+                                        <p>8 GB DDR4-2666 SDRAM(1x8GB), 1 TB 5400 RPM HDD.</p>
+                                        <p>1 TB 5400 RPM HDD.</p>
                                         
                                     </Typography>
                                 </CardContent>   

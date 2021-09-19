@@ -47,9 +47,10 @@ exports.getTitle = (req,res) => {
     );
 };
 
+
 exports.viewMyall = (req,res) => {
     const studentID =req.query.id;
-    connection.query( 'Select * from donations where student_id = ?;',
+    connection.query( 'Select * from auction where student_id = ?;',
     [studentID],
     (err, result,fields) => {
         if (err) {

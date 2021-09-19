@@ -12,8 +12,8 @@ module.exports = donationRoutes => {
     // ////retrieve selected donation title and description
     // router.post("/select", donation.getTitle);
 
-    // //retrive all the my donation requests
-    // router.get("/viewmyall", donation.viewMyall);
+    // retrive all the my donation requests
+    router.get("/myauction", auction.viewMyall);
 
     //request note 
     router.post("/createauc",auction.noteRequest);
