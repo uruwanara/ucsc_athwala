@@ -168,7 +168,7 @@ export default function Cases(){
     const viewMore=(id)=>{
       history.push(`/std/bid/${id}`);
     }
-    console.log(props.title);
+    console.log("ssss");
     return (
       <React.Fragment>
           
