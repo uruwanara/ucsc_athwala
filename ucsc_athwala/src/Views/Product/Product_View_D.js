@@ -62,33 +62,32 @@ const useStyles = makeStyles((theme) => ({
    
   }));
 
-export function Description(){
+export function Description(props){
     const classes = useStyles();
+
+    
+
+    
+    
     return(
                         <Grid item sm={12} md={7} xs={12}>
                         <Card className={classes.card}>
                                 <CardContent >
+               
                                     <Typography variant="h3" className={classes.title}>
-                                        HP Laptop 
+                                        {props.title}
                                     </Typography>
                                     <Typography variant="h6" className={classes.title}>
-                                        HP Probook 450 G5
+                                        {props.model} {props.brand}
                                     </Typography>
                                     <Typography variant="h6" className={classes.title}>
-                                        Price : Rs. 60 000.00
+                                        Price : Rs. {props.price}.00
                                     </Typography>
                                     <Typography variant="h6" className={classes.title}>
-                                        Posted Date : 2021-07-11
+                                        Posted Date : {props.postdate}
                                     </Typography>
                                     <Typography variant="subtitle2" className={classes.title}>
-                                        10th generation Intel® Core™ i5-10210U (up to 4.2 GHz) processor. 
-                                        8 GB DDR4-2666 SDRAM(1x8GB).
-                                        15.6" diagonal FHD display.
-                                        1 TB 5400 RPM HDD.
-                                        Windows 10 Home.  
-                                        HP Premium Keyboard, spill-resistant.
-                                        Fingerprint Sensor.
-                                        HP Long Life 3-cell, 45 Wh Li-ion Battery.
+                                        {props.description}
                                     </Typography>
                                 </CardContent>   
                             </Card>
@@ -97,35 +96,39 @@ export function Description(){
     )
 }
    
-export function ContactDetails(){
+export function ContactDetails(props){
     const classes = useStyles();
     return(
+
+       
+            
+         
         
             <Card className={classes.card}>
                 <CardContent>
                     <Typography variant="h4" className={classes.title}>Contact Details</Typography>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Name : </Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>Nimasha</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.username}</Typography></div>  
                         </div>
                     <div style={{display:"flex"}}>
-                        <div><Typography variant="subtitle2" className={classes.labelname}>Batch No :</Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>16 Batch</Typography> </div>  
+                        <div><Typography variant="subtitle2" className={classes.labelname}>Type :</Typography></div>
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.userType}</Typography> </div>  
                     </div>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Contact Number :</Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>071 6119077</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.contactnumber}</Typography></div>  
                     </div>
                     <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Email:</Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>nimashasupunpraba@gmail.com</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.email}</Typography></div>  
                     </div>
                                                         
                 </CardContent>    
             </Card>
 
 
-           
+       
      
     )
 }

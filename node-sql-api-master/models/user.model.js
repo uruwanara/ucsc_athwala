@@ -25,6 +25,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         isActive: {
             type: Sequelize.BOOLEAN
+        },
+        contactnumber:{
+            type: Sequelize.INTEGER,
         }
     });
 
