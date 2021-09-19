@@ -84,7 +84,6 @@ export function Description(){
                                         <p>intel® Core i5-10210U (up to 4.2 GHz  6 MB 4 cores) processor.</p>  
                                         <p>8 GB DDR4-2666 SDRAM(1x8GB), 1 TB 5400 RPM HDD.</p>
                                         <p>1 TB 5400 RPM HDD.</p>
-                                        <p>TB 5400 rpm SATA HDD Fingerprint Sensor.</p>
                                         
                                     </Typography>
                                 </CardContent>   
