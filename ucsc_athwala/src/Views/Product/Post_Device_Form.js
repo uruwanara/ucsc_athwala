@@ -10,6 +10,8 @@ import BorderColorIcon from '@material-ui/icons/BorderColor';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from 'axios';
+import {Link, useHistory } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,13 +38,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const history = useHistory();
 
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [model, setModel] = React.useState("");
   const [brand, setBrand] = React.useState("");
-  const [price, setDate] = React.useState("");
-  const [acceptTerm, setacceptTerm] = React.useState(false);
+  const [price, setPrice] = React.useState("");
+  const [image, setImage] = React.useState("");
+  const [show_or_hide_details, setacceptTerm] = React.useState(false);
 
   const handleSubmit = (event) => {
      event.preventDefault(); 
@@ -52,8 +56,42 @@ export default function SignUp() {
         model: ${model}
         brand: ${brand}
         price: ${price}
-        acceptTerm: ${acceptTerm}
+        image: ${image}
+        show_or_hide_details: ${show_or_hide_details}
     `); 
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    
+    const postProduct={
+        "user_id":userData.id,
+        "title": title,
+        "description": description,
+        "model": model,
+        "brand": brand,
+        "image": image,
+        "price": price,
+        "show_or_hide_details": show_or_hide_details,
+    }
+      axios.post("http://localhost:5000/api/products/sellDevice",postProduct,{
+          headers:{
+              "access-control-allow-origin" : "*",
+              "Content-type": "application/json; charset=UTF-8"
+          }
+      }).then((response)=>{
+          console.log(response.data);
+          if(response.data==='success'){
+            setTitle("");
+            setDescription("");
+            setModel("");
+            setBrand("");
+            setPrice("");
+            setImage("");
+            setacceptTerm(!show_or_hide_details);
+          }
+
+      }).catch((err)=>{
+
+      })
+
   }
 
   return (
@@ -139,9 +177,9 @@ export default function SignUp() {
                 id="price"
                 autoComplete="price"
                 label="Price"
-                onFocus={(e) => (e.currentTarget.type = "price")}
-                onBlur={(e) => (e.currentTarget.type = "text")}
-                onChange={e => setDate(e.target.value)}
+                //onFocus={(e) => (e.currentTarget.type = "price")}
+                //onBlur={(e) => (e.currentTarget.type = "text")}
+                onChange={e => setPrice(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -164,11 +202,12 @@ export default function SignUp() {
            
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox required name="acceptTerm" color="primary"  onChange={e => setacceptTerm(true)}/>}
+                control={<Checkbox name="acceptTerm" color="primary"  onChange={e => setacceptTerm(true)}/>}
                 label="I Don't need to show my identity to others."
               />
             </Grid>
           </Grid>
+          
           <Button
             type="submit"
             fullWidth
@@ -178,6 +217,7 @@ export default function SignUp() {
           >
             Post
           </Button>
+          
          
         </form>
       </div>

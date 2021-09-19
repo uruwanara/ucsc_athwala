@@ -59,7 +59,7 @@ export default class FQAList extends React.Component {
             <Collapse in={this.state.open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                 <ListItem button>
-                    <ListItemIcon><QuestionAnswerIcon color="secondary"/></ListItemIcon>
+                    <ListItemIcon><QuestionAnswerIcon color="primary"/></ListItemIcon>
                     <ListItemText>{this.props.answer}
                     </ListItemText>
                 </ListItem>

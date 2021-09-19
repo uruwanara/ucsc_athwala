@@ -62,6 +62,9 @@ const useStyles = makeStyles((theme) => ({
       categorycardFooter: {
         backgroundColor: "#757de8",
       },
+      nonUnderline:{
+        "&:hover":{textDecoration:"none"},
+       },
       myrequestbutton: {
         backgroundColor: "#757de8",
         color: "#FFFFFF",
@@ -89,7 +92,7 @@ export default function View_Allcause(){
         return (
           <React.Fragment>
             <Grid item xs={4}>
-            <Link to={'/std/PostDeviceForm'}>
+            <Link to={'/std/PostDeviceForm'} className={classes.nonUnderline}>
                 <Card>
                     <CardActionArea>
                     <CardMedia
@@ -119,7 +122,7 @@ export default function View_Allcause(){
                 </Link>
             </Grid>
             <Grid item xs={4}>
-            <Link to={'/std/PostNoteForm'}>
+            <Link to={'/std/PostNoteForm'} className={classes.nonUnderline}>
             <Card>
                     <CardActionArea>
                     <CardMedia
@@ -148,7 +151,7 @@ export default function View_Allcause(){
                 </Link>
             </Grid>
             <Grid item xs={4}>
-            <Link to={'/std/PostOtherForm'}>
+            <Link to={'/std/PostOtherForm'} className={classes.nonUnderline}>
             <Card>
                     <CardActionArea>
                     <CardMedia

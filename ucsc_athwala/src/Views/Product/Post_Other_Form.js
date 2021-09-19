@@ -10,6 +10,7 @@ import BorderColorIcon from '@material-ui/icons/BorderColor';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -40,8 +41,9 @@ export default function SignUp() {
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [information, setReason] = React.useState("");
-  const [price, setDate] = React.useState("");
-  const [acceptTerm, setacceptTerm] = React.useState(false);
+  const [price, setPrice] = React.useState("");
+  const [image, setImage] = React.useState("");
+  const [show_or_hide_details, setacceptTerm] = React.useState(false);
 
   const handleSubmit = (event) => {
      event.preventDefault(); 
@@ -50,8 +52,40 @@ export default function SignUp() {
         description: ${description}
         information: ${information}
         price: ${price}
-        acceptTerm: ${acceptTerm}
+        image: ${image}
+        show_or_hide_details: ${show_or_hide_details}
     `); 
+
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    
+    const postProduct={
+        "user_id":userData.id,
+        "title": title,
+        "description": description,
+        "price": price,
+        "information": information,
+        "image": image,
+        "show_or_hide_details": show_or_hide_details,
+    }
+      axios.post("http://localhost:5000/api/products/sellOther",postProduct,{
+          headers:{
+              "access-control-allow-origin" : "*",
+              "Content-type": "application/json; charset=UTF-8"
+          }
+      }).then((response)=>{
+          console.log(response.data);
+          if(response.data==='success'){
+            setTitle("");
+            setDescription("");
+            setReason("");
+            setPrice("");
+            setImage("");
+            setacceptTerm(!show_or_hide_details);
+          }
+
+      }).catch((err)=>{
+
+      })
   }
 
   return (
@@ -123,9 +157,7 @@ export default function SignUp() {
                 id="price"
                 autoComplete="price"
                 label="Price"
-                onFocus={(e) => (e.currentTarget.type = "price")}
-                onBlur={(e) => (e.currentTarget.type = "text")}
-                onChange={e => setDate(e.target.value)}
+                onChange={e => setPrice(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -148,7 +180,7 @@ export default function SignUp() {
            
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox required name="acceptTerm" color="primary"  onChange={e => setacceptTerm(true)}/>}
+                control={<Checkbox name="acceptTerm" color="primary"  onChange={e => setacceptTerm(true)}/>}
                 label="I Don't need to show my identity to others."
               />
             </Grid>

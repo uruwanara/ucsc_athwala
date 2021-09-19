@@ -14,6 +14,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
+import axios from 'axios';
 
 
 
@@ -47,8 +48,9 @@ export default function SignUp() {
   const [year, setYear] = React.useState("");
   const [subject, setSubject] = React.useState("");
   const [lesson, setLesson] = React.useState("");
-  const [price, setDate] = React.useState("");
-  const [acceptTerm, setacceptTerm] = React.useState(false);
+  const [price, setPrice] = React.useState("");
+  const [image, setImage] = React.useState("");
+  const [show_or_hide_details, setacceptTerm] = React.useState(false);
 
   const handleSubmit = (event) => {
      event.preventDefault(); 
@@ -59,8 +61,46 @@ export default function SignUp() {
         subject: ${subject}
         lesson: ${lesson}
         price: ${price}
-        acceptTerm: ${acceptTerm}
-    `); 
+        image: ${image}
+        show_or_hide_details: ${show_or_hide_details}
+    `)
+      const userData=JSON.parse(localStorage.getItem("userData"));
+      
+      const postProduct={
+          "user_id":userData.id,
+          "title": title,
+          "description": description,
+          "year": year,
+          "subject": subject,
+          "lesson": lesson,
+          "image": image,
+          "price": price,
+          "show_or_hide_details": show_or_hide_details,
+      }
+        axios.post("http://localhost:5000/api/products/sellNote",postProduct,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then((response)=>{
+            console.log(response.data);
+            if(response.data==='success'){
+              setTitle("");
+              setDescription("");
+              setYear("");
+              setLesson("");
+              setSubject("");
+              setPrice("");
+              setImage("");
+              setacceptTerm(!show_or_hide_details);
+            }
+  
+        }).catch((err)=>{
+  
+        })
+  
+    
+  
   }
 
   return (
@@ -150,7 +190,7 @@ export default function SignUp() {
             </Grid>
 
             <Grid item xs={12}>
-            <FormControl fullWidth sx={{ m: 1 }}>
+            {/* <FormControl fullWidth sx={{ m: 1 }}>
           <InputLabel htmlFor="outlined-adornment-amount">Price* </InputLabel>
           <OutlinedInput
             id="outlined-adornment-amount"
@@ -159,8 +199,8 @@ export default function SignUp() {
             startAdornment={<InputAdornment position="start">Rs:</InputAdornment>}
             label="Price"
           />
-        </FormControl>
-              {/* <TextField
+        </FormControl> */}
+              <TextField
                 variant="outlined"
                 fullWidth
                 name="price"
@@ -169,10 +209,10 @@ export default function SignUp() {
                 id="price"
                 autoComplete="price"
                 label="Price"
-                onFocus={(e) => (e.currentTarget.type = "price")}
-                onBlur={(e) => (e.currentTarget.type = "text")}
-                onChange={e => setDate(e.target.value)}
-              /> */}
+                //onFocus={(e) => (e.currentTarget.type = "price")}
+                //onBlur={(e) => (e.currentTarget.type = "text")}
+                onChange={e => setPrice(e.target.value)}
+              />
             </Grid>
             <Grid item xs={12}>
                 <Typography component="h1" variant="subtitle1">
@@ -194,7 +234,7 @@ export default function SignUp() {
            
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox required name="acceptTerm" color="primary"  onChange={e => setacceptTerm(true)}/>}
+                control={<Checkbox name="acceptTerm" color="primary"  onChange={e => setacceptTerm(true)}/>}
                 label="I Don't need to show my identity to others."
               />
             </Grid>

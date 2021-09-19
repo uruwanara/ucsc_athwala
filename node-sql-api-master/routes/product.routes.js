@@ -21,7 +21,7 @@ module.exports = productRoutes => {
       //Sell note 
       router.post("/sellDevice",product.sellDevice);
 
-       //Sell note 
+       //Sell Other
      router.post("/sellOther",product.sellOther);
 
      //retrive all the my Buy product
