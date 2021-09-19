@@ -86,6 +86,13 @@ export function Description(){
                                         <p>1 TB 5400 RPM HDD.</p>
                                         
                                     </Typography>
+                                    <Typography variant="subtitle2" className={classes.title}>
+                                         <br />
+                                        <p>intel® Core i5-10210U (up to 4.2 GHz  6 MB 4 cores) processor.</p>  
+                                        <p>8 GB DDR4-2666 SDRAM(1x8GB), 1 TB 5400 RPM HDD.</p>
+                                        <p>1 TB 5400 RPM HDD.</p>
+                                        
+                                    </Typography>
                                 </CardContent>   
                             </Card>
                             
