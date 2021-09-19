@@ -1,5 +1,5 @@
-import React from 'react';
-import Link from '@material-ui/core/Link';
+import React ,{useEffect, useState} from 'react';
+import {Link, useHistory } from "react-router-dom";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -23,6 +23,7 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import {RequestButton,MyCauseButton,MyDonationButton} from './Donation_button';
 import GavelIcon from '@material-ui/icons/Gavel';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import axios from 'axios';
 
 
 
@@ -76,9 +77,9 @@ const useStyles = makeStyles((theme) =>({
 
 const students = [  
     {  
-      'id': 1,
-      'title': 'Mobile Phone',   
-       'description': 'i am 2nd year student.I need DSA 2 lecture note' , 
+      //  'id': 1,
+      //  'title': 'Mobile Phone',   
+      //  'description': 'i am 2nd year student.I need DSA 2 lecture note' , 
       'image' :Phone,
     },  
      
@@ -120,13 +121,35 @@ const students = [
     //   'image' :Cloth,
     // }, 
 ]; 
-
-
-export default function Cases(){
+export default function MyCases(){
+  const history = useHistory();
   const classes = useStyles();
+  const [mapset, SetMap] = useState([]);
+
+  useEffect(() =>{
+    fetchData();
+  },[]);
+
+  const fetchData = () => {
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    const stid = userData.id;
+
+    axios.get("http://localhost:5000/api/auction/myauction", {
+    params: {id:stid},
+    }).then((response) => {
+        console.log(response.data);
+        SetMap(response.data);
+        
+    })
+  };
+
+
 
   function FormRow (props){
-    // var link;
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    var id = props.id;
+
+     var link;
     // if(props.type == 'note'){
     //   link = "/std/viewNoteCause_details";
     // }
@@ -141,6 +164,12 @@ export default function Cases(){
     // }
     // else if (props.type == 'other'){
     //   link = "/std/viewOtherCause_details";
+    if(userData.userType === "STUDENT"){
+      link = "/std/aucstop?id="+id;
+    }
+    if(userData.userType === "UNIONST"){
+      link = "/std/aucstop?id="+id;
+    }
     // }
     return (
       <React.Fragment>
@@ -157,13 +186,6 @@ export default function Cases(){
               <Typography gutterBottom variant="h5" component="h2">
                 {props.title}
               </Typography>
-              
-              <TextTruncate
-                  line={1}
-                  element="span"
-                  truncateText="…"
-                  text={props.description}
-              />
             </CardContent>
           </CardActionArea>
 
@@ -172,9 +194,10 @@ export default function Cases(){
             <Button size="small" 
             className={classes.donateButton} 
             startIcon={<GavelIcon />}
-            color='secondary' href="/std/aucstop" component={Link}
+            color='secondary' href="/std/bid" component={Link}
+            onClick={()=>{ history.push(link)}}
             >
-              View Auction
+              Bid Now
             </Button>
            {/* { </Link>  } */}
 
@@ -194,7 +217,7 @@ export default function Cases(){
               <Grid container spacing={4}>
                 <RequestButton  />
                 <MyCauseButton />
-                {/* <MyDonationButton /> */}
+                { <MyDonationButton />}
               </Grid>
               
               </div>
@@ -216,14 +239,15 @@ export default function Cases(){
               </div>
             </div>
               
-        <div className={classes.root}>
-          <Grid container spacing={6}>
-            {students.map(student => (  
-                      <FormRow title={student.title} description={student.description} image={student.image} type={student.type}/> 
-              ))}
-                
-          </Grid>
-        </div>
+            <div className={classes.root}>
+        <Grid container spacing={6}>
+          
+        {mapset.map(student => (  
+                <FormRow title={student.title} id={student.donationID}/> 
+        ))}
+          
+        </Grid>
+    </div>
     </div>
 
     );
