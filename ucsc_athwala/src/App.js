@@ -42,7 +42,7 @@ function App() {
 
                 <Route path="/ucsc_athwala" exact>
                     <Land /> 
-                </Route> }
+                </Route>
                 <Route path="/signup" exact>
                     <SignUp />
                 </Route>
