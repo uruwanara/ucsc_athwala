@@ -1,5 +1,5 @@
 import React ,{useEffect, useState} from 'react';
-import Note from '../../image/note.jpg';
+import Note from '../../image/other.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -7,7 +7,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import  Button from '@material-ui/core/Button';
-import {ContactDetails,Description} from './Product_View_D_note';
+import {ContactDetails,Description} from './Product_View_D_other';
 import axios from "axios";
 import { useLocation } from 'react-router';
 
@@ -75,9 +75,7 @@ export default function View_Clothcause(){
     const [postdate, setDate] = React.useState();
     const [price, setPrice] = React.useState();
     const [show_or_hide_details, setHideDetails] = React.useState();
-    const [lesson,setLesson] = useState();
-    const [year,setYear] = useState();
-    const [subject,setSubject] = useState();
+    const [information_product,setInformation] = useState();
     const search = useLocation().search;
 
     const product_id = new URLSearchParams(search).get("id");
@@ -119,7 +117,7 @@ export default function View_Clothcause(){
     const fetchDetails = (product_id) => {
         const details={
             "product_id": product_id,
-            "p_type":'p_note'
+            "p_type":'p_other'
         }
         axios.post("http://localhost:5000/api/products/viewdetailmore",details,{
             headers:{
@@ -128,9 +126,7 @@ export default function View_Clothcause(){
               }
             }).then((response) => {
                 console.log(response.data);
-                setLesson(response.data[0].lesson);
-                setSubject(response.data[0].subject);
-                setYear(response.data[0].year);
+                setInformation(response.data[0].information_product);
                 
             })
     };
@@ -151,7 +147,7 @@ export default function View_Clothcause(){
     return(
         <div>
                     <Grid container spacing={2}>
-                <Description  lesson={lesson} subject={subject} year={year} description = {description} title={title} postdate={postdate} price={price} show_or_hide_details={show_or_hide_details}/>
+                <Description  information_product={information_product} description = {description} title={title} postdate={postdate} price={price} show_or_hide_details={show_or_hide_details}/>
                         <Grid item sm={12} md={5} xs={12}>
                             <Card className={classes.card}>
                                 <CardMedia

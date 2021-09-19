@@ -78,13 +78,7 @@ export function Description(props){
                                         {props.title}
                                     </Typography>
                                     <Typography variant="h6" className={classes.title}>
-                                        Subject : {props.subject}
-                                    </Typography>
-                                    <Typography variant="h6" className={classes.title}>
-                                        Year : {props.year} 
-                                    </Typography>
-                                    <Typography variant="h6" className={classes.title}>
-                                        Lesson :  {props.lesson}
+                                        Information Product : {props.information_product}
                                     </Typography>
                                     <Typography variant="h6" className={classes.title}>
                                         Posted Date : {props.postdate}
