@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true
         },
         username: {
-            type: Sequelize.STRING,
+            type: Sequelize.STRING
         },
         fname: {
             type: Sequelize.STRING
@@ -23,12 +23,14 @@ module.exports = (sequelize, Sequelize) => {
         password: {
             type: Sequelize.STRING
         },
+        contactnumber: {
+            type: Sequelize.STRING
+        },
+
         isActive: {
             type: Sequelize.BOOLEAN
-        },
-        contactnumber:{
-            type: Sequelize.INTEGER,
         }
+
     });
 
     return User;
