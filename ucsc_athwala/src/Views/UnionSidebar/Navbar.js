@@ -52,7 +52,8 @@ import Donation from '../Donation/Donation_page';
 import Expired__fundraising from '../Fundraising/Expired_fundraising';
 import Ended_fundraising from '../Fundraising/Ended_fundraising';
 import UStudonate_fundraising from '../Fundraising/UStu_donate_fundraising';
-
+import { useHistory } from "react-router-dom";
+import Land from '../LandingPage/home'  //Change the logout direction here
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -161,6 +162,12 @@ function UStdNavside() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const history= useHistory();
+  const logout=()=>{
+    history.push("/land");
+    localStorage.clear();
+  }
   return (
     <Router>
       <div className={classes.root}> {/* devide to flex, start from here*/}
@@ -277,7 +284,7 @@ function UStdNavside() {
                   onClose={handleClose}
                 >
                   <MenuItem onClick={handleClose}><PersonPinOutlinedIcon /> My Profile</MenuItem>
-                  <MenuItem onClick={handleClose}><ExitToAppOutlinedIcon /> Log out</MenuItem>
+                  <MenuItem onClick={logout} ><ExitToAppOutlinedIcon /> Log out</MenuItem>
                 </Menu>
               </div>
             )}
@@ -400,7 +407,9 @@ function UStdNavside() {
             <Route path="/ustd/myDonation" exact>
               <MyDonation />
             </Route>
-
+            <Route path="/land" exact>
+              <Land/>
+            </Route>
           </Switch>
 
         </main>
