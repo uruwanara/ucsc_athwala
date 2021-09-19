@@ -12,6 +12,13 @@ import {NoteDoneeDetails,Description,ClothDoneeDetails,DeviceDoneeDetails,MoneyD
 import axios from "axios";
 import { useLocation } from 'react-router';
 import TextField from '@material-ui/core/TextField';
+import {useHistory } from "react-router-dom";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import {useSnackbar} from "notistack";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -77,6 +84,11 @@ const useStyles = makeStyles((theme) => ({
         marginTop:'5px',
         height:'fit-content',
         fontFamily:"Poppins, sans-serif",
+      },
+      editbutton:{
+        textTransform:"none",
+        fontFamily:"Poppins, sans-serif",
+        margin:10
       }
 
   
@@ -91,6 +103,7 @@ export default function View_Notecause(){
   const search = useLocation().search;
   const [date, setDate] = React.useState();
   const [status, setStatus] = React.useState();
+  const [active, setActive] = React.useState();
 
   const [clothType, setClothType] = React.useState();
   const [gender, setGender] = React.useState();
@@ -117,6 +130,9 @@ export default function View_Notecause(){
   const [open, setOpen] = React.useState(false);
   const [btncolor, setColor] = React.useState("primary");
 
+  const history = useHistory();
+  const userData=JSON.parse(localStorage.getItem("userData"));
+  const {enqueueSnackbar, closeSnackbar } = useSnackbar();
 
 const donationid = new URLSearchParams(search).get("id");
 
@@ -135,10 +151,11 @@ const donationid = new URLSearchParams(search).get("id");
                 "Content-type": "application/json; charset=UTF-8"
               }
             }).then((response) => {
-                console.log(response.data[0].donationType);
+                console.log(response.data[0]);
                 setDescription(response.data[0].description);
                 setTitle(response.data[0].title);
                 setType(response.data[0].donationType);
+                setActive(response.data[0].active);
 
                 if(response.data[0].donationType){
                     const details={
@@ -230,6 +247,40 @@ const donationid = new URLSearchParams(search).get("id");
     setOpen(false);
   };
 
+  const handleConfirm = (event) => {
+    setOpen(false);     
+    event.preventDefault(); 
+
+  const deletedonation={
+      "donationID": donationid,
+  }
+  axios.post("http://localhost:5000/api/donations/delete",deletedonation,{
+      headers:{
+          "access-control-allow-origin" : "*",
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      }).then((response) => {
+          if(response.data === 'success'){
+            console.log("ddddddd");
+            enqueueSnackbar('Successfully Deleted', {
+              variant: 'success', anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'center',
+              }
+            })
+
+            if(userData.userType === "STUDENT"){
+              history.push("/std/viewMyrequest") ;
+            }
+            else if(userData.userType === "UNIONST" ){
+              history.push("/ustd/viewMyrequest");
+            }
+
+          }
+  });
+    
+  }
+
     const details =() =>{
       if(type === "note"){
         return(
@@ -287,8 +338,20 @@ const donationid = new URLSearchParams(search).get("id");
     }
 
     const donationstatus = () => {
-      if(status === 'Not Received'){
+      if(status === 'Not Received' && active === 1){
+        var editlink;
+        var deletelink;
+        if(userData.userType === "STUDENT"){
+          editlink = "/std/editrequest?id="+donationid+"&type="+type;
+          deletelink = "/std/deleterequest?id="+donationid+"&type="+type;
+        }
+        else if(userData.userType === "UNIONST" ){
+          editlink = "/ustd/editrequest?id="+donationid+"&type="+type;
+          deletelink = "/std/deleterequest?id="+donationid+"&type="+type;
+        }
+        
           return(
+            <>
             <div style={{display:"flex"}}>
               <div>
                 <Typography variant="subtitle2" className={classes.labelname}>Donation Status</Typography> 
@@ -297,8 +360,71 @@ const donationid = new URLSearchParams(search).get("id");
                 <Typography variant="subtitle2" className={classes.labelvalue}>{status}</Typography> 
               </div>                         
             </div>
+            <div style={{display:"flex"}}>
+            <div>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        component="label"
+                        className={classes.editbutton}
+                        onClick={()=>{ history.push(editlink)}}
+                        >
+                        Edit
+                    </Button>
+                </div>
+                <div>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        component="label"
+                        className={classes.editbutton}
+                        onClick={handleClickOpen}
+                        >
+                        Delete
+                    </Button>
+                    <Dialog
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description">Please confirm you receive the donation.</DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleClose} color="primary">
+                                No
+                            </Button>
+                            <Button onClick={handleConfirm} color="primary" autoFocus>
+                                Confirm
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                </div>
+            </div>
+            </>
+            
              
           );
+      }
+      if(status === 'Not Received' && active === 0){
+        return(
+          <>
+          <div style={{display:"flex"}}>
+              <div>
+                <Typography variant="subtitle2" className={classes.labelname}>Donation Status</Typography> 
+              </div>
+              <div>
+                <Typography variant="subtitle2" className={classes.labelvalue}>Not Active</Typography> 
+              </div>                         
+            </div>
+            <div>
+                <Typography variant="subtitle2">Note: This donation is removed by you or from the administrator</Typography> 
+            </div>
+          </>
+
+        );
       }
       else if(status === 'Pending' || status === 'Received'){
           const doner={

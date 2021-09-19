@@ -1,8 +1,9 @@
-import React from 'react';
+import React ,{useEffect,useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
@@ -10,8 +11,11 @@ import BorderColorIcon from '@material-ui/icons/BorderColor';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel  from '@material-ui/core/InputLabel';
 import axios from 'axios';
-
+import {useSnackbar} from "notistack";
+import { useHistory} from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,45 +35,88 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  formcontrol:{
+    width:'100%',
+  },
 }));
 
 
 
-export default function RequestNote() {
+export default function EditCloth(props) {
   const classes = useStyles();
+  const history = useHistory();
 
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
-  const [year, setYear] = React.useState("");
-  const [subject, setSubject] = React.useState("");
-  const [lesson, setLesson] = React.useState("");
+  const [clothType, setClothType] = React.useState("");
+  const [gender, setGender] = React.useState("");
+  const [size, setSize] = React.useState("");
   const [date, setDate] = React.useState("");
   const [acceptTerm, setacceptTerm] = React.useState(false);
+  const {enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const userData=JSON.parse(localStorage.getItem("userData"));
+
+  useEffect(() => {
+    fetchDetails(props.type,props.donationid);
+},[]);
+
+const fetchDetails = (type,donationID) => {
+    const description={
+        "donationID": donationID,
+    }
+    axios.post("http://localhost:5000/api/donations/select",description,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+              }
+            }).then((response) => {
+                console.log(response.data);
+                setTitle(response.data[0].title);
+                setDescription(response.data[0].description);
+
+                const detail={
+                    "donationID": donationID,
+                    "type":type
+                }
+                axios.post("http://localhost:5000/api/donations/view",detail,{
+                headers:{
+                    "access-control-allow-origin" : "*",
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+                }).then((response) => {
+                console.log(response.data);
+                setClothType(response.data[0].cloth_type);
+                setGender(response.data[0].gender);
+                setSize(response.data[0].size);
+                setDate(response.data[0].before_date);
+            })
+
+
+    });
+}
 
   const handleSubmit = (event) => {
      event.preventDefault(); 
     console.log(`
         title: ${title}
         description: ${description}
-        year: ${year}
-        subject: ${subject}
-        lesson: ${lesson}
+        clothType: ${clothType}
+        gender: ${gender}
+        size: ${size}
         date: ${date}
         acceptTerm: ${acceptTerm}
-    `);
-
-    const userData=JSON.parse(localStorage.getItem("userData"));
+    `); 
     
-    const requestNote={
-        "studentID":userData.id,
+    const editCloth={
+        "donationid":props.donationid,
         "title": title,
         "description": description,
-        "year": year,
-        "subject": subject,
-        "lesson": lesson,
+        "gender": gender,
+        "size": size,
         "date":date,
+        "clothType":clothType
     }
-      axios.post("http://localhost:5000/api/donations/noterequest",requestNote,{
+      axios.post("http://localhost:5000/api/donations/clothedit",editCloth,{
           headers:{
               "access-control-allow-origin" : "*",
               "Content-type": "application/json; charset=UTF-8"
@@ -79,11 +126,25 @@ export default function RequestNote() {
           if(response.data==='success'){
             setTitle("");
             setDescription("");
-            setYear("");
-            setSubject("");
-            setLesson("");
+            setClothType("");
+            setGender("");
+            setSize("");
             setDate("");
             setacceptTerm(false);
+
+            enqueueSnackbar('Successfully Update', {
+                variant: 'success', anchorOrigin: {
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }
+              })
+
+              if(userData.userType === "STUDENT"){
+                history.push("/std/viewdetails_mydonation?id="+props.donationid) ;
+              }
+              else if(userData.userType === "UNIONST" ){
+                history.push("/ustd/viewdetails_mydonation?id="+props.donationid);
+              }
           }
 
       }).catch((err)=>{
@@ -101,7 +162,7 @@ export default function RequestNote() {
           <BorderColorIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Request Lecture Note
+          Edit Donation Request
         </Typography>
 
         <form className={classes.form} onSubmit={handleSubmit}>
@@ -143,40 +204,59 @@ export default function RequestNote() {
                 variant="outlined"
                 required
                 fullWidth
-                id="stdyear"
-                label="Study year"
-                name="stdyear"
-                value={year}
-                autoComplete="stdyear"
-                onChange={e => setYear(e.target.value)}
+                id="clothType"
+                label="Cloth type"
+                name="clothType"
+                value={clothType}
+                autoComplete="clothType"
+                onChange={e => setClothType(e.target.value)}
               />
             </Grid>
 
             <Grid item xs={6}>
-              <TextField
+            <FormControl className={classes.formcontrol}>
+            <InputLabel id="gender-user">Gender</InputLabel>
+              <Select
                 variant="outlined"
                 required
                 fullWidth
-                name="subject"
-                label="Subject"
-                value={subject}
-                id="subject"
-                autoComplete="subject"
-                onChange={e => setSubject(e.target.value)}
-              />
+                name="gender"
+                labelId="gender-user"
+                value={gender}
+                id="gender"
+                autoComplete="gender"
+                onChange={e => setGender(e.target.value)}
+              >
+                <option aria-label="None" value="" />
+                <option value={'Male'}>Male</option>
+                <option value={'Female'}>Female</option>
+                <option value={'NotSay'}>I prefer not to say</option>
+              </Select></FormControl>
             </Grid>
 
             <Grid item xs={12}>
-              <TextField
+            <FormControl className={classes.formcontrol}>
+            <InputLabel id="cloth-size">Size</InputLabel>
+            <Select
                 variant="outlined"
+                required
                 fullWidth
-                name="lesson"
-                label="Lesson"
-                value={lesson}
-                id="lesson"
-                autoComplete="lesson"
-                onChange={e => setLesson(e.target.value)}
-              />
+                name="size"
+                labelId="cloth-size"
+                value={size}
+                id="size"
+                autoComplete="size"
+                placeholder="size"
+                onChange={e => setSize(e.target.value)}
+              >
+                <option aria-label="" value=""></option>
+                <option value={'XS'}>XS (Width:16" Length:24")</option>
+                <option value={'S'}>S (Width:18" Length:26")</option>
+                <option value={'M'}>M (Width:20" Length:28")</option>
+                <option value={'L'}>L (Width:22" Length:29")</option>
+                <option value={'XL'}>XL (Width:23" Length:31")</option>
+                <option value={'2XL'}>2XL (Width:25" Length:33")</option>
+              </Select></FormControl>
             </Grid>
 
             <Grid item xs={12}>
