@@ -9,7 +9,9 @@ const sendGridMail = require('@sendgrid/mail');
 sendGridMail.setApiKey('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');
 const axios =require('axios');
 const bcrypt =require('bcrypt');
+const SHA256 = require("crypto-js/sha256");
 // Create and Save a new user
+
 exports.create = (req, res) => {
     // Validate request
     if (!req.body.username || !req.body.email) {
@@ -18,10 +20,7 @@ exports.create = (req, res) => {
         });
         return;
     }
-
-    const pw= bcrypt.hash(req.body.password, 10,);
-    // Create a user
-    console.log(pw);
+    let pw=SHA256(req.body.password).toString();
 
     const user = {
         username: req.body.username,
@@ -29,7 +28,7 @@ exports.create = (req, res) => {
         lname: req.body.lname,
         userType: req.body.userType,
         email: req.body.email,
-        password:pw,
+        password:pw ,
         isActive: false,
     };
 
