@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) =>({
         backgroundColor: "#757de8",
       },
       cardtext: {
-        color: "#f57c00",
+        color: "#e91e63",
         fontWeight:"bold",
         marginBottom:0,
       },
@@ -75,12 +75,17 @@ const useStyles = makeStyles((theme) =>({
         
       },
       card: {
+
         borderRadius: 0,
         //backgroundColor: theme.palette.primary.light,
         //color: theme.palette.primary.contrastText,
         boxShadow: 'rgba(0, 0, 255, 0.1) 0px 1px 6px, rgba(0, 0, 255, 0.1) 0px 1px 4px',
         borderBottom: "2px solid #757de8",
         
+        
+       },
+       nonUnderline:{
+        "&:hover":{textDecoration:"none"},
        },
    
    
@@ -206,7 +211,7 @@ export default function ProductViews(){
         return (
           <React.Fragment>
             <Grid item xs={12} sm={6} md={3}>
-            <Link to={link}>
+            <Link className={classes.nonUnderline} to={link}>
             <Card className={classes.card}>
     
               <CardActionArea>
@@ -228,7 +233,7 @@ export default function ProductViews(){
                   />
                     
                     <Typography gutterBottom variant="h6" component="h2" className={classes.cardtext}>
-                    Rs: {props.price}
+                    Rs: {props.price}.00
                     
                   </Typography>
                   
