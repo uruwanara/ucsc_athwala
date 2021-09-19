@@ -157,7 +157,7 @@ exports.sellOther = (req,res) => {
     const price = req.body.price;
     const image = req.body.image;
     const show_or_hide_details = req.body.show_or_hide_details;
-    const p_type = 'note';
+    const p_type = 'other';
     
     connection.query( 'insert into product (product_type,price,description,title,show_or_hide_details,user_id) values(?,?,?,?,?,?);',
     [p_type,price,description,title, show_or_hide_details,userID],
@@ -173,7 +173,7 @@ exports.sellOther = (req,res) => {
                         } else {
                             let product_id_max = results[0].product_id;
                             connection.query( 'insert into p_other (product_id,information_product,image) values(?,?,?); ',
-                                [product_id_max,year,subject,lesson],
+                                [product_id_max,information,image],
                                 (err2, result,fields) => {
                                     if (err2) {
                                         res.send(err2);
