@@ -25,7 +25,8 @@ import Paper from '@material-ui/core/Paper';
 import { ButtonBase } from '@material-ui/core';
 import { Divider, Dialog, DialogTitle } from '@material-ui/core';
 import { Link } from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
+import Land from '../LandingPage/home'  //Change the logout direction here
 
 
 const useStyles = makeStyles((theme) => ({
@@ -340,10 +341,8 @@ function UnionStudentDashboard() {
 
             </Paper>
 
-
             {/* </div> */}
             {/********************** End of the Fundraising part **********************************/}
-
 
         </React.Fragment>
     );
