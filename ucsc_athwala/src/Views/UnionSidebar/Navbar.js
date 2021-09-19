@@ -213,7 +213,7 @@ function UStdNavside() {
 
             {/*******************************Start of the notification icon**********************/}
             {/************auth1, setAuth1, anchorE2, setAnchorE2,handleMenu1,handleClose1 and handleChange1 are for the Notification icon*****************/}
-            {auth1 && (<div>
+            {/* {auth1 && (<div>
 
               <Box mr={2}>
 
@@ -250,7 +250,7 @@ function UStdNavside() {
               </Box>
 
             </div>
-            )}
+            )} */}
             {/*******************************End of the notification icon**********************/}
 
 

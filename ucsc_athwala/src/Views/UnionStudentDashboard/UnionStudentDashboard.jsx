@@ -70,22 +70,34 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: '100%',
         maxHeight: '100%',
     },
+    filterbutton: {
+        backgroundColor: "#757de8",
+        color: "#FFFFFF",
+        textTransform: "none",
+
+        border: "none",
+        borderRadius: 20,
+        "&:hover": {
+            color: "#FFFFFF",
+            backgroundColor: "#757de8",
+        },
+    },
 }));
 
 function UnionStudentDashboard() {
 
     const classes = useStyles();
-//retrieve data from localstorage
-    const userData=JSON.parse(localStorage.getItem("userData"));
+    //retrieve data from localstorage
+    const userData = JSON.parse(localStorage.getItem("userData"));
     console.log(userData);
 
     return (
         <React.Fragment>
 
             <Typography variant="h4" align="center" color="initial" gutterBottom>
-                Union Student Dashboard 
+                Union Student Dashboard
             </Typography>
-         
+
             <Typography variant="h6" align="right" color="initial" gutterBottom display="block">
                 Hi {userData.username} Welcome!!!
             </Typography>
@@ -122,7 +134,7 @@ function UnionStudentDashboard() {
                                             variant="contained"
                                             color="primary"
                                             size="large"
-                                            // className={classes.button}
+                                            className={classes.filterbutton}
                                             endIcon={<CardGiftcardIcon>donate</CardGiftcardIcon>}
                                         >
                                             Donate Now
@@ -157,7 +169,7 @@ function UnionStudentDashboard() {
                                             variant="contained"
                                             color="primary"
                                             size="large"
-                                            // className={classes.button}
+                                            className={classes.filterbutton}
                                             endIcon={<CardGiftcardIcon>donate</CardGiftcardIcon>}
                                         >
                                             Donate Now
@@ -191,7 +203,7 @@ function UnionStudentDashboard() {
                                             variant="contained"
                                             color="primary"
                                             size="large"
-                                            // className={classes.button}
+                                            className={classes.filterbutton}
                                             endIcon={<CardGiftcardIcon>donate</CardGiftcardIcon>}
                                         >
                                             Donate Now
@@ -225,7 +237,7 @@ function UnionStudentDashboard() {
                                             variant="contained"
                                             color="primary"
                                             size="large"
-                                            // className={classes.button}
+                                            className={classes.filterbutton}
                                             endIcon={<CardGiftcardIcon>donate</CardGiftcardIcon>}
                                         >
                                             Donate Now
@@ -254,7 +266,7 @@ function UnionStudentDashboard() {
             </Box>
             <Box display="flex" flexDirection="row" my={2}>
                 <Link to="/ustd/addfundraising">
-                    <Button variant="contained" color="primary" size="medium" startIcon={<AddCircleOutlineOutlinedIcon />}>
+                    <Button className={classes.filterbutton} variant="contained" color="primary" size="medium" startIcon={<AddCircleOutlineOutlinedIcon />}>
                         Create a new fundraising event
                     </Button>
                 </Link>
@@ -269,13 +281,13 @@ function UnionStudentDashboard() {
                         {/* <ButtonBase className={classes.image} style={{ height: 'fixed' }}>
                             <img className={classes.img} alt="vaniwilla" src={Vaniwilla} />
                         </ButtonBase> */}
-                   
+
                         <CardMedia
                             className={classes.media1}
                             image={Vaniwilla}
                             title="Paella dish"
                         />
-                      
+
                     </Grid>
 
 
@@ -313,18 +325,18 @@ function UnionStudentDashboard() {
                                 <Grid item sm={8} xm={12}>
                                     <Box display="flex" justifyContent="flex-end" mr={1} mb={1}>
                                         <Box mr={1}>
-                                            <Button variant="contained" color="primary" size="medium" >
+                                            <Button className={classes.filterbutton} variant="contained" color="primary" size="medium" >
                                                 View & Donate
                                             </Button>
                                         </Box>
 
                                         <Box mr={1}>
-                                            <Button variant="contained" color="secondary" size="medium" alignContent='flex-end'>
+                                            <Button className={classes.filterbutton} variant="contained" color="secondary" size="medium" alignContent='flex-end'>
                                                 End now
                                             </Button>
                                         </Box>
                                         <Box>
-                                            <Button variant="contained" color="secondary" size="medium" alignContent='flex-end'>
+                                            <Button className={classes.filterbutton} variant="contained" color="secondary" size="medium" alignContent='flex-end'>
                                                 Edit now
                                             </Button>
                                         </Box>
