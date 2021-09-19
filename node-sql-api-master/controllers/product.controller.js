@@ -47,7 +47,7 @@ exports.productDetailsMore = (req,res,err) => {
 };
 
 exports.viewMyallSellProduct = (req,res,err) => {
-    const userId =req.body .id;
+    const userId =req.query.id;
     //console.log(userId);
     connection.query( 'Select * from product where user_id = ? ;',
     [userId],

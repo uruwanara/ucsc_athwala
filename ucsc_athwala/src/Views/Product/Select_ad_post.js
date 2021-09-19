@@ -15,7 +15,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import {ProductButton,ProductPostButton} from './Product_button';
+import {ProductButton,ProductPostButton,MyProductButton} from './Product_button';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -196,6 +196,7 @@ export default function View_Allcause(){
                     <Grid container spacing={4}>
                         <ProductButton />
                         <ProductPostButton />
+                        <MyProductButton />
                         
                     </Grid>  
                 </div>

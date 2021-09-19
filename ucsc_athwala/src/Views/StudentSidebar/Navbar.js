@@ -65,6 +65,11 @@ import Studonate_fundraising from '../Fundraising/Stu_donate_fundraising';
 import Chat from '../chat/chat.jsx';
 import ViewProductDetailsNote from '../Product/View_Product_Details_note';
 import ViewProductDetailsOther from '../Product/View_Product_Details_other';
+import ViewMyProduct from '../Product/View_My_Product_Sell';
+import ViewMyProductBuy from '../Product/View_My_Product_Buy';
+import ViewMyProductDetails from '../Product/View_My_product_details';
+import ViewMyProductDetailsNote from '../Product/View_My_product_details_note';
+import ViewMyProductDetailsOther from '../Product/View_My_product_details_other';
 import Login from '../Signin/SignIn'
 import { useHistory } from "react-router-dom";
 import Land from '../LandingPage/home'  //Change the logout direction here
@@ -464,6 +469,21 @@ function Navbar() {
           </Route>
           <Route path="/std/ViewProductDetailsOther" exact>
             <ViewProductDetailsOther/>
+          </Route>
+          <Route path="/std/ViewMyProduct" exact>
+            <ViewMyProduct/>
+          </Route>
+          <Route path="/std/ViewMyProductBuy" exact>
+            <ViewMyProductBuy/>
+          </Route>
+          <Route path="/std/ViewMyProductDetails" exact>
+            <ViewMyProductDetails/>
+          </Route>
+          <Route path="/std/ViewMyProductDetailsNote" exact>
+            <ViewMyProductDetailsNote/>
+          </Route>
+          <Route path="/std/ViewMyProductDetailsOther" exact>
+            <ViewMyProductDetailsOther/>
           </Route>
             <Route path="/land" exact>
               <Land/>
