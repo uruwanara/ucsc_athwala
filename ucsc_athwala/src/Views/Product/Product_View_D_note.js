@@ -78,10 +78,13 @@ export function Description(props){
                                         {props.title}
                                     </Typography>
                                     <Typography variant="h6" className={classes.title}>
-                                        {props.model} {props.brand}
+                                        Subject : {props.subject}
                                     </Typography>
                                     <Typography variant="h6" className={classes.title}>
-                                        Price : Rs. {props.price}.00
+                                        Year : {props.year} 
+                                    </Typography>
+                                    <Typography variant="h6" className={classes.title}>
+                                        Lesson :  {props.lesson}
                                     </Typography>
                                     <Typography variant="h6" className={classes.title}>
                                         Posted Date : {props.postdate}

@@ -1,5 +1,5 @@
 import React ,{useEffect, useState} from 'react';
-import Note from '../../image/laptopHP.jpg';
+import Note from '../../image/note.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -7,7 +7,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import  Button from '@material-ui/core/Button';
-import {ContactDetails,Description} from './Product_View_D';
+import {ContactDetails,Description} from './Product_View_D_note';
 import axios from "axios";
 import { useLocation } from 'react-router';
 
@@ -75,8 +75,9 @@ export default function View_Clothcause(){
     const [postdate, setDate] = React.useState();
     const [price, setPrice] = React.useState();
     const [show_or_hide_details, setHideDetails] = React.useState();
-    // const [brand,setBrand] = useState();
-    // const [model,setModel] = useState();
+    const [lesson,setLesson] = useState();
+    const [year,setYear] = useState();
+    const [subject,setSubject] = useState();
     const search = useLocation().search;
 
     const product_id = new URLSearchParams(search).get("id");
@@ -127,9 +128,9 @@ export default function View_Clothcause(){
               }
             }).then((response) => {
                 console.log(response.data);
-                // setBrand(response.data[0].lesson);
-                // setModel(response.data[0].subject);
-                // setModel(response.data[0].model);
+                setLesson(response.data[0].lesson);
+                setSubject(response.data[0].subject);
+                setYear(response.data[0].year);
                 
             })
     };
@@ -149,10 +150,8 @@ export default function View_Clothcause(){
 
     return(
         <div>
-           
-                
                     <Grid container spacing={2}>
-                <Description  description = {description} title={title} postdate={postdate} price={price} show_or_hide_details={show_or_hide_details}/>
+                <Description  lesson={lesson} subject={subject} year={year} description = {description} title={title} postdate={postdate} price={price} show_or_hide_details={show_or_hide_details}/>
                         <Grid item sm={12} md={5} xs={12}>
                             <Card className={classes.card}>
                                 <CardMedia
