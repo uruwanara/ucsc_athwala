@@ -206,11 +206,11 @@ function UStdNavside() {
 
             {/*******************************Start of the notification icon**********************/}
             {/************auth1, setAuth1, anchorE2, setAnchorE2,handleMenu1,handleClose1 and handleChange1 are for the Notification icon*****************/}
-            {auth1 && (<div>
+            {/* {auth1 && (<div>
 
               <Box mr={2}>
 
-                {/* <IconButton aria-label="show 5 new notifications" color="inherit" onClick={handleMenu1}>
+                <IconButton aria-label="show 5 new notifications" color="inherit" onClick={handleMenu1}>
                   <Badge badgeContent={5} color="secondary">
                     <NotificationsIcon
                       fontSize="large"
@@ -239,11 +239,11 @@ function UStdNavside() {
                   <MenuItem onClick={handleClose1}>   Notification 3</MenuItem>
                   <MenuItem onClick={handleClose1}><NotificationsActiveOutlinedIcon />View all</MenuItem>
                 </Menu>
- */}
+
               </Box>
 
             </div>
-            )}
+            )} */}
             {/*******************************End of the notification icon**********************/}
 
 
@@ -346,14 +346,14 @@ function UStdNavside() {
               <EditFundraising />
             </Route>
             <Route path="/ustd/funddashboard/ended" exact>
-              <Ended_fundraising />
+              <Ended_fundraising/>
             </Route>
             <Route path="/ustd/funddashboard/donate" exact>
-              <UStudonate_fundraising />
+              <UStudonate_fundraising/>
             </Route>
-
+      
             <Route path="/ustd/funddashboard/expired" exact>
-              <Expired__fundraising />
+            <Expired__fundraising />
             </Route>
             <Route path="/ustd/viewcauses" exact>
               <Donation />

@@ -218,20 +218,20 @@ function Navbar() {
 
             {/*******************************Start of the notification icon**********************/}
             {/************auth1, setAuth1, anchorE2, setAnchorE2,handleMenu1,handleClose1 and handleChange1 are for the Notification icon*****************/}
-            {auth1 && (<div>
+            {/* {auth1 && (<div>
 
               <Box mr={2}>
 
-                {/* <IconButton aria-label="show 5 new notifications" color="inherit" onClick={handleMenu1}>
+                <IconButton aria-label="show 5 new notifications" color="inherit" onClick={handleMenu1}>
                   <Badge badgeContent={5} color="secondary">
                     <NotificationsIcon
                       fontSize="large"
                     >
                     </NotificationsIcon>
                   </Badge>
-                </IconButton> */}
+                </IconButton>
 
-                {/* <Menu
+                <Menu
                   id="menu-appbar"
                   anchorEl={anchorE2}
                   anchorOrigin={{
@@ -250,12 +250,12 @@ function Navbar() {
                   <MenuItem onClick={handleClose1}>   Notification 2</MenuItem>
                   <MenuItem onClick={handleClose1}>   Notification 3</MenuItem>
                   <MenuItem onClick={handleClose1}><NotificationsActiveOutlinedIcon />View all</MenuItem>
-                </Menu> */}
+                </Menu>
 
               </Box>
 
             </div>
-            )}
+            )} */}
             {/*******************************End of the notification icon**********************/}
 
 
