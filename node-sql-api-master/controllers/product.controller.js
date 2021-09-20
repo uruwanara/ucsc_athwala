@@ -191,8 +191,8 @@ exports.sellOther = (req,res) => {
 };
 
 exports.viewMyallBuyProduct = (req,res,err) => {
-    const userId =req.body.id;
-    //console.log(userId);
+    const userId =req.query.id;
+    console.log(userId);
     connection.query( 'Select * from pay_product where user_id = ? ;',
     [userId],
     (err1, result,fields) => {
