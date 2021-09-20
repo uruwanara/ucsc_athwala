@@ -229,7 +229,7 @@ export default function Chat() {
     } else if (userData.userType == "ADMIN") {
         un = "ADMIN";
     }
-
+    console.log(un)
     return (
 
         <ChatEngine

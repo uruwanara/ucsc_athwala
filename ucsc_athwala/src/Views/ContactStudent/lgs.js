@@ -9,7 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import LG from '../../image/lg.png';
+import LG from '../../image/coun.png';
 
 import TextTruncate from 'react-text-truncate';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -123,7 +123,7 @@ export default function Cases(){
         }
         console.log(searchtext);
 
-        axios.post("http://localhost:5000/api/lgs/acd", searchtext, {
+        axios.post("http://localhost:5000/api/couns/findall", searchtext, {
             headers: {
                 "access-control-allow-origin": "*",
                 "Content-type": "application/json; charset=UTF-8"
@@ -135,80 +135,12 @@ export default function Cases(){
 
     }
 
-    const tabButton =() =>{
-        if(userData.userType === "STUDENT" ||userData.userType === "UNIONST" ){
-            return(
-                <>
-                    <MyDonationButton />
-                    <RequestButton />
-                </>
-            );
-        }
-    };
-
-
-    const searchSubmit = (searchtxt) => {
-        Setsearch(searchtxt);
-        console.log(search);
-
-        const searchtext={
-            "title": search,
-        }
-        axios.post("http://localhost:5000/api/lgs/find",searchtext,{
-            headers:{
-                "access-control-allow-origin" : "*",
-                "Content-type": "application/json; charset=UTF-8"
-            }
-        }).then((response) => {
-            console.log(response.data);
-            SetMap(response.data);
-        });
-    };
-
-    const searchbar = () => {
-        return (
-
-            <Grid container spacing={1} >
-                <Grid item md={10}>
-
-                    <TextField
-                        id="outlined-basic"
-                        variant="outlined"
-                        size="small"
-                        className={classes.textfilter}
-                        value={search}
-                        placeholder="Search.."
-                        onChange={e => Setsearch(e.target.value)}
-                    />
-
-                </Grid>
-                <Grid item md={2}>
-
-                    <Button
-                        type="submit"
-                        size="large"
-                        className={classes.filterbutton}
-                        startIcon={<PageviewIcon sx={{ fontSize: 40 }}/>}
-                        onClick={() => {
-                            searchSubmit(search);
-                        }}
-                    >
-                        search
-                    </Button>
-
-                </Grid>
-            </Grid>
-
-        );
-    }
-
-
     function FormRow (props){
         var id = props.id;
-        var link="/viewLg?id="+id;
+        var link="/conCoun?id="+id;
        // var link="/std/viewLg";
         var imglink=LG;
-
+        var name=props.fname+" "+props.lname;
         return (
             <React.Fragment>
                 <Grid item xs={4}>
@@ -222,7 +154,7 @@ export default function Cases(){
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    {props.title}
+                                    {name}
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -233,7 +165,7 @@ export default function Cases(){
                                         className={classes.donateButton}
                                         startIcon={<VideoCameraBackIcon/>}
                                 >
-                                    Join Now
+                                    Contact Now
                                 </Button>
                             </Link>
 
@@ -248,16 +180,15 @@ export default function Cases(){
     return(
         <div>
             <Grid container spacing={2} className={classes.topic}>
-                <Grid item md={2}><Typography variant="h5" className={classes.title}>Learning Groups</Typography></Grid>
-                <Grid item md={8}>{searchbar()}</Grid>
+                <Grid item md={6}><Typography variant="h5" className={classes.title}>Contact Counsellor</Typography></Grid>
 
             </Grid>
 
             <div>
                 <div style={{float:"left"}}>
-                    <Grid container spacing={4}>
-                        {tabButton()}
-                    </Grid>
+                    {/*<Grid container spacing={4}>*/}
+                    {/*    {tabButton()}*/}
+                    {/*</Grid>*/}
 
                 </div>
             </div>
@@ -265,7 +196,7 @@ export default function Cases(){
             <div className={classes.root}>
                 <Grid container spacing={6}>
                     {mapset.map(student=> (
-                        <FormRow title={student.title} id={student.lgId} url={student.url} />
+                        <FormRow fname={student.fname} lname={student.lname} id={student.id} />
                     ))}
 
                 </Grid>

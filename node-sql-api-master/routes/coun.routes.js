@@ -6,6 +6,8 @@ module.exports = counRoutes => {
 
     router.post("/findall", couns.viewAll);
 
+    router.post("/find", couns.find);
+
 
     counRoutes.use('/api/couns', router);
 };

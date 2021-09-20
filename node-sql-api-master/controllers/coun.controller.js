@@ -78,9 +78,10 @@ exports.findOne = (req, res) => {
 };
 
 exports.find = (req, res) => {
-    const title = req.body.title;
+    const id = req.body.id;
 
-    connection.query("Select * from learning_groups where (title "+ "like'%"+ title+"%')" + " AND status = 1;",
+    connection.query("Select email from users where id=?;",
+        [id],
         (err, result,fields) => {
             if (err) {
                 res.send(err);

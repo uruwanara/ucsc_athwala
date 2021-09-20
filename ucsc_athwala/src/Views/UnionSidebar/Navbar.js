@@ -56,6 +56,12 @@ import { useHistory } from "react-router-dom";
 import Land from '../LandingPage/home'  //Change the logout direction here
 import Editform from '../Donation/edit_forms';
 import Chat from '../chat/chat.jsx';
+import LearnGroup from '../LearningGroups/lgPage'
+import CreateLG from'../LearningGroups/createLg'
+import ViewLG from '../LearningGroups/viewLgs'
+import ConCoun from '../ContactCouncellors/lgPage'
+import ContactCoun from '../ContactCouncellors/viewLgs'
+
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -416,6 +422,25 @@ function UStdNavside() {
             <Route path="/land" exact>
               <Land/>
             </Route>
+            <Route path="/lrngrp" exact>
+              <LearnGroup/>
+            </Route>
+            <Route path="/createlg" exact>
+              <CreateLG/>
+            </Route>
+            <Route path="/viewLg" exact>
+              <ViewLG/>
+            </Route>
+
+            <Route path="/contactcoun" exact>
+              <ConCoun/>
+            </Route>
+            <Route path="/conCoun" exact>
+              <ContactCoun/>
+            </Route>
+
+
+
             <Route path="/ustd/editrequest" exact>
             <Editform />
             </Route>

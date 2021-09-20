@@ -80,11 +80,11 @@ export default function SignIn() {
         }else if (response.data.data.userType==="ALUMNI"){
           history.push("/pst/PastDashboard");
         }else if (response.data.data.userType==="COUNSELLOR"){
-          history.push("/Coundashboard");
+          history.push("/coun/Coundashboard");
         }else if(response.data.data.userType==="UNIONST"){
           history.push("/ustd/ustddashboard");
         }else if(response.data.data.userType==="ADMIN"){
-          history.push("admin/admindashboard");
+          history.push("/admin/admindashboard");
         }
       }else if(response.data.status==="unauthorized") {
         enqueueSnackbar('Please Sign In to your Email and Verify the account', {

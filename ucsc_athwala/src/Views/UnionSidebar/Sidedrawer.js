@@ -85,7 +85,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to="/stdlrngrp" className={classes.Nounderline}>
+              <Link to="/lrngrp" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <VideocamIcon style={{ fill: "blue"}}/>
@@ -121,7 +121,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to="/stdcntcoun" className={classes.Nounderline}>
+              <Link to="/contactcoun" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <HelpIcon style={{ fill: "blue"}}/>

@@ -57,9 +57,9 @@ export default function SignIn() {
 
     const search = useLocation().search;
 
-    const lgId = new URLSearchParams(search).get("id");
-    const userData=JSON.parse(localStorage.getItem("userData"));
 
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    const lgId = userData.id;
     useEffect(() => {
 
         fetchDescription(lgId);

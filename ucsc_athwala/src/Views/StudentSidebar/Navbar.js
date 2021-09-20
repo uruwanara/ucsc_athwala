@@ -78,6 +78,7 @@ import LearnGroup from '../LearningGroups/lgPage'
 import CreateLG from'../LearningGroups/createLg'
 import ViewLG from '../LearningGroups/viewLgs'
 import ConCoun from '../ContactCouncellors/lgPage'
+import ContactCoun from '../ContactCouncellors/viewLgs'
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -497,14 +498,21 @@ function Navbar() {
             <Route path="/createlg" exact>
             <CreateLG/>
           </Route>
-            <Route path="/std/viewLg" exact>
+            <Route path="/viewLg" exact>
               <ViewLG/>
             </Route>
 
             <Route path="/contactcoun" exact>
               <ConCoun/>
             </Route>
-          <Route path="/std/editrequest" exact>
+            <Route path="/conCoun" exact>
+              <ContactCoun/>
+            </Route>
+
+
+
+
+            <Route path="/std/editrequest" exact>
             <Editform />
           </Route>
         </Switch>

@@ -35,13 +35,13 @@ export default function Side(){
     return(
       <div>
           <List>
-              <Link to="/Coundashboard" className={classes.Nounderline}>
+              <Link to="/coun/Coundashboard" className={classes.Nounderline}>
                 <ListItem button >
                 <ListItemIcon><DashboardIcon style={{ fill: "blue"}}/></ListItemIcon>
                 <ListItemText primary="Dashboard" />
                 </ListItem>
               </Link>
-              <Link to="/chat" className={classes.Nounderline}>
+              <Link to="/coun/chat" className={classes.Nounderline}>
                   <ListItem button>
                       <ListItemIcon>
                           <ChatIcon style={{ fill: "blue"}}/>
@@ -49,7 +49,7 @@ export default function Side(){
                       <ListItemText primary="Chat" />
                   </ListItem>
               </Link>
-              <Link to="/CounContactStu" className={classes.Nounderline}>
+              <Link to="/coun/CounContactStu" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon><PeopleAltIcon style={{ fill: "blue"}}/></ListItemIcon>
                 <ListItemText primary="Contact Student" />
