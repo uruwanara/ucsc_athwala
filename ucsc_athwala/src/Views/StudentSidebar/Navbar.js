@@ -52,7 +52,6 @@ import RequestOther from '../Donation/Request_Other';
 import MyDonation from '../Donation/My_donation';
 import JobOpertunity from '../job/jobPage';
 import ViewJob from '../job/Viewjobs';
-import ViewQA from '../QA/View_QAform';
 import Helpstack from '../HelpStack/HelpStack'
 import StuFundraising from '../Fundraising/StuViewFundraising.jsx';
 import ViewProductEle from '../Product/Product_Page_View';
@@ -70,6 +69,8 @@ import ViewMyProductBuy from '../Product/View_My_Product_Buy';
 import ViewMyProductDetails from '../Product/View_My_product_details';
 import ViewMyProductDetailsNote from '../Product/View_My_product_details_note';
 import ViewMyProductDetailsOther from '../Product/View_My_product_details_other';
+import ViewQA from '../QA/View_QAform';
+import OAPageAskQuestion from '../QA/Ask_Q_And_A';
 import Login from '../Signin/SignIn'
 import { useHistory } from "react-router-dom";
 import Land from '../LandingPage/home'  //Change the logout direction here
@@ -484,6 +485,9 @@ function Navbar() {
           </Route>
           <Route path="/std/ViewMyProductDetailsOther" exact>
             <ViewMyProductDetailsOther/>
+          </Route>
+          <Route path="/std/OAPageAskQuestion" exact>
+            <OAPageAskQuestion/>
           </Route>
             <Route path="/land" exact>
               <Land/>
