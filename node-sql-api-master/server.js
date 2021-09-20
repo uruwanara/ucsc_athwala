@@ -37,6 +37,7 @@ require("./routes/helpstack.routes")(app);
 require("./routes/auction.routes")(app);
 require("./routes/product.routes")(app);
 require("./routes/jobpost.routes")(app);
+require("./routes/faq.routes")(app);
 
 //Uthpala saved me
 // set port, listen for requests
