@@ -146,7 +146,7 @@ export default function AskQuestion(){
 
         <Grid container spacing ={3}>
             <Grid item md={6}>
-                <Link to ='/std/viewQA'>
+                <Link to ='/admin/Admin_QA'>
                 <Typography variant="h5" className={classes.backlink}>Back to FAQ</Typography>
                 </Link>
             </Grid>
