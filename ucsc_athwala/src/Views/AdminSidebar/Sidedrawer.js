@@ -76,25 +76,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to="" className={classes.Nounderline}>
-                <ListItem button>
-                <ListItemIcon>
-                    <PanToolIcon style={{ fill: "blue"}}/>
-                </ListItemIcon>
-                <ListItemText primary="Notifications" />
-                </ListItem>
-              </Link>
-
-              <Link to="" className={classes.Nounderline}>
-                <ListItem button>
-                <ListItemIcon>
-                    <VideocamIcon style={{ fill: "blue"}}/>
-                </ListItemIcon>
-                <ListItemText primary="Reports" />
-                </ListItem>
-              </Link>
-
-              <Link to="" className={classes.Nounderline}>
+              <Link to="/admin/Admin_QA" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <ChatIcon style={{ fill: "blue"}}/>

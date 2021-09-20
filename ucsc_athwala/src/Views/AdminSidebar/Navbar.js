@@ -31,6 +31,8 @@ import Side from './Sidedrawer';
 import Dashboard from '../AdminDashboard/Admindash';
 import Adminauc from '../Auction/adminauc';
 import Approve from '../Auction/approve';
+import Admin_QA from '../QA/Admin_QA';
+import Admin_QA_Form from '../QA/Ask_Q_And_A';
 import { useHistory } from "react-router-dom";
 import Land from '../LandingPage/home'  //Change the logout direction here
 
@@ -323,10 +325,15 @@ function Navbar() {
           <Route path="/admin/approve" exact>
             <Approve />
           </Route>
+          <Route path="/admin/Admin_QA" exact>
+            <Admin_QA />
+          </Route>
+          <Route path="/admin/Admin_QA_Form" exact>
+            <Admin_QA_Form />
+          </Route>
             <Route path="/land" exact>
               <Land/>
             </Route>
-
           </Switch>
 
         </main> }
