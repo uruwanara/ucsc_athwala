@@ -33,8 +33,6 @@ const useStyles = makeStyles((theme) => ({
       },
       title:{
         color:"#546e7a",
-        marginTop:10,
-        marginBottom:20,
         fontFamily:"Poppins, sans-serif",
         marginTop:'40px',
         marginBottom:'30px'
@@ -86,12 +84,12 @@ export default function View_Notecause(){
     const [date, setDate] = React.useState();
     const [file , setFile] = useState([]);
     const search = useLocation().search;
-   
+
     const donationid = new URLSearchParams(search).get("id");
     const userData=JSON.parse(localStorage.getItem("userData"));
 
     useEffect(() => {
-        
+
         fetchDescription(donationid);
         fetchDetails(donationid);
     },[]);
@@ -135,7 +133,7 @@ export default function View_Notecause(){
 
     const onChangeHandler = (event)=>{
         console.log(event.target.files[0]);
-        setFile(event.target.files[0]);    
+        setFile(event.target.files[0]);
     }
 
     return(
@@ -147,17 +145,17 @@ export default function View_Notecause(){
                                     component="img"
                                     height="250"
                                     src= {Note}
-                                />   
+                                />
                             </Card>
                         </Grid>
 
                         <Description description={description} title={title} />
                     </Grid>
-                    
+
 
                     <Grid container spacing={2} >
                         <NoteDoneeDetails year={year} subject={subject} lesson={lesson} date={date} requestStudentid={requestStudentid} userId = {userData.id}/>
-                        
+
                         <Grid item xs={6}>
                         <Card className={classes.card}>
                                 <CardContent>
@@ -177,7 +175,7 @@ export default function View_Notecause(){
                                         Upload File
                                         <input
                                             type="file"
-                                            name="file" 
+                                            name="file"
                                             onChange={onChangeHandler}
                                         />
                                     </Button>
@@ -198,11 +196,11 @@ export default function View_Notecause(){
                                     </Typography>
 
                                     <ContactForm donationID={donationid} type='note'/>
-                                    
+
                                     </div>
-                                </CardContent>   
+                                </CardContent>
                             </Card>
-                            
+
                         </Grid>
                     </Grid>
         </div>

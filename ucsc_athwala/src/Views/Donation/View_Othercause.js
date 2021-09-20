@@ -32,8 +32,6 @@ const useStyles = makeStyles((theme) => ({
       },
       title:{
         color:"#546e7a",
-        marginTop:10,
-        marginBottom:20,
         fontFamily:"Poppins, sans-serif",
         marginTop:'40px',
         marginBottom:'30px'
