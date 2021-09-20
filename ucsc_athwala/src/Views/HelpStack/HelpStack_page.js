@@ -22,7 +22,7 @@ const useStyles = makeStyles ({
         paddingRight:10,
         marginTop:50,
         marginBottom:20,
-        marginRight:90,
+        marginRight:0,
         float:"right",
         border:"none",
         "&:hover": {
