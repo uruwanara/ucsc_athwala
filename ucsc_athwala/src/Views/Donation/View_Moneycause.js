@@ -35,8 +35,6 @@ const useStyles = makeStyles((theme) => ({
       },
       title:{
         color:"#546e7a",
-        marginTop:10,
-        marginBottom:10,
         fontFamily:"Poppins, sans-serif",
         marginTop:'40px',
         marginBottom:'30px'
@@ -107,8 +105,9 @@ export default function View_Clothcause(){
         fetchDescription(donationid);
         fetchDetails(donationid);
     },[]);
-
+    let dId="";
     const fetchDescription = (donationid) => {
+        dId=donationid;
         const description={
             "donationID": donationid,
         }
@@ -146,6 +145,50 @@ export default function View_Clothcause(){
 
     const handleDonate = (event) => {
 
+        const payHereData = {
+            sandbox: true,
+            merchant_id: "1217629", // Replace your Merchant ID
+            return_url: "http://localhost:3000/login", // Important
+            cancel_url: "http://localhost:3000/login", // Important
+            notify_url: "/admin/add-payment",
+            order_id: dId,
+            items: title,
+            amount: donateamount,
+            currency: "LKR",
+            first_name: userData.fname,
+            last_name: userData.lname,
+            email: userData.email,
+            phone: userData.contactnumber,
+            address:"UCSC,Colombo",
+            city: "Colombo",
+            country: "Sri Lanka",
+            delivery_address:"UCSC,Colombo",
+            delivery_city: "Colombo ",
+            delivery_country: "Sri Lanka",
+            custom_1:dId,
+            custom_2: "",
+        };
+        window.payhere.startPayment(payHereData);
+    };
+    window.payhere.onCompleted = function onCompleted(dId) {
+        const details={
+            "dId": dId,
+            "amount":parseInt(curramount) + parseInt(donateamount)
+        }
+        axios.post("http://localhost:5000/api/donations/pay",details,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then((response) => {
+            console.log("Payment Done")
+            console.log(response.data);
+
+        })
+    }
+    window.payhere.onDismissed = function onDismissed() {
+        //Note: Prompt user to pay again or show an error page
+        console.log("Payment dismissed");
     };
 
     return(

@@ -72,5 +72,7 @@ module.exports = donationRoutes => {
     //filter my posts
     router.post("/myfilter",donation.myfilter)
 
+    router.post("/pay",donation.pay)
+
     donationRoutes.use('/api/donations', router);
 };

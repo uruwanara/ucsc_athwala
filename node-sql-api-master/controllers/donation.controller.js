@@ -67,7 +67,21 @@ exports.viewMyall = (req,res) => {
 
     );
 };
+exports.pay = (req,res) => {
+    const dId=req.body.dId;
+    const amount=req.body.amount;
+    connection.query( 'UPDATE money SET current_amount=? where donation_id=?;',
+        [amount,dId],
+        (err, result,fields) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(result);
+            }
+        }
 
+    );
+};
 exports.noteRequest = (req,res) => {
     const studentID =req.body.studentID;
     const title = req.body.title;
