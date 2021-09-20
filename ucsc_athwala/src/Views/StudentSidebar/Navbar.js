@@ -77,7 +77,7 @@ import Editform from '../Donation/edit_forms';
 import LearnGroup from '../LearningGroups/lgPage'
 import CreateLG from'../LearningGroups/createLg'
 import ViewLG from '../LearningGroups/viewLgs'
-
+import ConCoun from '../ContactCouncellors/lgPage'
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -499,6 +499,10 @@ function Navbar() {
           </Route>
             <Route path="/std/viewLg" exact>
               <ViewLG/>
+            </Route>
+
+            <Route path="/contactcoun" exact>
+              <ConCoun/>
             </Route>
           <Route path="/std/editrequest" exact>
             <Editform />

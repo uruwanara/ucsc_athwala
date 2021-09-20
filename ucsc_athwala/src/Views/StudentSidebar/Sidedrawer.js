@@ -127,7 +127,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to="/stdcntcoun" className={classes.Nounderline}>
+              <Link to="/contactcoun" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <HelpIcon className={classes.Listicon}/>
