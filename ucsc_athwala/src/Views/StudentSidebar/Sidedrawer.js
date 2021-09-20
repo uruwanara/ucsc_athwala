@@ -91,7 +91,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to="/stdlrngrp" className={classes.Nounderline}>
+              <Link to="/lrngrp" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <VideocamIcon className={classes.Listicon}/>

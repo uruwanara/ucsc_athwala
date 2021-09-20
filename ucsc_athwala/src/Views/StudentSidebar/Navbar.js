@@ -74,6 +74,9 @@ import Login from '../Signin/SignIn'
 import { useHistory } from "react-router-dom";
 import Land from '../LandingPage/home'  //Change the logout direction here
 import Editform from '../Donation/edit_forms';
+import LearnGroup from '../LearningGroups/lgPage'
+import CreateLG from'../LearningGroups/createLg'
+import ViewLG from '../LearningGroups/viewLgs'
 
 
 const drawerWidth = 240;
@@ -487,6 +490,15 @@ function Navbar() {
           </Route>
             <Route path="/land" exact>
               <Land/>
+            </Route>
+            <Route path="/lrngrp" exact>
+              <LearnGroup/>
+            </Route>
+            <Route path="/createlg" exact>
+            <CreateLG/>
+          </Route>
+            <Route path="/std/viewLg" exact>
+              <ViewLG/>
             </Route>
           <Route path="/std/editrequest" exact>
             <Editform />
