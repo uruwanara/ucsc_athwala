@@ -35,6 +35,8 @@ import ViewJob from '../job/Viewjobs';
 import MyJobOpertunity from '../job/MyjobOpp';
 import EditPost from '../job/Update_job_post';
 import DeletePost from '../job/Delete_job_post'
+import { useHistory } from "react-router-dom";
+import Land from '../LandingPage/home'  //Change the logout direction here
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -143,6 +145,11 @@ function Navbar() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const history= useHistory();
+  const logout=()=>{
+    history.push("/land");
+    localStorage.clear();
+  }
   return (
     <div className={classes.root}> {/* devide to flex, start from here*/}
       <CssBaseline />
@@ -258,7 +265,7 @@ function Navbar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}><PersonPinOutlinedIcon /> My Profile</MenuItem>
-                <MenuItem onClick={handleClose}><ExitToAppOutlinedIcon /> Log out</MenuItem>
+                <MenuItem onClick={logout} ><ExitToAppOutlinedIcon /> Log out</MenuItem>
               </Menu>
             </div>
           )}
@@ -328,6 +335,9 @@ function Navbar() {
           </Route>
           <Route path="/pst/jobdelete" exact>
             <DeletePost />
+          </Route>
+          <Route path="/land" exact>
+            <Land/>
           </Route>
           
         </Switch>
