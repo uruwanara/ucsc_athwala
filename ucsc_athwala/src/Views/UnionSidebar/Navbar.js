@@ -55,6 +55,7 @@ import UStudonate_fundraising from '../Fundraising/UStu_donate_fundraising';
 import { useHistory } from "react-router-dom";
 import Land from '../LandingPage/home'  //Change the logout direction here
 import Editform from '../Donation/edit_forms';
+import Chat from '../chat/chat.jsx';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -380,6 +381,10 @@ function UStdNavside() {
             </Route>
             <Route path="/ustd/viewDeviceCause_details" exact>
               <DeviceCause />
+            </Route>
+
+            <Route path="/chat" exact>
+              <Chat/>
             </Route>
             <Route path="/ustd/viewMoneyCause_details" exact>
               <MoneyCause />

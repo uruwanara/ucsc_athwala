@@ -32,6 +32,7 @@ import ViewJob from "../job/Viewjobs";
 import MyJobOpertunity from "../job/MyjobOpp";
 import EditPost from "../job/Update_job_post";
 import DeletePost from "../job/Delete_job_post";  //Change the logout direction here
+import Chat from '../chat/chat.jsx';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -301,6 +302,10 @@ function Navbar() {
           <Switch>
             <Route path="/coun/CounDashboard" exact>
               <Dashboard/>
+            </Route>
+
+            <Route path="/chat" exact>
+              <Chat/>
             </Route>
               <Route path="/land" exact>
               <Land/>

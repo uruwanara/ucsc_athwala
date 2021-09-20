@@ -76,6 +76,14 @@ export default function Side(){
                 </ListItem>
               </Link>
 
+              <Link to="/chat" className={classes.Nounderline}>
+                  <ListItem button>
+                      <ListItemIcon>
+                          <ChatIcon style={{ fill: "blue"}}/>
+                      </ListItemIcon>
+                      <ListItemText primary="Chat" />
+                  </ListItem>
+              </Link>
               <Link to="/admin/Admin_QA" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>

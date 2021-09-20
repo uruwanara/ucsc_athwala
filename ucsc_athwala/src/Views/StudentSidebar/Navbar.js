@@ -458,7 +458,7 @@ function Navbar() {
             <PostNoteForm/>
           </Route>
 
-          <Route path="/std/stdchat" exact>
+          <Route path="/chat" exact>
             <Chat/>
           </Route>
           <Route path="/std/PostOtherForm" exact>

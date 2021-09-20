@@ -86,7 +86,7 @@ export default function Side(){
               </Link>
 
 
-              <Link to="/pst/pstchat" className={classes.Nounderline}>
+              <Link to="/chat" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <ChatIcon style={{ fill: "blue"}}/>

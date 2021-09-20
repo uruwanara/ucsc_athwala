@@ -37,7 +37,7 @@ import EditPost from '../job/Update_job_post';
 import DeletePost from '../job/Delete_job_post'
 import { useHistory } from "react-router-dom";
 import Land from '../LandingPage/home'  //Change the logout direction here
-
+import Chat from '../chat/chat.jsx';
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -329,6 +329,10 @@ function Navbar() {
           </Route>
           <Route path="/pst/myJobOpertunity" exact>
             <MyJobOpertunity />
+          </Route>
+
+          <Route path="/chat" exact>
+            <Chat/>
           </Route>
           <Route path="/pst/jobedit" exact>
             <EditPost />

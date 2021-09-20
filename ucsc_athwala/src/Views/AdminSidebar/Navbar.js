@@ -35,7 +35,7 @@ import Admin_QA from '../QA/Admin_QA';
 import Admin_QA_Form from '../QA/Ask_Q_And_A';
 import { useHistory } from "react-router-dom";
 import Land from '../LandingPage/home'  //Change the logout direction here
-
+import Chat from '../chat/chat.jsx';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -328,6 +328,9 @@ function Navbar() {
           <Route path="/admin/Admin_QA" exact>
             <Admin_QA />
           </Route>
+            <Route path="/chat" exact>
+              <Chat/>
+            </Route>
           <Route path="/admin/Admin_QA_Form" exact>
             <Admin_QA_Form />
           </Route>
