@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         height: '100vh',
     },
     image: {
-        backgroundImage: 'url(https://scontent.fcmb1-1.fna.fbcdn.net/v/t1.6435-9/119733265_3377356858978307_7759425616843007706_n.jpg?_nc_cat=105&ccb=1-3&_nc_sid=0debeb&_nc_eui2=AeH4zHk2QcUwpxtAImp6TAKjSIjK6TcF3wpIiMrpNwXfCl9fxPaj8eRFswK0TgYRGVMZqVW2F6bildI36NiO9FdD&_nc_ohc=jgXMksd7s1EAX-03o5W&_nc_ht=scontent.fcmb1-1.fna&oh=53d0f57c6960350d316714c28497c3c2&oe=60F478C8)',
+        backgroundImage: 'url(https://i.ytimg.com/vi/rKoz-ncPdNk/maxresdefault.jpg)',
         backgroundRepeat: 'no-repeat',
         backgroundColor:
             theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],

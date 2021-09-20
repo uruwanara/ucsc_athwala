@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         height: '100vh',
     },
     image: {
-        backgroundImage: 'url(https://scontent.fcmb1-1.fna.fbcdn.net/v/t1.6435-9/119733265_3377356858978307_7759425616843007706_n.jpg?_nc_cat=105&ccb=1-3&_nc_sid=0debeb&_nc_eui2=AeH4zHk2QcUwpxtAImp6TAKjSIjK6TcF3wpIiMrpNwXfCl9fxPaj8eRFswK0TgYRGVMZqVW2F6bildI36NiO9FdD&_nc_ohc=jgXMksd7s1EAX-03o5W&_nc_ht=scontent.fcmb1-1.fna&oh=53d0f57c6960350d316714c28497c3c2&oe=60F478C8)',
+        backgroundImage: 'url(https://scontent.fcmb1-2.fna.fbcdn.net/v/t1.6435-9/119733265_3377356858978307_7759425616843007706_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=0debeb&_nc_ohc=98NBjlTBdRAAX996OsT&tn=TgQSIojRGtZoR7fA&_nc_ht=scontent.fcmb1-2.fna&oh=89aa1d043cb060cd48e8482255e9c04d&oe=616F1448)',
         backgroundRepeat: 'no-repeat',
         backgroundColor:
             theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -51,13 +51,44 @@ export default function SignUp() {
     const [lname, setLname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [conpassword, setConPassword] = useState("");
     const [ustype, setUsrType] = useState("");
-
+    const [contact, setContact] = useState("");
+    let ustatus="";
     // eslint-disable-next-line
     const {enqueueSnackbar, closeSnackbar } = useSnackbar();
 
     const signUp=()=>{
-        if(!(email.includes("@stu.ucsc.cmb.ac.lk")|| email.includes("@ucsc.lk"))){
+        if(ustype=="ALUMNI" || ustype=="COUNSELLOR"){
+            ustatus="notactive";
+        }else{
+            ustatus="active";
+        }
+
+        if(fname==""||lname==""||email==""||contact==""||password==""||conpassword==""){
+            enqueueSnackbar('Pleasse Fill all the Fields', {
+                variant: 'error',anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right',
+                },
+            });
+        }
+        else if(contact.length<9){
+            enqueueSnackbar('Please Cehck the Contact Number', {
+                variant: 'error',anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right',
+                },
+            });
+        }
+        else if(!password == conpassword){
+            enqueueSnackbar('Passwords Not matched', {
+                variant: 'error',anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right',
+                },
+            });
+        }else if(!(email.includes("@stu.ucsc.cmb.ac.lk")|| email.includes("@ucsc.lk"))){
             enqueueSnackbar('Email Not Valid. Use your UCSC Email', {
                 variant: 'error',anchorOrigin: {
                     vertical: 'top',
@@ -72,7 +103,9 @@ export default function SignUp() {
             "lname": lname,
             "userType": ustype,
             "email": email,
-            "password": password
+            "password": password,
+            "contactnumber":contact,
+            "status":ustatus
         }
         axios.post("http://localhost:5000/api/users/create",user,{
             headers:{
@@ -145,12 +178,37 @@ export default function SignUp() {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                id="email"
+                                label="Contact Number"
+                                name="contact"
+                                autoComplete="contact"
+                                onChange={(e) => {setContact(e.target.value)}}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
                                 name="password"
                                 label="Password"
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
                                 onChange={(e) => {setPassword(e.target.value)}}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Confirm Password"
+                                type="password"
+                                id="conpassword"
+                                autoComplete="current-conpassword"
+                                onChange={(e) => {setConPassword(e.target.value)}}
                             />
                         </Grid>
                         <Grid item xs={12}>

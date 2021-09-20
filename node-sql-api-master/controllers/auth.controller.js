@@ -31,17 +31,50 @@ exports.login = (req, res) => {
         }
         if (response.password === SHA256(req.body.password).toString()) {
             //Generate a token if the password matches
+            if(response.status=="deactive"){
+                res.status(403).send({
+                    status: "deactivate",
+                    message: "Your Account is Decativated.Please contact Admin."
+
+                });
+                return;
+            }if(response.userType=="COUNSELLOR"){
+                if(response.status=="active"){
+                    res.status(406).send({
+                        status: "notaproved",
+                        message: "Counsellor Not Approved"
+
+                    });
+                    return;
+                }
+            }
             res.status(200).send({
                 status: "success",
                 data: response
             })
+
+        }else{
+            res.status(200).send({
+                status: "faild",
+                data: response
+            })
+            return;
         }
+
+
+
+
+
+
+
+
     }).catch(err => {
         console.log(err)
         res.status(500).send({
             message: "Error retrieving User with email=" + req.body.email
         });
     });
+
 };
 
 // validate a token

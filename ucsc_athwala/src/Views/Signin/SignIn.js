@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://scontent.fcmb1-1.fna.fbcdn.net/v/t1.6435-9/119608175_3377355348978458_3088964903465659305_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=0debeb&_nc_eui2=AeGEJb4QYzVtgaome7k3G-R662eiKDEisgfrZ6IoMSKyB-qvbRHVQJ_iNkFqD8X6fXTXqaMvQLMmMuAIcPCpGuc9&_nc_ohc=WARg-RpJSOsAX8fMVQg&_nc_ht=scontent.fcmb1-1.fna&oh=c3661e9ca255c741c2d85b4976af424f&oe=60F586D7)',
+    backgroundImage: 'url(https://scontent.fcmb2-2.fna.fbcdn.net/v/t1.6435-9/79289467_2632454426801891_3087314512039116800_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=e3f864&_nc_ohc=g-Q5Mh4e8TUAX-FrxfY&tn=TgQSIojRGtZoR7fA&_nc_ht=scontent.fcmb2-2.fna&oh=eb5cb4a4ce4204e788b01b5684b2324d&oe=616D7FAF)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
         theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -86,22 +86,39 @@ export default function SignIn() {
         }else if(response.data.data.userType==="ADMIN"){
           history.push("admin/admindashboard");
         }
-      }else  if(response.data.message==="unauthorized") {
+      }else if(response.data.status==="unauthorized") {
         enqueueSnackbar('Please Sign In to your Email and Verify the account', {
           variant: 'error', anchorOrigin: {
             vertical: 'top',
             horizontal: 'right',
           }
         })
-      }}).catch((err)=>{
+      }
+
+
+    }).catch((err)=>{
         console.log((err.message));
-        if(err.message==="Request failed with status code 401"){
+      if(err.message==="Request failed with status code 401"){
       enqueueSnackbar("Please Verify Your Email", {
         variant: 'error',anchorOrigin: {
           vertical: 'top',
           horizontal: 'right',
         },
       })}
+      if(err.message==="Request failed with status code 406"){
+        enqueueSnackbar("Please Contact Admin for the Counsellor-Approval", {
+          variant: 'error',anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'right',
+          },
+        })}
+      if(err.message==="Request failed with status code 403"){
+        enqueueSnackbar("Your Account is Dactivated.Please Contact Admin.", {
+          variant: 'error',anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'right',
+          },
+        })}
       if(err.message==="Request failed with status code 500"){
         enqueueSnackbar("Email Not Found Please Sign Up", {
           variant: 'error',anchorOrigin: {
@@ -110,8 +127,6 @@ export default function SignIn() {
           },
         })}
 
-
-        ;;
     })
 
   }
