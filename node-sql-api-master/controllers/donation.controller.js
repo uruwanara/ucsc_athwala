@@ -579,11 +579,11 @@ exports.filter = (req,res) => {
     
 }
 
-{/*exports.mysearch = (req, res) => {
+exports.mysearch = (req, res) => {
     const message = req.body.search; 
     const userid = req.body.userid;
 
-    connection.query("Select * from donations where (title "+ "like'%"+ message+"%'"+" or description "+"like'%"+ message+"%')" + " AND active = 1 and status = 0 where student_id = ?;",
+    connection.query("Select * from donations where (title "+ "like'%"+ message+"%'"+" or description "+"like'%"+ message+"%')" + " AND student_id = ?;",
     [userid],
     (err, result,fields) => { 
         if (err) {
@@ -596,11 +596,11 @@ exports.filter = (req,res) => {
 };
 
 exports.myfilter = (req,res) => {
-    const type = req.query.type; 
-    const id = req.query.id;
+    const type = req.body.type; 
+    const id = req.body.id;
 
     if(type=='all'){
-        connection.query("'Select * from donations where student_id = ?",
+        connection.query("select * from donations where student_id = ?",
         [id],
             (err, result,fields) => { 
                 if (err) {
@@ -612,7 +612,7 @@ exports.myfilter = (req,res) => {
         );
     }
     else{
-        connection.query("'Select * from donations where donationType = ? and student_id = ?",
+        connection.query("select * from donations where donationType = ? and student_id = ?;",
             [type,id],
             (err, result,fields) => { 
                 if (err) {
@@ -625,7 +625,7 @@ exports.myfilter = (req,res) => {
     }
 
     
-}*/}
+}
 
 
 
