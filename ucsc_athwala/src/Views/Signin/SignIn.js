@@ -83,6 +83,8 @@ export default function SignIn() {
           history.push("/Coundashboard");
         }else if(response.data.data.userType==="UNIONST"){
           history.push("/ustd/ustddashboard");
+        }else if(response.data.data.userType==="ADMIN"){
+          history.push("admin/admindashboard");
         }
       }else  if(response.data.message==="unauthorized") {
         enqueueSnackbar('Please Sign In to your Email and Verify the account', {
