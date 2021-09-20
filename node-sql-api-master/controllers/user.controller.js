@@ -28,6 +28,7 @@ exports.create = (req, res) => {
         userType: req.body.userType,
         email: req.body.email,
         password:pw,
+        contactnumber: req.body.contactnumber,
         isActive: false,
     };
 

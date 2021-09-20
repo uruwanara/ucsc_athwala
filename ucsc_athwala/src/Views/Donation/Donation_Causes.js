@@ -1,4 +1,4 @@
-import React ,{useEffect, useState} from 'react';
+import React ,{useEffect, useState, useCallback} from 'react';
 import {Link} from "react-router-dom";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -17,13 +17,14 @@ import Other from '../../image/other.jpg';
 import TextTruncate from 'react-text-truncate';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import TextField from '@material-ui/core/TextField';
-import FilterListIcon from '@material-ui/icons/FilterList';
+import PageviewIcon from '@material-ui/icons/Pageview';
 import {RequestButton,MyCauseButton,MyDonationButton} from './Donation_button';
 import Searchbar from './Donation_search';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) =>({
@@ -54,7 +55,7 @@ const useStyles = makeStyles((theme) =>({
   },
 
   textfilter:{
-    width: '20ch',
+    width: '100%',
     backgroundColor:"#FFFFFF",
   },
 
@@ -63,8 +64,6 @@ const useStyles = makeStyles((theme) =>({
     color: "#FFFFFF",
     textTransform: "none",
     paddingTop:5,
-    paddingLeft:10,
-    paddingRight:10,
     border:"none",
     borderRadius:20,
     "&:hover": {
@@ -96,11 +95,14 @@ export default function Cases(){
   const userData=JSON.parse(localStorage.getItem("userData"));
 
   const [mapset, SetMap] = useState([]);
-  const [filter, setFilter] = React.useState('');
+  const [filter, setFilter] = React.useState('all');
   const [open, setOpen] = React.useState(false);
+  const [search,Setsearch] = useState("");
 
   const handleChange = (event) => {
+    event.preventDefault(); 
     setFilter(event.target.value);
+
   };
 
   const handleClose = () => {
@@ -143,6 +145,76 @@ export default function Cases(){
       );
     }
 
+  };
+
+  useEffect(() => {
+    filterposts();
+  }, [filter]);
+
+  const filterposts = () => {
+    
+    axios.get("http://localhost:5000/api/donations/filter", {
+    params: {type:filter},
+    }).then((response) => {
+        console.log(response.data);
+        SetMap(response.data);
+        console.log(filter);
+    })
+  }
+
+  const searchSubmit = (searchtxt) => {
+    Setsearch(searchtxt);
+    console.log(search);
+
+    const searchtext={
+      "search": search,
+  }
+  axios.post("http://localhost:5000/api/donations/search",searchtext,{
+          headers:{
+              "access-control-allow-origin" : "*",
+              "Content-type": "application/json; charset=UTF-8"
+            }
+          }).then((response) => {
+              console.log(response.data);
+              SetMap(response.data);
+          });
+  };
+
+  const searchbar = () => {
+    return (
+
+      <Grid container spacing={1} >
+      <Grid item md={10}>
+  
+          <TextField 
+          id="outlined-basic" 
+          variant="outlined" 
+          size="small" 
+          className={classes.textfilter}
+          value={search}
+          placeholder="Search.."
+          onChange={e => Setsearch(e.target.value)}
+          />
+      
+      </Grid>
+      <Grid item md={2}>
+  
+          <Button
+          type="submit"
+          size="large" 
+          className={classes.filterbutton} 
+          startIcon={<PageviewIcon sx={{ fontSize: 40 }}/>}
+          onClick={() => {
+              searchSubmit(search);
+          }}
+          >
+            search
+          </Button>
+      
+      </Grid>
+    </Grid>
+  
+    );
   }
 
 
@@ -257,8 +329,9 @@ export default function Cases(){
     <div>
         <Grid container spacing={2} className={classes.topic}>
           <Grid item md={2}><Typography variant="h5" className={classes.title}>All Causes</Typography></Grid>
-          <Grid item md={8}><Searchbar /></Grid>
+          <Grid item md={8}>{searchbar()}</Grid>
           <Grid item md={2}>
+            <form autoComplete="off">
               <FormControl className={classes.formControl}>
                 <Select
                   labelId="demo-controlled-open-select-label"
@@ -269,15 +342,15 @@ export default function Cases(){
                   value={filter}
                   onChange={handleChange}
                 >
-                  <MenuItem value={'all'}>All</MenuItem>
-                  <MenuItem value={'note'}>Lecture notes</MenuItem>
-                  <MenuItem value={'cloth'}>CLoths</MenuItem>
-                  <MenuItem value={'device'}>Devices</MenuItem>
-                  <MenuItem value={'money'}>Money</MenuItem>
-                  <MenuItem value={'other'}>Other</MenuItem>
+                  <MenuItem value='all'>All</MenuItem>
+                  <MenuItem value='note'>Lecture notes</MenuItem>
+                  <MenuItem value='cloth'>Cloths</MenuItem>
+                  <MenuItem value='device'>Devices</MenuItem>
+                  <MenuItem value='money'>Money</MenuItem>
+                  <MenuItem value='other'>Other</MenuItem>
                 </Select>
               </FormControl>
-              
+             </form> 
           </Grid>
         </Grid>
 
