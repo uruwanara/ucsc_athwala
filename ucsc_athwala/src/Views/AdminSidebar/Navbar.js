@@ -33,7 +33,8 @@ import Adminauc from '../Auction/adminauc';
 import Approve from '../Auction/approve';
 import Admin_QA from '../QA/Admin_QA';
 import Admin_QA_Form from '../QA/Ask_Q_And_A';
-
+import { useHistory } from "react-router-dom";
+import Land from '../LandingPage/home'  //Change the logout direction here
 
 
 const drawerWidth = 240;
@@ -100,6 +101,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
 }));
+
+
 function Navbar() {
   const classes = useStyles();
   const theme = useTheme();
@@ -143,6 +146,13 @@ function Navbar() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const history= useHistory();
+  const logout=()=>{
+    history.push("/land");
+    localStorage.clear();
+  }
+
   return (
     <div className={classes.root}> {/* devide to flex, start from here*/}
       <CssBaseline />
@@ -258,7 +268,7 @@ function Navbar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}><PersonPinOutlinedIcon /> My Profile</MenuItem>
-                <MenuItem onClick={handleClose}><ExitToAppOutlinedIcon /> Log out</MenuItem>
+                <MenuItem onClick={logout} ><ExitToAppOutlinedIcon /> Log out</MenuItem>
               </Menu>
             </div>
           )}
@@ -321,6 +331,9 @@ function Navbar() {
           <Route path="/admin/Admin_QA_Form" exact>
             <Admin_QA_Form />
           </Route>
+            <Route path="/land" exact>
+              <Land/>
+            </Route>
           </Switch>
 
         </main> }
