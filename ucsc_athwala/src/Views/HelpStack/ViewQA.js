@@ -146,7 +146,20 @@ console.log("hriii");
                          <Typography variant="h5" className={classes.answerby}>{answer.fname} {answer.lname}</Typography> 
                          </Grid>
                          <Grid item md={10}>
-                         <Typography variant="subtitle1" className={classes.answer}>{answer.answer}</Typography>   
+                         <TextField
+                            autoComplete="question"
+                            name="question"
+                            variant="outlined"
+                            id="question"
+                            value={answer.answer}
+                            className={classes.txtfield}
+                            fullWidth
+                            multiline
+                            
+                            inputProps={
+                                { readOnly: true, }
+                            }                         
+                        /> 
                          </Grid >
                          </>
                     ))}

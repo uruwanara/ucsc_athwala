@@ -90,3 +90,33 @@ exports.viewAnswer = (req, res) => {
     }
 );
 };
+
+exports.search = (req, res) => {
+    const message = req.body.search;
+
+    if(message == ""){
+        connection.query('select * from question_helpstack;',
+            (err, result,fields) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(result);
+                }
+            }
+        );
+    }
+    else{
+       
+    connection.query("Select * from question_helpstack where (title "+ "like'%"+ message+"%'"+" or question "+"like'%"+ message+"%');",
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    }
+); 
+    }
+
+    
+};

@@ -22,6 +22,9 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import PageviewIcon from '@material-ui/icons/Pageview';
 import {RequestButton,AllCauseButton,MyDonationButton} from './Donation_button';
 import axios from 'axios';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles((theme) =>({
   root: {
@@ -53,7 +56,7 @@ const useStyles = makeStyles((theme) =>({
   },
 
   textfilter:{
-    width: '20ch',
+    width: '100%',
     backgroundColor:"#FFFFFF",
   },
 
@@ -76,7 +79,16 @@ const useStyles = makeStyles((theme) =>({
     color:"#546e7a",
     marginTop:5,
     marginBottom:20,
-  }
+  },
+  topic:{
+    marginTop:'30px',
+    marginBottom:'20px',
+  },
+  formControl: {
+    minWidth: 120,
+    marginTop:'20px',
+    marginLeft:'60px'
+  },
 }));
 
 {/*const students = [  
@@ -127,13 +139,31 @@ export default function MyCases(){
   const history = useHistory();
   const classes = useStyles();
   const [mapset, SetMap] = useState([]);
+  const [filter, setFilter] = React.useState('all');
+  const [open, setOpen] = React.useState(false);
+  const [search,Setsearch] = useState("");
+  const userData=JSON.parse(localStorage.getItem("userData"));
+
+  const handleChange = (event) => {
+    event.preventDefault(); 
+    setFilter(event.target.value);
+
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   useEffect(() =>{
     fetchData();
   },[]);
 
   const fetchData = () => {
-    const userData=JSON.parse(localStorage.getItem("userData"));
+    
     const stid = userData.id;
 
     axios.get("http://localhost:5000/api/donations/viewmyall", {
@@ -144,6 +174,85 @@ export default function MyCases(){
         
     })
   };
+
+  useEffect(() => {
+    filterposts();
+  }, [filter]);
+
+  const filterposts = () => {
+
+    const filtertext = {
+      "type":filter,
+      "id": userData.id
+    }
+    
+    axios.post("http://localhost:5000/api/donations/myfilter",filtertext,{
+      headers:{
+        "access-control-allow-origin" : "*",
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    }).then((response) => {
+        console.log(response.data);
+        SetMap(response.data);
+    });
+  };
+
+  const searchSubmit = (searchtxt) => {
+    Setsearch(searchtxt);
+    console.log(search);
+
+    const searchtext={
+      "search": search,
+      "userid":userData.id
+  }
+  axios.post("http://localhost:5000/api/donations/mysearch",searchtext,{
+          headers:{
+              "access-control-allow-origin" : "*",
+              "Content-type": "application/json; charset=UTF-8"
+            }
+          }).then((response) => {
+              console.log(response.data);
+              SetMap(response.data);
+          });
+  };
+
+  const searchbar = () => {
+    return (
+
+      <Grid container spacing={1} >
+      <Grid item md={10}>
+  
+          <TextField 
+          id="outlined-basic" 
+          variant="outlined" 
+          size="small" 
+          className={classes.textfilter}
+          value={search}
+          placeholder="Search.."
+          onChange={e => Setsearch(e.target.value)}
+          />
+      
+      </Grid>
+      <Grid item md={2}>
+  
+          <Button
+          type="submit"
+          size="large" 
+          className={classes.filterbutton} 
+          startIcon={<PageviewIcon sx={{ fontSize: 40 }}/>}
+          onClick={() => {
+              searchSubmit(search);
+          }}
+          >
+            search
+          </Button>
+      
+      </Grid>
+    </Grid>
+  
+    );
+  };
+
 
   const FormRow = (props)=> {
     const userData=JSON.parse(localStorage.getItem("userData"));
@@ -215,7 +324,32 @@ export default function MyCases(){
   
     return(
     <div>
-      <div><Typography variant="h5" className={classes.title}>My Causes</Typography></div>
+      <Grid container spacing={2} className={classes.topic}>
+          <Grid item md={2}><Typography variant="h5" className={classes.title}>My Causes</Typography></Grid>
+          <Grid item md={8}>{searchbar()}</Grid>
+          <Grid item md={2}>
+            <form autoComplete="off">
+              <FormControl className={classes.formControl}>
+                <Select
+                  labelId="demo-controlled-open-select-label"
+                  id="demo-controlled-open-select"
+                  open={open}
+                  onClose={handleClose}
+                  onOpen={handleOpen}
+                  value={filter}
+                  onChange={handleChange}
+                >
+                  <MenuItem value='all'>All</MenuItem>
+                  <MenuItem value='note'>Lecture notes</MenuItem>
+                  <MenuItem value='cloth'>Cloths</MenuItem>
+                  <MenuItem value='device'>Devices</MenuItem>
+                  <MenuItem value='money'>Money</MenuItem>
+                  <MenuItem value='other'>Other</MenuItem>
+                </Select>
+              </FormControl>
+             </form> 
+          </Grid>
+        </Grid>
     <div>
       <div style={{float:"left"}}>
       <Grid container spacing={4}>
@@ -226,7 +360,7 @@ export default function MyCases(){
       
       </div>
 
-      <div className={classes.filterbar}>
+      {/*<div className={classes.filterbar}>
         <Grid container spacing={1} alignItems="flex-end" >
           <Grid item>
           <TextField id="outlined-basic" variant="outlined" size="small" className={classes.textfilter}/>
@@ -240,7 +374,7 @@ export default function MyCases(){
                 </Button>
           </Grid>
         </Grid>
-      </div>
+    </div>*/}
     </div>
       
     <div className={classes.root}>
