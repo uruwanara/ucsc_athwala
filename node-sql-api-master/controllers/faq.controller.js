@@ -12,3 +12,22 @@ exports.viewAllQuestion = (req, res,err) => {
     }
 );
 }; 
+
+
+exports.createQA = (req,res) => {
+    console.log("hhhhhhhhh");
+    const question =req.body.question;
+    const answer = req.body.answer;
+    const tag = req.body.tag;
+
+    connection.query( 'insert into q_and_a (answer,questions,tag) values(?,?,?);',
+    [answer,question,tag],
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send("success");
+        }
+    }
+    );
+};

@@ -67,7 +67,25 @@ export default function QAform(){
     const classes = useStyles();
   
     const userData=JSON.parse(localStorage.getItem("userData"));
+    console.log(userData);
+
+    const [questionset, SetQuestion] = useState([]);
+
+  useEffect(() =>{
+    fetchData();
+  },[]);
+
+  const fetchData = async () => {
+        
+    const response = await fetch(`http://localhost:5000/api/faqs/viewallquestion`, {
+      method: "GET",
+    });
+    const result = await response.json();
     
+    console.log(result);
+    SetQuestion(result);
+
+  };
 
         function FormRow (props){
 
@@ -91,7 +109,7 @@ export default function QAform(){
                                 <Button size="large" 
                                 className={classes.filterbutton} 
                                 >
-                                Ask Question
+                                Add Question And Answer
                                 </Button>
                                 </Link>
                     </div>
@@ -105,6 +123,7 @@ export default function QAform(){
     
             }
         }
+          
         
         return(
             <Container>
@@ -113,8 +132,8 @@ export default function QAform(){
                 <div>{askbutton()}</div>
                 <div>
                 <Grid container spacing={6}>
-                {students.map(student => (  
-                      <FormRow title={student.title} answer={student.answer}/> 
+                {questionset.map(student => (  
+                      <FormRow title={student.questions} answer={student.answer}/> 
                 ))}
                 
           </Grid>
