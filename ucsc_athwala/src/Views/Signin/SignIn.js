@@ -58,7 +58,7 @@ export default function SignIn() {
 
   const signin=()=>{
         const user={
-          "email": email,
+          "email": email.toUpperCase(),
           "password": password
     }
     console.log(user);

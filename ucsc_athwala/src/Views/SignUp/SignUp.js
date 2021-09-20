@@ -102,7 +102,7 @@ export default function SignUp() {
             "fname": fname,
             "lname": lname,
             "userType": ustype,
-            "email": email,
+            "email": email.toUpperCase(),
             "password": password,
             "contactnumber":contact,
             "status":ustatus
