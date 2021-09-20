@@ -220,15 +220,39 @@ export default function ProductViews(){
         var imglink;
 
         if(props.type == 'device'){
-          link = "/std/ViewProductDetails?id="+id;
+          if(userData.userType === "STUDENT"){
+            link = "/std/ViewProductDetails?id="+id;
+          }
+          else if(userData.userType === "UNIONST" ){
+            link = "/ustd/ViewProductDetails?id="+id;
+          }
+          else if(userData.userType === "ALUMNI" ){
+            link = "/pstd/ViewProductDetails?id="+id;
+          }
           imglink = EventLaptopHP;
         }
         else if (props.type == 'note'){
-          link = "/std/ViewProductDetailsNote?id="+id;
+          if(userData.userType === "STUDENT"){
+            link = "/std/ViewProductDetailsNote?id="+id;
+          }
+          else if(userData.userType === "UNIONST" ){
+            link = "/ustd/ViewProductDetailsNote?id="+id;
+          }
+          else if(userData.userType === "ALUMNI" ){
+            link = "/pstd/ViewProductDetailsNote?id="+id;
+          }
           imglink = Note;
         }
         else if (props.type == 'other'){
-          link = "/std/ViewProductDetailsOther?id="+id;
+          if(userData.userType === "STUDENT"){
+            link = "/std/ViewProductDetailsOther?id="+id;
+          }
+          else if(userData.userType === "UNIONST" ){
+            link = "/ustd/ViewProductDetailsOther?id="+id;
+          }
+          else if(userData.userType === "ALUMNI" ){
+            link = "/pstd/ViewProductDetailsOther?id="+id;
+          }
           imglink = Other;
         }
         return (
