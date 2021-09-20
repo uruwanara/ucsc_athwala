@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     },
     media1: {
         height: '100%',
+        marginLeft: theme.spacing(0.5),
     },
     controls: {
         display: "flex",
@@ -103,16 +104,16 @@ function UStudonate_fundraising() {
 
                         <Grid item xs={12}>
                             <Box mr={1}>
-                                <Typography gutterBottom variant="h6" color="primary">
+                                <Typography align="center" gutterBottom variant="h4" color="primary">
                                     Vani Vizha Tamil Festival 2021
                                 </Typography>
-                                <Typography variant="body1" gutterBottom align="justify">
+                                <Typography variant="h6" gutterBottom align="justify">
                                     First year students of UCSC organize Vani Viza tamil festival every year.In this year they are planing to held it on
                                     23rd of August, 2021. This event will be a good opperunity to create unity among the badges.
                                 </Typography>
                             </Box>
                             <Box mb={1} mr={1}>
-                                <Typography variant="body2" color="initial">50% completed
+                                <Typography variant="subtitle1" color="initial">50% completed
                                 </Typography>
                                 <LinearProgress variant="determinate" value={50} />
                             </Box>
@@ -124,7 +125,7 @@ function UStudonate_fundraising() {
                                 <Grid item sm={4} xm={12}>
                                     <Box>
                                         {/* <Box> */}
-                                        <Typography variant="subtitle2" color="initial">
+                                        <Typography variant="subtitle1" color="initial">
                                             Goal Amount: Rs. 200,000
                                         </Typography>
                                         {/* </Box> */}
@@ -133,7 +134,7 @@ function UStudonate_fundraising() {
                                 <Grid item sm={4} xm={12}>
                                     <Box>
                                         {/* <Box> */}
-                                        <Typography variant="subtitle2" color="initial">
+                                        <Typography variant="subtitle1" color="initial">
                                             Started Amount: Rs. 200
                                         </Typography>
                                         {/* </Box> */}
@@ -142,7 +143,7 @@ function UStudonate_fundraising() {
                                 <Grid item sm={4} xm={12}>
                                     <Box>
                                         {/* <Box> */}
-                                        <Typography variant="subtitle2" color="initial">
+                                        <Typography variant="subtitle1" color="initial">
                                             Current Amount : Rs.3000000
                                         </Typography>
                                         {/* </Box> */}
@@ -163,8 +164,8 @@ function UStudonate_fundraising() {
                         <Grid item sm={3} xs={6}>
                             <Box>
                                 {/* <Box> */}
-                                <Typography variant="subtitle2" color="initial">
-                                    Start Date: 2021/09/02
+                                <Typography variant="subtitle1" color="initial">
+                                    Started Date: 2021/09/02
                                 </Typography>
                                 {/* </Box> */}
                             </Box>
@@ -172,7 +173,7 @@ function UStudonate_fundraising() {
                         <Grid item sm={3} xs={6}>
                             <Box>
                                 {/* <Box> */}
-                                <Typography variant="subtitle2" color="initial">
+                                <Typography variant="subtitle1" color="initial">
                                     Started Time: 02.00p.m
                                 </Typography>
                                 {/* </Box> */}
@@ -181,8 +182,8 @@ function UStudonate_fundraising() {
                         <Grid item sm={3} xs={6}>
                             <Box>
                                 {/* <Box> */}
-                                <Typography variant="subtitle2" color="initial">
-                                    Ended Date: 2021/09/02
+                                <Typography variant="subtitle1" color="initial">
+                                    Expire Date: 2021/09/02
                                 </Typography>
                                 {/* </Box> */}
                             </Box>
@@ -190,8 +191,8 @@ function UStudonate_fundraising() {
                         <Grid item sm={3} xs={6}>
                             <Box>
                                 {/* <Box> */}
-                                <Typography variant="subtitle2" color="initial">
-                                    Ended Time: 12.00p.m
+                                <Typography variant="subtitle1" color="initial">
+                                    Expire Time: 12.00p.m
                                 </Typography>
                                 {/* </Box> */}
                             </Box>

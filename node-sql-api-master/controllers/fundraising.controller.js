@@ -27,8 +27,9 @@ exports.create = (req, res) => {
     });
 }
 
+//view the available fundraising only
 exports.viewall = (req, res) => {
-    connection.query('SELECT * from fundraising;',
+    connection.query('SELECT * from fundraising WHERE fundStatus = 2;',
         (err, result, fileds) => {
             if (err) {
                 res.send(err);
