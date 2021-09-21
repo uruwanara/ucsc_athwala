@@ -85,6 +85,7 @@ export default function View_Clothcause(){
     const [lesson,setLesson] = useState();
     const [year,setYear] = useState();
     const [subject,setSubject] = useState();
+    const [p_type,setType] = useState();
     const search = useLocation().search;
     const history = useHistory();
     const [open, setOpen] = React.useState(false);
@@ -122,6 +123,7 @@ export default function View_Clothcause(){
                 setPrice(response.data[0].price);
                 setHideDetails(response.data[0].show_or_hide_details);
                 setTitle(response.data[0].title);
+                setType(response.data[0].product_type);
                 
             })
     };
@@ -188,6 +190,15 @@ export default function View_Clothcause(){
       
     }
 
+    var editlink;
+        
+    if(userData.userType === "STUDENT"){
+      editlink = "/std/EditNoteForm?id="+product_id+"&type="+p_type;
+    }
+    else if(userData.userType === "UNIONST" ){
+      editlink = "/ustd/EditNoteForm?id="+product_id+"&type="+p_type;
+    }
+
     
   const tabContactDetailsButton =() =>{
     if(show_or_hide_details === 0 ){
@@ -236,18 +247,19 @@ export default function View_Clothcause(){
                             <br></br>
                                 <CardContent>
                                    
-                                <Grid container spacing={0} alignItems="center" justify="center">
+                                <Grid container spacing={3} alignItems="center" justify="center">
                                    
-                                {/* <Grid item >
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        component="label"
-                                        className={classes.contactbtn}
-                                        >
-                                        Add Cart
+                                 <Grid item >
+                                  <Button   style={{maxWidth: '400px', maxHeight: '40px', minWidth: '400px', minHeight: '40px'}}
+                                      variant="contained"
+                                      color="Primary"
+                                      component="label"
+                                      className={classes.contactbtn}
+                                      onClick={()=>{ history.push(editlink)}}
+                                      >
+                                      Edit Advertisement
                                     </Button>
-                                    </Grid> */}
+                                  </Grid> 
                                     
                                     <Grid item > 
                                     <Button style={{maxWidth: '400px', maxHeight: '40px', minWidth: '400px', minHeight: '40px'}}
