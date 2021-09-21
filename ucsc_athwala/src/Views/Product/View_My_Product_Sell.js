@@ -300,7 +300,7 @@ export default function ProductViews(){
             <div className={classes.title1}>
                 <Grid container spacing={0}>
                     <Grid item xs={12} sm={2}>
-                        <Typography variant="h5" className={classes.title}>All Products</Typography>
+                        <Typography variant="h5" className={classes.title}>All My Products</Typography>
                     </Grid>
                     <Grid item xs={12} sm={8}>
                         <SearchBar />

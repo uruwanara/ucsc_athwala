@@ -194,7 +194,7 @@ export default function View_Clothcause(){
             delivery_address:"UCSC,Colombo",
             delivery_city: "Colombo ",
             delivery_country: "Sri Lanka",
-            custom_1:dId,
+            custom_1:dId,  
             custom_2: "",
         };
         window.payhere.startPayment(payHereData);

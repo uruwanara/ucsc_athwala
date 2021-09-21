@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect,useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,6 +14,9 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
+import { useLocation } from 'react-router';
+import {Link, useHistory } from "react-router-dom";
+import {useSnackbar} from "notistack";
 import axios from 'axios';
 
 
@@ -42,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const history = useHistory();
 
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
@@ -51,6 +55,56 @@ export default function SignUp() {
   const [price, setPrice] = React.useState("");
   const [image, setImage] = React.useState("");
   const [show_or_hide_details, setacceptTerm] = React.useState(false);
+  const search = useLocation().search;
+
+  const product_id = new URLSearchParams(search).get("id");
+  const type = new URLSearchParams(search).get("type");
+
+  const {enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const userData=JSON.parse(localStorage.getItem("userData"));
+
+  useEffect(() => {
+    fetchDetails(product_id,type);
+    console.log(type);
+  },[]);
+
+
+  const fetchDetails = (product_id,type) => {
+    const description={
+        "product_id": product_id,
+    }
+    axios.post("http://localhost:5000/api/products/viewdetail",description,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+              }
+            }).then((response) => {
+                console.log(response.data);
+                setTitle(response.data[0].title);
+                setDescription(response.data[0].description);
+                setPrice(response.data[0].price);
+                setacceptTerm(response.data[0].show_or_hide_details);
+
+                const detail={
+                    "product_id": product_id,
+                    "p_type":"p_note",
+                }
+                axios.post("http://localhost:5000/api/products/viewdetailmore",detail,{
+                headers:{
+                    "access-control-allow-origin" : "*",
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+                }).then((response) => {
+                console.log(response.data);
+                setYear(response.data[0].year);
+                setSubject(response.data[0].subject);
+                setLesson(response.data[0].lesson);
+            })
+
+
+    });
+}
+
 
   const handleSubmit = (event) => {
      event.preventDefault(); 
@@ -64,10 +118,9 @@ export default function SignUp() {
         image: ${image}
         show_or_hide_details: ${show_or_hide_details}
     `)
-      const userData=JSON.parse(localStorage.getItem("userData"));
-      
+     
       const postProduct={
-          "user_id":userData.id,
+          "product_id":product_id,
           "title": title,
           "description": description,
           "year": year,
@@ -77,7 +130,7 @@ export default function SignUp() {
           "price": price,
           "show_or_hide_details": show_or_hide_details,
       }
-        axios.post("http://localhost:5000/api/products/sellNote",postProduct,{
+        axios.post("http://localhost:5000/api/products/productNoteFormEdit",postProduct,{
             headers:{
                 "access-control-allow-origin" : "*",
                 "Content-type": "application/json; charset=UTF-8"
@@ -93,6 +146,20 @@ export default function SignUp() {
               setPrice("");
               setImage("");
               setacceptTerm(!show_or_hide_details);
+            }
+
+            enqueueSnackbar('Successfully Update', {
+              variant: 'success', anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'center',
+              }
+            })
+  
+            if(userData.userType === "STUDENT"){
+              history.push("/std/ViewMyProductDetailsNote?id="+product_id) ;
+            }
+            else if(userData.userType === "UNIONST" ){
+              history.push("/ustd/ViewMyProductDetailsNote?id="+product_id);
             }
   
         }).catch((err)=>{
@@ -247,7 +314,7 @@ export default function SignUp() {
             color="primary"
             className={classes.submit}
           >
-            Post
+            Update Post
           </Button>
          
          
