@@ -12,6 +12,8 @@ import {NoteDoneeDetails,Description} from './View_Casues';
 import { useLocation } from 'react-router';
 import axios from "axios";
 import ContactForm from './contactForm';
+import {useSnackbar} from "notistack";
+import {useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
       },
       title:{
         color:"#546e7a",
+
         fontFamily:"Poppins, sans-serif",
         marginTop:'40px',
         marginBottom:'30px'
@@ -75,6 +78,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function View_Notecause(){
     const classes = useStyles();
+    const history = useHistory();
     const [description,setDescription] = useState();
     const [requestStudentid,setRequestStudentid] = useState();
     const [title,setTitle] = useState();
@@ -85,8 +89,12 @@ export default function View_Notecause(){
     const [file , setFile] = useState([]);
     const search = useLocation().search;
 
+    const [open, setOpen] = React.useState(false);
+    const [status, setStatus] = useState();
+   
     const donationid = new URLSearchParams(search).get("id");
     const userData=JSON.parse(localStorage.getItem("userData"));
+    const {enqueueSnackbar, closeSnackbar } = useSnackbar();
 
     useEffect(() => {
 
@@ -127,6 +135,7 @@ export default function View_Notecause(){
                 setSubject(response.data[0].subject);
                 setLesson(response.data[0].lesson);
                 setDate(response.data[0].before_date);
+                setStatus(response.data[0].status);
 
             })
     };
@@ -135,6 +144,44 @@ export default function View_Notecause(){
         console.log(event.target.files[0]);
         setFile(event.target.files[0]);
     }
+
+    const handleSubmit = (event) => {
+        event.preventDefault(); 
+        setOpen(false);
+        const deletedonation={
+            "donationID": donationid,
+        }
+        axios.post("http://localhost:5000/api/donations/delete",deletedonation,{
+      headers:{
+          "access-control-allow-origin" : "*",
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      }).then((response) => {
+          if(response.data === 'success'){
+            console.log("ddddddd");
+            enqueueSnackbar('Successfully Deleted', {
+              variant: 'success', anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'center',
+              }
+            })
+
+            if(userData.userType === "STUDENT"){
+              history.push("/std/viewMyrequest") ;
+            }
+            else if(userData.userType === "UNIONST" ){
+              history.push("/ustd/viewMyrequest");
+            }
+
+          }
+  });
+}
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+    const handleClose = () => {
+      setOpen(false);
+    };
 
     return(
         <div>
@@ -154,8 +201,15 @@ export default function View_Notecause(){
 
 
                     <Grid container spacing={2} >
-                        <NoteDoneeDetails year={year} subject={subject} lesson={lesson} date={date} requestStudentid={requestStudentid} userId = {userData.id}/>
-
+                        <NoteDoneeDetails year={year} subject={subject} lesson={lesson} date={date} requestStudentid={requestStudentid} 
+                        userId = {userData.id}
+                        status={status} 
+                        open={open}
+                        userType={userData.userType}
+                        handleSubmit={handleSubmit}  
+                        handleClickOpen={handleClickOpen} 
+                        handleClose={handleClose}/>
+                        
                         <Grid item xs={6}>
                         <Card className={classes.card}>
                                 <CardContent>

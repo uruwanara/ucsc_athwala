@@ -38,6 +38,14 @@ import DeletePost from '../job/Delete_job_post'
 import { useHistory } from "react-router-dom";
 import Land from '../LandingPage/home'  //Change the logout direction here
 import Chat from '../chat/chat.jsx';
+import Donation from '../Donation/Donation_page';
+import NoteCause from '../Donation/View_Notecause';
+import ClothCause from '../Donation/View_Clothcause';
+import DeviceCause from '../Donation/View_Devicecause';
+import MoneyCause from '../Donation/View_Moneycause';
+import OtherCause from '../Donation/View_Othercause';
+import MyDonation from '../Donation/My_donation';
+
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -342,6 +350,28 @@ function Navbar() {
           </Route>
           <Route path="/land" exact>
             <Land/>
+          </Route>
+
+          <Route path="/pst/viewcauses" exact>
+              <Donation />
+            </Route>
+            <Route path='/pst/viewNoteCause_details' exact>
+              <NoteCause />
+          </Route >
+          <Route path="/pst/viewClothCause_details" exact>
+            <ClothCause />
+          </Route>
+          <Route path="/pst/viewDeviceCause_details" exact>
+            <DeviceCause />
+          </Route>
+          <Route path="/pst/viewMoneyCause_details" exact>
+            <MoneyCause />
+          </Route>
+          <Route path="/pst/viewOtherCause_details" exact>
+            <OtherCause />
+          </Route> 
+          <Route path="/pst/myDonation" exact>
+            <MyDonation />
           </Route>
           
         </Switch>

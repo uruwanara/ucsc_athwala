@@ -15,6 +15,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 import ForumIcon from '@material-ui/icons/Forum';
 import HelpIcon from '@material-ui/icons/Help';
 import Teal from '@material-ui/core/colors/teal';
+import Blue from '@material-ui/core/colors/blue'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,7 +24,10 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       textDecoration: "none"
     },
-  }
+  },
+  Listicon:{
+    color:Blue[600],
+  },
 
 
 }));
@@ -37,21 +41,21 @@ export default function Side(){
           <List>
               <Link to="/coun/Coundashboard" className={classes.Nounderline}>
                 <ListItem button >
-                <ListItemIcon><DashboardIcon style={{ fill: "blue"}}/></ListItemIcon>
+                <ListItemIcon><DashboardIcon className={classes.Listicon}/></ListItemIcon>
                 <ListItemText primary="Dashboard" />
                 </ListItem>
               </Link>
               <Link to="/coun/chat" className={classes.Nounderline}>
                   <ListItem button>
                       <ListItemIcon>
-                          <ChatIcon style={{ fill: "blue"}}/>
+                          <ChatIcon className={classes.Listicon}/>
                       </ListItemIcon>
                       <ListItemText primary="Chat" />
                   </ListItem>
               </Link>
               <Link to="/coun/CounContactStu" className={classes.Nounderline}>
                 <ListItem button>
-                <ListItemIcon><PeopleAltIcon style={{ fill: "blue"}}/></ListItemIcon>
+                <ListItemIcon><PeopleAltIcon className={classes.Listicon}/></ListItemIcon>
                 <ListItemText primary="Contact Student" />
                 </ListItem>
               </Link>
@@ -59,7 +63,7 @@ export default function Side(){
               <Link to = "" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <ShopIcon style={{ fill: "blue"}}/>
+                    <ShopIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="QA support" />
                 </ListItem>
