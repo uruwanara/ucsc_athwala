@@ -70,6 +70,9 @@ import ViewMyProductDetails from '../Product/View_My_product_details';
 import ViewMyProductDetailsNote from '../Product/View_My_product_details_note';
 import ViewMyProductDetailsOther from '../Product/View_My_product_details_other';
 import ViewQA from '../QA/View_QAform';
+import EditDeviceForm from '../Product/edit_Post_Device_Form';
+import EditNoteForm from '../Product/edit_Post_Note_Form';
+import EditOtherForm from '../Product/edit_Post_Other_Form';
 import Login from '../Signin/SignIn'
 import { useHistory } from "react-router-dom";
 import Land from '../LandingPage/home'  //Change the logout direction here
@@ -488,6 +491,15 @@ function Navbar() {
           </Route>
           <Route path="/std/ViewMyProductDetailsOther" exact>
             <ViewMyProductDetailsOther/>
+          </Route>
+          <Route path="/std/EditDeviceForm" exact>
+            <EditDeviceForm/>
+          </Route>
+          <Route path="/std/EditNoteForm" exact>
+            <EditNoteForm/>
+          </Route>
+          <Route path="/std/EditOtherForm" exact>
+            <EditOtherForm/>
           </Route>
             <Route path="/land" exact>
               <Land/>
