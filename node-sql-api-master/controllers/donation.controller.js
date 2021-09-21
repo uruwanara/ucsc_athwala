@@ -641,6 +641,22 @@ exports.myfilter = (req,res) => {
     
 }
 
+exports.studentDetails = (req, res) => {
+    const studentid = req.body.student; 
+
+
+    connection.query("select * from users where id=? ",
+    [studentid],
+    (err, result,fields) => { 
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    }
+);
+};
+
 
 
 

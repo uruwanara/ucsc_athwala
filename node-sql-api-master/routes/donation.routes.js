@@ -74,5 +74,8 @@ module.exports = donationRoutes => {
 
     router.post("/pay",donation.pay)
 
+    //select student details for admin
+    router.post("/studentdetatils",donation.studentDetails);
+
     donationRoutes.use('/api/donations', router);
 };

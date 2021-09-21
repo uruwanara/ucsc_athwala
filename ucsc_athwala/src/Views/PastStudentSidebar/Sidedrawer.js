@@ -15,7 +15,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 import ForumIcon from '@material-ui/icons/Forum';
 import HelpIcon from '@material-ui/icons/Help';
 import Teal from '@material-ui/core/colors/teal';
-
+import Blue from '@material-ui/core/colors/blue'
 
 const useStyles = makeStyles((theme) => ({
   Nounderline :{
@@ -23,8 +23,10 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       textDecoration: "none"
     },
-  }
-
+  },
+  Listicon:{
+    color:Blue[600],
+  },
 
 }));
 
@@ -37,22 +39,22 @@ export default function Side(){
           <List>
               <Link to="/pst/PastDashboard" className={classes.Nounderline}>
                 <ListItem button >
-                <ListItemIcon><DashboardIcon style={{ fill: "blue"}}/></ListItemIcon>
+                <ListItemIcon><DashboardIcon className={classes.Listicon}/></ListItemIcon>
                 <ListItemText primary="Dashboard" />
                 </ListItem>
               </Link>
               
               <Link to="/pst/Job" className={classes.Nounderline}>
                 <ListItem button>
-                <ListItemIcon><PeopleAltIcon style={{ fill: "blue"}}/></ListItemIcon>
+                <ListItemIcon><PeopleAltIcon className={classes.Listicon}/></ListItemIcon>
                 <ListItemText primary="New job advertisment" />
                 </ListItem>
               </Link>
 
-              <Link to = "/pstDonation" className={classes.Nounderline}>
+              <Link to = "/pst/viewcauses" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <ShopIcon style={{ fill: "blue"}}/>
+                    <ShopIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Donation" />
                 </ListItem>
@@ -61,7 +63,7 @@ export default function Side(){
               <Link to = "/ViewEleProduct" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <GavelIcon style={{ fill: "blue"}}/>
+                    <GavelIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Products" />
                 </ListItem>
@@ -70,7 +72,7 @@ export default function Side(){
               <Link to = "/viewstufundraising" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <GavelIcon style={{ fill: "blue"}}/>
+                    <GavelIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Fundraising" />
                 </ListItem>
@@ -79,7 +81,7 @@ export default function Side(){
               <Link to="/pst/JobOpertunity" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <PanToolIcon style={{ fill: "blue"}}/>
+                    <PanToolIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Job oppertunity" />
                 </ListItem>
@@ -89,7 +91,7 @@ export default function Side(){
               <Link to="/chat" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <ChatIcon style={{ fill: "blue"}}/>
+                    <ChatIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Chat" />
                 </ListItem>
@@ -98,7 +100,7 @@ export default function Side(){
               <Link to="" className={classes.Nounderline}> 
                 <ListItem button>
                 <ListItemIcon>
-                    <ForumIcon style={{ fill: "blue"}}/>
+                    <ForumIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="UCSC help stack" />
                 </ListItem>
@@ -107,7 +109,7 @@ export default function Side(){
               <Link to="" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <HelpIcon style={{ fill: "blue"}}/>
+                    <HelpIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="QA support" />
                 </ListItem>

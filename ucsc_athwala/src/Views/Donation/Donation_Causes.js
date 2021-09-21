@@ -230,7 +230,10 @@ export default function Cases(){
         link = "/ustd/viewNoteCause_details?id="+id;
       }
       else if(userData.userType === "ALUMNI" ){
-        link = "/pstd/viewNoteCause_details?id="+id;
+        link = "/pst/viewNoteCause_details?id="+id;
+      }
+      else if(userData.userType === "ADMIN"){
+        link = "/admin/viewcausesdetails?id="+id;
       }
       imglink = Note;
     }
@@ -242,7 +245,10 @@ export default function Cases(){
         link = "/ustd/viewClothCause_details?id="+id;
       }
       else if(userData.userType === "ALUMNI" ){
-        link ="/pstd/viewClothCause_details?id="+id;
+        link ="/pst/viewClothCause_details?id="+id;
+      }
+      else if(userData.userType === "ADMIN"){
+        link = "/admin/viewcausesdetails?id="+id;
       }
       imglink = Cloth;
     }
@@ -254,7 +260,10 @@ export default function Cases(){
         link = "/ustd/viewDeviceCause_details?id="+id;
       }
       else if(userData.userType === "ALUMNI" ){
-        link = "/pstd/viewDeviceCause_details?id="+id;
+        link = "/pst/viewDeviceCause_details?id="+id;
+      }
+      else if(userData.userType === "ADMIN"){
+        link = "/admin/viewcausesdetails?id="+id;
       }
       imglink = Device;
     }
@@ -266,7 +275,10 @@ export default function Cases(){
         link = "/ustd/viewMoneyCause_details?id="+id;
       }
       else if(userData.userType === "ALUMNI" ){
-        link = "/pstd/viewMoneyCause_details?id="+id;
+        link = "/pst/viewMoneyCause_details?id="+id;
+      }
+      else if(userData.userType === "ADMIN"){
+        link = "/admin/viewcausesdetails?id="+id;
       }
       imglink = Money;
     }
@@ -278,11 +290,58 @@ export default function Cases(){
         link = "/ustd/viewOtherCause_details?id="+id;
       }
       else if(userData.userType === "ALUMNI" ){
-        link = "/pstd/viewOtherCause_details?id="+id;
+        link = "/pst/viewOtherCause_details?id="+id;
+      }
+      else if(userData.userType === "ADMIN"){
+        link = "/admin/viewcausesdetails?id="+id;
       }
       imglink = Other;
     }
-    return (
+    if(userData.userType === "ADMIN"){
+      return (
+        <React.Fragment>
+          <Grid item xs={4}>
+          <Card className={classes.root}>
+  
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="100"
+                src= {imglink}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {props.title}
+                </Typography>
+                
+                <TextTruncate
+                    line={1}
+                    element="span"
+                    truncateText="…"
+                    text={props.description}
+                />
+              </CardContent>
+            </CardActionArea>
+  
+            <CardActions className={classes.cardFooter}>
+              <Link to={link} className={classes.nounderline}>
+              <Button size="small" 
+              className={classes.donateButton} 
+              startIcon={<FavoriteBorderIcon />}
+              >
+                View Details
+              </Button>
+             </Link> 
+  
+            </CardActions>
+  
+        </Card>
+          </Grid>
+        </React.Fragment>
+      );
+    }
+    else{
+         return (
       <React.Fragment>
         <Grid item xs={4}>
         <Card className={classes.root}>
@@ -323,6 +382,8 @@ export default function Cases(){
         </Grid>
       </React.Fragment>
     );
+    }
+   
   }
 
     return(

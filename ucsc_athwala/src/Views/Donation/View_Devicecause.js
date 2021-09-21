@@ -11,6 +11,8 @@ import {DeviceDoneeDetails,Description} from './View_Casues';
 import { useLocation } from 'react-router';
 import axios from "axios";
 import ContactForm from './contactForm';
+import {useSnackbar} from "notistack";
+import {useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -70,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function View_Clothcause(){
     const classes = useStyles();
-
+    const history = useHistory();
     const [description,setDescription] = useState();
     const [title,setTitle] = useState();
     const [brand, setBrand] = React.useState();
@@ -78,9 +80,12 @@ export default function View_Clothcause(){
     const [date, setDate] = React.useState();
     const [requestStudentid,setRequestStudentid] = useState();
     const search = useLocation().search;
+    const [open, setOpen] = React.useState(false);
+    const [status, setStatus] = useState();
 
     const donationid = new URLSearchParams(search).get("id");
     const userData=JSON.parse(localStorage.getItem("userData"));
+    const {enqueueSnackbar, closeSnackbar } = useSnackbar();
 
     useEffect(() => {
         
@@ -120,11 +125,46 @@ export default function View_Clothcause(){
                 setModel(response.data[0].model);
                 setBrand(response.data[0].brand);
                 setDate(response.data[0].before_date);
+                setStatus(response.data[0].status);
             })
     };
 
     const handleSubmit = (event) => {
+        event.preventDefault(); 
+        setOpen(false);
+        const deletedonation={
+            "donationID": donationid,
+        }
+        axios.post("http://localhost:5000/api/donations/delete",deletedonation,{
+      headers:{
+          "access-control-allow-origin" : "*",
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      }).then((response) => {
+          if(response.data === 'success'){
+            console.log("ddddddd");
+            enqueueSnackbar('Successfully Deleted', {
+              variant: 'success', anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'center',
+              }
+            })
 
+            if(userData.userType === "STUDENT"){
+              history.push("/std/viewMyrequest") ;
+            }
+            else if(userData.userType === "UNIONST" ){
+              history.push("/ustd/viewMyrequest");
+            }
+
+          }
+  });
+}
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+    const handleClose = () => {
+      setOpen(false);
     };
 
     return(
@@ -144,7 +184,14 @@ export default function View_Clothcause(){
                     
 
                     <Grid container spacing={2} >
-                        <DeviceDoneeDetails model={model} brand={brand} date={date} requestStudentid={requestStudentid} userId = {userData.id}/>
+                        <DeviceDoneeDetails model={model} brand={brand} date={date} requestStudentid={requestStudentid} 
+                        userId = {userData.id}
+                        status={status} 
+                        open={open}
+                        userType={userData.userType}
+                        handleSubmit={handleSubmit}  
+                        handleClickOpen={handleClickOpen} 
+                        handleClose={handleClose}/>
 
                         <Grid item xs={6}>
                         <Card className={classes.card}>
