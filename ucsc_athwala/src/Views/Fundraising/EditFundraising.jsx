@@ -223,12 +223,14 @@ function EditFundraising() {
     const [fundimage, setImage] = React.useState();
     const [expiredate, setExpireDate] = React.useState();
     const [expiretime, setExpireTime] = React.useState();
+    const [fundId, setFundID]=React.useState();
     
     // const userData=JSON.parse(localStorage.getItem("userData"));
     const search = useLocation().search;
 
     useEffect(() => {
         const fundid = new URLSearchParams(search).get("id");
+        setFundID(fundid);
         fetchDescription(fundid);
       },[]);
 
@@ -263,14 +265,21 @@ function EditFundraising() {
         event.preventDefault(); 
         
     const postFundraising={
-        "create_by":userData.username,
+        // "create_by":userData.username,
+        // "fundname": fundname,
+        // "funddescription": funddescription,
+        // "image": fundimage,
+        // "goalamount": goalamount,
+        // "startamount": startamount,
+        // "expiredate": expiredate,
+        // "expiretime":expiretime,
         "fundname": fundname,
+        "fundID":fundId,
         "funddescription": funddescription,
-        "image": fundimage,
+        "image": "asdasd.asdasd",
         "goalamount": goalamount,
-        "startamount": startamount,
         "expiredate": expiredate,
-        "expiretime":expiretime,
+        "expiretime":expiretime
     }
     axios.post("http://localhost:5000/api/fundraising/editfund",postFundraising,{
         headers:{
