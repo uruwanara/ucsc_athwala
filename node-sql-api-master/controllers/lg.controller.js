@@ -9,32 +9,6 @@ const connection = require("../dbConnection")
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 exports.create= (req, res) => {
     const created_by = req.body.created_by;
     const title = req.body.title;
@@ -141,7 +115,7 @@ exports.adduser= (req, res) => {
     const lgId = req.body.lgId;
     const uId= req.body.uId;
 
-    connection.query("INSERT INTO learning_groups (igId,uId) VALUES (?,?)",
+    connection.query("INSERT INTO lg_users (lgId,uId) VALUES (?,?)",
         [lgId,uId],
         (err, result,fields) => {
             if (err) {
@@ -157,7 +131,7 @@ exports.rmuser= (req, res) => {
     const lgId = req.body.lgId;
     const uId= req.body.uId;
 
-    connection.query("DELETE FROM learning_groups WHERE lgId=?",
+    connection.query("DELETE FROM lg_users WHERE lgId=?",
         [lgId],
         (err, result,fields) => {
             if (err) {
@@ -184,6 +158,34 @@ exports.viewAll = (req, res) => {
         }
     );
 };
+
+exports.viewUsers = (req, res) => {
+     const lgId = req.params.id;
+    console.log(lgId);
+    connection.query("SELECT DISTINCT users.id,users.fname,users.lname,users.email from users INNER JOIN lg_users on users.id =lg_users.uId where lg_users.lgId=?;",
+        [lgId],
+        (err, result,fields) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(result);
+            }
+        }
+    );
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 //-------------------------------------
 
 

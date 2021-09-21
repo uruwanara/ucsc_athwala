@@ -30,6 +30,7 @@ exports.create = (req, res) => {
         password:pw,
         contactnumber: req.body.contactnumber,
         status:req.body.status,
+        alumnistatus:0,
         isActive: false,
     };
 
