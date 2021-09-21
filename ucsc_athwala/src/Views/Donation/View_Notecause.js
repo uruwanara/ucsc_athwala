@@ -14,7 +14,6 @@ import axios from "axios";
 import ContactForm from './contactForm';
 import {useSnackbar} from "notistack";
 import {useHistory } from "react-router-dom";
-
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -165,13 +164,14 @@ export default function View_Notecause(){
             })
     };
 
+
     const onChangeHandler = (event)=>{
         console.log(event.target.files[0]);
        const file= event.target.files[0];
        const formData=new FormData()
         formData.append('file',file)
 
-        axios.post("http://localhost:5000/api/fus/upload/"+85,formData,{
+        axios.post("http://localhost:5000/api/fus/upload/"+donationid,formData,{
             headers:{
                 "access-control-allow-origin" : "*",
                 "Content-type": "application/json; charset=UTF-8"
@@ -179,6 +179,9 @@ export default function View_Notecause(){
         }).then((response) => {
             if(response.data.status === 'ok'){
                 console.log("Sucesss -------------------")
+
+
+
             }
             else{
                 console.log(response);
@@ -225,6 +228,15 @@ export default function View_Notecause(){
     };
     const handleClose = () => {
       setOpen(false);
+    };
+
+    const uploadFile=()=>{
+        enqueueSnackbar("File  Uploaded", {
+            variant: 'success',anchorOrigin: {
+                vertical: 'top',
+                horizontal: 'right',
+            },
+        })
     };
 
     return(
@@ -288,6 +300,7 @@ export default function View_Notecause(){
                                         type="submit"
                                         color="secondary"
                                         className={classes.uploadbtn}
+                                        onClick={uploadFile}
                                         >
                                         Upload File
                                     </Button>
