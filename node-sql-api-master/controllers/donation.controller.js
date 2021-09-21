@@ -657,6 +657,42 @@ exports.studentDetails = (req, res) => {
 );
 };
 
+exports.uploadfile = (req, res) => {
+    const donationid = req.body.donationID;
+    const type = req.body.type;
+    const doner = req.body.donerid;
+
+connection.query("update donations set status = 2 where donationID = ?",
+[donationid],
+(err, result,fields) => { 
+    if (err) {
+        res.send(err);
+    } else {
+        connection.query("update ?? set status = 'Received' where donation_id = ?",
+            [type,donationid],
+            (err1, result,fields) => { 
+                if (err1) {
+                    res.send(err1);
+                } else {
+                    connection.query("insert into doners(donation_id,doner_id) values (?,?)",
+                    [donationid,doner],
+                        (err2, result,fields) => { 
+                            if (err2) {
+                                res.send(err1);
+                            } else {
+                                res.send('success');
+                            }
+                        }
+                    );
+                }
+            }
+        );
+    }
+}
+);
+
+}
+
 
 
 
