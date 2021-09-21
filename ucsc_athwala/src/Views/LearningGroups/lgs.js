@@ -207,7 +207,7 @@ export default function Cases(){
         var id = props.id;
         var link="/viewLg?id="+id;
        // var link="/std/viewLg";
-        var imglink=LG;
+        var imglink="http://localhost:5000/Lg/"+Math.floor(Math.random() * 10)+".jpg";
 
         return (
             <React.Fragment>
