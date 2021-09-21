@@ -520,10 +520,6 @@ function Navbar() {
             <Route path="/conCoun" exact>
               <ContactCoun/>
             </Route>
-
-
-
-
             <Route path="/std/editrequest" exact>
             <Editform />
           </Route>

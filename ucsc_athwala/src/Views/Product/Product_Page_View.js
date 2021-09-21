@@ -2,7 +2,7 @@ import React, {useEffect,useState} from 'react'
 import {Link, useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import {ProductButton,ProductPostButton,MyProductButton} from './Product_button';
+import {ProductButton,ProductPostButton,MyProductButton,MyProductBuyButton} from './Product_button';
 import Grid from '@material-ui/core/Grid';
 import SearchBar from './Product_search_bar';
 import Card from '@material-ui/core/Card';
@@ -206,7 +206,7 @@ export default function ProductViews(){
         <>
         {/* <MyDonationButton /> */}
         <ProductButton />
-        <MyProductButton />
+        <MyProductBuyButton />
         </>
       );
     }
@@ -227,7 +227,7 @@ export default function ProductViews(){
             link = "/ustd/ViewProductDetails?id="+id;
           }
           else if(userData.userType === "ALUMNI" ){
-            link = "/pstd/ViewProductDetails?id="+id;
+            link = "/pst/ViewProductDetails?id="+id;
           }
           imglink = EventLaptopHP;
         }
@@ -239,7 +239,7 @@ export default function ProductViews(){
             link = "/ustd/ViewProductDetailsNote?id="+id;
           }
           else if(userData.userType === "ALUMNI" ){
-            link = "/pstd/ViewProductDetailsNote?id="+id;
+            link = "/pst/ViewProductDetailsNote?id="+id;
           }
           imglink = Note;
         }
@@ -251,7 +251,7 @@ export default function ProductViews(){
             link = "/ustd/ViewProductDetailsOther?id="+id;
           }
           else if(userData.userType === "ALUMNI" ){
-            link = "/pstd/ViewProductDetailsOther?id="+id;
+            link = "/pst/ViewProductDetailsOther?id="+id;
           }
           imglink = Other;
         }

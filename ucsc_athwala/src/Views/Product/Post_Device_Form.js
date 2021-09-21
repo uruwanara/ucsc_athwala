@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
 import {Link, useHistory } from "react-router-dom";
+import {useSnackbar} from "notistack";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,6 +48,7 @@ export default function SignUp() {
   const [price, setPrice] = React.useState("");
   const [image, setImage] = React.useState("");
   const [show_or_hide_details, setacceptTerm] = React.useState(false);
+  const {enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const handleSubmit = (event) => {
      event.preventDefault(); 
@@ -86,6 +88,20 @@ export default function SignUp() {
             setPrice("");
             setImage("");
             setacceptTerm(!show_or_hide_details);
+          }
+
+          enqueueSnackbar('Create Successful', {
+            variant: 'success', anchorOrigin: {
+              vertical: 'bottom',
+              horizontal: 'center',
+            }
+          })
+
+          if(userData.userType === "STUDENT"){
+            history.push("/std/SelectAdPost") ;
+          }
+          else if(userData.userType === "UNIONST" ){
+            history.push("/ustd/SelectAdPost");
           }
 
       }).catch((err)=>{
