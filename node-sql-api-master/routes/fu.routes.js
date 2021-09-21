@@ -29,7 +29,7 @@ module.exports = fuRoutes => {
             return next(error)
         }
 
-        res.send({sttus:  'ok'});
+        res.send({status: 'ok'});
 
     });
 

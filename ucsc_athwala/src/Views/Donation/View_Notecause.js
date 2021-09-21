@@ -167,7 +167,26 @@ export default function View_Notecause(){
 
     const onChangeHandler = (event)=>{
         console.log(event.target.files[0]);
-        setFile(event.target.files[0]);
+       const file= event.target.files[0];
+       const formData=new FormData()
+        formData.append('file',file)
+
+        axios.post("http://localhost:5000/api/fus/upload/"+85,formData,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then((response) => {
+            if(response.data.status === 'ok'){
+                console.log("Sucesss -------------------")
+            }
+            else{
+                console.log(response);
+            }
+        })
+
+
+
     }
 
     const handleSubmit = (event) => {
@@ -200,7 +219,7 @@ export default function View_Notecause(){
 
           }
   });
-}
+ }
     const handleClickOpen = () => {
       setOpen(true);
     };
