@@ -175,15 +175,85 @@ export function NoteDoneeDetails(props){
                 </div>
             )
     }
-    else {
+    else if(props.status === 'Not Received'){
+        if(props.userType === "UNIONST" || props.userType === "ADMIN" ){
+            return(
+                <div>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        component="label"
+                        className={classes.contactbtn}
+                        onClick={handleClickOpen}
+                        >
+                        Deactive
+                    </Button>
+
+                    <Dialog
+                        open={props.open}
+                        onClose={handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description">Please confirm you want to deactivate this donation request</DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleClose} color="primary">
+                                No
+                            </Button>
+                            <Button onClick={handleSubmit} color="primary" autoFocus>
+                                Confirm
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                </div>
+            )
+        }
+        else{
+            return(
+                <></>
+            );
+        }
+    }
+
+    else{
         return(
             <></>
-        )
+        ); 
+    }
     }
 
+    const studentdetails = () => {
+        if(props.userType === "UNIONST" ){
+            return(
+                <>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student first Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.fname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student Last Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.lname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Email Address</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.email}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Contact Number</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.contact}</Typography></div>                         
+                </div>
+                </>
+            )
+        }
+        else{
+            <></>
+        }
     }
-    
 
+   
     return(
         <Grid item xs={6}>
             <Card className={classes.card}>
@@ -205,10 +275,10 @@ export function NoteDoneeDetails(props){
                         <div><Typography variant="subtitle2" className={classes.labelname}>Before around</Typography></div>
                         <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.date}</Typography></div>  
                     </div> 
+                    {studentdetails()}
                     <div className={classes.receive}>
                     {receivebutton()}
-                    </div> 
-
+                    </div>
                                     
                 </CardContent> 
                  
@@ -298,15 +368,83 @@ export function ClothDoneeDetails(props){
                     </div>
                 )
         }
+        else if(props.status === 'Not Received'){
+            if(props.userType === "UNIONST" || props.userType === "ADMIN" ){
+                return(
+                    <div>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            component="label"
+                            className={classes.contactbtn}
+                            onClick={handleClickOpen}
+                            >
+                            Deactive
+                        </Button>
+    
+                        <Dialog
+                            open={props.open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">Please confirm you want to deactivate this donation request</DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose} color="primary">
+                                    No
+                                </Button>
+                                <Button onClick={handleSubmit} color="primary" autoFocus>
+                                    Confirm
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                )
+            }
+            else{
+                return(
+                    <></>
+                );
+            }
+        }
         else {
             return(
                 <></>
             )
         }
     
-        }    
+    }    
 
-
+    const studentdetails = () => {
+        if(props.userType === "UNIONST" ){
+            return(
+                <>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student first Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.fname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student Last Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.lname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Email Address</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.email}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Contact Number</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.contact}</Typography></div>                         
+                </div>
+                </>
+            )
+        }
+        else{
+            <></>
+        }
+    }
     return(
         <Grid item xs={6}>
             <Card className={classes.card}>
@@ -328,6 +466,7 @@ export function ClothDoneeDetails(props){
                         <div><Typography variant="subtitle2" className={classes.labelname}>Before around</Typography></div>
                         <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.date}</Typography></div>  
                     </div>
+                    {studentdetails()}
                     <div className={classes.receive}>
                     {receivebutton()}
                     </div>               
@@ -419,13 +558,83 @@ export function DeviceDoneeDetails(props){
                     </div>
                 )
         }
+        else if(props.status === 'Not Received'){
+            if(props.userType === "UNIONST" || props.userType === "ADMIN" ){
+                return(
+                    <div>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            component="label"
+                            className={classes.contactbtn}
+                            onClick={handleClickOpen}
+                            >
+                            Deactive
+                        </Button>
+    
+                        <Dialog
+                            open={props.open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">Please confirm you want to deactivate this donation request</DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose} color="primary">
+                                    No
+                                </Button>
+                                <Button onClick={handleSubmit} color="primary" autoFocus>
+                                    Confirm
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                )
+            }
+            else{
+                return(
+                    <></>
+                );
+            }
+        }
         else {
             return(
                 <></>
             )
         }
     
-        }    
+    } 
+    
+    const studentdetails = () => {
+        if(props.userType === "UNIONST" ){
+            return(
+                <>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student first Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.fname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student Last Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.lname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Email Address</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.email}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Contact Number</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.contact}</Typography></div>                         
+                </div>
+                </>
+            )
+        }
+        else{
+            <></>
+        }
+    }
 
     return(
         <Grid item xs={6}>
@@ -444,6 +653,7 @@ export function DeviceDoneeDetails(props){
                         <div><Typography variant="subtitle2" className={classes.labelname}>Before around</Typography></div>
                         <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.date}</Typography></div>  
                     </div>
+                    {studentdetails()}
                     <div className={classes.receive}>
                     {receivebutton()}
                     </div>                
@@ -535,13 +745,83 @@ export function MoneyDoneeDetails(props){
                     </div>
                 )
         }
+        else if(props.status === 'Not Received'){
+            if(props.userType === "UNIONST" || props.userType === "ADMIN" ){
+                return(
+                    <div>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            component="label"
+                            className={classes.contactbtn}
+                            onClick={handleClickOpen}
+                            >
+                            Deactive
+                        </Button>
+    
+                        <Dialog
+                            open={props.open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">Please confirm you want to deactivate this donation request</DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose} color="primary">
+                                    No
+                                </Button>
+                                <Button onClick={handleSubmit} color="primary" autoFocus>
+                                    Confirm
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                )
+            }
+            else{
+                return(
+                    <></>
+                );
+            }
+        }
         else {
             return(
                 <></>
             )
         }
     
-        }    
+    } 
+    
+    const studentdetails = () => {
+        if(props.userType === "UNIONST" ){
+            return(
+                <>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student first Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.fname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student Last Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.lname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Email Address</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.email}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Contact Number</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.contact}</Typography></div>                         
+                </div>
+                </>
+            )
+        }
+        else{
+            <></>
+        }
+    }
 
     return(
         <Grid item xs={6}>
@@ -560,6 +840,7 @@ export function MoneyDoneeDetails(props){
                         <div><Typography variant="subtitle2" className={classes.labelname}>Before around</Typography></div>
                         <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.date}</Typography></div>  
                     </div>
+                    {studentdetails()}
                     <div className={classes.receive}>
                     {receivebutton()}
                     </div>                
@@ -650,13 +931,83 @@ export function OtherDoneeDetails(props){
                     </div>
                 )
         }
+        else if(props.status === 'Not Received'){
+            if(props.userType === "UNIONST" || props.userType === "ADMIN" ){
+                return(
+                    <div>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            component="label"
+                            className={classes.contactbtn}
+                            onClick={handleClickOpen}
+                            >
+                            Deactive
+                        </Button>
+    
+                        <Dialog
+                            open={props.open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">Please confirm you want to deactivate this donation request</DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose} color="primary">
+                                    No
+                                </Button>
+                                <Button onClick={handleSubmit} color="primary" autoFocus>
+                                    Confirm
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                )
+            }
+            else{
+                return(
+                    <></>
+                );
+            }
+        }
         else {
             return(
                 <></>
             )
         }
     
+    }
+
+    const studentdetails = () => {
+        if(props.userType === "UNIONST" ){
+            return(
+                <>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student first Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.fname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student Last Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.lname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Email Address</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.email}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Contact Number</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.contact}</Typography></div>                         
+                </div>
+                </>
+            )
         }
+        else{
+            <></>
+        }
+    }
 
     return(
         <Grid item xs={6}>
@@ -671,6 +1022,7 @@ export function OtherDoneeDetails(props){
                         <div><Typography variant="subtitle2" className={classes.labelname}>Before around</Typography></div>
                         <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.date}</Typography></div>  
                     </div> 
+                    {studentdetails()}
                     <div className={classes.receive}>
                     {receivebutton()}
                     </div>               

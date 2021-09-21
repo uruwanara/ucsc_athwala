@@ -1,22 +1,28 @@
 module.exports = helpStackRoutes => {
-    const donation = require("../controllers/helpstack.controller");
+    const helpstack = require("../controllers/helpstack.controller");
 
     var router = require("express").Router();
 
     //ask question
-    router.post("/askquestion", donation.askQuestion);
+    router.post("/askquestion", helpstack.askQuestion);
 
     //answer question
-    router.post("/answerquestion", donation.answerQuestion);
+    router.post("/answerquestion", helpstack.answerQuestion);
 
     //view all questions
-    router.get("/viewallquestion", donation.viewallQuestion);
+    router.get("/viewallquestion", helpstack.viewallQuestion);
 
     //view selected question
-    router.get("/viewquestion", donation.viewQuestion);
+    router.get("/viewquestion", helpstack.viewQuestion);
 
     //view answers of selected question
-    router.get("/viewanswer", donation.viewAnswer);
+    router.get("/viewanswer", helpstack.viewAnswer);
+
+    //search questions
+    router.post("/search", helpstack.search);
+
+    //filter questions
+    router.post("/filterquestion",helpstack.filterquestion);
 
 
     helpStackRoutes.use('/api/helpstacks', router);

@@ -2,7 +2,7 @@ const db = require("../models");
 const connection = require("../dbConnection")
 
 exports.viewAllProducts = (req, res,err) => {
-    connection.query('Select * from product where is_pay = 0;',
+    connection.query('Select * from product where is_pay = 0 AND active = 1;',
     (err, result,fields) => {
         if (err) {
             res.send(err);
@@ -49,7 +49,7 @@ exports.productDetailsMore = (req,res,err) => {
 exports.viewMyallSellProduct = (req,res,err) => {
     const userId =req.query.id;
     //console.log(userId);
-    connection.query( 'Select * from product where user_id = ? ;',
+    connection.query( 'Select * from product where user_id = ? AND active = 1 ;',
     [userId],
     (err, result,fields) => {
         if (err) {
@@ -94,7 +94,7 @@ exports.sellNote = (req,res) => {
                                     if (err2) {
                                         res.send(err2);
                                     } else {
-                                        res.send("success");
+                                        res.send({prdID:product_id_max});
                                     }
                                 }
                             );
@@ -191,33 +191,73 @@ exports.sellOther = (req,res) => {
 };
 
 exports.viewMyallBuyProduct = (req,res,err) => {
-    const userId =req.query.id;
-    console.log(userId);
-    connection.query( 'Select * from pay_product where user_id = ? ;',
+    const userId =req.body.id;
+    connection.query("select product.product_id , product.description , product.product_type , product.price , product.postdate, pay_product.pay_date FROM product INNER JOIN pay_product ON product.product_id = pay_product.product_id WHERE pay_product.user_id = ? AND product.is_history = 1 AND pay_product.is_history = 1",
     [userId],
-    (err1, result,fields) => {
-        if (err1) {
-            res.send(err1);
+    (err, result,fields) => { 
+        if (err) {
+            res.send(err);
         } else {
-            //res.send(result);
-            //console.log(result);
-            let product_id_buy = result[0].product_id;
-            //console.log(product_id_buy);
-            connection.query( 'Select * from product where product_id = ? ;',
-            [product_id_buy],
-            (err2, results,fields) => {
-                 if (err2) {
-                     res.send(err2);
-                 } else {
-                     res.send(results);
-                }
-            }
-        
-            );
+            res.send(result);
         }
     }
-
     );
+};
+
+exports.deleteProductHistory = (req, res) => {
+    const product_id = req.body.product_id; 
+
+    connection.query("update pay_product set is_history = 0 where product_id = ?",
+    [product_id],
+    (err, result,fields) => { 
+        if (err) {
+            res.send(err);
+        } else {
+            //res.send("success");
+            
+            //const product_id = req.body.product_id; 
+
+            connection.query("update product set is_history = 0 where product_id = ?",
+            [product_id],
+            (err1, result,fields) => { 
+                if (err1) {
+                    res.send(err1);
+                } else {
+                    res.send("success");
+                }
+            }
+        );
+        }
+    }
+);
+};
+
+exports.deleteProduct = (req, res) => {
+    const product_id = req.body.product_id; 
+
+    connection.query("update pay_product set active = 0 where product_id = ?",
+    [product_id],
+    (err, result,fields) => { 
+        if (err) {
+            res.send(err);
+        } else {
+            //res.send("success");
+            
+            //const product_id = req.body.product_id; 
+
+            connection.query("update product set active = 0 where product_id = ?",
+            [product_id],
+            (err1, result,fields) => { 
+                if (err1) {
+                    res.send(err1);
+                } else {
+                    res.send("success");
+                }
+            }
+        );
+        }
+    }
+);
 };
 
 

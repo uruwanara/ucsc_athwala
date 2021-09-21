@@ -13,7 +13,8 @@ import { useLocation } from 'react-router';
 import axios from "axios";
 import { Button } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
-
+import {useSnackbar} from "notistack";
+import {useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,8 +36,6 @@ const useStyles = makeStyles((theme) => ({
       },
       title:{
         color:"#546e7a",
-        marginTop:10,
-        marginBottom:10,
         fontFamily:"Poppins, sans-serif",
         marginTop:'40px',
         marginBottom:'30px'
@@ -86,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function View_Clothcause(){
     const classes = useStyles();
-
+    const history = useHistory();
     const [description,setDescription] = useState();
     const [title,setTitle] = useState();
     const [amount, setAmount] = React.useState();
@@ -95,20 +94,28 @@ export default function View_Clothcause(){
     const [curramount , setCurramount] = React.useState();
     const [requestStudentid,setRequestStudentid] = useState();
     const search = useLocation().search;
+    const [open, setOpen] = React.useState(false);
+    const [status, setStatus] = useState();
 
     const donationid = new URLSearchParams(search).get("id");
     const userData=JSON.parse(localStorage.getItem("userData"));
     const progress = (curramount/amount)*100;
-
+    const {enqueueSnackbar, closeSnackbar } = useSnackbar();
     const [donateamount, setDonateamount] = React.useState();
+
+    const [fname, Setfname] = useState();
+    const [lname, Setlname] = useState();
+    const [email, Setemail] = useState();
+    const [contact , SetContact] = useState();
 
     useEffect(() => {
         
         fetchDescription(donationid);
         fetchDetails(donationid);
     },[]);
-
+    let dId="";
     const fetchDescription = (donationid) => {
+        dId=donationid;
         const description={
             "donationID": donationid,
         }
@@ -122,6 +129,26 @@ export default function View_Clothcause(){
                 setDescription(response.data[0].description);
                 setTitle(response.data[0].title);
                 setRequestStudentid(response.data[0].student_id);
+
+                
+                if(response.data[0].student_id){
+                    const details={
+                        "student": response.data[0].student_id,
+                      }
+            
+                      axios.post("http://localhost:5000/api/donations/studentdetatils",details,{
+                        headers:{
+                            "access-control-allow-origin" : "*",
+                            "Content-type": "application/json; charset=UTF-8"
+                          }
+                        }).then((respon) => {
+                                console.log(respon.data[0]);
+                                Setfname(respon.data[0].fname);
+                                Setlname(respon.data[0].lname);
+                                Setemail(respon.data[0].email);
+                                SetContact(respon.data[0].contactnumber);
+                        });
+                }
             })
     };
 
@@ -141,11 +168,98 @@ export default function View_Clothcause(){
                 setNote(response.data[0].note);
                 setDate(response.data[0].before_date);
                 setCurramount(response.data[0].current_amount);
+                setStatus(response.data[0].status);
             })
     };
 
     const handleDonate = (event) => {
+        console.log("Payment Done------------------")
+        const payHereData = {
+            sandbox: true,
+            merchant_id: "1217629", // Replace your Merchant ID
+            return_url: "http://localhost:3000/login", // Important
+            cancel_url: "http://localhost:3000/login", // Important
+            notify_url: "http://localhost:3000/login",
+            order_id: dId,
+            items: title,
+            amount: donateamount,
+            currency: "LKR",
+            first_name: userData.fname,
+            last_name: userData.lname,
+            email: userData.email,
+            phone: userData.contactnumber,
+            address:"UCSC,Colombo",
+            city: "Colombo",
+            country: "Sri Lanka",
+            delivery_address:"UCSC,Colombo",
+            delivery_city: "Colombo ",
+            delivery_country: "Sri Lanka",
+            custom_1:dId,
+            custom_2: "",
+        };
+        window.payhere.startPayment(payHereData);
+    };
+    console.log(parseInt(curramount) + parseInt(donateamount));
+    let amont=parseInt(curramount) + parseInt(donateamount);
 
+    window.payhere.onCompleted = function onCompleted(dId) {
+        console.log("Payment Done!---------------------------------")
+        const details={
+            "dId": donationid,
+            "amount":amont
+        }
+        axios.post("http://localhost:5000/api/donations/pay",details,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then((response) => {
+            console.log("Payment Done!")
+            console.log(response.data);
+
+        })
+    }
+    window.payhere.onDismissed = function onDismissed() {
+        //Note: Prompt user to pay again or show an error page
+        console.log("Payment dismissed");
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault(); 
+        setOpen(false);
+        const deletedonation={
+            "donationID": donationid,
+        }
+        axios.post("http://localhost:5000/api/donations/delete",deletedonation,{
+      headers:{
+          "access-control-allow-origin" : "*",
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      }).then((response) => {
+          if(response.data === 'success'){
+            console.log("ddddddd");
+            enqueueSnackbar('Successfully Deleted', {
+              variant: 'success', anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'center',
+              }
+            })
+
+            if(userData.userType === "STUDENT"){
+              history.push("/std/viewMyrequest") ;
+            }
+            else if(userData.userType === "UNIONST" ){
+              history.push("/ustd/viewMyrequest");
+            }
+
+          }
+  });
+}
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+    const handleClose = () => {
+      setOpen(false);
     };
 
     return(
@@ -165,7 +279,18 @@ export default function View_Clothcause(){
                     
 
                     <Grid container spacing={2} >
-                        <MoneyDoneeDetails amount={amount} note={note} date={date} requestStudentid={requestStudentid} userId = {userData.id}/>
+                        <MoneyDoneeDetails amount={amount} note={note} date={date} requestStudentid={requestStudentid} 
+                        userId = {userData.id}
+                        status={status} 
+                        open={open}
+                        userType={userData.userType}
+                        handleSubmit={handleSubmit}  
+                        handleClickOpen={handleClickOpen} 
+                        handleClose={handleClose}
+                        fname={fname}
+                        lname={lname}
+                        email={email}
+                        contact={contact}/>
 
                         <Grid item xs={6}>
                         <Card className={classes.card}>

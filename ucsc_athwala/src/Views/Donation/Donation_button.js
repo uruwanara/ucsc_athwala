@@ -96,6 +96,9 @@ export function MyDonationButton(){
     if(userData.userType === "UNIONST" ){
       link = "/ustd/myDonation";
     }
+    if(userData.userType === "ALUMNI"){
+      link = "/pst/myDonation";
+    }
 
     return(
         <Grid item s={4}>

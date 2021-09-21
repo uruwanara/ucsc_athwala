@@ -27,7 +27,11 @@ app.get("/", (req, res) => {
     res.json({ message: "Welcome to Mokakhari." });
 });
 
+app.use(express.static('public'));
+
+
 //Import routes
+require("./routes/fu.routes")(app);
 require("./routes/user.routes")(app);
 require("./routes/auth.routes")(app);
 require("./routes/sample.routes")(app);
@@ -38,6 +42,8 @@ require("./routes/auction.routes")(app);
 require("./routes/product.routes")(app);
 require("./routes/jobpost.routes")(app);
 require("./routes/faq.routes")(app);
+require("./routes/lg.routes")(app);
+require("./routes/coun.routes")(app);
 
 //Uthpala saved me
 // set port, listen for requests

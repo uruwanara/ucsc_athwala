@@ -15,7 +15,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 import ForumIcon from '@material-ui/icons/Forum';
 import HelpIcon from '@material-ui/icons/Help';
 import Teal from '@material-ui/core/colors/teal';
-
+import Blue from '@material-ui/core/colors/blue'
 
 const useStyles = makeStyles((theme) => ({
   Nounderline :{
@@ -23,7 +23,10 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       textDecoration: "none"
     },
-  }
+  },
+  Listicon:{
+    color:Blue[600],
+  },
 
 
 }));
@@ -37,14 +40,14 @@ export default function Side(){
           <List>
               <Link to="/ustd/ustddashboard" className={classes.Nounderline}>
                 <ListItem button >
-                <ListItemIcon><DashboardIcon style={{ fill: "blue"}}/></ListItemIcon>
+                <ListItemIcon><DashboardIcon className={classes.Listicon}/></ListItemIcon>
                 <ListItemText primary="Dashboard" />
                 </ListItem>
               </Link>
               
               <Link to="/ustd/viewcauses" className={classes.Nounderline}>
                 <ListItem button>
-                <ListItemIcon><PeopleAltIcon style={{ fill: "blue"}}/></ListItemIcon>
+                <ListItemIcon><PeopleAltIcon className={classes.Listicon}/></ListItemIcon>
                 <ListItemText primary="Donation" />
                 </ListItem>
               </Link>
@@ -52,7 +55,7 @@ export default function Side(){
               <Link to = "/ViewEleProduct" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <ShopIcon style={{ fill: "blue"}}/>
+                    <ShopIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Product" />
                 </ListItem>
@@ -61,7 +64,7 @@ export default function Side(){
               <Link to = "" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <GavelIcon style={{ fill: "blue"}}/>
+                    <GavelIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Auction" />
                 </ListItem>
@@ -70,43 +73,43 @@ export default function Side(){
               <Link to = "/ustd/funddashboard" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <GavelIcon style={{ fill: "blue"}}/>
+                    <GavelIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Fundraising" />
                 </ListItem>
               </Link>
 
-              <Link to="/Job" className={classes.Nounderline}>
+              <Link to="/ustd/JobOpertunity" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <PanToolIcon style={{ fill: "blue"}}/>
+                    <PanToolIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Job oppertunity" />
                 </ListItem>
               </Link>
 
-              <Link to="/stdlrngrp" className={classes.Nounderline}>
+              <Link to="/lrngrp" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <VideocamIcon style={{ fill: "blue"}}/>
+                    <VideocamIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Learning Groups" />
                 </ListItem>
               </Link>
 
-              <Link to="/Chat" className={classes.Nounderline}>
+              <Link to="/chat" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <ChatIcon style={{ fill: "blue"}}/>
+                    <ChatIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Chat" />
                 </ListItem>
               </Link>
 
-              <Link to="" className={classes.Nounderline}> 
+              <Link to="/ustd/helpstack/default" className={classes.Nounderline}> 
                 <ListItem button>
                 <ListItemIcon>
-                    <ForumIcon style={{ fill: "blue"}}/>
+                    <ForumIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="UCSC help stack" />
                 </ListItem>
@@ -115,16 +118,16 @@ export default function Side(){
               <Link to="" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <HelpIcon style={{ fill: "blue"}}/>
+                    <HelpIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="QA support" />
                 </ListItem>
               </Link>
 
-              <Link to="/stdcntcoun" className={classes.Nounderline}>
+              <Link to="/contactcoun" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <HelpIcon style={{ fill: "blue"}}/>
+                    <HelpIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Contact Councellor" />
                 </ListItem>

@@ -252,7 +252,7 @@ export default function ProductViews(){
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
-                    {props.title}
+                    {props.title}{props.product_id}
                   </Typography>
                  
                   <TextTruncate

@@ -24,8 +24,14 @@ module.exports = productRoutes => {
        //Sell Other
      router.post("/sellOther",product.sellOther);
 
-     //retrive all the my Buy product
-     router.get("/viewmyallBuyProduct",product.viewMyallBuyProduct);
+     //retrive all the my Buy productdeleteProduct
+     router.post("/viewmyallBuyProduct",product.viewMyallBuyProduct);
+
+     // delete product history
+     router.post("/deleteProductHistory",product.deleteProductHistory);
+
+      //delete product
+     router.post("/deleteProduct",product.deleteProduct);
 
 
   

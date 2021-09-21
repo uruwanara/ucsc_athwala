@@ -49,7 +49,7 @@ exports.answerQuestion = (req, res) => {
 
 exports.viewallQuestion = (req, res) => {
 
-    connection.query('select * from question_helpstack',
+    connection.query('select * from question_helpstack ORDER BY q_id DESC',
     (err, result,fields) => {
         if (err) {
             res.send(err);
@@ -79,7 +79,7 @@ exports.viewAnswer = (req, res) => {
     const questionID = req.query.questionid;
 
     //check the query 
-    connection.query('SELECT answers_helpstack.ans_id, answers_helpstack.answer, answers_helpstack.q_id , users.fname , users.lname FROM answers_helpstack INNER JOIN users ON answers_helpstack.answer_by = users.id WHERE answers_helpstack.q_id = ? ORDER BY answers_helpstack.ans_id DESC',
+    connection.query('SELECT answers_helpstack.ans_id, answers_helpstack.answer, answers_helpstack.q_id , users.fname , users.lname FROM answers_helpstack INNER JOIN users ON answers_helpstack.answer_by = users.id WHERE answers_helpstack.q_id = ? ORDER BY answers_helpstack.ans_id ASC',
     [questionID],
     (err, result,fields) => {
         if (err) {
@@ -89,4 +89,65 @@ exports.viewAnswer = (req, res) => {
         }
     }
 );
+};
+
+exports.search = (req, res) => {
+    const message = req.body.search;
+
+    if(message == ""){
+        connection.query('select * from question_helpstack;',
+            (err, result,fields) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(result);
+                }
+            }
+        );
+    }
+    else{
+       
+    connection.query("Select * from question_helpstack where (title "+ "like'%"+ message+"%'"+" or question "+"like'%"+ message+"%');",
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    }
+); 
+    }
+
+    
+};
+
+exports.filterquestion = (req, res) => {
+
+    const filter = req.body.filter;
+    const id = req.body.id;
+
+    if(filter == 'all'){
+        connection.query('select * from question_helpstack ORDER BY q_id DESC',
+            (err, result,fields) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(result);
+                }
+            }
+        );
+    }
+    else if(filter == 'my'){
+        connection.query('select * from question_helpstack where ask_by = ? ORDER BY q_id DESC',
+        [id],
+            (err, result,fields) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(result);
+                }
+            }
+        );
+    }
+    
 };

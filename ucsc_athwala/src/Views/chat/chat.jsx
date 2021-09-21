@@ -214,14 +214,31 @@ export default function Chat() {
 
     const userData = JSON.parse(localStorage.getItem("userData"))
     console.log(userData.username);
+    let cap = "";
+    let em = "";
+    let un = "";
+
+    if (userData.userType == "STUDENT" || userData.userType == "UNIONST") {
+        cap = userData.email.toUpperCase();
+        em = cap.substr(0, cap.indexOf('@'));
+        un = userData.username.concat("(", em, ")");
+    } else if (userData.userType == "ALUMNI") {
+        un = userData.username.concat("- Alumni");
+    } else if (userData.userType == "COUNSELLOR") {
+        un = userData.username.concat("- Counsellor");
+    } else if (userData.userType == "ADMIN") {
+        un = "ADMIN";
+    }
+    console.log(un)
     return (
-      <ChatEngine
-          height='100vh'
-          userName={userData.username}
-          userSecret='Ur0771110052'
-          projectID='5cbe2a37-ef49-4870-8d80-f469982d0d3a'
-      />
-  );
+
+        <ChatEngine
+            height='100vh'
+            userName={un}
+            userSecret='Ur0771110052'
+            projectID='5cbe2a37-ef49-4870-8d80-f469982d0d3a'
+        />
+    );
 }
 
 export function home1(){

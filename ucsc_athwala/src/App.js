@@ -13,7 +13,8 @@ import UStdNavside from './Views/UnionSidebar/Navbar';
 import AdminNavside from './Views/AdminSidebar/Navbar';
 import PstNavside from './Views/PastStudentSidebar/Navbar';
 import CounNavside from './Views/CouncellorSidebar/Navbar';
-
+import Verify from './Views/EmailVerify/EmailVerify'
+import Test from './Views/UploadFileTest'
 
 function App() {
     return (
@@ -46,6 +47,13 @@ function App() {
                 <Route path="/signup" exact>
                     <SignUp />
                 </Route>
+                 <Route path="/everify" exact>
+                     <Verify/>
+                 </Route>
+                 <Route path="/test?id=10" exact>
+                     <Verify/>
+                 </Route>
+
 
                  <Route path="/land" exact>
                      <Land />

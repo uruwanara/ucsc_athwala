@@ -91,7 +91,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to="/stdlrngrp" className={classes.Nounderline}>
+              <Link to="/lrngrp" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <VideocamIcon className={classes.Listicon}/>
@@ -100,7 +100,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to="/std/stdchat" className={classes.Nounderline}>
+              <Link to="/chat" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <ChatIcon className={classes.Listicon}/>
@@ -127,7 +127,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to="/stdcntcoun" className={classes.Nounderline}>
+              <Link to="/contactcoun" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <HelpIcon className={classes.Listicon}/>

@@ -79,9 +79,24 @@ exports.create = (req, res) => {
             });
         })
         .then(async function createUser() {
+            let cap="";
+            let em="";
+            let un="";
 
+            if(user.userType=="STUDENT"||user.userType=="UNIONST") {
+                 cap = user.email.toUpperCase();
+                em = cap.substr(0, cap.indexOf('@'));
+                un = user.username.concat("(", em, ")");
+            }else if(user.userType=="ALUMNI") {
+                un = user.username.concat("- Alumni");
+            }else if(user.userType=="COUNSELLOR") {
+                un = user.username.concat("- Counsellor");
+            }else if(user.userType=="ADMIN") {
+                cap = user.email.toUpperCase();
+                un = cap;
+            }
         const data = {
-            username: user.username,
+            username: un,
             secret:  "Ur0771110052",
             first_name: user.fname,
             last_name: user.lname,

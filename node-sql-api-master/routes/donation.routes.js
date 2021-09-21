@@ -67,10 +67,15 @@ module.exports = donationRoutes => {
     router.get("/filter",donation.filter);
 
     //search my donations
-    //router.post("/mysearch",donation.mysearch);
+    router.post("/mysearch",donation.mysearch);
 
     //filter my posts
-    //router.get("/myfilter",donation.myfilter)
+    router.post("/myfilter",donation.myfilter)
+
+    router.post("/pay",donation.pay)
+
+    //select student details for admin
+    router.post("/studentdetatils",donation.studentDetails);
 
     donationRoutes.use('/api/donations', router);
 };

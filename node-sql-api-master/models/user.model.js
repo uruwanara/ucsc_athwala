@@ -29,6 +29,9 @@ module.exports = (sequelize, Sequelize) => {
 
         isActive: {
             type: Sequelize.BOOLEAN
+        },
+        status: {
+            type: Sequelize.STRING
         }
 
     });

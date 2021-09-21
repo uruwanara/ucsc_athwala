@@ -63,7 +63,7 @@ export default function ContactForm(props){
                         history.push("/std/myDonation"); 
                     }
                     else if(userData.userType==="ALUMNI"){
-                        history.push("/pstd/myDonation"); 
+                        history.push("/pst/myDonation"); 
                     }
                     else if(userData.userType==="UNIONST"){
                         history.push("/ustd/myDonation"); 
