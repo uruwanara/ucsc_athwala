@@ -105,7 +105,7 @@ export default function View_Clothcause(){
         const description={
             "product_id": product_id,
         }
-        axios.post("http://localhost:5000/api/products/viewdetail",description,{
+        axios.post("http://localhost:5000/api/products/haveBlockProductDetails",description,{
             headers:{
                 "access-control-allow-origin" : "*",
                 "Content-type": "application/json; charset=UTF-8"
@@ -117,7 +117,7 @@ export default function View_Clothcause(){
                 setPrice(response.data[0].price);
                 setHideDetails(response.data[0].show_or_hide_details);
                 setTitle(response.data[0].title);
-                //setBlock(response.data[0].block);
+                setBlock(response.data[0].block);
                 
             })
     };
@@ -154,7 +154,72 @@ export default function View_Clothcause(){
             Buy It Now
           </Button>
         );
+      }else if(userData.userType === "ADMIN"){
+
+        if(block === 0){
+
+        
+
+        const BlockClickPost = (event) => {
+        
+          event.preventDefault(); 
+          const description={
+              "product_id": product_id,
+          }
+          axios.post("http://localhost:5000/api/products/blockProductPost",description,{
+              headers:{
+                  "access-control-allow-origin" : "*",
+                  "Content-type": "application/json; charset=UTF-8"
+                }
+              }).then((response) => {
+                if(response.data === 'success'){
+                  console.log("hkjkdf");
+                  console.log(product_id);
+                  enqueueSnackbar('Successfully Blocked', {
+                    variant: 'success', anchorOrigin: {
+                      vertical: 'bottom',
+                      horizontal: 'center',
+                    }
+                  })
+                  setButton("secondary");
+                  if(userData.userType === "ADMIN"){
+                    
+                    history.push("/admin/ViewAdminProductDetails?id="+product_id) ;
+                  }
+                
+      
+                }
+                  
+              })
+      };
+
+        return(
+          <Button style={{maxWidth: '400px', maxHeight: '40px', minWidth: '400px', minHeight: '40px'}}
+            variant="contained"
+            color={btncolor}
+            component="label"
+            onClick={BlockClickPost}
+            //size="large"
+            className={classes.contactbtn}
+            >
+            Block Post
+          </Button>
+        );
+      }else{
+        return(
+        <Button style={{maxWidth: '400px', maxHeight: '40px', minWidth: '400px', minHeight: '40px'}}
+            variant="contained"
+            color="secondary"
+            component="label"
+            
+            //size="large"
+            className={classes.contactbtn}
+            >
+            Block Post
+          </Button>
+         );  
       }
+    }
   
     }
     

@@ -54,7 +54,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to = "" className={classes.Nounderline}>
+              <Link to = "/admin/ViewAdminProductEle" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <ShopIcon className={classes.Listicon}/>
