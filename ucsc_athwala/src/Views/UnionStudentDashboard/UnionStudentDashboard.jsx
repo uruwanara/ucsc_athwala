@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
     media1: {
         height: '100%',
+        marginLeft: theme.spacing(0.5),
     },
     media: {
         height: 140,
@@ -89,7 +90,131 @@ function UnionStudentDashboard() {
     const classes = useStyles();
     //retrieve data from localstorage
     const userData = JSON.parse(localStorage.getItem("userData"));
-    console.log(userData);
+    // console.log(userData);
+
+    const [mapset, SetMap] = useState([]);
+
+    //use Effect is a hook which allows to perform side effects insode the components
+    //Here we use useEffect to access the function which call to the backend
+    //normally when the page is loaded it will run for a once
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+
+        const response = await fetch(`http://localhost:5000/api/fundraising/viewall`, {
+            method: "GET",
+        });
+        const result = await response.json();
+        // console.log(result);
+        SetMap(result);
+    };
+    console.log(mapset);
+
+
+
+    function Viewfund(props) {
+
+        var link;
+        var link1;
+        var id = props.id;
+        link = "/ustd/funddashboard/donate?id=" + id;
+        //link for edit fundraising
+        link1 = "/ustd/funddashboard/edit?id=" + id;
+
+        return (
+            <Box my={2}>
+                <Paper>
+
+                    <Grid container m={1} spacing={1}>
+                        <Grid item sm={4} xs={12}>
+
+
+                            <CardMedia
+                                className={classes.media1}
+                                image={Vaniwilla}
+                                title="Paella dish"
+                            />
+
+                        </Grid>
+
+
+                        <Grid item sm={8} xs={12} container direction="row">
+
+                            <Grid item xs={12}>
+                                <Box mr={1}>
+                                    <Typography align="center" gutterBottom variant="h5" color="primary">
+                                        {props.title}
+                                    </Typography>
+                                    <Typography variant="body1" gutterBottom align="justify">
+                                        {props.description}
+                                    </Typography>
+                                </Box>
+                                <Box mb={1} mr={1}>
+                                    <Typography variant="body2" color="initial">50% completed
+                                    </Typography>
+                                    <LinearProgress variant="determinate" value={50} />
+                                </Box>
+                            </Grid>
+                            <Grid item xs={12}>
+
+                                <Grid container spacing={1}>
+
+                                    <Grid item sm={4} xm={12}>
+                                        <Box justifyContent="flex-start">
+
+                                            <Typography variant="subtitle2" color="initial">
+                                                Goal Amount: Rs. {props.goalamount}
+                                            </Typography>
+
+                                        </Box>
+                                    </Grid>
+                                    <Grid item sm={8} xm={12}>
+                                        <Box display="flex" justifyContent="flex-end" mr={1} mb={1}>
+                                            <Box mr={1}>
+                                                <Link to={link}>
+
+                                                    <Button className={classes.filterbutton} variant="contained" color="primary" size="medium" >
+                                                        View & Donate
+                                                    </Button>
+                                                </Link>
+                                            </Box>
+{/* 
+                                            <Box>
+                                                <Button className={classes.filterbutton} variant="contained" color="secondary" size="medium" aligncontent='flex-end'>
+                                                    End now
+                                                </Button>
+                                            </Box> */}
+                                            <Box mr={1}>
+                                                <Link to={link1}>
+                                                    <Button className={classes.filterbutton} variant="contained" color="secondary" size="medium" aligncontent='flex-end'>
+                                                        Edit now
+                                                    </Button>
+                                                </Link>
+                                            </Box>
+
+                                            
+                                            <Box>
+                                                <Button className={classes.filterbutton} variant="contained" color="secondary" size="medium" aligncontent='flex-end'>
+                                                    End now
+                                                </Button>
+                                            </Box>
+                                        </Box>
+                                    </Grid>
+
+                                </Grid>
+
+
+                            </Grid>
+
+                        </Grid>
+                    </Grid>
+
+                </Paper>
+            </Box>
+        );
+    }
 
     return (
         <React.Fragment>
@@ -265,7 +390,7 @@ function UnionStudentDashboard() {
                 </Typography>
             </Box>
             <Box display="flex" flexDirection="row" my={2}>
-                <Link to="/ustd/addfundraising">
+                <Link to="/ustd/funddashboard/create">
                     <Button className={classes.filterbutton} variant="contained" color="primary" size="medium" startIcon={<AddCircleOutlineOutlinedIcon />}>
                         Create a new fundraising event
                     </Button>
@@ -274,88 +399,97 @@ function UnionStudentDashboard() {
 
             {/* <div> */}
 
-            <Paper>
-
-                <Grid container m={1} spacing={1}>
-                    <Grid item sm={4} xs={12}>
-                        {/* <ButtonBase className={classes.image} style={{ height: 'fixed' }}>
-                            <img className={classes.img} alt="vaniwilla" src={Vaniwilla} />
-                        </ButtonBase> */}
-
-                        <CardMedia
-                            className={classes.media1}
-                            image={Vaniwilla}
-                            title="Paella dish"
-                        />
-
-                    </Grid>
 
 
-                    <Grid item sm={8} xs={12} container direction="row">
 
-                        <Grid item xs={12}>
-                            <Box mr={1}>
-                                <Typography gutterBottom variant="h6" color="primary">
-                                    Vani Vizha Tamil Festival 2021
-                                </Typography>
-                                <Typography variant="body1" gutterBottom align="justify">
-                                    First year students of UCSC organize Vani Viza tamil festival every year.In this year they are planing to held it on
-                                    23rd of August, 2021. This event will be a good opperunity to create unity among the badges.
-                                </Typography>
-                            </Box>
-                            <Box mb={1} mr={1}>
-                                <Typography variant="body2" color="initial">50% completed
-                                </Typography>
-                                <LinearProgress variant="determinate" value={50} />
-                            </Box>
+            {/* <Box id = {student.fundID} my={2}>
+                <Paper>
+
+                    <Grid container m={1} spacing={1}>
+                        <Grid item sm={4} xs={12}>
+                           
+
+                            <CardMedia
+                                className={classes.media1}
+                                image={Vaniwilla}
+                                title="Paella dish"
+                            />
+
                         </Grid>
-                        <Grid item xs={12}>
-                            {/* <div className={classes.rootdiv}> */}
-                            <Grid container spacing={1}>
 
-                                <Grid item sm={4} xm={12}>
-                                    <Box justifyContent="flex-start">
-                                        {/* <Box> */}
-                                        <Typography variant="subtitle2" color="initial">
-                                            Goal Amount: Rs. 200,000
-                                        </Typography>
-                                        {/* </Box> */}
-                                    </Box>
-                                </Grid>
-                                <Grid item sm={8} xm={12}>
-                                    <Box display="flex" justifyContent="flex-end" mr={1} mb={1}>
-                                        <Box mr={1}>
-                                            <Button className={classes.filterbutton} variant="contained" color="primary" size="medium" >
-                                                View & Donate
-                                            </Button>
-                                        </Box>
 
-                                        <Box mr={1}>
-                                            <Button className={classes.filterbutton} variant="contained" color="secondary" size="medium" alignContent='flex-end'>
-                                                End now
-                                            </Button>
+                        <Grid item sm={8} xs={12} container direction="row">
+
+                            <Grid item xs={12}>
+                                <Box mr={1}>
+                                    <Typography align="center" gutterBottom variant="h5" color="primary">
+                                        {student.fundName}
+                                    </Typography>
+                                    <Typography variant="body1" gutterBottom align="justify">
+                                        {student.fundDescription}
+                                    </Typography>
+                                </Box>
+                                <Box mb={1} mr={1}>
+                                    <Typography variant="body2" color="initial">50% completed
+                                    </Typography>
+                                    <LinearProgress variant="determinate" value={50} />
+                                </Box>
+                            </Grid>
+                            <Grid item xs={12}>
+                               
+                                <Grid container spacing={1}>
+
+                                    <Grid item sm={4} xm={12}>
+                                        <Box justifyContent="flex-start">
+                                          
+                                            <Typography variant="subtitle2" color="initial">
+                                                Goal Amount: Rs. {student.fundGoalAmount}
+                                            </Typography>
+                                          
                                         </Box>
-                                        <Box>
-                                            <Button className={classes.filterbutton} variant="contained" color="secondary" size="medium" alignContent='flex-end'>
-                                                Edit now
-                                            </Button>
+                                    </Grid>
+                                    <Grid item sm={8} xm={12}>
+                                        <Box display="flex" justifyContent="flex-end" mr={1} mb={1}>
+                                            <Box mr={1}>
+                                                <Link to="/ustd/funddashboard/donate">
+                                              
+                                                    <Button className={classes.filterbutton} variant="contained" color="primary" size="medium" >
+                                                        View & Donate
+                                                    </Button>
+                                                </Link>
+                                            </Box>
+
+                                            <Box mr={1}>
+                                                <Button className={classes.filterbutton} variant="contained" color="secondary" size="medium" aligncontent='flex-end'>
+                                                    End now
+                                                </Button>
+                                            </Box>
+                                            <Box>
+                                                <Button className={classes.filterbutton} variant="contained" color="secondary" size="medium" aligncontent='flex-end'>
+                                                    Edit now
+                                                </Button>
+                                            </Box>
                                         </Box>
-                                    </Box>
+                                    </Grid>
+
                                 </Grid>
+                              
 
                             </Grid>
-                            {/* </div> */}
 
                         </Grid>
-
                     </Grid>
-                </Grid>
 
-            </Paper>
+                </Paper>
+            </Box> */}
+
+
 
             {/* </div> */}
             {/********************** End of the Fundraising part **********************************/}
-
+            {mapset.map(student => (
+                <Viewfund title={student.fundName} goalamount={student.fundGoalAmount} description={student.fundDescription} id={student.fundID} />
+            ))}
         </React.Fragment>
     );
 }

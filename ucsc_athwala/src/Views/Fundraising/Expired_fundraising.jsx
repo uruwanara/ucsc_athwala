@@ -1,6 +1,6 @@
 
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -65,6 +65,171 @@ function Expired__fundraising() {
     const classes = useStyles();
     const theme = useTheme();
 
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    // console.log(userData);
+
+    const [mapset, SetMap] = useState([]);
+
+    //use Effect is a hook which allows to perform side effects insode the components
+    //Here we use useEffect to access the function which call to the backend
+    //normally when the page is loaded it will run for a once
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+
+        const response = await fetch(`http://localhost:5000/api/fundraising/viewallex`, {
+            method: "GET",
+        });
+        const result = await response.json();
+        // console.log(result);
+        SetMap(result);
+    };
+    console.log(mapset);
+
+
+    function Viewfund(props) {
+
+        var link;
+        var id = props.id;
+        link = "/ustd/funddashboard/donate?id=" + id;
+
+        return (
+
+
+            <Box>
+                <Paper>
+                    <Box component="br" />
+                    <Grid container m={1} spacing={1}>
+                        <Grid item sm={4} xs={12}>
+                            {/* <ButtonBase className={classes.image} style={{ height: 'fixed' }}>
+                        <img className={classes.img} alt="vaniwilla" src={Vaniwilla} />
+                        </ButtonBase> */}
+
+                            <CardMedia
+                                className={classes.media1}
+                                image={Vaniwilla}
+                                title="Paella dish"
+                            />
+
+                        </Grid>
+
+
+                        <Grid item sm={8} xs={12} container direction="row">
+
+                            <Grid item xs={12}>
+                                <Box mr={1}>
+                                    <Typography gutterBottom variant="h6" color="primary">
+                                       {props.title}
+                                    </Typography>
+                                    <Typography variant="body1" gutterBottom align="justify">
+                                    {props.description}
+                                    </Typography>
+                                </Box>
+                                <Box mb={1} mr={1}>
+                                    <Typography variant="body2" color="initial">50% completed
+                                    </Typography>
+                                    <LinearProgress variant="determinate" value={50} />
+                                </Box>
+                            </Grid>
+                            <Grid item xs={12}>
+                                {/* <div className={classes.rootdiv}> */}
+                                <Grid container spacing={1}>
+
+                                    <Grid item sm={4} xm={12}>
+                                        <Box>
+                                            {/* <Box> */}
+                                            <Typography variant="subtitle2" color="initial">
+                                                Goal Amount Rs: {props.goalamount}
+                                            </Typography>
+                                            {/* </Box> */}
+                                        </Box>
+                                    </Grid>
+                                    <Grid item sm={4} xm={12}>
+                                        <Box>
+                                            {/* <Box> */}
+                                            <Typography variant="subtitle2" color="initial">
+                                                Started Amount Rs. {props.startamount}
+                                            </Typography>
+                                            {/* </Box> */}
+                                        </Box>
+                                    </Grid>
+                                    <Grid item sm={4} xm={12}>
+                                        <Box>
+                                            {/* <Box> */}
+                                            <Typography variant="subtitle2" color="initial">
+                                                Current Amount Rs. {props.currentamount}
+                                            </Typography>
+                                            {/* </Box> */}
+                                        </Box>
+                                    </Grid>
+
+                                </Grid>
+                                {/* </div> */}
+
+                            </Grid>
+
+                        </Grid>
+
+
+                        <Grid container>
+                            <Box alignItems="center">
+                                <Typography variant="h6" color="initial" align="center" ml={1}>This fundraising was created by {props.createdby}</Typography>
+                            </Box>
+                        </Grid>
+
+                        <Grid item container ml={1} spacing={1}>
+                            <Grid item sm={3} xs={6}>
+                                <Box>
+                                    {/* <Box> */}
+                                    <Typography variant="subtitle2" color="initial">
+                                        Start Date: {props.startdate}
+                                    </Typography>
+                                    {/* </Box> */}
+                                </Box>
+                            </Grid>
+                            <Grid item sm={3} xs={6}>
+                                <Box>
+                                    {/* <Box> */}
+                                    <Typography variant="subtitle2" color="initial">
+                                        Started Time: {props.starttime}
+                                    </Typography>
+                                    {/* </Box> */}
+                                </Box>
+                            </Grid>
+                            <Grid item sm={3} xs={6}>
+                                <Box>
+                                    {/* <Box> */}
+                                    <Typography variant="subtitle2" color="initial">
+                                        Expired Date: {props.expiredate}
+                                    </Typography>
+                                    {/* </Box> */}
+                                </Box>
+                            </Grid>
+                            <Grid item sm={3} xs={6}>
+                                <Box>
+                                    {/* <Box> */}
+                                    <Typography variant="subtitle2" color="initial">
+                                        Expired Time: {props.expiretime}
+                                    </Typography>
+                                    {/* </Box> */}
+                                </Box>
+                            </Grid>
+
+                        </Grid>
+
+
+                    </Grid>
+
+                </Paper>
+                <Box component="br"/>
+            </Box>
+
+
+        );
+    }
+
     return (
         <React.Fragment>
 
@@ -81,14 +246,11 @@ function Expired__fundraising() {
             </Link>
 
 
-            <Paper>
+            {/* <Paper>
                 <Box component="br" />
                 <Grid container m={1} spacing={1}>
                     <Grid item sm={4} xs={12}>
-                        {/* <ButtonBase className={classes.image} style={{ height: 'fixed' }}>
-                        <img className={classes.img} alt="vaniwilla" src={Vaniwilla} />
-                        </ButtonBase> */}
-
+                        
                         <CardMedia
                             className={classes.media1}
                             image={Vaniwilla}
@@ -117,39 +279,39 @@ function Expired__fundraising() {
                             </Box>
                         </Grid>
                         <Grid item xs={12}>
-                            {/* <div className={classes.rootdiv}> */}
+                         
                             <Grid container spacing={1}>
 
                                 <Grid item sm={4} xm={12}>
                                     <Box>
-                                        {/* <Box> */}
+                                     
                                         <Typography variant="subtitle2" color="initial">
                                             Goal Amount: Rs. 200,000
                                         </Typography>
-                                        {/* </Box> */}
+                                      
                                     </Box>
                                 </Grid>
                                 <Grid item sm={4} xm={12}>
                                     <Box>
-                                        {/* <Box> */}
+                                     
                                         <Typography variant="subtitle2" color="initial">
                                             Started Amount: Rs. 200
                                         </Typography>
-                                        {/* </Box> */}
+                                      
                                     </Box>
                                 </Grid>
                                 <Grid item sm={4} xm={12}>
                                     <Box>
-                                        {/* <Box> */}
+                                      
                                         <Typography variant="subtitle2" color="initial">
                                             Current Amount : Rs.3000000
                                         </Typography>
-                                        {/* </Box> */}
+                                      
                                     </Box>
                                 </Grid>
 
                             </Grid>
-                            {/* </div> */}
+                           
 
                         </Grid>
 
@@ -165,38 +327,38 @@ function Expired__fundraising() {
                     <Grid item container ml={1} spacing={1}>
                         <Grid item sm={3} xs={6}>
                             <Box>
-                                {/* <Box> */}
+                                
                                 <Typography variant="subtitle2" color="initial">
                                     Start Date: 2021/09/02
                                 </Typography>
-                                {/* </Box> */}
+                              
                             </Box>
                         </Grid>
                         <Grid item sm={3} xs={6}>
                             <Box>
-                                {/* <Box> */}
+                              
                                 <Typography variant="subtitle2" color="initial">
                                     Started Time: 02.00p.m
                                 </Typography>
-                                {/* </Box> */}
+                               
                             </Box>
                         </Grid>
                         <Grid item sm={3} xs={6}>
                             <Box>
-                                {/* <Box> */}
+                                
                                 <Typography variant="subtitle2" color="initial">
                                     Expired Date: 2021/09/02
                                 </Typography>
-                                {/* </Box> */}
+                                
                             </Box>
                         </Grid>
                         <Grid item sm={3} xs={6}>
                             <Box>
-                                {/* <Box> */}
+                                
                                 <Typography variant="subtitle2" color="initial">
                                     Expired Time: 12.00p.m
                                 </Typography>
-                                {/* </Box> */}
+                                
                             </Box>
                         </Grid>
 
@@ -205,9 +367,13 @@ function Expired__fundraising() {
 
                 </Grid>
 
-            </Paper>
+            </Paper> */}
 
-
+            {mapset.map(student => (
+                <Viewfund title={student.fundName} goalamount={student.fundGoalAmount} description={student.fundDescription} id={student.fundID} 
+                startamount={student.fundStartAmount} currentamount={student.fundCurrentAmount} startdate={student.fundStartDate}
+                starttime={student.fundStartTime} expiredate={student.fundExpireDate} expiretime={student.fundExpireTime} createdby={student.fundStartedBy} endeddby={student.fundEndedBy}/>
+            ))}
         </React.Fragment>
     );
 }

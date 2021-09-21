@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -23,7 +23,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { ButtonBase } from '@material-ui/core';
 import { Divider } from '@material-ui/core';
-
+import { Link } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
     media1: {
         height: '100%',
+        marginLeft: theme.spacing(0.5),
     },
     button: {
         margin: theme.spacing(1),
@@ -86,6 +87,107 @@ function StudentDashboard() {
     const classes = useStyles();
 
     const userData = JSON.parse(localStorage.getItem("userData"))
+
+    const [mapset, SetMap] = useState([]);
+
+    //use Effect is a hook which allows to perform side effects insode the components
+    //Here we use useEffect to access the function which call to the backend
+    //normally when the page is loaded it will run for a once
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+
+        const response = await fetch(`http://localhost:5000/api/fundraising/viewall`, {
+            method: "GET",
+        });
+        const result = await response.json();
+        // console.log(result);
+        SetMap(result);
+    };
+    console.log(mapset);
+
+
+
+    function Viewfund(props) {
+
+        var link;
+        var id = props.id;
+        link = "/std/donatefundraising?id=" + id;
+
+        return (
+            <Box>
+                <Paper>
+
+                    <Grid container m={1} spacing={1}>
+                        <Grid item sm={4} xs={12}>
+
+
+                            <CardMedia
+                                className={classes.media1}
+                                image={Vaniwilla}
+                                title="Paella dish"
+                            />
+
+                        </Grid>
+
+
+                        <Grid item sm={8} xs={12} container direction="row">
+
+                            <Grid item xs={12}>
+                                <Box mr={1}>
+                                    <Typography gutterBottom variant="h6" color="primary">
+                                    {props.title}
+                                    </Typography>
+                                    <Typography variant="body1" gutterBottom align="justify">
+                                    {props.description}
+                                    </Typography>
+                                </Box>
+                                <Box mb={1} mr={1}>
+                                    <Typography variant="body2" color="initial">50% completed
+                                    </Typography>
+                                    <LinearProgress variant="determinate" value={50} />
+                                </Box>
+                            </Grid>
+                            <Grid item xs={12}>
+
+                                <Grid container spacing={1}>
+
+                                    <Grid item sm={4} xm={12}>
+                                        <Box justifyContent="flex-start">
+
+                                            <Typography variant="subtitle2" color="initial">
+                                                Goal Amount: Rs. {props.goalamount}
+                                            </Typography>
+
+                                        </Box>
+                                    </Grid>
+                                    <Grid item sm={8} xm={12}>
+                                        <Box display="flex" justifyContent="flex-end" mr={1} mb={1}>
+                                            <Box>
+                                                <Link to={link}>
+                                                    <Button className={classes.filterbutton} variant="contained" color="primary" size="medium" >
+                                                        View more & Donate
+                                                    </Button>
+                                                </Link>
+                                            </Box>
+
+                                        </Box>
+                                    </Grid>
+
+                                </Grid>
+
+                            </Grid>
+
+                        </Grid>
+                    </Grid>
+
+                </Paper>
+<Box component="br"/>
+            </Box>
+        );
+    }
 
     return (
         <React.Fragment>
@@ -262,13 +364,11 @@ function StudentDashboard() {
 
 
 
-            <Paper>
+            {/* <Paper>
 
                 <Grid container m={1} spacing={1}>
                     <Grid item sm={4} xs={12}>
-                        {/* <ButtonBase className={classes.image} style={{ height: 'fixed' }}>
-            <img className={classes.img} alt="vaniwilla" src={Vaniwilla} />
-        </ButtonBase> */}
+          
 
                         <CardMedia
                             className={classes.media1}
@@ -298,54 +398,47 @@ function StudentDashboard() {
                             </Box>
                         </Grid>
                         <Grid item xs={12}>
-                            {/* <div className={classes.rootdiv}> */}
+                            
                             <Grid container spacing={1}>
 
                                 <Grid item sm={4} xm={12}>
                                     <Box justifyContent="flex-start">
-                                        {/* <Box> */}
+                                   
                                         <Typography variant="subtitle2" color="initial">
                                             Goal Amount: Rs. 200,000
                                         </Typography>
-                                        {/* </Box> */}
+                                    
                                     </Box>
                                 </Grid>
                                 <Grid item sm={8} xm={12}>
                                     <Box display="flex" justifyContent="flex-end" mr={1} mb={1}>
                                         <Box>
-                                            <Button className={classes.filterbutton} variant="contained" color="primary" size="medium" >
-                                                View more & Donate
-                                            </Button>
+                                            <Link to="/std/donatefundraising">
+                                                <Button className={classes.filterbutton} variant="contained" color="primary" size="medium" >
+                                                    View more & Donate
+                                                </Button>
+                                            </Link>
                                         </Box>
-                                        {/* 
-                                        <Box mr={1}>
-                                            <Button variant="contained" color="secondary" size="medium" alignContent='flex-end'>
-                                                End now
-                                            </Button>
-                                        </Box>
-                                        <Box>
-                                            <Button variant="contained" color="secondary" size="medium" alignContent='flex-end'>
-                                                Edit now
-                                            </Button>
-                                        </Box> */}
+                                     
                                     </Box>
                                 </Grid>
 
                             </Grid>
-                            {/* </div> */}
-
+                           
                         </Grid>
 
                     </Grid>
                 </Grid>
 
-            </Paper>
+            </Paper> */}
 
 
 
             {/********************** End of the Fundraising part **********************************/}
 
-
+            {mapset.map(student => (
+                <Viewfund title={student.fundName} goalamount={student.fundGoalAmount} description={student.fundDescription} id={student.fundID} />
+            ))}
         </React.Fragment>
     );
 }

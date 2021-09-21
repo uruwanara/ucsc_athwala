@@ -152,35 +152,35 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function NumberFormatCustom(props) {
-    const { inputRef, onChange, ...other } = props;
+// function NumberFormatCustom(props) {
+//     const { inputRef, onChange, ...other } = props;
 
-    return (
-        <NumberFormat
-            {...other}
-            getInputRef={inputRef}
-            onValueChange={(values) => {
-                onChange({
-                    target: {
-                        name: props.name,
-                        value: values.value,
-                    },
-                });
-            }}
-            thousandSeparator
-            isNumericString
-            prefix="Rs "
+//     return (
+//         <NumberFormat
+//             {...other}
+//             getInputRef={inputRef}
+//             onValueChange={(values) => {
+//                 onChange({
+//                     target: {
+//                         name: props.name,
+//                         value: values.value,
+//                     },
+//                 });
+//             }}
+//             thousandSeparator
+//             isNumericString
+//             prefix="Rs "
 
-        />
-    );
-}
+//         />
+//     );
+// }
 
 
-NumberFormatCustom.propTypes = {
-    inputRef: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-};
+// NumberFormatCustom.propTypes = {
+//     inputRef: PropTypes.func.isRequired,
+//     name: PropTypes.string.isRequired,
+//     onChange: PropTypes.func.isRequired,
+// };
 
 
 function EditFundraising() {
@@ -192,12 +192,12 @@ function EditFundraising() {
     });
 
 
-    const handleChange = (event) => {
-        setValues({
-            ...values,
-            [event.target.name]: event.target.value,
-        });
-    };
+    // const handleChange = (event) => {
+    //     setValues({
+    //         ...values,
+    //         [event.target.name]: event.target.value,
+    //     });
+    // };
 
     //set date_value
     // const [date_value, setDate_Value] = React.useState(null);
@@ -220,7 +220,7 @@ function EditFundraising() {
             <Divider />
             <Box component="br" />
             
-            <Link to="/ustd/funddashboard/">
+            <Link to="/ustd/funddashboard/available">
                 <Button variant="contained" className={classes.filterbutton} startIcon={<ArrowBackIosIcon />}>
                     Back to Fundrasing dashboard
                 </Button>
@@ -273,13 +273,13 @@ function EditFundraising() {
 
                                         <TextField
                                             label="Goal Amount in Rs."
-                                            value={values.numberformat}
-                                            onChange={handleChange}
+                                            // value={values.numberformat}
+                                            // onChange={handleChange}
                                             name="numberformat"
                                             id="formatted-numberformat-input"
-                                            InputProps={{
-                                                inputComponent: NumberFormatCustom,
-                                            }}
+                                            // InputProps={{
+                                            //     inputComponent: NumberFormatCustom,
+                                            // }}
                                             multiline
                                             variant="outlined"
                                             placeholder="Rs 10000"
@@ -291,13 +291,13 @@ function EditFundraising() {
                                         <TextField
                                             label="Starting Amount in Rs."
                                             disabled
-                                            value={values.numberformat}
-                                            onChange={handleChange}
+                                            // value={values.numberformat}
+                                            // onChange={handleChange}
                                             name="numberformat"
                                             id="formatted-numberformat-input"
-                                            InputProps={{
-                                                inputComponent: NumberFormatCustom,
-                                            }}
+                                            // InputProps={{
+                                            //     inputComponent: NumberFormatCustom,
+                                            // }}
                                             multiline
                                             variant="outlined"
                                             placeholder="Rs 100"
@@ -313,9 +313,9 @@ function EditFundraising() {
                                             type="date"
                                             defaultValue="weqwe"
                                             // className={classes_time.textField}
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
+                                            // InputLabelProps={{
+                                            //     shrink: true,
+                                            // }}
                                             variant="outlined"
                                             fullWidth
                                         />
