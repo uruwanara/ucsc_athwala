@@ -65,9 +65,9 @@ const useStyles = makeStyles((theme) => ({
     image: {
         height: 160,
     },
-    progress:{
-        height:8,
-        borderRadius:10
+    progress: {
+        height: 8,
+        borderRadius: 10
     },
     img: {
         margin: 'auto',
@@ -122,10 +122,13 @@ function UnionStudentDashboard() {
 
         var link;
         var link1;
+        var link2;
         var id = props.id;
         link = "/ustd/funddashboard/donate?id=" + id;
         //link for edit fundraising
         link1 = "/ustd/funddashboard/edit?id=" + id;
+        //link for end by force
+        link2 = "/ustd/funddashboard/endforce?id=" + id;
 
         return (
             <Box my={2}>
@@ -158,7 +161,7 @@ function UnionStudentDashboard() {
                                 <Box mb={1} mr={1}>
                                     <Typography variant="body2" color="initial">50% completed
                                     </Typography>
-                                    <LinearProgress variant="determinate" value={50} className={classes.progress}/>
+                                    <LinearProgress variant="determinate" value={50} className={classes.progress} />
                                 </Box>
                             </Grid>
                             <Grid item xs={12}>
@@ -184,7 +187,7 @@ function UnionStudentDashboard() {
                                                     </Button>
                                                 </Link>
                                             </Box>
-{/* 
+                                            {/* 
                                             <Box>
                                                 <Button className={classes.filterbutton} variant="contained" color="secondary" size="medium" aligncontent='flex-end'>
                                                     End now
@@ -198,11 +201,13 @@ function UnionStudentDashboard() {
                                                 </Link>
                                             </Box>
 
-                                            
+
                                             <Box>
-                                                <Button className={classes.filterbutton} variant="contained" color="secondary" size="medium" aligncontent='flex-end'>
-                                                    End now
-                                                </Button>
+                                                <Link to={link2}>
+                                                    <Button className={classes.filterbutton} variant="contained" color="secondary" size="medium" aligncontent='flex-end'>
+                                                        End now
+                                                    </Button>
+                                                </Link>
                                             </Box>
                                         </Box>
                                     </Grid>
