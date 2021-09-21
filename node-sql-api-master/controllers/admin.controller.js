@@ -250,7 +250,7 @@ exports.usersearch = (req, res) => {
 exports.userfilter= (req, res) => {
     const message = req.body.status;
     const utype=req.body.utype;
-    if(message=="All"){
+    if(message=="all"){
         connection.query("Select id,fname,lname,email,contactnumber,isActive,status FROM users where userType=?;",
             [utype],
             (err, result,fields) => {
