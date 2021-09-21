@@ -28,7 +28,7 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useSnackbar } from 'notistack';
 import { useConfirm } from "material-ui-confirm";
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
+
 
 const useStyles = makeStyles({
     title:{
@@ -64,28 +64,12 @@ const useStyles = makeStyles({
             border: "1px solid #757de8",
         },
     },
-    filterbutton1: {
-        backgroundColor: "#7FBF3F",
-        color: "#FFFFFF",
-        textTransform: "none",
-        paddingTop:5,
-        paddingLeft:10,
-        paddingRight:10,
-        border:"none",
-        borderRadius:10,
-        marginBottom:20,
-        "&:hover": {
-            color: "#FFFFFF",
-            backgroundColor: "#757de8",
-            border: "1px solid #757de8",
-        },
-    },
 });
 
 
 export default function MyjobOpp(){
     const classes = useStyles();
-    const history = useHistory();
+
     const [mapset , SetMap] = useState([]);
 
     const [filter, setFilter] = React.useState('all');
@@ -120,7 +104,7 @@ export default function MyjobOpp(){
     const filterposts = () => {
         const datas={
             "status":filter,
-            "utype":"UNIONST"
+            "utype":"STUDENT"
         };
         axios.post("http://localhost:5000/api/ars/userfilter",datas,{
             // params: {
@@ -142,7 +126,7 @@ export default function MyjobOpp(){
 
         const searchtext={
             "search": search,
-            "utype":"UNIONST"
+            "utype":"STUDENT"
         }
         axios.post("http://localhost:5000/api/ars/usersearch",searchtext,{
             headers:{
@@ -160,8 +144,8 @@ export default function MyjobOpp(){
     const searchbar = () => {
         return (
 
-            <Grid container spacing={2} >
-                <Grid item md={3}>
+            <Grid container spacing={1} >
+                <Grid item md={4}>
 
                     <TextField
                         id="outlined-basic"
@@ -189,21 +173,6 @@ export default function MyjobOpp(){
                     </Button>
 
                 </Grid>
-
-                <Grid item md={4}>
-
-                    <Button
-                        type="submit"
-                        size="large"
-                        color="success"
-                        className={classes.filterbutton1}
-                        startIcon={<PersonAddIcon sx={{ fontSize: 40 }}/>}
-                        onClick={()=>{ history.push("/admin/addunion")}}
-                    >
-                        Add Union Members
-                    </Button>
-
-                </Grid>
             </Grid>
 
 
@@ -213,7 +182,7 @@ export default function MyjobOpp(){
 
 
     const fetchData = () => {
-        axios.post("http://localhost:5000/api/ars/viewunion", {
+        axios.post("http://localhost:5000/api/ars/viewstd", {
         }).then((response) => {
             console.log("----------- all Data");
             console.log(response.data);
@@ -269,8 +238,7 @@ export default function MyjobOpp(){
                 <TableCell align="center">{name}</TableCell>
                 <TableCell align="center">{props.email}</TableCell>
                 <TableCell align="center">{props.contact}</TableCell>
-                <TableCell align="center">{ver}</TableCell>
-                <TableCell align="center">{act}</TableCell>
+                <TableCell align="center">{props.uType}</TableCell>
                 <TableCell align="center" >
                     <IconButton aria-label="delete"  onClick={changeStatus} value={props.id} >
                         <FlipCameraAndroidIcon
@@ -316,9 +284,9 @@ export default function MyjobOpp(){
     return(
         <div>
            <Grid container spacing={0} className={classes.topic}>
-                <Grid item md={3}><Typography variant="h5" className={classes.title}>Manage Union Members</Typography>
+                <Grid item md={4}><Typography variant="h5" className={classes.title}>Add Union Members</Typography>
                 </Grid>
-            <Grid item md={7}>{searchbar()}</Grid>
+            <Grid item md={6}>{searchbar()}</Grid>
             <Grid item md={2}>
                 <form autoComplete="off">
                     <FormControl className={classes.formControl}>
@@ -334,8 +302,6 @@ export default function MyjobOpp(){
                             <MenuItem value='all'>All</MenuItem>
                             <MenuItem value='active'>Actice</MenuItem>
                             <MenuItem value='deactive'>Deactive</MenuItem>
-                            <MenuItem value='notactive'>Pending</MenuItem>
-
                         </Select>
                     </FormControl>
                 </form>
