@@ -91,7 +91,7 @@ export function MyProductBuyButton(){
             onClick={()=>{ history.push("/std/ViewMyProductBuy")}}
                 startIcon={<HistoryIcon/>}
             >
-                Product History
+                Payment Product History
             </Button>
         </Grid>
     );
@@ -108,7 +108,7 @@ export function MyProductSellButton(){
             onClick={()=>{ history.push("/std/ViewMyProduct")}}
                 startIcon={<ProductionQuantityLimitsIcon/>}
             >
-                My Sell Product
+                My Product Advertisment
             </Button>
         </Grid>
     );
