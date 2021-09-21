@@ -139,7 +139,7 @@ export default function Cases(){
         var id = props.id;
         var link="/conCoun?id="+id;
        // var link="/std/viewLg";
-        var imglink="http://localhost:5000/SamplePath/1234.png"
+        var imglink="http://localhost:5000/Users/"+id+".jpg";
         var name=props.fname+" "+props.lname;
         return (
             <React.Fragment>
