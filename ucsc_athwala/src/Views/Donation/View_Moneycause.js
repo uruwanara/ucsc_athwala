@@ -173,34 +173,72 @@ export default function View_Clothcause(){
     };
 
     const handleDonate = (event) => {
-        console.log("Payment Done------------------")
-        const payHereData = {
-            sandbox: true,
-            merchant_id: "1217629", // Replace your Merchant ID
-            return_url: "http://localhost:3000/login", // Important
-            cancel_url: "http://localhost:3000/login", // Important
-            notify_url: "http://localhost:3000/login",
-            order_id: dId,
-            items: title,
-            amount: donateamount,
-            currency: "LKR",
-            first_name: userData.fname,
-            last_name: userData.lname,
-            email: userData.email,
-            phone: userData.contactnumber,
-            address:"UCSC,Colombo",
-            city: "Colombo",
-            country: "Sri Lanka",
-            delivery_address:"UCSC,Colombo",
-            delivery_city: "Colombo ",
-            delivery_country: "Sri Lanka",
-            custom_1:dId,  
-            custom_2: "",
-        };
-        window.payhere.startPayment(payHereData);
+        const rx_float = /^[+-]?\d*(?:[.,]\d*)?$/;   
+        var totalamont = parseFloat(curramount) + parseFloat(donateamount);
+
+        if(rx_float.test(donateamount) === false){
+            console.log('im not float');
+            enqueueSnackbar('Please enter valid amount', {
+                variant: 'error', anchorOrigin: {
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }
+            });
+            setDonateamount("");
+        }
+        
+        else if(parseFloat(donateamount) <= 0){
+            enqueueSnackbar('Please enter value for donate', {
+                variant: 'error', anchorOrigin: {
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }
+            });
+            setDonateamount("");
+        }
+
+        else if(totalamont > amount){
+            let restamount = parseFloat(amount) - parseFloat(curramount)
+            enqueueSnackbar('Please donate Rs:'+restamount+' or less amount', {
+                variant: 'error', anchorOrigin: {
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }
+            });
+            setDonateamount("");
+        }
+
+        else{
+            console.log("Payment Done------------------")
+            const payHereData = {
+                sandbox: true,
+                merchant_id: "1217629", // Replace your Merchant ID
+                return_url: "http://localhost:3000/login", // Important
+                cancel_url: "http://localhost:3000/login", // Important
+                notify_url: "http://localhost:3000/login",
+                order_id: dId,
+                items: title,
+                amount: donateamount,
+                currency: "LKR",
+                first_name: userData.fname,
+                last_name: userData.lname,
+                email: userData.email,
+                phone: userData.contactnumber,
+                address:"UCSC,Colombo",
+                city: "Colombo",
+                country: "Sri Lanka",
+                delivery_address:"UCSC,Colombo",
+                delivery_city: "Colombo ",
+                delivery_country: "Sri Lanka",
+                custom_1:dId,
+                custom_2: "",
+            };
+            window.payhere.startPayment(payHereData); 
+        }
+        
     };
-    console.log(parseInt(curramount) + parseInt(donateamount));
-    let amont=parseInt(curramount) + parseInt(donateamount);
+    console.log(parseFloat(curramount) + parseFloat(donateamount));
+    let amont=parseFloat(curramount) + parseFloat(donateamount);
 
     window.payhere.onCompleted = function onCompleted(dId) {
         console.log("Payment Done!---------------------------------")
@@ -216,6 +254,14 @@ export default function View_Clothcause(){
         }).then((response) => {
             console.log("Payment Done!")
             console.log(response.data);
+            setCurramount(amont);
+            setDonateamount("");
+            enqueueSnackbar('Thank you for your donation!!', {
+                variant: 'success', anchorOrigin: {
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }
+            });
 
         })
     }
