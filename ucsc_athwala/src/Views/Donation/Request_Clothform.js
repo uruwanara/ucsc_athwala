@@ -14,6 +14,8 @@ import Container from '@material-ui/core/Container';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel  from '@material-ui/core/InputLabel';
 import axios from 'axios';
+import {useSnackbar} from "notistack";
+import { useHistory} from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -42,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function RequestCloth() {
   const classes = useStyles();
-
+  const history = useHistory();
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [clothType, setClothType] = React.useState("");
@@ -50,6 +52,7 @@ export default function RequestCloth() {
   const [size, setSize] = React.useState("");
   const [date, setDate] = React.useState("");
   const [acceptTerm, setacceptTerm] = React.useState(false);
+  const {enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const handleSubmit = (event) => {
      event.preventDefault(); 
@@ -89,6 +92,19 @@ export default function RequestCloth() {
             setSize("");
             setDate("");
             setacceptTerm(false);
+            enqueueSnackbar('Successfully Update', {
+              variant: 'success', anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'center',
+              }
+            })
+
+            if(userData.userType === "STUDENT"){
+              history.push("/std/viewMyrequest") ;
+            }
+            else if(userData.userType === "UNIONST" ){
+              history.push("/ustd/viewMyrequest");
+            }
           }
 
       }).catch((err)=>{
