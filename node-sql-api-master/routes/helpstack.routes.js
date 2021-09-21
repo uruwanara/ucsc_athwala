@@ -21,6 +21,9 @@ module.exports = helpStackRoutes => {
     //search questions
     router.post("/search", helpstack.search);
 
+    //filter questions
+    router.post("/filterquestion",helpstack.filterquestion);
+
 
     helpStackRoutes.use('/api/helpstacks', router);
 };
