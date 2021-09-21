@@ -1,14 +1,12 @@
 const multer = require('multer');
 
 module.exports = fuRoutes => {
-    const fus = require("../controllers/fu.controller");
-
     var router = require("express").Router();
 
 
     const storage = multer.diskStorage({
         destination: (req, file, callBack) => {
-            callBack(null, 'public/')
+            callBack(null, 'public/SamplePath/')
         },
         filename: (req, file, callBack) => {
             let filename = file.originalname.split('.');
