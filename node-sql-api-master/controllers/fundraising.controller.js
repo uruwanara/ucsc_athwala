@@ -5,24 +5,24 @@ const connection = require("../dbConnection");
 
 
 exports.create = (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     // var current = new Date();
     // console.log(current.toLocaleDateString());
-
-    const fundID = req.body.fundID;
-    const fundName = req.body.fundName;
-    const fundDescription = req.body.fundDescription;
-    const fundImage = req.body.fundImage;
-    const fundStartAmount = req.body.fundStartAmount;
-    const fundGoalAmount = req.body.fundGoalAmount;
-    const fundStartDate = req.body.fundStartDate;
+    const createby = req.body.create_by;
+    // const fundID = req.body.fundID;
+    const fundName = req.body.fundname;
+    const fundDescription = req.body.funddescription;
+    const fundImage = req.body.image;
+    const fundStartAmount = req.body.startamount;
+    const fundGoalAmount = req.body.goalamount;
+    // const fundStartDate = req.body.fundStartDate;
     // var fundStartDate = current.toLocaleDateString();
-    const fundStartTime = req.body.fundStartTime;
-    const fundExpireDate = req.body.fundExpireDate;
-    const fundExpireTime = req.body.fundExpireTime;
+    // const fundStartTime = req.body.fundStartTime;
+    const fundExpireDate = req.body.expiredate;
+    const fundExpireTime = req.body.expiretime;
 
 
-    connection.query('INSERT INTO fundraising (fundID,fundName,fundDescription,fundImage,fundStartAmount,fundGoalAmount,fundStartDate,fundStartTime,fundExpireDate,fundExpireTime) VALUES(?,?,?,?,?,?,?,?,?,?)', [fundID, fundName, fundDescription, fundImage, fundStartAmount, fundGoalAmount, fundStartDate, fundStartTime, fundExpireDate, fundExpireTime], (err, result) => {
+    connection.query('INSERT INTO fundraising (fundName,fundStartedBy,fundDescription,fundImage,fundStartAmount,fundGoalAmount,fundStartDate,fundStartTime,fundExpireDate,fundExpireTime,fundStatus) VALUES(?,?,?,?,?,?,NOW(),NOW(),?,?,?)', [fundName,createby,fundDescription, fundImage, fundStartAmount, fundGoalAmount,fundExpireDate, fundExpireTime,2], (err, result) => {
         if (err) { console.log(err) } else { res.json("success") }
     });
 }
@@ -39,9 +39,33 @@ exports.viewall = (req, res) => {
         })
 }
 
+//view the expired fundraising only
+exports.viewallex = (req, res) => {
+    connection.query('SELECT * from fundraising WHERE fundStatus = 0;',
+        (err, result, fileds) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(result);
+            }
+        })
+}
+
+//view the ended fundraising only
+exports.viewallend = (req, res) => {
+    connection.query('SELECT * from fundraising WHERE fundStatus = 1;',
+        (err, result, fileds) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(result);
+            }
+        })
+}
+
 exports.viewbyid = (req,res) => {
-    const fundID =req.params.fundID;
-   
+    // const fundID =req.params.fundID;
+    const fundID= req.body.fundID;
     
     connection.query( 'SELECT * FROM fundraising WHERE fundID = ? ;',
     [fundID],

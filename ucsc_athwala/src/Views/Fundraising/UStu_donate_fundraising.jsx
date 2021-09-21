@@ -1,7 +1,7 @@
 
 
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -22,6 +22,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { Divider, Container } from "@material-ui/core";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import { useLocation } from 'react-router';
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -66,6 +68,51 @@ const useStyles = makeStyles((theme) => ({
 function UStudonate_fundraising() {
     const classes = useStyles();
     const theme = useTheme();
+    const [description, setDescription] = useState();
+    const [title, setTitle] = useState();
+    const [goalamount, setGoalamount] = useState();
+    const [startamount, setStartamount] = useState();
+    const [startdate, setStartDate] = useState();
+    const [starttime, setStartTime] = useState();
+    const [expiredate, setExpireDate] = useState();
+    const [expiretime, setExpireTime] = useState();
+    const [createdby, setCreatedBy] = useState();
+    const [currentamount,setCurrentAmount] = useState();
+    
+
+    const search = useLocation().search;
+
+
+    useEffect(() => {
+        const funddonationid = new URLSearchParams(search).get("id");
+        fetchDescription(funddonationid);
+        // fetchDetails(funddonationid);
+    }, []);
+
+    const fetchDescription = (funddonationid) => {
+        const description = {
+            "fundID": funddonationid,
+        }
+        axios.post("http://localhost:5000/api/fundraising/getfund", description, {
+            headers: {
+                "access-control-allow-origin": "*",
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then((response) => {
+            console.log(response.data);
+            setDescription(response.data[0].fundDescription);
+            setTitle(response.data[0].fundName);
+            setGoalamount(response.data[0].fundGoalAmount)
+            setStartamount(response.data[0].fundStartAmount);
+            setStartDate(response.data[0].fundStartDate)
+            setStartTime(response.data[0].fundStartTime)
+            setExpireDate(response.data[0].fundExpireDate)
+            setExpireTime(response.data[0].fundExpireTime)
+            setCreatedBy(response.data[0].fundStartedBy)
+            setCurrentAmount(response.data[0].fundCurrentAmount)
+        })
+    };
+
 
     return (
         <React.Fragment>
@@ -105,18 +152,19 @@ function UStudonate_fundraising() {
                         <Grid item xs={12}>
                             <Box mr={1}>
                                 <Typography align="center" gutterBottom variant="h4" color="primary">
-                                    Vani Vizha Tamil Festival 2021
+                                    {title}
                                 </Typography>
                                 <Typography variant="h6" gutterBottom align="justify">
-                                    First year students of UCSC organize Vani Viza tamil festival every year.In this year they are planing to held it on
-                                    23rd of August, 2021. This event will be a good opperunity to create unity among the badges.
+                                    {description}
                                 </Typography>
                             </Box>
+
                             <Box mb={1} mr={1}>
                                 <Typography variant="subtitle1" color="initial">50% completed
                                 </Typography>
                                 <LinearProgress variant="determinate" value={50} />
                             </Box>
+
                         </Grid>
                         <Grid item xs={12}>
                             {/* <div className={classes.rootdiv}> */}
@@ -126,7 +174,7 @@ function UStudonate_fundraising() {
                                     <Box>
                                         {/* <Box> */}
                                         <Typography variant="subtitle1" color="initial">
-                                            Goal Amount: Rs. 200,000
+                                            Goal Amount: Rs. {goalamount}
                                         </Typography>
                                         {/* </Box> */}
                                     </Box>
@@ -135,7 +183,7 @@ function UStudonate_fundraising() {
                                     <Box>
                                         {/* <Box> */}
                                         <Typography variant="subtitle1" color="initial">
-                                            Started Amount: Rs. 200
+                                            Started Amount: Rs. {startamount}
                                         </Typography>
                                         {/* </Box> */}
                                     </Box>
@@ -144,7 +192,7 @@ function UStudonate_fundraising() {
                                     <Box>
                                         {/* <Box> */}
                                         <Typography variant="subtitle1" color="initial">
-                                            Current Amount : Rs.3000000
+                                            Current Amount : Rs. {currentamount}
                                         </Typography>
                                         {/* </Box> */}
                                     </Box>
@@ -165,7 +213,7 @@ function UStudonate_fundraising() {
                             <Box>
                                 {/* <Box> */}
                                 <Typography variant="subtitle1" color="initial">
-                                    Started Date: 2021/09/02
+                                    Started Date : {startdate}
                                 </Typography>
                                 {/* </Box> */}
                             </Box>
@@ -174,7 +222,7 @@ function UStudonate_fundraising() {
                             <Box>
                                 {/* <Box> */}
                                 <Typography variant="subtitle1" color="initial">
-                                    Started Time: 02.00p.m
+                                    Started Time: {starttime}
                                 </Typography>
                                 {/* </Box> */}
                             </Box>
@@ -183,7 +231,7 @@ function UStudonate_fundraising() {
                             <Box>
                                 {/* <Box> */}
                                 <Typography variant="subtitle1" color="initial">
-                                    Expire Date: 2021/09/02
+                                    Expire Date: {expiredate}
                                 </Typography>
                                 {/* </Box> */}
                             </Box>
@@ -192,7 +240,7 @@ function UStudonate_fundraising() {
                             <Box>
                                 {/* <Box> */}
                                 <Typography variant="subtitle1" color="initial">
-                                    Expire Time: 12.00p.m
+                                    Expire Time: {expiretime}
                                 </Typography>
                                 {/* </Box> */}
                             </Box>
@@ -203,9 +251,9 @@ function UStudonate_fundraising() {
                     <Grid item xs={12} sm={6}>
                         <Box display="flex" justifyContent="flex-start">
                             <Box>
-                               <Typography variant="h6" color="initial">
-                                   This Fundraising is created by AbisesWeerasekera
-                               </Typography>
+                                <Typography variant="h6" color="initial">
+                                    This Fundraising is created by: {createdby}
+                                </Typography>
                             </Box>
                         </Box>
 

@@ -13,8 +13,14 @@ module.exports = fundraisingRoutes => {
     //retrieve all available fundraising
     router.get("/viewall", fundraising.viewall);
 
+    //retrieve all expired fundraising
+    router.get("/viewallex", fundraising.viewallex);
+
+    //retrieve all expired fundraising
+    router.get("/viewallend", fundraising.viewallend);
+
     //retrieve specific details from a fundraising
-    router.get("/getfund/:fundID", fundraising.viewbyid);
+    router.post("/getfund", fundraising.viewbyid);
 
     //delete a specific fundraising by it's id
     router.delete("/deletefund/:fundID", fundraising.deletebyid);

@@ -112,7 +112,7 @@
 
 // export default AddFundraising;
 
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -130,6 +130,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { Divider } from '@material-ui/core';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -166,34 +167,34 @@ const useStyles = makeStyles((theme) => ({
 //     },
 //   }));
 
-function NumberFormatCustom(props) {
-    const { inputRef, onChange, ...other } = props;
+// function NumberFormatCustom(props) {
+//     const { inputRef, onChange, ...other } = props;
 
-    return (
-        <NumberFormat
-            {...other}
-            getInputRef={inputRef}
-            onValueChange={(values) => {
-                onChange({
-                    target: {
-                        name: props.name,
-                        value: values.value,
-                    },
-                });
-            }}
-            thousandSeparator
-            isNumericString
-            prefix="Rs "
+//     return (
+//         <NumberFormat
+//             {...other}
+//             getInputRef={inputRef}
+//             onValueChange={(values) => {
+//                 onChange({
+//                     target: {
+//                         name: props.name,
+//                         value: values.value,
+//                     },
+//                 });
+//             }}
+//             thousandSeparator
+//             isNumericString
+//             prefix="Rs "
 
-        />
-    );
-}
+//         />
+//     );
+// }
 
-NumberFormatCustom.propTypes = {
-    inputRef: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-};
+// NumberFormatCustom.propTypes = {
+//     inputRef: PropTypes.func.isRequired,
+//     name: PropTypes.string.isRequired,
+//     onChange: PropTypes.func.isRequired,
+// };
 
 
 
@@ -205,12 +206,56 @@ function AddFundraising() {
     });
 
 
-    const handleChange = (event) => {
-        setValues({
-            ...values,
-            [event.target.name]: event.target.value,
-        });
-    };
+    const [fundname, setFundname] = React.useState("");
+  const [funddescription, setFunddescription] = React.useState("");
+  const [goalamount, setGoalamount] = React.useState("");
+  const [startamount, setStartamount] = React.useState("");
+  const [expiredate, setExpiredate] = React.useState("");
+  const [image, setImage] = React.useState("");
+  const [expiretime, setExpiretime] = React.useState("");
+
+    const userData=JSON.parse(localStorage.getItem("userData"));
+
+    const handleSubmit = (event) => {
+        event.preventDefault(); 
+    const postFundraising={
+        "create_by":userData.username,
+        "fundname": fundname,
+        "funddescription": funddescription,
+        "image": image,
+        "goalamount": goalamount,
+        "image": image,
+        "startamount": startamount,
+        "expiredate": expiredate,
+        "expiretime":expiretime,
+    }
+    axios.post("http://localhost:5000/api/fundraising/create",postFundraising,{
+        headers:{
+            "access-control-allow-origin" : "*",
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    }).then((response)=>{
+        console.log(response.data);
+        if(response.data==='success'){
+            setFundname("");
+            setFunddescription("");
+            setGoalamount("");
+            setStartamount("");
+            setExpiredate("");
+            setImage("");
+            setExpiretime("");
+        }
+
+    }).catch((err)=>{
+
+    })
+    }
+    // const handleChange = (event) => {
+    //     setValues({
+    //         ...values,
+    //         [event.target.name]: event.target.value,
+    //     });
+    // };
 
     //set date_value
     // const [date_value, setDate_Value] = React.useState(null);
@@ -242,18 +287,20 @@ function AddFundraising() {
             <Box component="br" />
             <Box borderColor="primary.main" {...defaultProps}>
                 <Box m={1}>
-                    <form className={classes.root}>
+                    <form className={classes.root} onSubmit={handleSubmit}>
                         <Card>
                             <Box component="div" m={1}>
                                 <Grid m={1} container justify="space-between" spacing={3}>
                                     <Grid item xs={12} sm={12}>
                                         <TextField
-                                            id="outlined-textarea"
+                                            id="fundname"
                                             label="Fundraising Name"
                                             placeholder="Enter meaningful topic"
                                             multiline
+                                            name="fundname"
                                             variant="outlined"
                                             fullWidth
+                                            onChange={e => setFundname(e.target.value)}
                                         // dataType="date"
                                         />
                                     </Grid>
@@ -261,13 +308,15 @@ function AddFundraising() {
 
                                     <Grid item xs={12} sm={9}>
                                         <TextField
-                                            id="outlined-multiline-static"
+                                            id="funddescription"
                                             label="Fundraising Description"
                                             multiline
                                             rows={3}
+                                            name="funddescription"                                       
                                             placeholder="Why/Who organise etc.."
                                             variant="outlined"
                                             fullWidth
+                                            onChange={e => setFunddescription(e.target.value)}
 
                                         />
                                     </Grid>
@@ -275,7 +324,7 @@ function AddFundraising() {
                                     <Grid item xs={12} sm={3}>
                                         {/* <label for="input_image"><h6 style="color:black;">Upload an Image</h6></label> */}
                                         <Typography variant="subtitle1" color="primary">Upload an image
-                                            <input id="input_image" required type="file" name="myImage" accept="image/png, image/gif, image/jpeg" />
+                                            <input id="image" type="file" name="image" accept="image/png, image/gif, image/jpeg" />
                                         </Typography>
                                     </Grid>
 
@@ -283,43 +332,46 @@ function AddFundraising() {
 
                                         <TextField
                                             label="Goal Amount in Rs."
-                                            value={values.numberformat}
-                                            onChange={handleChange}
-                                            name="numberformat"
-                                            id="formatted-numberformat-input"
-                                            InputProps={{
-                                                inputComponent: NumberFormatCustom,
-                                            }}
+                                            // value={values.numberformat}
+                                            // onChange={handleChange}
+                                            name="goalamount"
+                                            id="goalamount"
+                                            // InputProps={{
+                                            //     inputComponent: NumberFormatCustom,
+                                            // }}
                                             multiline
                                             variant="outlined"
                                             placeholder="Rs 10000"
                                             fullWidth
+                                            onChange={e => setGoalamount(e.target.value)}
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
 
                                         <TextField
                                             label="Starting Amount in Rs."
-                                            value={values.numberformat}
-                                            onChange={handleChange}
-                                            name="numberformat"
-                                            id="formatted-numberformat-input"
-                                            InputProps={{
-                                                inputComponent: NumberFormatCustom,
-                                            }}
+                                            // value={values.numberformat}
+                                            // onChange={handleChange}
+                                            name="startamount"
+                                            id="startamount"
+                                            // InputProps={{
+                                            //     inputComponent: NumberFormatCustom,
+                                            // }}
                                             multiline
                                             variant="outlined"
                                             placeholder="Rs 100"
                                             fullWidth
+                                            onChange={e => setStartamount(e.target.value)}
 
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
 
                                         <TextField
-                                            id="date"
+                                            id="expiredate"
                                             label="Expire Date"
                                             type="date"
+                                            name="expiredate"
                                             defaultValue="weqwe"
                                             // className={classes_time.textField}
                                             InputLabelProps={{
@@ -327,16 +379,17 @@ function AddFundraising() {
                                             }}
                                             variant="outlined"
                                             fullWidth
+                                            onChange={e => setExpiredate(e.target.value)}
                                         />
 
                                     </Grid>
 
                                     <Grid item xs={12} sm={3}>
                                         <TextField
-                                            id="time"
+                                            id="expiretime"
                                             label="Expire Time"
                                             type="time"
-
+                                            name="expiretime"
                                             // className={classes.textField}
                                             InputLabelProps={{
                                                 shrink: true,
@@ -346,6 +399,7 @@ function AddFundraising() {
                                             }}
                                             variant="outlined"
                                             fullWidth
+                                            onChange={e => setExpiretime(e.target.value)}
                                         />
                                     </Grid>
 
@@ -353,7 +407,7 @@ function AddFundraising() {
                                         <Box display="flex" justifyContent="flex-end">
 
                                             <Box>
-                                                <Button className={classes.filterbutton} variant="contained" color="primary" endIcon={<CheckCircleIcon>send</CheckCircleIcon>}>
+                                                <Button type="submit" className={classes.filterbutton} variant="contained" color="primary" endIcon={<CheckCircleIcon>send</CheckCircleIcon>}>
                                                     Create Fundraising
                                                 </Button>
                                             </Box>
