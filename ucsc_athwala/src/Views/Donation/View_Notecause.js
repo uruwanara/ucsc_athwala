@@ -171,6 +171,12 @@ export default function View_Notecause(){
        const formData=new FormData()
         formData.append('file',file)
 
+      const donreceive = {
+        "donationID":donationid,
+        "type":'note',
+        "donerid":userData.id
+      }
+
         axios.post("http://localhost:5000/api/fus/upload/"+donationid,formData,{
             headers:{
                 "access-control-allow-origin" : "*",
@@ -178,8 +184,34 @@ export default function View_Notecause(){
             }
         }).then((response) => {
             if(response.data.status === 'ok'){
-                console.log("Sucesss -------------------")
+                console.log("Sucesss -------------------");
+                
+                axios.post("http://localhost:5000/api/donations/uploadnote",donreceive,{
+                    headers:{
+                        "access-control-allow-origin" : "*",
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+              }).then((response) => {
+                console.log(response.data);
+                  if(response.data === 'success'){
+                        enqueueSnackbar("Successfully Donate. Thank You!", {
+                          variant: 'success',anchorOrigin: {
+                              vertical: 'top',
+                              horizontal: 'right',
+                          },
+                      });
+                      if(userData.userType==="STUDENT"){
+                        history.push("/std/myDonation"); 
+                      }
+                      else if(userData.userType==="ALUMNI"){
+                          history.push("/pst/myDonation"); 
+                      }
+                      else if(userData.userType==="UNIONST"){
+                          history.push("/ustd/myDonation"); 
+                      }
 
+                  }
+              });
 
 
             }
