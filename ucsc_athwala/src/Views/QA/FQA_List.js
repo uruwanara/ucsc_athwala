@@ -40,8 +40,9 @@ export default class FQAList extends React.Component {
         return (
             
     <Grid 
+    
     container
-    //spacing={0}
+    spacing={4}
     //direction="column"
     alignItems="center"
     justify="center"
@@ -71,6 +72,7 @@ export default class FQAList extends React.Component {
 
         
     </Grid>
+    
     
   );
     }

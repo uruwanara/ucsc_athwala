@@ -199,7 +199,7 @@ export default function ProductViews(){
  
 
   const tabButton =() =>{
-    if(userData.userType === "STUDENT" ||userData.userType === "UNIONST"  ){
+    if(userData.userType === "STUDENT" ||userData.userType === "UNIONST" || userData.userType === "ADMIN" ){
       return(
         <>
         <ProductButton />
@@ -225,17 +225,34 @@ export default function ProductViews(){
         var link;
         var product_id = props.product_id;
         var imglink;
-
+        
         if(props.type == 'device'){
-          link = "/std/ViewMyProductDetails?id="+product_id;
+          if(userData.userType === "STUDENT"){
+            link = "/std/ViewMyProductDetails?id="+product_id;
+           
+          }
+          else if(userData.userType === "UNIONST" ){
+            link = "/ustd/ViewMyProductDetails?id="+product_id;
+            
+          }
           imglink = EventLaptopHP;
         }
         else if (props.type == 'note'){
-          link = "/std/ViewMyProductDetailsNote?id="+product_id;
+          if(userData.userType === "STUDENT"){
+            link = "/std/ViewMyProductDetailsNote?id="+product_id;
+          }
+          else if(userData.userType === "UNIONST" ){
+            link = "/ustd/ViewMyProductDetailsNote?id="+product_id;
+          }
           imglink = Note;
         }
         else if (props.type == 'other'){
-          link = "/std/ViewMyProductDetailsOther?id="+product_id;
+          if(userData.userType === "STUDENT"){
+            link = "/std/ViewMyProductDetailsOther?id="+product_id;
+          }
+          else if(userData.userType === "UNIONST" ){
+            link = "/ustd/ViewMyProductDetailsOther?id="+product_id;
+          }
           imglink = Other;
         }
         return (

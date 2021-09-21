@@ -60,7 +60,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to = "" className={classes.Nounderline}>
+              <Link to = "/coun/ViewQA" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <ShopIcon className={classes.Listicon}/>

@@ -427,6 +427,7 @@ export default function Cases(){
                 <Grid container spacing={1} alignItems="flex-end" >
                   <Grid item>
                   <TextField id="outlined-basic" variant="outlined" size="small" className={classes.textfilter}/>
+                  <TextField id="outlined-basic" variant="outlined" size="small" className={classes.textfilter}/>
                   </Grid>
                   <Grid item>
                       <Button size="large" 

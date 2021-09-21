@@ -34,6 +34,7 @@ import EditPost from "../job/Update_job_post";
 import DeletePost from "../job/Delete_job_post";  //Change the logout direction here
 import Chat from '../chat/chat.jsx';
 import ConStu from '../ContactStudent/lgPage'
+import ViewQA from '../QA/View_QAform';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -310,10 +311,12 @@ function Navbar() {
             <Route path="/coun/CounContactStu" exact>
               <ConStu/>
             </Route>
+            <Route path="/coun/ViewQA" exact>
+              <ViewQA/>
+            </Route>
               <Route path="/land" exact>
               <Land/>
             </Route>
-
           </Switch>
 
         </main>

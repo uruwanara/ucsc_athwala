@@ -26,13 +26,14 @@ module.exports = (sequelize, Sequelize) => {
         contactnumber: {
             type: Sequelize.STRING
         },
+        status: {
+            type: Sequelize.STRING
+        },
 
         isActive: {
             type: Sequelize.BOOLEAN
-        },
-        status: {
-            type: Sequelize.STRING
         }
+
 
     });
 

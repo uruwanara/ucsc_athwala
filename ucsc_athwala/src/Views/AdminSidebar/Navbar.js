@@ -31,8 +31,6 @@ import Side from './Sidedrawer';
 import Dashboard from '../AdminDashboard/Admindash';
 import Adminauc from '../Auction/adminauc';
 import Approve from '../Auction/approve';
-import Admin_QA from '../QA/Admin_QA';
-import Admin_QA_Form from '../QA/Ask_Q_And_A';
 import { useHistory } from "react-router-dom";
 import Land from '../LandingPage/home'  //Change the logout direction here
 import Chat from '../chat/chat.jsx';
@@ -43,6 +41,9 @@ import DeviceCause from '../Donation/View_Devicecause';
 import MoneyCause from '../Donation/View_Moneycause';
 import OtherCause from '../Donation/View_Othercause';
 import AdminDonationDetails from '../Donation/ViewDonationDetailsAdmin';
+import UnionEdit from '../AdminUnionEdit/AdminUnionEdit';
+import AdminViewQA from '../QA/Admin_QA';
+import AskQA from '../QA/Ask_Q_And_A';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -332,15 +333,9 @@ function Navbar() {
           <Route path="/admin/approve" exact>
             <Approve />
           </Route>
-          <Route path="/admin/Admin_QA" exact>
-            <Admin_QA />
-          </Route>
             <Route path="/admin/chat" exact>
               <Chat/>
             </Route>
-          <Route path="/admin/Admin_QA_Form" exact>
-            <Admin_QA_Form />
-          </Route>
             <Route path="/land" exact>
               <Land/>
             </Route>
@@ -365,9 +360,18 @@ function Navbar() {
           <Route path="/admin/viewcausesdetails" exact>
               <AdminDonationDetails />
             </Route>
+            <Route path="/admin/unionedit" exact>
+            <UnionEdit/>
+            </Route>  
+            <Route path="/admin/AdminViewQA" exact>
+              <AdminViewQA />
+            </Route>
+            <Route path="/admin/AskQA" exact>
+              <AskQA/>
+            </Route>
 
           </Switch>
-
+          
         </main> }
     </div >
   );

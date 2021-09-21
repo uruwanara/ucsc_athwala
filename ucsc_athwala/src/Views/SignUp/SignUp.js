@@ -88,7 +88,7 @@ export default function SignUp() {
                     horizontal: 'right',
                 },
             });
-        }else if(!(email.includes("@stu.ucsc.cmb.ac.lk")|| email.includes("@ucsc.lk"))){
+        }else if(ustype=="STUDENT" && (!(email.includes("@stu.ucsc.cmb.ac.lk")|| email.includes("@ucsc.lk")))){
             enqueueSnackbar('Email Not Valid. Use your UCSC Email', {
                 variant: 'error',anchorOrigin: {
                     vertical: 'top',
@@ -107,6 +107,7 @@ export default function SignUp() {
             "contactnumber":contact,
             "status":ustatus
         }
+        console.log(user);
         axios.post("http://localhost:5000/api/users/create",user,{
             headers:{
                 "access-control-allow-origin" : "*",

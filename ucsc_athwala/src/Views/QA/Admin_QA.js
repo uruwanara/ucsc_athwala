@@ -102,10 +102,10 @@ export default function QAform(){
 
 
           const askbutton = () => {
-            if(userData.userType == "STUDENT" || userData.userType == "UNIONST" ){
+            if(userData.userType == "STUDENT" || userData.userType == "UNIONST" || userData.userType == "ADMIN" ){
                 return(
                     <div>
-                                <Link to = '/admin/Admin_QA_Form'>
+                                <Link to = '/admin/AskQA'>
                                 <Button size="large" 
                                 className={classes.filterbutton} 
                                 >

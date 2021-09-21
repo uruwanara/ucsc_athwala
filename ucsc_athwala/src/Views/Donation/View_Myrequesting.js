@@ -444,7 +444,30 @@ const donationid = new URLSearchParams(search).get("id");
                 setTel(response.data[0].tel);
         });
 
-        return(
+        if(type == 'note' && address==null){
+            return (
+              <>
+              <div style={{display:"flex"}}>
+                  <div>
+                    <Typography variant="subtitle2" className={classes.labelname}>Donation Status</Typography> 
+                  </div>
+                  <div>
+                    <Typography variant="subtitle2" className={classes.labelvalue}>{status}</Typography> 
+                  </div>                         
+              </div>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        component="label"
+                        className={classes.editbutton}
+                        >
+                        Download file
+                    </Button>
+            </>
+            );
+        }
+        else{
+           return(
           <>
           <div style={{display:"flex"}}>
               <div>
@@ -510,6 +533,9 @@ const donationid = new URLSearchParams(search).get("id");
           </div>
           </>
         )
+        }
+
+       
       }
     }
 

@@ -16,7 +16,7 @@ exports.viewAllProducts = (req, res,err) => {
 exports.productDetails = (req,res,err) => {
     const product_id =req.body.product_id;
 
-    connection.query( 'Select * from product where product_id = ?   ;',
+    connection.query( 'Select * from product where product_id = ? AND active = 1;',
     [product_id],
     (err, result,fields) => {
         if (err) {
@@ -39,6 +39,7 @@ exports.productDetailsMore = (req,res,err) => {
         if (err) {
             res.send(err);
         } else {
+            console.log(result);
             res.send(result);
         }
     }

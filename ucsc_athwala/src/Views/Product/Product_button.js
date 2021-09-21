@@ -33,11 +33,29 @@ const useStyles = makeStyles({
 export function ProductButton(){
     const classes = useStyles();
     const history = useHistory();
+
+    const userData=JSON.parse(localStorage.getItem("userData"));
+
+    var link;
+
+    if(userData.userType === "STUDENT"){
+      link = "/std/ViewProductEle";
+    }
+    if(userData.userType === "UNIONST" ){
+      link = "/ustd/ViewProductEle";
+    }
+    if(userData.userType === "ADMIN" ){
+      link = "/admin/ViewProductEle";
+    }
+    if(userData.userType === "ALUMNI" ){
+      link = "/pst/ViewProductEle";
+    }
+
     return(
         <Grid item s ={4}>
             <Button  size="large" 
             className={classes.productfilterbutton} 
-            onClick={()=>{ history.push("/std/ViewProductEle")}}
+            onClick={()=>{ history.push(link)}}
                 startIcon={<ShopIcon />}
             >
                 Products
@@ -50,11 +68,26 @@ export function ProductButton(){
 export function ProductPostButton(){
     const classes = useStyles();
     const history = useHistory();
+
+    const userData=JSON.parse(localStorage.getItem("userData"));
+
+    var link;
+
+    if(userData.userType === "STUDENT"){
+      link = "/std/SelectAdPost";
+    }
+    if(userData.userType === "UNIONST" ){
+      link = "/ustd/SelectAdPost";
+    }
+    if(userData.userType === "ADMIN" ){
+      link = "/admin/SelectAdPost";
+    }
+
     return(
         <Grid item s={4}>
             <Button  size="large" 
             className={classes.productfilterbutton} 
-            onClick={()=>{ history.push("/std/SelectAdPost")}}
+            onClick={()=>{ history.push(link)}}
                 startIcon={<AddCircleIcon />}
             >
                 Add Advertisment
@@ -67,11 +100,29 @@ export function ProductPostButton(){
 export function MyProductButton(){
     const classes = useStyles();
     const history = useHistory();
+
+    const userData=JSON.parse(localStorage.getItem("userData"));
+
+    var link;
+
+    if(userData.userType === "STUDENT"){
+      link = "/std/ViewMyProduct";
+    }
+    if(userData.userType === "UNIONST" ){
+      link = "/ustd/ViewMyProduct";
+    }
+    if(userData.userType === "ADMIN" ){
+      link = "/admin/ViewMyProduct";
+    }
+    if(userData.userType === "ALUMNI" ){
+        link = "/pst/ViewMyProductBuy";
+    }
+   
     return(
         <Grid item s={4}>
             <Button  size="large" 
             className={classes.productfilterbutton} 
-            onClick={()=>{ history.push("/std/ViewMyProduct")}}
+            onClick={()=>{ history.push(link)}}
                 startIcon={<ProductionQuantityLimitsIcon/>}
             >
                 My Product
@@ -84,11 +135,28 @@ export function MyProductButton(){
 export function MyProductBuyButton(){
     const classes = useStyles();
     const history = useHistory();
+
+    const userData=JSON.parse(localStorage.getItem("userData"));
+
+    var link;
+
+    if(userData.userType === "STUDENT"){
+      link = "/std/ViewMyProductBuy";
+    }
+    if(userData.userType === "UNIONST" ){
+      link = "/ustd/ViewMyProductBuy";
+    }
+    if(userData.userType === "ADMIN" ){
+      link = "/admin/ViewMyProductBuy";
+    }
+    if(userData.userType === "ALUMNI" ){
+      link = "/pst/ViewMyProductBuy";
+    }
     return(
         <Grid item s={4}>
             <Button  size="large" 
             className={classes.productfilterbutton} 
-            onClick={()=>{ history.push("/std/ViewMyProductBuy")}}
+            onClick={()=>{ history.push(link)}}
                 startIcon={<HistoryIcon/>}
             >
                 Payment Product History
@@ -101,11 +169,25 @@ export function MyProductBuyButton(){
 export function MyProductSellButton(){
     const classes = useStyles();
     const history = useHistory();
+
+    const userData=JSON.parse(localStorage.getItem("userData"));
+
+    var link;
+
+    if(userData.userType === "STUDENT"){
+      link = "/std/ViewMyProduct";
+    }
+    if(userData.userType === "UNIONST" ){
+      link = "/ustd/ViewMyProduct";
+    }
+    if(userData.userType === "ADMIN" ){
+      link = "/admin/ViewMyProduct";
+    }
     return(
         <Grid item s={4}>
             <Button  size="large" 
             className={classes.productfilterbutton} 
-            onClick={()=>{ history.push("/std/ViewMyProduct")}}
+            onClick={()=>{ history.push(link)}}
                 startIcon={<ProductionQuantityLimitsIcon/>}
             >
                 My Product Advertisment

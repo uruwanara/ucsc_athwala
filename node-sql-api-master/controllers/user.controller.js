@@ -29,6 +29,7 @@ exports.create = (req, res) => {
         email: req.body.email,
         password:pw,
         contactnumber: req.body.contactnumber,
+        status:req.body.status,
         isActive: false,
     };
 
