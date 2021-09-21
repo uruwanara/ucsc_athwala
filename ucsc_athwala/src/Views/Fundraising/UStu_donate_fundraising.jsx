@@ -20,7 +20,7 @@ import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOut
 import { Link } from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import { Divider, Container } from "@material-ui/core";
+import { Divider, Container, TextField } from "@material-ui/core";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { useLocation } from 'react-router';
 import axios from "axios";
@@ -77,8 +77,8 @@ function UStudonate_fundraising() {
     const [expiredate, setExpireDate] = useState();
     const [expiretime, setExpireTime] = useState();
     const [createdby, setCreatedBy] = useState();
-    const [currentamount,setCurrentAmount] = useState();
-    
+    const [currentamount, setCurrentAmount] = useState();
+
 
     const search = useLocation().search;
 
@@ -261,11 +261,28 @@ function UStudonate_fundraising() {
 
                     <Grid item xs={12} sm={6}>
                         <Box display="flex" justifyContent="flex-end" mr={1}>
+                            <Box mr={1}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    // multiline
+                                    // fullWidth
+                                    id="amount"
+                                    label="Donation amount"
+                                    name="amount"
+                                    
+                                    // autoComplete="description"
+                                    
+                                />
+                            </Box>
                             <Box>
+
                                 <Button className={classes.filterbutton} variant="contained" color="primary">
                                     Donate now
                                 </Button>
+
                             </Box>
+
                         </Box>
 
                     </Grid>

@@ -33,6 +33,7 @@ import UAvailable_fundraising from '../Fundraising/UStuViewFundraising';
 import Union_Fund_dashboard from '../Fundraising/Union_fund_dashboard';
 import AddFundraising from '../Fundraising/AddFundraising';
 import EditFundraising from '../Fundraising/EditFundraising';
+import ByforceEndFundraising from '../Fundraising/ByForceEndFundraising';
 
 import MyCause from '../Donation/Donation_MyCauses';
 import Category from '../Donation/RequestCategory';
@@ -384,6 +385,9 @@ function UStdNavside() {
             </Route>
             <Route path="/ustd/funddashboard/donate" exact>
               <UStudonate_fundraising/>
+            </Route>
+            <Route path="/ustd/funddashboard/endforce" exact>
+              <ByforceEndFundraising/>
             </Route>
       
             <Route path="/ustd/funddashboard/expired" exact>

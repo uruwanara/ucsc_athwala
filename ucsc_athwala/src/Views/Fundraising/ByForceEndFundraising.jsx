@@ -24,8 +24,13 @@ import { Divider, Container } from "@material-ui/core";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { useLocation } from 'react-router';
 import axios from "axios";
-import {TextField } from "@material-ui/core";
-
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { useHistory } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -67,9 +72,16 @@ const useStyles = makeStyles((theme) => ({
 }
 ));
 
-function Studonate_fundraising() {
+function ByforceEndFundraising() {
     const classes = useStyles();
     const theme = useTheme();
+
+    const search = useLocation().search;
+    const funddonationid = new URLSearchParams(search).get("id");
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const history = useHistory();
+    const [open, setOpen] = React.useState(false);
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
     const [description, setDescription] = useState();
     const [title, setTitle] = useState();
@@ -82,7 +94,8 @@ function Studonate_fundraising() {
     const [createdby, setCreatedBy] = useState();
     const [currentamount, setCurrentAmount] = useState();
 
-    const search = useLocation().search;
+
+
 
 
     useEffect(() => {
@@ -90,7 +103,6 @@ function Studonate_fundraising() {
         fetchDescription(funddonationid);
         // fetchDetails(funddonationid);
     }, []);
-
 
     const fetchDescription = (funddonationid) => {
         const description = {
@@ -113,21 +125,60 @@ function Studonate_fundraising() {
             setExpireTime(response.data[0].fundExpireTime)
             setCreatedBy(response.data[0].fundStartedBy)
             setCurrentAmount(response.data[0].fundCurrentAmount)
-
         })
     };
 
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleConfirm = (event) => {
+        setOpen(false);
+        event.preventDefault();
+        const endbyforce = {
+            "fundID": funddonationid,
+            "endedby": userData.username,
+        }
+
+        axios.post("http://localhost:5000/api/fundraising/endbyforce", endbyforce, {
+            headers: {
+                "access-control-allow-origin": "*",
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then((response) => {
+            if (response.data === 'success') {
+                // console.log("hkjkdf");
+                // console.log(product_id);
+                enqueueSnackbar('Successfully Ended the fundraising', {
+                    variant: 'success', anchorOrigin: {
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                    }
+                })
+
+                if (userData.userType === "UNIONST") {
+                    history.push("/ustd/funddashboard/ended");
+                }
+
+            }
+        });
+
+    }
 
     return (
         <React.Fragment>
 
             <Box component="br" />
             <Typography align="center" variant="h4" color="initial">
-                Donate Now
+                Let's End this fundraising
             </Typography>
             <Divider />
             <Box component="br" />
-            <Link to="/std/stdfundraising">
+            <Link to="/ustd/funddashboard">
                 <Button className={classes.filterbutton} variant="contained" color="primary" startIcon={<ArrowBackIosIcon />}>
                     Back to Available fundraising
                 </Button>
@@ -155,18 +206,20 @@ function Studonate_fundraising() {
 
                         <Grid item xs={12}>
                             <Box mr={1}>
-                                <Typography gutterBottom variant="h6" color="primary">
+                                <Typography align="center" gutterBottom variant="h4" color="primary">
                                     {title}
                                 </Typography>
-                                <Typography variant="body1" gutterBottom align="justify">
+                                <Typography variant="h6" gutterBottom align="justify">
                                     {description}
                                 </Typography>
                             </Box>
+
                             <Box mb={1} mr={1}>
-                                <Typography variant="body2" color="initial">50% completed
+                                <Typography variant="subtitle1" color="initial">50% completed
                                 </Typography>
                                 <LinearProgress variant="determinate" value={50} />
                             </Box>
+
                         </Grid>
                         <Grid item xs={12}>
                             {/* <div className={classes.rootdiv}> */}
@@ -175,7 +228,7 @@ function Studonate_fundraising() {
                                 <Grid item sm={4} xm={12}>
                                     <Box>
                                         {/* <Box> */}
-                                        <Typography variant="subtitle2" color="initial">
+                                        <Typography variant="subtitle1" color="initial">
                                             Goal Amount: Rs. {goalamount}
                                         </Typography>
                                         {/* </Box> */}
@@ -184,7 +237,7 @@ function Studonate_fundraising() {
                                 <Grid item sm={4} xm={12}>
                                     <Box>
                                         {/* <Box> */}
-                                        <Typography variant="subtitle2" color="initial">
+                                        <Typography variant="subtitle1" color="initial">
                                             Started Amount: Rs. {startamount}
                                         </Typography>
                                         {/* </Box> */}
@@ -193,7 +246,7 @@ function Studonate_fundraising() {
                                 <Grid item sm={4} xm={12}>
                                     <Box>
                                         {/* <Box> */}
-                                        <Typography variant="subtitle2" color="initial">
+                                        <Typography variant="subtitle1" color="initial">
                                             Current Amount : Rs. {currentamount}
                                         </Typography>
                                         {/* </Box> */}
@@ -214,8 +267,8 @@ function Studonate_fundraising() {
                         <Grid item sm={3} xs={6}>
                             <Box>
                                 {/* <Box> */}
-                                <Typography variant="subtitle2" color="initial">
-                                    Start Date: {startdate}
+                                <Typography variant="subtitle1" color="initial">
+                                    Started Date : {startdate}
                                 </Typography>
                                 {/* </Box> */}
                             </Box>
@@ -223,7 +276,7 @@ function Studonate_fundraising() {
                         <Grid item sm={3} xs={6}>
                             <Box>
                                 {/* <Box> */}
-                                <Typography variant="subtitle2" color="initial">
+                                <Typography variant="subtitle1" color="initial">
                                     Started Time: {starttime}
                                 </Typography>
                                 {/* </Box> */}
@@ -232,8 +285,8 @@ function Studonate_fundraising() {
                         <Grid item sm={3} xs={6}>
                             <Box>
                                 {/* <Box> */}
-                                <Typography variant="subtitle2" color="initial">
-                                    Expire date: {expiredate}
+                                <Typography variant="subtitle1" color="initial">
+                                    Expire Date: {expiredate}
                                 </Typography>
                                 {/* </Box> */}
                             </Box>
@@ -241,7 +294,7 @@ function Studonate_fundraising() {
                         <Grid item sm={3} xs={6}>
                             <Box>
                                 {/* <Box> */}
-                                <Typography variant="subtitle2" color="initial">
+                                <Typography variant="subtitle1" color="initial">
                                     Expire Time: {expiretime}
                                 </Typography>
                                 {/* </Box> */}
@@ -254,7 +307,7 @@ function Studonate_fundraising() {
                         <Box display="flex" justifyContent="flex-start">
                             <Box>
                                 <Typography variant="h6" color="initial">
-                                    This Fundraising is created by {createdby}
+                                    This Fundraising is created by: {createdby}
                                 </Typography>
                             </Box>
                         </Box>
@@ -263,29 +316,30 @@ function Studonate_fundraising() {
 
                     <Grid item xs={12} sm={6}>
                         <Box display="flex" justifyContent="flex-end" mr={1}>
-                            <Box mr={1}>
-
-                                <TextField
-                                    variant="outlined"
-                                    required
-                                    // multiline
-                                    // fullWidth
-                                    id="amount"
-                                    label="Donation amount"
-                                    name="amount"
-
-                                // autoComplete="description"
-
-                                />
-
-                            </Box>
                             <Box>
-
-                                <Button className={classes.filterbutton} variant="contained" color="primary">
-                                    Donate now
+                                <Button onClick={handleClickOpen} className={classes.filterbutton} variant="contained" color="primary">
+                                    End by force now
                                 </Button>
-
                             </Box>
+                            <Dialog
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText id="alert-dialog-description">Do you want to end this fundraising?</DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleClose} color="primary">
+                                        No
+                                    </Button>
+                                    <Button onClick={handleConfirm} color="primary" autoFocus>
+                                        Yes
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
                         </Box>
 
                     </Grid>
@@ -300,4 +354,4 @@ function Studonate_fundraising() {
     );
 }
 
-export default Studonate_fundraising;
+export default ByforceEndFundraising;
