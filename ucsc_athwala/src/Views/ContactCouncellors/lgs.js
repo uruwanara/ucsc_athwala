@@ -139,7 +139,7 @@ export default function Cases(){
         var id = props.id;
         var link="/conCoun?id="+id;
        // var link="/std/viewLg";
-        var imglink=LG;
+        var imglink="http://localhost:5000/SamplePath/1234.png"
         var name=props.fname+" "+props.lname;
         return (
             <React.Fragment>
@@ -150,7 +150,7 @@ export default function Cases(){
                             <CardMedia
                                 component="img"
                                 height="100"
-                                src= {imglink}
+                                src={imglink}
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2">

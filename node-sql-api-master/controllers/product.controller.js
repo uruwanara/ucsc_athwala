@@ -94,7 +94,7 @@ exports.sellNote = (req,res) => {
                                     if (err2) {
                                         res.send(err2);
                                     } else {
-                                        res.send("success");
+                                        res.send({prdID:product_id_max});
                                     }
                                 }
                             );

@@ -173,13 +173,13 @@ export default function View_Clothcause(){
     };
 
     const handleDonate = (event) => {
-
+        console.log("Payment Done------------------")
         const payHereData = {
             sandbox: true,
             merchant_id: "1217629", // Replace your Merchant ID
             return_url: "http://localhost:3000/login", // Important
             cancel_url: "http://localhost:3000/login", // Important
-            notify_url: "/admin/add-payment",
+            notify_url: "http://localhost:3000/login",
             order_id: dId,
             items: title,
             amount: donateamount,
@@ -199,10 +199,14 @@ export default function View_Clothcause(){
         };
         window.payhere.startPayment(payHereData);
     };
+    console.log(parseInt(curramount) + parseInt(donateamount));
+    let amont=parseInt(curramount) + parseInt(donateamount);
+
     window.payhere.onCompleted = function onCompleted(dId) {
+        console.log("Payment Done!---------------------------------")
         const details={
-            "dId": dId,
-            "amount":parseInt(curramount) + parseInt(donateamount)
+            "dId": donationid,
+            "amount":amont
         }
         axios.post("http://localhost:5000/api/donations/pay",details,{
             headers:{
@@ -210,7 +214,7 @@ export default function View_Clothcause(){
                 "Content-type": "application/json; charset=UTF-8"
             }
         }).then((response) => {
-            console.log("Payment Done")
+            console.log("Payment Done!")
             console.log(response.data);
 
         })
