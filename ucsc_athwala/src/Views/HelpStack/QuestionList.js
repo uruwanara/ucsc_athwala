@@ -13,6 +13,9 @@ import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import PageviewIcon from '@material-ui/icons/Pageview';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles((theme) => ({
   link:{
@@ -56,6 +59,11 @@ filterbutton :{
       border: "1px solid #757de8",
     },    
 },
+formControl: {
+  minWidth: 120,
+  marginTop:'20px',
+  marginLeft:'60px'
+},
 }));
 
 export default function NestedList() {
@@ -63,6 +71,8 @@ export default function NestedList() {
 
   const [questionset, SetQuestion] = useState([]);
   const [search, Setsearch] = useState("");
+  const [filter, setFilter] = React.useState('all');
+  const [open, setOpen] = React.useState(false);
   const userData=JSON.parse(localStorage.getItem("userData"));
   useEffect(() =>{
     fetchData();
@@ -78,6 +88,41 @@ export default function NestedList() {
     SetQuestion(result);
 
   };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleChange = (event) => {
+    event.preventDefault(); 
+    setFilter(event.target.value);
+
+  };
+
+  useEffect(() => {
+    filterquestion();
+  }, [filter]);
+
+  const filterquestion = () => {
+    
+    const filterquestion={
+      "filter": filter,
+      "id":userData.id,
+  }
+  axios.post("http://localhost:5000/api/helpstacks/filterquestion",filterquestion,{
+          headers:{
+              "access-control-allow-origin" : "*",
+              "Content-type": "application/json; charset=UTF-8"
+            }
+          }).then((response) => {
+              console.log(response.data);
+              SetQuestion(response.data);
+          });
+  }
 
   const searchSubmit = (searchtxt) => {
       Setsearch(searchtxt);
@@ -159,11 +204,35 @@ export default function NestedList() {
 
   }
 
+  const filterbutton = () => {
+    return(
+      <form autoComplete="off">
+              <FormControl className={classes.formControl}>
+                <Select
+                  labelId="demo-controlled-open-select-label"
+                  id="demo-controlled-open-select"
+                  open={open}
+                  onClose={handleClose}
+                  onOpen={handleOpen}
+                  value={filter}
+                  onChange={handleChange}
+                >
+                  <MenuItem value='all'>All Questions</MenuItem>
+                  <MenuItem value='my'>My Questions</MenuItem>
+                </Select>
+              </FormControl>
+             </form> 
+    )
+  }
+
 
   return (
     <>
-          <Grid item md={12}>
+          <Grid item md={10}>
               {searchbar()}
+          </Grid>
+          <Grid item md={2}>
+          {filterbutton()}
           </Grid>
     
         <Grid item md={12}>

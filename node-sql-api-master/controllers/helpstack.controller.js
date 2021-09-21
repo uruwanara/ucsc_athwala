@@ -120,3 +120,34 @@ exports.search = (req, res) => {
 
     
 };
+
+exports.filterquestion = (req, res) => {
+
+    const filter = req.body.filter;
+    const id = req.body.id;
+
+    if(filter == 'all'){
+        connection.query('select * from question_helpstack ORDER BY q_id DESC',
+            (err, result,fields) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(result);
+                }
+            }
+        );
+    }
+    else if(filter == 'my'){
+        connection.query('select * from question_helpstack where ask_by = ? ORDER BY q_id DESC',
+        [id],
+            (err, result,fields) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(result);
+                }
+            }
+        );
+    }
+    
+};
