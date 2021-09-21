@@ -71,10 +71,10 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to = "" className={classes.Nounderline}>
+              <Link to = "/admin/unionedit" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
-                    <GavelIcon className={classes.Listicon}/>
+                    <PeopleAltIcon className={classes.Listicon}/>
                 </ListItemIcon>
                 <ListItemText primary="Union members" />
                 </ListItem>

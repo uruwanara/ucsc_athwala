@@ -43,6 +43,7 @@ import DeviceCause from '../Donation/View_Devicecause';
 import MoneyCause from '../Donation/View_Moneycause';
 import OtherCause from '../Donation/View_Othercause';
 import AdminDonationDetails from '../Donation/ViewDonationDetailsAdmin';
+import UnionEdit from '../AdminUnionEdit/AdminUnionEdit'
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -364,6 +365,9 @@ function Navbar() {
           </Route> */}
           <Route path="/admin/viewcausesdetails" exact>
               <AdminDonationDetails />
+            </Route>
+            <Route path="/admin/unionedit" exact>
+              <UnionEdit/>
             </Route>
 
           </Switch>
