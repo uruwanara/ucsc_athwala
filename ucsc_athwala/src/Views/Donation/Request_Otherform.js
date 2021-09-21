@@ -11,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
+import {useSnackbar} from "notistack";
+import { useHistory} from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,12 +38,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function RequestOther() {
   const classes = useStyles();
-
+  const history = useHistory();
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [reason, setReason] = React.useState("");
   const [date, setDate] = React.useState("");
   const [acceptTerm, setacceptTerm] = React.useState(false);
+  const {enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const handleSubmit = (event) => {
      event.preventDefault(); 
@@ -75,6 +78,20 @@ export default function RequestOther() {
             setReason("");
             setDate("");
             setacceptTerm(false);
+
+            enqueueSnackbar('Successfully Update', {
+              variant: 'success', anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'center',
+              }
+            })
+
+            if(userData.userType === "STUDENT"){
+              history.push("/std/viewMyrequest") ;
+            }
+            else if(userData.userType === "UNIONST" ){
+              history.push("/ustd/viewMyrequest");
+            }
           }
 
       }).catch((err)=>{
