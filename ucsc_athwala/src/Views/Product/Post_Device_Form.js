@@ -129,6 +129,7 @@ export default function SignUp() {
               <TextField
                 variant="outlined"
                 required
+                multiline
                 fullWidth
                 id="description"
                 label="Description"
