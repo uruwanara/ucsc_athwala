@@ -19,6 +19,13 @@ module.exports = fundraisingRoutes => {
     //retrieve all expired fundraising
     router.get("/viewallend", fundraising.viewallend);
 
+     //Edit available fundraising
+     router.post("/editfund", fundraising.editfund);
+
+       //Edit available fundraising
+       router.post("/endbyforce", fundraising.endbyforce);
+
+
     //retrieve specific details from a fundraising
     router.post("/getfund", fundraising.viewbyid);
 

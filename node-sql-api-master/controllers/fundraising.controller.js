@@ -80,6 +80,42 @@ exports.viewbyid = (req,res) => {
     );
 };
 
+exports.editfund = (req, res) => {
+    // console.log(req.body);
+    // var current = new Date();
+    // console.log(current.toLocaleDateString());
+    // const createby = req.body.create_by;
+    const fundID = req.body.fundID;
+    const fundName = req.body.fundname;
+    const fundDescription = req.body.funddescription;
+    const fundImage = req.body.image;
+    // const fundStartAmount = req.body.startamount;
+    const fundGoalAmount = req.body.goalamount;
+    // const fundStartDate = req.body.fundStartDate;
+    // var fundStartDate = current.toLocaleDateString();
+    // const fundStartTime = req.body.fundStartTime;
+    const fundExpireDate = req.body.expiredate;
+    const fundExpireTime = req.body.expiretime;
+
+
+    connection.query('UPDATE fundraising SET fundName=?,fundDescription=?,fundImage=?,fundGoalAmount=?,fundExpireDate=?,fundExpireTime=?,fundStatus=? WHERE fundID=?;', [fundName,fundDescription, fundImage,fundGoalAmount,fundExpireDate,fundExpireTime,2,fundID], (err, result) => {
+        if (err) { console.log(err) } else { res.json("success") }
+    });
+}
+
+exports.endbyforce = (req, res) => {
+    
+    const fundID = req.body.fundID;
+    // const fundName = req.body.fundname;
+    
+
+    connection.query('UPDATE fundraising SET fundStatus=? WHERE fundID=?;', [1,fundID], (err, result) => {
+        if (err) { console.log(err) } else { res.json("success") }
+    });
+}
+
+
+
 exports.deletebyid = (req,res) => {
     const fundID =req.params.fundID;
    
