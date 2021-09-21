@@ -64,6 +64,23 @@ import ContactCoun from '../ContactCouncellors/viewLgs'
 import Helpstack from '../HelpStack/HelpStack';
 import JobOpertunity from '../job/jobPage';
 import ViewJob from '../job/Viewjobs';
+import ViewProductEle from '../Product/Product_Page_View';
+import ViewProductDetails from '../Product/View_Product_Details';
+import ViewProductDetailsNote from '../Product/View_Product_Details_note';
+import ViewProductDetailsOther from '../Product/View_Product_Details_other';
+import SelectAdPost from '../Product/Select_ad_post';
+import PostDeviceForm from '../Product/Post_Device_Form';
+import PostNoteForm from '../Product/Post_Note_Form';
+import PostOtherForm from '../Product/Post_Other_Form';
+import ViewMyProduct from '../Product/View_My_Product_Sell';
+import ViewMyProductDetails from '../Product/View_My_product_details';
+import ViewMyProductDetailsNote from '../Product/View_My_product_details_note';
+import ViewMyProductDetailsOther from '../Product/View_My_product_details_other';
+import ViewMyProductBuy from '../Product/View_My_Product_Buy';
+import EditDeviceForm from '../Product/edit_Post_Device_Form';
+import EditNoteForm from '../Product/edit_Post_Note_Form';
+import EditOtherForm from '../Product/edit_Post_Other_Form';
+import ViewQA from '../QA/View_QAform';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -433,33 +450,77 @@ function UStdNavside() {
             <Route path="/viewLg" exact>
               <ViewLG/>
             </Route>
-
             <Route path="/contactcoun" exact>
               <ConCoun/>
             </Route>
             <Route path="/conCoun" exact>
               <ContactCoun/>
             </Route>
-
-
-
             <Route path="/ustd/editrequest" exact>
             <Editform />
             </Route>
-
             <Route path="/ustd/helpstack">
             <Helpstack />
             </Route>
-
             <Route path="/ustd/JobOpertunity" exact>
             <JobOpertunity />
             </Route>
             <Route path="/ustd/jobview" exact>
               <ViewJob />
             </Route>
-
+            <Route path="/ustd/ViewProductEle" exact>
+              <ViewProductEle />
+            </Route>
+            <Route path="/ustd/ViewProductDetails" exact>
+              <ViewProductDetails />
+            </Route>
+            <Route path="/ustd/ViewProductDetailsNote" exact>
+              <ViewProductDetailsNote/>
+            </Route>
+            <Route path="/ustd/ViewProductDetailsOther" exact>
+              <ViewProductDetailsOther />
+            </Route>
+            <Route path="/ustd/SelectAdPost" exact>
+              <SelectAdPost />
+            </Route>
+            <Route path="/ustd/PostDeviceForm" exact>
+              <PostDeviceForm/>
+            </Route>
+            <Route path="/ustd/PostNoteForm" exact>
+              <PostNoteForm />
+            </Route>
+            <Route path="/ustd/PostOtherForm" exact>
+              <PostOtherForm />
+            </Route>
+            <Route path="/ustd/ViewMyProduct" exact>
+              <ViewMyProduct />
+            </Route>
+            <Route path="/ustd/ViewMyProductDetails" exact>
+              <ViewMyProductDetails/>
+            </Route>
+            <Route path="/ustd/ViewMyProductDetailsNote" exact>
+              <ViewMyProductDetailsNote/>
+            </Route>
+            <Route path="/ustd/ViewMyProductDetailsOther" exact>
+              <ViewMyProductDetailsOther/>
+            </Route>
+            <Route path="/ustd/ViewMyProductBuy" exact>
+              <ViewMyProductBuy/>
+            </Route>
+            <Route path="/ustd/EditDeviceForm" exact>
+              <EditDeviceForm/>
+            </Route>
+            <Route path="/ustd/EditNoteForm" exact>
+              <EditNoteForm/>
+            </Route>
+            <Route path="/ustd/EditOtherForm" exact>
+              <EditOtherForm/>
+            </Route>
+            <Route path="/ustd/ViewQA" exact>
+              < ViewQA/>
+            </Route>
           </Switch>
-
+          
         </main>
       </div >
     </Router>

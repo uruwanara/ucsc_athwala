@@ -88,11 +88,39 @@ export default function View_Allcause(){
     const classes = useStyles();
     const history = useHistory();
 
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    var link1;
+
+    if(userData.userType === "STUDENT"){
+      link1 = "/std/PostDeviceForm";
+    }
+    if(userData.userType === "UNIONST" ){
+      link1 = "/ustd/PostDeviceForm";
+    }
+
+    var link2;
+
+    if(userData.userType === "STUDENT"){
+      link2 = "/std/PostNoteForm";
+    }
+    if(userData.userType === "UNIONST" ){
+      link2 = "/ustd/PostNoteForm";
+    }
+
+    var link3;
+
+    if(userData.userType === "STUDENT"){
+      link3 = "/std/PostOtherForm";
+    }
+    if(userData.userType === "UNIONST" ){
+      link3 = "/ustd/PostOtherForm";
+    }
+
     function FormRow1() {
         return (
           <React.Fragment>
             <Grid item xs={4}>
-            <Link to={'/std/PostDeviceForm'} className={classes.nonUnderline}>
+            <Link to={link1} className={classes.nonUnderline}>
                 <Card>
                     <CardActionArea>
                     <CardMedia
@@ -113,7 +141,7 @@ export default function View_Allcause(){
                         <Button size="small" 
                             className={classes.categoryButton} 
                             startIcon={<AddCircleIcon />}
-                            onClick={()=>{ history.push("/std/PostDevice")}}
+                            onClick={()=>{ history.push(link1)}}
                             >
                                Create Advertisment
                         </Button>
@@ -122,7 +150,7 @@ export default function View_Allcause(){
                 </Link>
             </Grid>
             <Grid item xs={4}>
-            <Link to={'/std/PostNoteForm'} className={classes.nonUnderline}>
+            <Link to={(link2)} className={classes.nonUnderline}>
             <Card>
                     <CardActionArea>
                     <CardMedia
@@ -142,7 +170,8 @@ export default function View_Allcause(){
                         <Button size="small" 
                             className={classes.categoryButton} 
                             startIcon={<AddCircleIcon />}
-                            onClick={()=>{ history.push("/std/PostNote")}}
+                            onClick={()=>{ history.push(link2)}}
+                            
                             >
                                 Create Advertisment
                         </Button>
@@ -151,7 +180,7 @@ export default function View_Allcause(){
                 </Link>
             </Grid>
             <Grid item xs={4}>
-            <Link to={'/std/PostOtherForm'} className={classes.nonUnderline}>
+            <Link to={(link3)} className={classes.nonUnderline}>
             <Card>
                     <CardActionArea>
                     <CardMedia
@@ -171,7 +200,7 @@ export default function View_Allcause(){
                         <Button size="small" 
                             className={classes.categoryButton} 
                             startIcon={<AddCircleIcon />}
-                            onClick={()=>{ history.push("/std/PostOther")}}
+                            onClick={()=>{ history.push(link3)}}
                             >
                                 Create Advertisment
                         </Button>

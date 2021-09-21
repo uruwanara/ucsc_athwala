@@ -46,6 +46,12 @@ import MoneyCause from '../Donation/View_Moneycause';
 import OtherCause from '../Donation/View_Othercause';
 import MyDonation from '../Donation/My_donation';
 import Helpstack from '../HelpStack/HelpStack';
+import ViewProductEle from '../Product/Product_Page_View';
+import ViewMyProductBuy from '../Product/View_My_Product_Buy';
+import ViewProductDetails from '../Product/View_Product_Details';
+import ViewProductDetailsNote from '../Product/View_Product_Details_note';
+import ViewProductDetailsOther from '../Product/View_Product_Details_other';
+import ViewQA from '../QA/View_QAform';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -374,12 +380,29 @@ function Navbar() {
           <Route path="/pst/myDonation" exact>
             <MyDonation />
           </Route>
-
           <Route path="/pst/helpstack">
             <Helpstack />
-            </Route>
-          
+          </Route>
+          <Route path="/pst/ViewProductEle">
+            <ViewProductEle/>
+          </Route>
+          <Route path="/pst/ViewMyProductBuy">
+            <ViewMyProductBuy/>
+          </Route>
+          <Route path="/pst/ViewProductDetails">
+            <ViewProductDetails/>
+          </Route>
+          <Route path="/pst/ViewProductDetailsNote">
+            <ViewProductDetailsNote/>
+          </Route>
+          <Route path="/pst/ViewProductDetailsOther">
+            <ViewProductDetailsOther/>
+          </Route>
+          <Route path="/pst/ViewQA">
+            <ViewQA />
+          </Route>
         </Switch>
+        
       </main>
     </div >
   );

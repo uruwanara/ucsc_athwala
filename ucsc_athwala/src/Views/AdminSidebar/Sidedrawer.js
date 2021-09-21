@@ -88,7 +88,7 @@ export default function Side(){
                       <ListItemText primary="Chat" />
                   </ListItem>
               </Link>
-              <Link to="/admin/Admin_QA" className={classes.Nounderline}>
+              <Link to="/admin/AdminViewQA" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <ChatIcon className={classes.Listicon}/>

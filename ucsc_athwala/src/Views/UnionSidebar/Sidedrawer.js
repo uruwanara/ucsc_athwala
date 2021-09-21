@@ -52,7 +52,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to = "/ViewEleProduct" className={classes.Nounderline}>
+              <Link to = "/ustd/ViewProductEle" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <ShopIcon className={classes.Listicon}/>
@@ -115,7 +115,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to="" className={classes.Nounderline}>
+              <Link to="/ustd/ViewQA" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <HelpIcon className={classes.Listicon}/>

@@ -128,6 +128,9 @@ export function AllCauseButton(){
     if(userData.userType === "UNIONST" ){
       link = "/ustd/viewcauses";
     }
+    if(userData.userType === "ALUMNI"){
+      link = "/pst/viewcauses";
+    }
 
     return(
         <Grid item s={4}>

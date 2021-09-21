@@ -4,13 +4,13 @@ import { makeStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import  TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import {Link} from 'react-router-dom';
 import {useSnackbar} from "notistack";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import axios from 'axios';
+import {Link, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles ({
     title:{
@@ -48,6 +48,7 @@ const useStyles = makeStyles ({
 
 export default function AskQuestion(){
     const classes = useStyles();
+    const history = useHistory();
 
 const [question, setQuestion] = React.useState("");
   const [answer, setAnswer] = React.useState("");
@@ -91,6 +92,9 @@ const [question, setQuestion] = React.useState("");
                   horizontal: 'center',
                 }
               })
+              if(userData.userType === "ADMIN"){
+                history.push("/admin/AdminViewQA") ;
+              }
           }
 
       }).catch((err)=>{
@@ -181,7 +185,7 @@ const [question, setQuestion] = React.useState("");
 
         <Grid container spacing ={3}>
             <Grid item md={6}>
-                <Link to ='/admin/Admin_QA'>
+                <Link to ='/admin/AdminViewQA'>
                 <Typography variant="h5" className={classes.backlink}>Back to FAQ</Typography>
                 </Link>
             </Grid>
