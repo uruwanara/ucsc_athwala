@@ -40,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
     media1: {
         height: '100%',
     },
+    progress:{
+        height:8,
+        borderRadius:10
+    },
     controls: {
         display: "flex",
         alignItems: "center",
@@ -127,7 +131,7 @@ function Ended_fundraising() {
                                 <Box mb={1} mr={1}>
                                     <Typography variant="body2" color="initial">50% completed
                                     </Typography>
-                                    <LinearProgress variant="determinate" value={50} />
+                                    <LinearProgress variant="determinate" value={50} className={classes.progress}/>
                                 </Box>
                             </Grid>
                             <Grid item xs={12}>

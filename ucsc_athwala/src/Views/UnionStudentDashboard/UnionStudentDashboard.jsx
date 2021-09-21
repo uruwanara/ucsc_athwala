@@ -65,6 +65,10 @@ const useStyles = makeStyles((theme) => ({
     image: {
         height: 160,
     },
+    progress:{
+        height:8,
+        borderRadius:10
+    },
     img: {
         margin: 'auto',
         display: 'block',
@@ -154,7 +158,7 @@ function UnionStudentDashboard() {
                                 <Box mb={1} mr={1}>
                                     <Typography variant="body2" color="initial">50% completed
                                     </Typography>
-                                    <LinearProgress variant="determinate" value={50} />
+                                    <LinearProgress variant="determinate" value={50} className={classes.progress}/>
                                 </Box>
                             </Grid>
                             <Grid item xs={12}>

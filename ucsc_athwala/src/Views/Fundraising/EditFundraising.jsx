@@ -113,7 +113,7 @@
 // export default EditFundraising;
 
 
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -128,6 +128,8 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Link from '@material-ui/core/Link';
 import Divider from '@material-ui/core/Divider';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import axios from "axios";
+import { useLocation } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -213,6 +215,49 @@ function EditFundraising() {
 
     // const classes_time = use_timeStyles();
 
+
+    const [fundname, setFundname] = React.useState();
+    const [funddescription, setDescription] = React.useState();
+    const [goalamount, setGoalamount] = React.useState();
+    const [startamount, setStartamount] = React.useState();
+    const [fundimage, setImage] = React.useState();
+    const [expiredate, setExpireDate] = React.useState();
+    const [expiretime, setExpireTime] = React.useState();
+    
+   
+    const search = useLocation().search;
+
+    useEffect(() => {
+        const fundid = new URLSearchParams(search).get("id");
+        fetchDescription(fundid);
+      },[]);
+
+      const fetchDescription = (fundid) => {
+        const description = {
+            "fundID": fundid,
+        }
+        axios.post("http://localhost:5000/api/fundraising/getfund", description, {
+            headers: {
+                "access-control-allow-origin": "*",
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then((response) => {
+            console.log(response.data);
+            setDescription(response.data[0].fundDescription);
+            setFundname(response.data[0].fundName);
+            setGoalamount(response.data[0].fundGoalAmount)
+            setStartamount(response.data[0].fundStartAmount);
+            setImage(response.data[0].fundImage);
+            // setStartDate(response.data[0].fundStartDate)
+            // setStartTime(response.data[0].fundStartTime)
+            setExpireDate(response.data[0].fundExpireDate)
+            setExpireTime(response.data[0].fundExpireTime)
+            // setCreatedBy(response.data[0].fundStartedBy)
+            // setCurrentAmount(response.data[0].fundCurrentAmount)
+            
+        })
+    };
+
     return (
 
         <React.Fragment>
@@ -238,8 +283,10 @@ function EditFundraising() {
                                 <Grid m={1} container justify="space-between" spacing={3}>
                                     <Grid item xs={12} sm={12}>
                                         <TextField
-                                            id="outlined-textarea"
+                                            id="fundname"
                                             label="Fundraising Name"
+                                            name="fundname"
+                                            value={fundname}
                                             placeholder="Enter meaningful topic"
                                             multiline
                                             variant="outlined"
@@ -251,9 +298,11 @@ function EditFundraising() {
 
                                     <Grid item xs={12} sm={9}>
                                         <TextField
-                                            id="outlined-multiline-static"
+                                            id="funddescription"
                                             label="Fundraising Description"
                                             multiline
+                                            name="funddescription"
+                                            value={funddescription}
                                             rows={3}
                                             placeholder="Why/Who organise etc.."
                                             variant="outlined"
@@ -265,7 +314,7 @@ function EditFundraising() {
                                     <Grid item xs={12} sm={3}>
                                         {/* <label for="input_image"><h6 style="color:black;">Upload an Image</h6></label> */}
                                         <Typography variant="subtitle1" color="primary">Upload an image
-                                            <input id="input_image" required type="file" name="myImage" accept="image/png, image/gif, image/jpeg" />
+                                            <input id="image" type="file"  value={fundimage} type="image" name="image" />
                                         </Typography>
                                     </Grid>
 
@@ -275,12 +324,13 @@ function EditFundraising() {
                                             label="Goal Amount in Rs."
                                             // value={values.numberformat}
                                             // onChange={handleChange}
-                                            name="numberformat"
-                                            id="formatted-numberformat-input"
+                                            name="goalamount"
+                                            id="goalamount"
                                             // InputProps={{
                                             //     inputComponent: NumberFormatCustom,
                                             // }}
                                             multiline
+                                            value={goalamount}
                                             variant="outlined"
                                             placeholder="Rs 10000"
                                             fullWidth
@@ -293,8 +343,9 @@ function EditFundraising() {
                                             disabled
                                             // value={values.numberformat}
                                             // onChange={handleChange}
-                                            name="numberformat"
-                                            id="formatted-numberformat-input"
+                                            name="startamount"
+                                            id="startamount"
+                                            value={startamount}
                                             // InputProps={{
                                             //     inputComponent: NumberFormatCustom,
                                             // }}
@@ -308,9 +359,11 @@ function EditFundraising() {
                                     <Grid item xs={12} sm={3}>
 
                                         <TextField
-                                            id="date"
+                                            id="expiredate"
                                             label="Expire Date"
+                                            name="expiredate"
                                             type="date"
+                                            value={expiredate}
                                             defaultValue="weqwe"
                                             // className={classes_time.textField}
                                             // InputLabelProps={{
@@ -324,9 +377,11 @@ function EditFundraising() {
 
                                     <Grid item xs={12} sm={3}>
                                         <TextField
-                                            id="time"
+                                            id="expiretime"
+                                            name="expiretime"
                                             label="Expire Time"
                                             type="time"
+                                            value={expiretime}
 
                                             // className={classes.textField}
                                             InputLabelProps={{
@@ -344,7 +399,7 @@ function EditFundraising() {
                                         <Box display="flex" justifyContent="flex-end">
 
                                             <Box>
-                                                <Button className={classes.filterbutton} variant="contained" color="primary" endIcon={<CheckCircleIcon>send</CheckCircleIcon>}>
+                                                <Button type="submit" className={classes.filterbutton} variant="contained" color="primary" endIcon={<CheckCircleIcon>send</CheckCircleIcon>}>
                                                     Update Fundraising
                                                 </Button>
                                             </Box>
