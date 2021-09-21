@@ -443,7 +443,7 @@ function Navbar() {
           <Route path="/std/crtauc" exact>
             <Crtauc />
           </Route>
-          <Route path="/std/aucstop" exact>
+          <Route path="/std/aucstop/:auction_id">
             <Aucstop />
           </Route>
           <Route path="/std/bid/:auction_id">

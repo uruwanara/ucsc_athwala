@@ -164,13 +164,16 @@ export default function MyCases(){
     // }
     // else if (props.type == 'other'){
     //   link = "/std/viewOtherCause_details";
-    if(userData.userType === "STUDENT"){
-      link = "/std/aucstop?id="+id;
-    }
-    if(userData.userType === "UNIONST"){
-      link = "/std/aucstop?id="+id;
-    }
+    // if(userData.userType === "STUDENT"){
+    //   link = "/std/aucstop?id="+id;
     // }
+    // if(userData.userType === "UNIONST"){
+    //   link = "/std/aucstop?id="+id;
+    // }
+    // }
+    const viewMore=(id)=>{
+      history.push(`/std/aucstop/${id}`);
+    }
     return (
       <React.Fragment>
         <Grid item xs={4}>
@@ -194,8 +197,8 @@ export default function MyCases(){
             <Button size="small" 
             className={classes.donateButton} 
             startIcon={<GavelIcon />}
-            color='secondary' href="/std/bid" component={Link}
-            onClick={()=>{ history.push(link)}}
+            color='secondary'
+            onClick={()=>viewMore(props.id)}
             >
               Bid Now
             </Button>
@@ -243,7 +246,7 @@ export default function MyCases(){
         <Grid container spacing={6}>
           
         {mapset.map(student => (  
-                <FormRow title={student.title} id={student.donationID}/> 
+                <FormRow title={student.title} id={student.auction_id }/> 
         ))}
           
         </Grid>

@@ -30,12 +30,10 @@ exports.viewDetails = (req,res) => {
     );
 };
 
-exports.getTitle = (req,res) => {
-    const donationID =req.body.donationID;
-
-    
-    connection.query( 'Select * from donations where donationID = ? ;',
-    [donationID],
+exports.details = (req,res) => {
+    const auction_id =req.query.id;
+    connection.query( 'Select * from auction where auction_id = ? ;',
+    [auction_id],
     (err, result,fields) => {
         if (err) {
             res.send(err);
@@ -87,45 +85,67 @@ exports.noteRequest = (req,res) => {
             );
 };
 
-exports.clothRequest = (req,res) => {
-    const studentID =req.body.studentID;
-    const title = req.body.title;
-    const description = req.body.description;
-    const clothType = req.body.clothType;
-    const gender = req.body.gender;
-    const size = req.body.size;
-    const date = req.body.date;
-    const type = 'cloth';
+exports.update = (req,res) => {
+    // const studentID =req.body.studentID;
+    const bid = req.body.bid;
+    const auction_id =req.query.id;
+    // const description = req.body.description;
+    // const year = req.body.year;
+    // // const subject = req.body.subject;
+    // const Baseprice = req.body.Baseprice;
+    // const date = req.body.date;
+    // const type = 'note';
     
-    connection.query( 'insert into donations (donationType,title,description,student_id) values(?,?,?,?);',
-    [type,title,description,studentID],
+    connection.query( "update auction set bid1 = ? where auction_id = ? AND bid1 < ?;",
+    [bid,auction_id,bid],
     (err, result,fields) => {
+
         if (err) {
-            res.send(err);
-        } else {
-            connection.query( 'SELECT donationID from donations order by donationID DESC LIMIT 1;',
-            (err, results,fields) => {
-                if (err) {
-                    res.send(err);
-                } else {
-                    let donationID = results[0].donationID;
-                    connection.query( 'insert into cloth (donation_id,gender,size,before_date,cloth_type) values(?,?,?,?,?); ',
-                    [donationID,gender,size,date,clothType],
-                    (err, result,fields) => {
-                        if (err) {
-                            res.send(err);
+            res.send("Invalid");
+        } 
+        else{
+            
+            connection.query( "update auction set bid = ? where auction_id = ?;",
+            [bid,auction_id,bid],
+            (err1, results,fields) => {
+                        if (err1) {
+                            res.send(err1);
                         } else {
                             res.send("success");
                         }
                     }
                     );
                 }
-            }
+                }
             );
-        }
-    }
-    );
 };
+exports.updatestatus = (req,res) => {
+    // const studentID =req.body.studentID;
+    // const bid = req.body.bid;
+    const auction_id =req.query.id;
+    // const description = req.body.description;
+    // const year = req.body.year;
+    // // const subject = req.body.subject;
+    // const Baseprice = req.body.Baseprice;
+    // const date = req.body.date;
+    // const type = 'note';
+    
+    connection.query( "update auction set status = 0 where auction_id = ?",
+    [auction_id],
+    (err, result,fields) => {
+
+        if (err) {
+            res.send("Invalid");
+        } 
+        else{
+            
+                            res.send("success");
+                       
+                }
+                }
+            );
+};
+
 
 exports.deviceRequest = (req,res) => {
     const studentID =req.body.studentID;

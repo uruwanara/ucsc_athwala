@@ -4,7 +4,9 @@ module.exports = donationRoutes => {
     var router = require("express").Router();
 
     //retrieve all the details of donations
-    // router.get("/viewall", donation.viewall);
+      router.get("/details", auction.details);
+
+      router.post("/updatestatus", auction.updatestatus);
 
     // //retrieve selected donation details
     // router.post("/view", donation.viewDetails);
@@ -21,7 +23,7 @@ module.exports = donationRoutes => {
     router.get("/viewall", auction.viewall);
 
     //request cloth 
-    // router.post("/clothrequest",donation.clothRequest);
+     router.post("/update",auction.update);
 
     // //request device 
     // router.post("/devicerequest",donation.deviceRequest);
