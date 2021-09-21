@@ -11,6 +11,9 @@ import {Link, useHistory } from "react-router-dom";
 import {useSnackbar} from "notistack";
 import axios from "axios";
 import { useLocation } from 'react-router';
+import ChatUserAdd from './lgStudentAdd';
+import ChatUserView from './lgStudents';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         height: '100vh',
@@ -24,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundPosition: 'center',
     },
     paper: {
-        margin: theme.spacing(8, 8),
+        margin: theme.spacing(0,0),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -90,14 +93,23 @@ export default function SignIn() {
     return (
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
-             <Grid item xs={12} sm={12} md={12} component={Paper} elevation={6} square>
+             <Grid item xs={6} sm={12} md={12} component={Paper} elevation={6} square>
                 <div className={classes.paper}>
                     <iframe onLoad="iframeDidLoad()" id="frame1" allow="camera; microphone; display-capture" width="100%" height="800px" src=""></iframe>
                 </div>
-                 <div>
-                     <h2>{url}</h2>
-                 </div>
+
             </Grid>
+
+            <Grid item xs={6} square>
+                <div className={classes.paper}>
+                    <ChatUserView id={lgId}/>
+
+                </div>
+                <div className={classes.paper}>
+                    <ChatUserAdd id={lgId}/>
+            </div>
+            </Grid>
+
         </Grid>
     );
 }

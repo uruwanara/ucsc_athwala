@@ -37,6 +37,11 @@ const useStyles = makeStyles({
         marginTop:5,
         marginBottom:20,
     },
+    topic:{
+        color:"#546e7a",
+        marginTop:25,
+        marginBottom:5,
+    },
     table: {
         minWidth: 650,
     },
@@ -84,7 +89,7 @@ const useStyles = makeStyles({
 });
 
 
-export default function MyjobOpp(){
+export default function MyjobOpp(prope){
     const classes = useStyles();
 
     const [mapset , SetMap] = useState([]);
@@ -102,6 +107,7 @@ export default function MyjobOpp(){
         setFilter(event.target.value);
 
     };
+    const lgId = new URLSearchParams(search).get("id");
 
     const handleClose = () => {
         setOpen(false);
@@ -114,28 +120,6 @@ export default function MyjobOpp(){
         fetchData();
     },[]);
 
-    useEffect(() => {
-        filterposts();
-    }, [filter]);
-
-    const filterposts = () => {
-        const datas={
-            "status":filter,
-            "utype":"STUDENT"
-        };
-        axios.post("http://localhost:5000/api/ars/userfilter",datas,{
-            // params: {
-            //     status:filter,
-            //     utype:"UNIONST"},
-        }).then((responses) => {
-            console.log("----------- Filter Data");
-            console.log(responses.data);
-            console.log("----------- Filter Map");
-            SetMap(responses.data);
-            console.log("----------- Filter");
-            console.log(filter);
-        })
-    }
 
     const searchSubmit = (searchtxt) => {
         Setsearch(searchtxt);
@@ -162,8 +146,8 @@ export default function MyjobOpp(){
     const searchbar = () => {
         return (
 
-            <Grid container spacing={2} >
-                <Grid item md={3}>
+            <Grid container spacing={1} >
+                <Grid item md={6}>
 
                     <TextField
                         id="outlined-basic"
@@ -191,21 +175,6 @@ export default function MyjobOpp(){
                     </Button>
 
                 </Grid>
-
-                <Grid item md={4}>
-
-                    <Button
-                        type="submit"
-                        size="large"
-                        color="success"
-                        className={classes.filterbutton1}
-                        startIcon={<PersonAddIcon sx={{ fontSize: 40 }}/>}
-                        //onClick={()=>{ history.push("/admin/addunion")}}
-                    >
-                        Add 3rd Year List
-                    </Button>
-
-                </Grid>
             </Grid>
 
 
@@ -215,7 +184,7 @@ export default function MyjobOpp(){
 
 
     const fetchData = () => {
-        axios.post("http://localhost:5000/api/ars/viewstd", {
+        axios.post("http://localhost:5000/api/lgs/viewUsers/"+prope.id, {
         }).then((response) => {
             console.log("----------- all Data");
             console.log(response.data);
@@ -227,14 +196,15 @@ export default function MyjobOpp(){
     const confirm = useConfirm();
     function Tablerow(props){
         let  name = props.fname+" "+props.lname;
-        let act="";
-        if(props.status=="active"){ act="Active"}else if(props.status=="notactive"){act='Pending'}else{act="Deactive"}
-
         const changeStatus=()=>{
-
-            if(props.status=="active"){
-                axios.post("http://localhost:5000/api/ars/deactive/"+ props.id, {
+            const det={
+                "lgId":prope.id,
+                "uId":props.id
+            }
+            console.log(det)
+                axios.post("http://localhost:5000/api/lgs/adduser",det,{
                 }).then((response) => {
+                    console.log("----------- Dvdvdvdv");
                     enqueueSnackbar(name+' : Acount Deactivated', {
                         variant: 'error',anchorOrigin: {
                             vertical: 'top',
@@ -243,22 +213,9 @@ export default function MyjobOpp(){
                     });
                     console.log("----------- Deactivate");
                     console.log(response.data)
-                    fetchData();
+                   // fetchData();
                 })
-            }else {
-                axios.post("http://localhost:5000/api/ars/active/" + props.id, {}).then((response) => {
-                    enqueueSnackbar(name + ' : Acount Activated', {
-                        variant: 'success', anchorOrigin: {
-                            vertical: 'top',
-                            horizontal: 'right',
-                        },
-                    });
-                    console.log("----------- Activte");
-                    console.log(response.data);
-                    fetchData();
-                })
-            }
-        }
+          }
 
 
 
@@ -266,18 +223,13 @@ export default function MyjobOpp(){
         if(props.isActive=="1"){ ver="Verified"}else{ver="Unverified"}
         return(
             <TableRow key={props.id}>
-                <TableCell component="th" scope="row"><PersonIcon color="secondary"/></TableCell>
-                <TableCell component="th" scope="row">{props.id}</TableCell>
-                <TableCell align="center">{name}</TableCell>
+                               <TableCell align="center">{name}</TableCell>
                 <TableCell align="center">{props.email}</TableCell>
-                <TableCell align="center">{props.contact}</TableCell>
-                <TableCell align="center">{ver}</TableCell>
-                <TableCell align="center">{act}</TableCell>
                 <TableCell align="center" >
                     <IconButton aria-label="delete"  onClick={changeStatus} value={props.id} >
-                        <FlipCameraAndroidIcon
+                        < PersonAddIcon
                             textDecoration="none"
-                            color="secondary"
+                            color="success"
                             // value={props.id}
                         />
                     </IconButton>
@@ -302,14 +254,11 @@ export default function MyjobOpp(){
     function Tablecloumn(){
         return (
             <TableRow>
-                <TableCell></TableCell>
-                <TableCell className={classes.TableHead}>User ID</TableCell>
+
+
                 <TableCell className={classes.TableHead} align="center">Full Name</TableCell>
                 <TableCell className={classes.TableHead} align="center">Email</TableCell>
-                <TableCell className={classes.TableHead} align="center">Contact</TableCell>
-                <TableCell className={classes.TableHead} align="center">Verified</TableCell>
-                <TableCell className={classes.TableHead} align="center">Status</TableCell>
-                <TableCell className={classes.TableHead} align="center">Change Status</TableCell>
+
             </TableRow>
 
         );
@@ -318,28 +267,10 @@ export default function MyjobOpp(){
     return(
         <div>
            <Grid container spacing={0} className={classes.topic}>
-                <Grid item md={4}><Typography variant="h5" className={classes.title}>Manage UCSC Students</Typography>
+                <Grid item md={4}><Typography variant="h6" className={classes.title}>Add Users</Typography>
                 </Grid>
-            <Grid item md={6}>{searchbar()}</Grid>
-            <Grid item md={2}>
-                <form autoComplete="off">
-                    <FormControl className={classes.formControl}>
-                        <Select
-                            labelId="demo-controlled-open-select-label"
-                            id="demo-controlled-open-select"
-                            open={open}
-                            onClose={handleClose}
-                            onOpen={handleOpen}
-                            value={filter}
-                            onChange={handleChange}
-                        >
-                            <MenuItem value='all'>All</MenuItem>
-                            <MenuItem value='active'>Actice</MenuItem>
-                            <MenuItem value='deactive'>Deactive</MenuItem>
-                        </Select>
-                    </FormControl>
-                </form>
-            </Grid>
+            <Grid item md={8}>{searchbar()}</Grid>
+
         </Grid>
 
             <TableContainer component={Paper}>
@@ -349,7 +280,7 @@ export default function MyjobOpp(){
                     </TableHead>
                     <TableBody>
                         {mapset.map((row) => (
-                            <Tablerow id={row.id} fname={row.fname} lname={row.lname} contact={row.contactnumber} email={row.email} isActive={row.isActive} status={row.status} />
+                            <Tablerow id={row.id} fname={row.fname} lname={row.lname}  email={row.email} />
                         ))}
                     </TableBody>
                 </Table>

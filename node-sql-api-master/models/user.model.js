@@ -29,7 +29,9 @@ module.exports = (sequelize, Sequelize) => {
         status: {
             type: Sequelize.STRING
         },
-
+        alumnistatus:{
+            type: Sequelize.STRING
+        },
         isActive: {
             type: Sequelize.BOOLEAN
         }

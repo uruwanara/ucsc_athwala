@@ -17,6 +17,6 @@ module.exports = lgRoutes => {
     router.post("/rmuser", lgs.rmuser);
     // Delete a user with username
     router.post("/delete", lgs.delete);
-
+    router.post("/viewusers/:id", lgs.viewUsers);
     lgRoutes.use('/api/lgs', router);
 };

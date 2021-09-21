@@ -126,15 +126,6 @@ export default function SignIn() {
             horizontal: 'right',
           },
         })}
-
-      else{
-        enqueueSnackbar("Wena awlak", {
-          variant: 'error',anchorOrigin: {
-            vertical: 'top',
-            horizontal: 'right',
-          },
-        })
-      }
     })
 
   }
