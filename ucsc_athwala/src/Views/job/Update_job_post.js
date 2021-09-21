@@ -158,7 +158,7 @@ export default function CreateJob() {
           <BorderColorIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Create Job Posts
+          Edit Job Posts
         </Typography>
 
         <form className={classes.form} onSubmit={handleSubmit}>
