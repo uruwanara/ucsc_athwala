@@ -29,6 +29,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { useSnackbar } from 'notistack';
 import { useConfirm } from "material-ui-confirm";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 const useStyles = makeStyles({
     title:{
@@ -258,7 +259,21 @@ export default function MyjobOpp(){
             }
         }
 
+        const changeStatus1=()=>{
+                axios.post("http://localhost:5000/api/ars/unionremove/"+ props.id, {
+                }).then((response) => {
+                    enqueueSnackbar(name+' : Removed From Union', {
+                        variant: 'error',anchorOrigin: {
+                            vertical: 'top',
+                            horizontal: 'right',
+                        },
+                    });
+                    console.log("----------- Deactivate");
+                    console.log(response.data)
+                    fetchData();
+                })
 
+        }
 
         let ver=""
         if(props.isActive=="1"){ ver="Verified"}else{ver="Unverified"}
@@ -275,12 +290,25 @@ export default function MyjobOpp(){
                     <IconButton aria-label="delete"  onClick={changeStatus} value={props.id} >
                         <FlipCameraAndroidIcon
                             textDecoration="none"
+                            color="success"
+                            // value={props.id}
+                        />
+                    </IconButton>
+
+                </TableCell>
+                <TableCell align="center" >
+                    <IconButton aria-label="delete"  onClick={changeStatus1} value={props.id} >
+                        <HighlightOffIcon
+                            textDecoration="none"
                             color="secondary"
                             // value={props.id}
                         />
                     </IconButton>
 
                 </TableCell>
+
+
+
                 {/*<TableCell align="center">*/}
                 {/*    <Link to ={editlink}>*/}
                 {/*        <EditIcon fontSize="medium"></EditIcon>*/}
@@ -308,6 +336,7 @@ export default function MyjobOpp(){
                 <TableCell className={classes.TableHead} align="center">Verified</TableCell>
                 <TableCell className={classes.TableHead} align="center">Status</TableCell>
                 <TableCell className={classes.TableHead} align="center">Change Status</TableCell>
+                <TableCell className={classes.TableHead} align="center">Remove Union</TableCell>
             </TableRow>
 
         );

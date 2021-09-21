@@ -26,7 +26,7 @@ exports.viewunion=(req, res, err) => {
 exports.viewcoun=(req, res, err) => {
     console.log(req.body)
     const userType="COUNSELLOR";
-    connection.query('SELECT id,fname,lname,email,isActive,status,userType FROM users where userType=? ',
+    connection.query('SELECT id,fname,lname,email,contactnumber,isActive,status,userType FROM users where userType=? ',
         [userType],
         (err, result) => {
             if (err) {
@@ -42,7 +42,7 @@ exports.viewcoun=(req, res, err) => {
 exports.viewstd=(req, res, err) => {
     console.log(req.body)
     const userType="STUDENT";
-    connection.query('SELECT id,fname,lname,email,isActive,status,userType FROM users where userType=? ',
+    connection.query('SELECT id,fname,lname,email,contactnumber,isActive,status,userType FROM users where userType=? ',
         [userType],
         (err, result) => {
             if (err) {
@@ -56,7 +56,7 @@ exports.viewstd=(req, res, err) => {
 exports.viewpstd=(req, res, err) => {
     console.log(req.body)
     const userType="ALUMNI";
-    connection.query('SELECT id,fname,lname,email,isActive,status,userType FROM users where userType=? ',
+    connection.query('SELECT id,fname,lname,email,contactnumber,isActive,status,userType FROM users where userType=? ',
         [userType],
         (err, result) => {
             if (err) {
@@ -278,9 +278,36 @@ exports.userfilter= (req, res) => {
 };
 
 
+exports.unionadd= (req, res) => {
+    const utype="UNIONST"
+    const id = req.params.id;
+    connection.query("UPDATE users SET userType=? where id=? ",
+        [utype,id],
+        (err, result,fields) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(result);
+            }
+        }
+    );
+};
 
 
-
+exports.unionremove= (req, res) => {
+    const utype="STUDENT"
+    const id = req.params.id;
+    connection.query("UPDATE users SET userType=? where id=? ",
+        [utype,id],
+        (err, result,fields) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(result);
+            }
+        }
+    );
+};
 
 
 

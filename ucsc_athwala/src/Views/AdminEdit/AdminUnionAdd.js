@@ -28,7 +28,7 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useSnackbar } from 'notistack';
 import { useConfirm } from "material-ui-confirm";
-
+import AddIcon from '@mui/icons-material/Add';
 
 const useStyles = makeStyles({
     title:{
@@ -199,10 +199,10 @@ export default function MyjobOpp(){
 
         const changeStatus=()=>{
 
-            if(props.status=="active"){
-                axios.post("http://localhost:5000/api/ars/deactive/"+ props.id, {
+
+                axios.post("http://localhost:5000/api/ars/unionadd/"+ props.id, {
                 }).then((response) => {
-                    enqueueSnackbar(name+' : Acount Deactivated', {
+                    enqueueSnackbar(name+' : Added to Union', {
                         variant: 'error',anchorOrigin: {
                             vertical: 'top',
                             horizontal: 'right',
@@ -212,19 +212,7 @@ export default function MyjobOpp(){
                     console.log(response.data)
                     fetchData();
                 })
-            }else {
-                axios.post("http://localhost:5000/api/ars/active/" + props.id, {}).then((response) => {
-                    enqueueSnackbar(name + ' : Acount Activated', {
-                        variant: 'success', anchorOrigin: {
-                            vertical: 'top',
-                            horizontal: 'right',
-                        },
-                    });
-                    console.log("----------- Activte");
-                    console.log(response.data);
-                    fetchData();
-                })
-            }
+
         }
 
 
@@ -238,10 +226,9 @@ export default function MyjobOpp(){
                 <TableCell align="center">{name}</TableCell>
                 <TableCell align="center">{props.email}</TableCell>
                 <TableCell align="center">{props.contact}</TableCell>
-                <TableCell align="center">{props.uType}</TableCell>
                 <TableCell align="center" >
                     <IconButton aria-label="delete"  onClick={changeStatus} value={props.id} >
-                        <FlipCameraAndroidIcon
+                        <AddIcon
                             textDecoration="none"
                             color="secondary"
                             // value={props.id}
@@ -273,9 +260,7 @@ export default function MyjobOpp(){
                 <TableCell className={classes.TableHead} align="center">Full Name</TableCell>
                 <TableCell className={classes.TableHead} align="center">Email</TableCell>
                 <TableCell className={classes.TableHead} align="center">Contact</TableCell>
-                <TableCell className={classes.TableHead} align="center">Verified</TableCell>
-                <TableCell className={classes.TableHead} align="center">Status</TableCell>
-                <TableCell className={classes.TableHead} align="center">Change Status</TableCell>
+                <TableCell className={classes.TableHead} align="center">Add to Union</TableCell>
             </TableRow>
 
         );
