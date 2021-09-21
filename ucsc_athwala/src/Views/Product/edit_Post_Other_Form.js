@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect,useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,7 +11,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
+import { useLocation } from 'react-router';
 import {Link, useHistory } from "react-router-dom";
+import {useSnackbar} from "notistack";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -42,36 +44,84 @@ export default function SignUp() {
 
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
-  const [model, setModel] = React.useState("");
-  const [brand, setBrand] = React.useState("");
+  const [information, setReason] = React.useState("");
   const [price, setPrice] = React.useState("");
   const [image, setImage] = React.useState("");
   const [show_or_hide_details, setacceptTerm] = React.useState(false);
+  const search = useLocation().search;
+  console.log(show_or_hide_details);
+
+  const product_id = new URLSearchParams(search).get("id");
+  const type = new URLSearchParams(search).get("type");
+
+  const {enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const userData=JSON.parse(localStorage.getItem("userData"));
+
+  useEffect(() => {
+    fetchDetails(product_id,type);
+    console.log(type);
+  },[]);
+
+  const fetchDetails = (product_id,type) => {
+    const description={
+        "product_id": product_id,
+    }
+    axios.post("http://localhost:5000/api/products/viewdetail",description,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+              }
+            }).then((response) => {
+                console.log(response.data);
+                setTitle(response.data[0].title);
+                setDescription(response.data[0].description);
+                setPrice(response.data[0].price);
+                setacceptTerm(response.data[0].show_or_hide_details);
+
+                const detail={
+                    "product_id": product_id,
+                    "p_type":"p_other",
+                }
+                axios.post("http://localhost:5000/api/products/viewdetailmore",detail,{
+                headers:{
+                    "access-control-allow-origin" : "*",
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+                }).then((response) => {
+                console.log(response.data);
+                setReason(response.data[0].information_product);
+                //setBrand(response.data[0].brand);
+                //setDate(response.data[0].before_date);
+            })
+
+
+    });
+}
+
 
   const handleSubmit = (event) => {
      event.preventDefault(); 
     console.log(`
         title: ${title}
         description: ${description}
-        model: ${model}
-        brand: ${brand}
+        information: ${information}
         price: ${price}
         image: ${image}
         show_or_hide_details: ${show_or_hide_details}
     `); 
+
     const userData=JSON.parse(localStorage.getItem("userData"));
     
     const postProduct={
-        "user_id":userData.id,
+        "product_id":product_id,
         "title": title,
         "description": description,
-        "model": model,
-        "brand": brand,
-        "image": image,
         "price": price,
+        "information": information,
+        "image": image,
         "show_or_hide_details": show_or_hide_details,
     }
-      axios.post("http://localhost:5000/api/products/sellDevice",postProduct,{
+      axios.post("http://localhost:5000/api/products/productOtherFormEdit",postProduct,{
           headers:{
               "access-control-allow-origin" : "*",
               "Content-type": "application/json; charset=UTF-8"
@@ -81,17 +131,29 @@ export default function SignUp() {
           if(response.data==='success'){
             setTitle("");
             setDescription("");
-            setModel("");
-            setBrand("");
+            setReason("");
             setPrice("");
             setImage("");
             setacceptTerm(!show_or_hide_details);
           }
 
+          enqueueSnackbar('Successfully Update', {
+            variant: 'success', anchorOrigin: {
+              vertical: 'bottom',
+              horizontal: 'center',
+            }
+          })
+
+          if(userData.userType === "STUDENT"){
+            history.push("/std/ViewMyProductDetailsOther?id="+product_id) ;
+          }
+          else if(userData.userType === "UNIONST" ){
+            history.push("/ustd/ViewMyProductDetailsOther?id="+product_id);
+          }
+
       }).catch((err)=>{
 
       })
-
   }
 
   return (
@@ -104,7 +166,7 @@ export default function SignUp() {
           <BorderColorIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-        Electronic devices Advertisement Form
+        Others Advertisement
         </Typography>
 
         <form className={classes.form} onSubmit={handleSubmit}>
@@ -129,8 +191,8 @@ export default function SignUp() {
               <TextField
                 variant="outlined"
                 required
-                multiline
                 fullWidth
+                multiline
                 id="description"
                 label="Description"
                 name="description"
@@ -140,31 +202,17 @@ export default function SignUp() {
               />
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
                 fullWidth
-                id="model"
-                label="Model of device"
-                name="model"
-                value={model}
-                autoComplete="model"
-                onChange={e => setModel(e.target.value)}
-              />
-            </Grid>
-
-            <Grid item xs={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="brand"
-                label="Brand name"
-                value={brand}
-                id="brand"
-                autoComplete="brand"
-                onChange={e => setBrand(e.target.value)}
+                id="information"
+                label="Information"
+                name="information"
+                value={information}
+                autoComplete="information"
+                onChange={e => setReason(e.target.value)}
               />
             </Grid>
 
@@ -178,8 +226,6 @@ export default function SignUp() {
                 id="price"
                 autoComplete="price"
                 label="Price"
-                //onFocus={(e) => (e.currentTarget.type = "price")}
-                //onBlur={(e) => (e.currentTarget.type = "text")}
                 onChange={e => setPrice(e.target.value)}
               />
             </Grid>
@@ -208,7 +254,6 @@ export default function SignUp() {
               />
             </Grid>
           </Grid>
-          
           <Button
             type="submit"
             fullWidth
@@ -216,9 +261,8 @@ export default function SignUp() {
             color="primary"
             className={classes.submit}
           >
-            Post
+           Update Post
           </Button>
-          
          
         </form>
       </div>

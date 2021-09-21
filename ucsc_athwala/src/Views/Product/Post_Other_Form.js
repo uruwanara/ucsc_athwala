@@ -124,6 +124,7 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                multiline
                 id="description"
                 label="Description"
                 name="description"

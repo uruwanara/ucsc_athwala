@@ -260,4 +260,107 @@ exports.deleteProduct = (req, res) => {
 );
 };
 
+exports.productDeviceEdit = (req,res) => {
+    const product_id = req.body.product_id;
+    const title = req.body.title;
+    const description = req.body.description;
+    const model = req.body.model;
+    const brand = req.body.brand;
+    const image = req.body.image;
+    //const post_date = req.body.date;
+    const price = req.body.price;
+    const show_or_hide_details = req.body.show_or_hide_details;
+    const p_type = req.body.type;
+    
+    connection.query( 'update product set product_type=?,price=?,description=?,title=?,show_or_hide_details=? where product_id=?;',
+    [p_type,price,description,title,show_or_hide_details,product_id],
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            connection.query( 'update p_device set brand=?,model=? where product_id=?;',
+            [model,brand,product_id],
+            (err, results,fields) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                   res.send("success");
+                }
+            }
+            );
+        }
+    }
+    );
+};
+
+
+exports.productNoteEdit = (req,res) => {
+
+    const product_id = req.body.product_id;
+    const title = req.body.title;
+    const description = req.body.description;
+    const year = req.body.year;
+    const subject = req.body.subject;
+    const lesson = req.body.lesson;
+    //const post_date = req.body.date;
+    const price = req.body.price;
+    const image = req.body.image;
+    const show_or_hide_details = req.body.show_or_hide_details;
+    const p_type = req.body.type;
+    
+    connection.query( 'update product set product_type=?,price=?,description=?,title=?,show_or_hide_details=? where product_id=?;',
+    [p_type,price,description,title,show_or_hide_details,product_id],
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            connection.query( 'update p_note set year=?,subject=?,lesson=? where product_id=?;',
+            [year,subject,lesson,product_id],
+            (err, results,fields) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                   res.send("success");
+                }
+            }
+            );
+        }
+    }
+    );
+};
+
+
+exports.productOtherEdit = (req,res) => {
+
+    const product_id = req.body.product_id;
+    const title = req.body.title;
+    const description = req.body.description;
+    const information = req.body.information;
+    //const post_date = req.body.date;
+    const price = req.body.price;
+    const image = req.body.image;
+    const show_or_hide_details = req.body.show_or_hide_details;
+    const p_type = req.body.type;
+    
+
+    connection.query( 'update product set product_type=?,price=?,description=?,title=?,show_or_hide_details=? where product_id=?;',
+    [p_type,price,description,title,show_or_hide_details,product_id],
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            connection.query( 'update p_other set information_product=? where product_id=?;',
+            [information,product_id],
+            (err, results,fields) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                   res.send("success");
+                }
+            }
+            );
+        }
+    }
+    );
+};
 
