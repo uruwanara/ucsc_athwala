@@ -2,7 +2,7 @@ const db = require("../models");
 const connection = require("../dbConnection")
 
 exports.viewAllProducts = (req, res,err) => {
-    connection.query('Select * from product where is_pay = 0 AND active = 1;',
+    connection.query('Select * from product where is_pay = 0 AND active = 1 AND block = 0;',
     (err, result,fields) => {
         if (err) {
             res.send(err);
@@ -16,7 +16,7 @@ exports.viewAllProducts = (req, res,err) => {
 exports.productDetails = (req,res,err) => {
     const product_id =req.body.product_id;
 
-    connection.query( 'Select * from product where product_id = ? AND active = 1;',
+    connection.query( 'Select * from product where product_id = ? AND active = 1 AND block = 0;',
     [product_id],
     (err, result,fields) => {
         if (err) {
@@ -364,4 +364,50 @@ exports.productOtherEdit = (req,res) => {
     }
     );
 };
+
+exports.blockProductPost = (req, res) => {
+    const product_id = req.body.product_id; 
+
+    
+
+            connection.query("update product set block = 1 where product_id = ?",
+            [product_id],
+            (err1, result,fields) => { 
+                if (err1) {
+                    res.send(err1);
+                } else {
+                    res.send("success");
+                }
+            }
+        );  
+
+};
+
+exports.haveBlockProductDetails = (req,res,err) => {
+    const product_id =req.body.product_id;
+
+    connection.query( 'Select * from product where product_id = ? AND active = 1;',
+    [product_id],
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    }
+
+    );
+};
+
+exports.viewAdminAllProducts = (req, res,err) => {
+    connection.query('Select * from product where is_pay = 0 AND active = 1;',
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    }
+);
+}; 
 

@@ -41,9 +41,18 @@ import DeviceCause from '../Donation/View_Devicecause';
 import MoneyCause from '../Donation/View_Moneycause';
 import OtherCause from '../Donation/View_Othercause';
 import AdminDonationDetails from '../Donation/ViewDonationDetailsAdmin';
-import UnionEdit from '../AdminUnionEdit/AdminUnionEdit';
+import UnionEdit from '../AdminEdit/AdminUnionEdit';
 import AdminViewQA from '../QA/Admin_QA';
 import AskQA from '../QA/Ask_Q_And_A';
+import StdEdit from '../AdminEdit/AdminStudentEdit';
+import PstdEdit from '../AdminEdit/AdminPstdEdit';
+import CounEdit from '../AdminEdit/AdminCounsellorEdit';
+
+import ViewAdminProductEle from '../Product/Admin_Product_Page_View';
+import ViewAdminProductDetails from '../Product/Admin_View_Product_Details'; 
+import ViewAdminProductDetailsNote from '../Product/Admin_View_Product_Details_note';
+import ViewAdminProductDetailsOther from '../Product/Admin_View_Product_Details_other';
+import UnionAdd from '../AdminEdit/AdminUnionAdd';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -362,14 +371,38 @@ function Navbar() {
             </Route>
             <Route path="/admin/unionedit" exact>
             <UnionEdit/>
-            </Route>  
+            </Route>
+            <Route path="/admin/stdedit" exact>
+              <StdEdit/>
+            </Route>
+            <Route path="/admin/pstdedit" exact>
+              <PstdEdit/>
+            </Route>
+            <Route path="/admin/counedit" exact>
+              <CounEdit/>
+            </Route>
+            <Route path="/admin/addunion" exact>
+              <UnionAdd/>
+            </Route>
             <Route path="/admin/AdminViewQA" exact>
               <AdminViewQA />
             </Route>
             <Route path="/admin/AskQA" exact>
               <AskQA/>
             </Route>
-
+            <Route path="/admin/ViewAdminProductEle" exact>
+              <ViewAdminProductEle/>
+            </Route>
+            <Route path="/admin/ViewAdminProductDetails" exact>
+              < ViewAdminProductDetails/>
+            </Route>
+            <Route path="/admin/ViewAdminProductDetailsNote" exact>
+              <ViewAdminProductDetailsNote/>
+            </Route>
+            <Route path="/admin/ViewAdminProductDetailsOther" exact>
+              <ViewAdminProductDetailsOther/>
+            </Route>
+    
           </Switch>
           
         </main> }

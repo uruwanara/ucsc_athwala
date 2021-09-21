@@ -23,6 +23,13 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import PersonIcon from '@mui/icons-material/Person';
+import FlipCameraAndroidIcon from '@mui/icons-material/FlipCameraAndroid';
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
+import { useSnackbar } from 'notistack';
+import { useConfirm } from "material-ui-confirm";
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 const useStyles = makeStyles({
     title:{
@@ -58,6 +65,22 @@ const useStyles = makeStyles({
             border: "1px solid #757de8",
         },
     },
+    filterbutton1: {
+        backgroundColor: "#7FBF3F",
+        color: "#FFFFFF",
+        textTransform: "none",
+        paddingTop:5,
+        paddingLeft:10,
+        paddingRight:10,
+        border:"none",
+        borderRadius:10,
+        marginBottom:20,
+        "&:hover": {
+            color: "#FFFFFF",
+            backgroundColor: "#757de8",
+            border: "1px solid #757de8",
+        },
+    },
 });
 
 
@@ -72,7 +95,7 @@ export default function MyjobOpp(){
 
 
     const userData = JSON.parse(localStorage.getItem("userData"));
-
+    const {enqueueSnackbar, closeSnackbar } = useSnackbar();
 
     const handleChange = (event) => {
         event.preventDefault();
@@ -87,20 +110,29 @@ export default function MyjobOpp(){
     const handleOpen = () => {
         setOpen(true);
     };
-
+    useEffect(() => {
+        fetchData();
+    },[]);
 
     useEffect(() => {
         filterposts();
-        fetchData();
     }, [filter]);
 
     const filterposts = () => {
-
-        axios.get("http://localhost:5000/api/donations/filter", {
-            params: {type:filter},
-        }).then((response) => {
-            console.log(response.data);
-            SetMap(response.data);
+        const datas={
+            "status":filter,
+            "utype":"UNIONST"
+        };
+        axios.post("http://localhost:5000/api/ars/userfilter",datas,{
+            // params: {
+            //     status:filter,
+            //     utype:"UNIONST"},
+        }).then((responses) => {
+            console.log("----------- Filter Data");
+            console.log(responses.data);
+            console.log("----------- Filter Map");
+            SetMap(responses.data);
+            console.log("----------- Filter");
             console.log(filter);
         })
     }
@@ -111,14 +143,17 @@ export default function MyjobOpp(){
 
         const searchtext={
             "search": search,
+            "utype":"UNIONST"
         }
-        axios.post("http://localhost:5000/api/ars/viewuinon",searchtext,{
+        axios.post("http://localhost:5000/api/ars/usersearch",searchtext,{
             headers:{
                 "access-control-allow-origin" : "*",
                 "Content-type": "application/json; charset=UTF-8"
             }
         }).then((response) => {
+            console.log("-----------Search Data");
             console.log(response.data);
+            console.log("----------- Search Map");
             SetMap(response.data);
         });
     };
@@ -126,8 +161,8 @@ export default function MyjobOpp(){
     const searchbar = () => {
         return (
 
-            <Grid container spacing={1} >
-                <Grid item md={4}>
+            <Grid container spacing={2} >
+                <Grid item md={3}>
 
                     <TextField
                         id="outlined-basic"
@@ -155,23 +190,91 @@ export default function MyjobOpp(){
                     </Button>
 
                 </Grid>
+
+                <Grid item md={4}>
+
+                    <Button
+                        type="submit"
+                        size="large"
+                        color="success"
+                        className={classes.filterbutton1}
+                        startIcon={<PersonAddIcon sx={{ fontSize: 40 }}/>}
+                        onClick={()=>{ history.push("/admin/addunion")}}
+                    >
+                        Add Union Members
+                    </Button>
+
+                </Grid>
             </Grid>
+
 
         );
     }
 
+
+
     const fetchData = () => {
-        axios.get("http://localhost:5000/api/ars/viewunion", {
-            params: {id:userData.id},
+        axios.post("http://localhost:5000/api/ars/viewunion", {
         }).then((response) => {
+            console.log("----------- all Data");
             console.log(response.data);
+            console.log("----------- all Data Map");
             SetMap(response.data);
 
         })
     };
-
+    const confirm = useConfirm();
     function Tablerow(props){
         let  name = props.fname+" "+props.lname;
+        let act="";
+        if(props.status=="active"){ act="Active"}else if(props.status=="notactive"){act='Pending'}else{act="Deactive"}
+
+        const changeStatus=()=>{
+
+            if(props.status=="active"){
+                axios.post("http://localhost:5000/api/ars/deactive/"+ props.id, {
+                }).then((response) => {
+                    enqueueSnackbar(name+' : Acount Deactivated', {
+                        variant: 'error',anchorOrigin: {
+                            vertical: 'top',
+                            horizontal: 'right',
+                        },
+                    });
+                    console.log("----------- Deactivate");
+                    console.log(response.data)
+                    fetchData();
+                })
+            }else {
+                axios.post("http://localhost:5000/api/ars/active/" + props.id, {}).then((response) => {
+                    enqueueSnackbar(name + ' : Acount Activated', {
+                        variant: 'success', anchorOrigin: {
+                            vertical: 'top',
+                            horizontal: 'right',
+                        },
+                    });
+                    console.log("----------- Activte");
+                    console.log(response.data);
+                    fetchData();
+                })
+            }
+        }
+
+        const changeStatus1=()=>{
+                axios.post("http://localhost:5000/api/ars/unionremove/"+ props.id, {
+                }).then((response) => {
+                    enqueueSnackbar(name+' : Removed From Union', {
+                        variant: 'error',anchorOrigin: {
+                            vertical: 'top',
+                            horizontal: 'right',
+                        },
+                    });
+                    console.log("----------- Deactivate");
+                    console.log(response.data)
+                    fetchData();
+                })
+
+        }
+
         let ver=""
         if(props.isActive=="1"){ ver="Verified"}else{ver="Unverified"}
         return(
@@ -182,11 +285,30 @@ export default function MyjobOpp(){
                 <TableCell align="center">{props.email}</TableCell>
                 <TableCell align="center">{props.contact}</TableCell>
                 <TableCell align="center">{ver}</TableCell>
-                <TableCell align="center">{props.status}</TableCell>
-                {/*    <Link to ={viewlink}>*/}
-                {/*        <PageviewIcon fontSize="medium"></PageviewIcon>*/}
-                {/*    </Link>*/}
-                {/*</TableCell>*/}
+                <TableCell align="center">{act}</TableCell>
+                <TableCell align="center" >
+                    <IconButton aria-label="delete"  onClick={changeStatus} value={props.id} >
+                        <FlipCameraAndroidIcon
+                            textDecoration="none"
+                            color="success"
+                            // value={props.id}
+                        />
+                    </IconButton>
+
+                </TableCell>
+                <TableCell align="center" >
+                    <IconButton aria-label="delete"  onClick={changeStatus1} value={props.id} >
+                        <HighlightOffIcon
+                            textDecoration="none"
+                            color="secondary"
+                            // value={props.id}
+                        />
+                    </IconButton>
+
+                </TableCell>
+
+
+
                 {/*<TableCell align="center">*/}
                 {/*    <Link to ={editlink}>*/}
                 {/*        <EditIcon fontSize="medium"></EditIcon>*/}
@@ -214,19 +336,18 @@ export default function MyjobOpp(){
                 <TableCell className={classes.TableHead} align="center">Verified</TableCell>
                 <TableCell className={classes.TableHead} align="center">Status</TableCell>
                 <TableCell className={classes.TableHead} align="center">Change Status</TableCell>
+                <TableCell className={classes.TableHead} align="center">Remove Union</TableCell>
             </TableRow>
 
         );
-
-
     }
 
     return(
         <div>
            <Grid container spacing={0} className={classes.topic}>
-                <Grid item md={4}><Typography variant="h5" className={classes.title}>Manage Union Members</Typography>
+                <Grid item md={3}><Typography variant="h5" className={classes.title}>Manage Union Members</Typography>
                 </Grid>
-            <Grid item md={6}>{searchbar()}</Grid>
+            <Grid item md={7}>{searchbar()}</Grid>
             <Grid item md={2}>
                 <form autoComplete="off">
                     <FormControl className={classes.formControl}>

@@ -198,7 +198,7 @@ export default function View_Clothcause(){
           editlink = "/ustd/EditDeviceForm?id="+product_id+"&type="+p_type;
         }
 
-    
+ 
   const tabContactDetailsButton =() =>{
     if(show_or_hide_details === 0 ){
       return(

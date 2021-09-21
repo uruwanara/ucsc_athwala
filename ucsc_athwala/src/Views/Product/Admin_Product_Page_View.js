@@ -183,7 +183,7 @@ export default function ProductViews(){
 
   const fetchData = async () => {
         
-    const response = await fetch(`http://localhost:5000/api/products/viewall`, {
+    const response = await fetch(`http://localhost:5000/api/products/viewAdminAllProducts`, {
       method: "GET",
     });
     const result = await response.json();
