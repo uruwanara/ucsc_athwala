@@ -19,6 +19,10 @@ module.exports = adminRoutes => {
     router.post("/active/:id", ars.activeuser);
     router.post("/deactive/:id", ars.deactiveuser);
 
+    router.post("/unionadd/:id", ars.unionadd);
+    router.post("/unionremove/:id", ars.unionremove);
+
+
     router.post("/usersearch", ars.usersearch);
     router.post("/userfilter", ars.userfilter);
     adminRoutes.use('/api/ars', router);

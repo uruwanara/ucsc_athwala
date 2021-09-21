@@ -136,7 +136,7 @@ export default function Cases(){
     }
 
     const tabButton =() =>{
-        if(userData.userType === "STUDENT" ||userData.userType === "UNIONST" ){
+        if(userData.userType === "STUDENT" ||userData.userType === "UNIONST" ||userData.userType === "ALUMNI" ){
             return(
                 <>
                     <MyDonationButton />

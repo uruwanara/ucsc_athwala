@@ -11,7 +11,7 @@ const connection = require("../dbConnection")
 exports.viewunion=(req, res, err) => {
     console.log(req.body)
     const userType="UNIONST";
-    connection.query('SELECT id,fname,lname,email,contactnumber,isActive,status FROM users where userType=? ',
+    connection.query('SELECT id,fname,lname,email,contactnumber,isActive,status,userType FROM users where userType=? ',
         [userType],
         (err, result) => {
             if (err) {
@@ -26,7 +26,7 @@ exports.viewunion=(req, res, err) => {
 exports.viewcoun=(req, res, err) => {
     console.log(req.body)
     const userType="COUNSELLOR";
-    connection.query('SELECT id,fname,lname,email,isActive,status FROM users where userType=? ',
+    connection.query('SELECT id,fname,lname,email,contactnumber,isActive,status,userType FROM users where userType=? ',
         [userType],
         (err, result) => {
             if (err) {
@@ -42,7 +42,7 @@ exports.viewcoun=(req, res, err) => {
 exports.viewstd=(req, res, err) => {
     console.log(req.body)
     const userType="STUDENT";
-    connection.query('SELECT id,fname,lname,email,isActive,status FROM users where userType=? ',
+    connection.query('SELECT id,fname,lname,email,contactnumber,isActive,status,userType FROM users where userType=? ',
         [userType],
         (err, result) => {
             if (err) {
@@ -56,7 +56,7 @@ exports.viewstd=(req, res, err) => {
 exports.viewpstd=(req, res, err) => {
     console.log(req.body)
     const userType="ALUMNI";
-    connection.query('SELECT id,fname,lname,email,isActive,status FROM users where userType=? ',
+    connection.query('SELECT id,fname,lname,email,contactnumber,isActive,status,userType FROM users where userType=? ',
         [userType],
         (err, result) => {
             if (err) {
@@ -235,7 +235,7 @@ exports.deactivepstd=(req, res, err) => {
 exports.usersearch = (req, res) => {
     const message = req.body.search;
     const utype= req.body.utype;
-    connection.query("Select id,fname,lname,email,contactnumber,isActive,status FROM users where (id "+"like'%"+ message+"%'"+" or fname "+"like'%"+ message+"%'"+" or lname "+"like'%"+ message+"%'"+" or email "+"like'%"+ message+"%'"+" or contactnumber "+"like'%"+ message+"%') AND userType=?;",
+    connection.query("Select id,fname,lname,email,contactnumber,isActive,status,userType FROM users where (id "+"like'%"+ message+"%'"+" or fname "+"like'%"+ message+"%'"+" or lname "+"like'%"+ message+"%'"+" or email "+"like'%"+ message+"%'"+" or contactnumber "+"like'%"+ message+"%') AND userType=?;",
         [utype],
         (err, result,fields) => {
             if (err) {
@@ -251,7 +251,7 @@ exports.userfilter= (req, res) => {
     const message = req.body.status;
     const utype=req.body.utype;
     if(message=="all"){
-        connection.query("Select id,fname,lname,email,contactnumber,isActive,status FROM users where userType=?;",
+        connection.query("Select id,fname,lname,email,contactnumber,isActive,status,userType FROM users where userType=?;",
             [utype],
             (err, result,fields) => {
                 if (err) {
@@ -263,7 +263,7 @@ exports.userfilter= (req, res) => {
             }
         );
     }else {
-        connection.query("Select id,fname,lname,email,contactnumber,isActive,status FROM users where status=? AND userType=?;",
+        connection.query("Select id,fname,lname,email,contactnumber,isActive,status,userType FROM users where status=? AND userType=?;",
             [message,utype],
             (err, result,fields) => {
                 if (err) {
@@ -278,9 +278,36 @@ exports.userfilter= (req, res) => {
 };
 
 
+exports.unionadd= (req, res) => {
+    const utype="UNIONST"
+    const id = req.params.id;
+    connection.query("UPDATE users SET userType=? where id=? ",
+        [utype,id],
+        (err, result,fields) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(result);
+            }
+        }
+    );
+};
 
 
-
+exports.unionremove= (req, res) => {
+    const utype="STUDENT"
+    const id = req.params.id;
+    connection.query("UPDATE users SET userType=? where id=? ",
+        [utype,id],
+        (err, result,fields) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(result);
+            }
+        }
+    );
+};
 
 
 
