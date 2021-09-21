@@ -49,7 +49,7 @@ exports.answerQuestion = (req, res) => {
 
 exports.viewallQuestion = (req, res) => {
 
-    connection.query('select * from question_helpstack',
+    connection.query('select * from question_helpstack ORDER BY q_id DESC',
     (err, result,fields) => {
         if (err) {
             res.send(err);
@@ -79,7 +79,7 @@ exports.viewAnswer = (req, res) => {
     const questionID = req.query.questionid;
 
     //check the query 
-    connection.query('SELECT answers_helpstack.ans_id, answers_helpstack.answer, answers_helpstack.q_id , users.fname , users.lname FROM answers_helpstack INNER JOIN users ON answers_helpstack.answer_by = users.id WHERE answers_helpstack.q_id = ? ORDER BY answers_helpstack.ans_id DESC',
+    connection.query('SELECT answers_helpstack.ans_id, answers_helpstack.answer, answers_helpstack.q_id , users.fname , users.lname FROM answers_helpstack INNER JOIN users ON answers_helpstack.answer_by = users.id WHERE answers_helpstack.q_id = ? ORDER BY answers_helpstack.ans_id ASC',
     [questionID],
     (err, result,fields) => {
         if (err) {

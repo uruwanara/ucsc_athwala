@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
 import {useSnackbar} from "notistack";
 import axios from 'axios';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles ({
     title:{
@@ -44,6 +45,7 @@ const useStyles = makeStyles ({
 
 export default function AskQuestion(){
     const classes = useStyles();
+    const history = useHistory();
 
     const [title, setTitle] = React.useState("");
   const [body, setBody] = React.useState("");
@@ -77,13 +79,43 @@ export default function AskQuestion(){
                   vertical: 'bottom',
                   horizontal: 'center',
                 }
-              })
+              });
+
+              if(userData.userType === "STUDENT"){
+                history.push("/std/helpstack/default") ;
+              }
+              else if(userData.userType === "UNIONST" ){
+                history.push("/ustd/helpstack/default");
+              }
+              else if(userData.userType == "ALUMNI"){
+                  history.push("/pst/helpstack/default");
+              }
           }
 
       }).catch((err)=>{
 
       })
  }
+
+    const backlink = () => {
+        var link;
+    if(userData.userType == "STUDENT"){
+      link = "/std/helpstack/default";
+    }
+    else if(userData.userType == "UNIONST"){
+      link = "/ustd/helpstack/default";
+    }
+    else if(userData.userType == "ALUMNI"){
+      link = "/pst/helpstack/default";
+    }
+    return(
+            <Grid item md={6}>
+                <Link to ={link}>
+                <Typography variant="h5" className={classes.backlink}>Back to Top Questions</Typography>
+                </Link>
+            </Grid>
+        );
+    }
 
     return(
         <div>
@@ -113,6 +145,7 @@ export default function AskQuestion(){
             <Grid item md={10}>
             <TextField
                 autoComplete="body"
+                required
                 name="body"
                 variant="outlined"
                 id="body"
@@ -120,7 +153,7 @@ export default function AskQuestion(){
                 value={body}
                 fullWidth
                 multiline
-                rows ={10}
+                rows ={15}
                 autoFocus
                 onChange={e => setBody(e.target.value)}
                 
@@ -145,11 +178,7 @@ export default function AskQuestion(){
         </form>
 
         <Grid container spacing ={3}>
-            <Grid item md={6}>
-                <Link to ='/std/helpstack/default'>
-                <Typography variant="h5" className={classes.backlink}>Back to Top Questions</Typography>
-                </Link>
-            </Grid>
+            {backlink()}
         </Grid>
 
         </div>
