@@ -103,6 +103,11 @@ export default function View_Clothcause(){
     const {enqueueSnackbar, closeSnackbar } = useSnackbar();
     const [donateamount, setDonateamount] = React.useState();
 
+    const [fname, Setfname] = useState();
+    const [lname, Setlname] = useState();
+    const [email, Setemail] = useState();
+    const [contact , SetContact] = useState();
+
     useEffect(() => {
         
         fetchDescription(donationid);
@@ -124,6 +129,26 @@ export default function View_Clothcause(){
                 setDescription(response.data[0].description);
                 setTitle(response.data[0].title);
                 setRequestStudentid(response.data[0].student_id);
+
+                
+                if(response.data[0].student_id){
+                    const details={
+                        "student": response.data[0].student_id,
+                      }
+            
+                      axios.post("http://localhost:5000/api/donations/studentdetatils",details,{
+                        headers:{
+                            "access-control-allow-origin" : "*",
+                            "Content-type": "application/json; charset=UTF-8"
+                          }
+                        }).then((respon) => {
+                                console.log(respon.data[0]);
+                                Setfname(respon.data[0].fname);
+                                Setlname(respon.data[0].lname);
+                                Setemail(respon.data[0].email);
+                                SetContact(respon.data[0].contactnumber);
+                        });
+                }
             })
     };
 
@@ -257,7 +282,11 @@ export default function View_Clothcause(){
                         userType={userData.userType}
                         handleSubmit={handleSubmit}  
                         handleClickOpen={handleClickOpen} 
-                        handleClose={handleClose}/>
+                        handleClose={handleClose}
+                        fname={fname}
+                        lname={lname}
+                        email={email}
+                        contact={contact}/>
 
                         <Grid item xs={6}>
                         <Card className={classes.card}>

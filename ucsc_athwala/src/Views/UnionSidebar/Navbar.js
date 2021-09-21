@@ -61,7 +61,9 @@ import CreateLG from'../LearningGroups/createLg'
 import ViewLG from '../LearningGroups/viewLgs'
 import ConCoun from '../ContactCouncellors/lgPage'
 import ContactCoun from '../ContactCouncellors/viewLgs'
-import Helpstack from '../HelpStack/HelpStack'
+import Helpstack from '../HelpStack/HelpStack';
+import JobOpertunity from '../job/jobPage';
+import ViewJob from '../job/Viewjobs';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -447,6 +449,13 @@ function UStdNavside() {
 
             <Route path="/ustd/helpstack">
             <Helpstack />
+            </Route>
+
+            <Route path="/ustd/JobOpertunity" exact>
+            <JobOpertunity />
+            </Route>
+            <Route path="/ustd/jobview" exact>
+              <ViewJob />
             </Route>
 
           </Switch>

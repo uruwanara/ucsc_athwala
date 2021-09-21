@@ -54,7 +54,7 @@ const useStyles = makeStyles({
 });
 
 
-export default function My_donation(){
+export default function JobList(){
     const classes = useStyles();
     const history = useHistory();
     const [mapset , SetMap] = useState([]);
@@ -78,8 +78,25 @@ export default function My_donation(){
     function Tablerow(props){
         const jobid = props.id;
 
-            if(userData.userType == "STUDENT" || userData.userType == "UNIONST" ){
+            if(userData.userType == "STUDENT"){
                 var viewlink = "/std/jobview?id="+jobid;
+                return(
+                    <TableRow key={props.id}>
+                            <TableCell component="th" scope="row"><WorkIcon color="secondary"/></TableCell> 
+                        <TableCell component="th" scope="row">{props.title}</TableCell>
+                        <TableCell align="center">{props.company}</TableCell>
+                        <TableCell align="center">{props.postAt}</TableCell>
+                        <TableCell align="center">
+                            <Link to ={viewlink}>
+                                <PageviewIcon fontSize="large"></PageviewIcon>
+                            </Link>
+                        </TableCell>
+                    </TableRow> 
+                    
+                );              
+            }
+            else if(userData.userType == "UNIONST" ){
+                var viewlink = "/ustd/jobview?id="+jobid;
                 return(
                     <TableRow key={props.id}>
                             <TableCell component="th" scope="row"><WorkIcon color="secondary"/></TableCell> 

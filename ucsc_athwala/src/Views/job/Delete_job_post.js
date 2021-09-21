@@ -127,7 +127,7 @@ export default function DeleteJob() {
           <BorderColorIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Create Job Posts
+          Delete Job Posts
         </Typography>
 
         <form className={classes.form} onSubmit={handleSubmit}>

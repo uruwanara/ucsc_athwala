@@ -225,6 +225,34 @@ export function NoteDoneeDetails(props){
     }
     }
 
+    const studentdetails = () => {
+        if(props.userType === "UNIONST" ){
+            return(
+                <>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student first Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.fname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student Last Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.lname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Email Address</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.email}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Contact Number</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.contact}</Typography></div>                         
+                </div>
+                </>
+            )
+        }
+        else{
+            <></>
+        }
+    }
+
    
     return(
         <Grid item xs={6}>
@@ -247,6 +275,7 @@ export function NoteDoneeDetails(props){
                         <div><Typography variant="subtitle2" className={classes.labelname}>Before around</Typography></div>
                         <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.date}</Typography></div>  
                     </div> 
+                    {studentdetails()}
                     <div className={classes.receive}>
                     {receivebutton()}
                     </div>
@@ -387,9 +416,35 @@ export function ClothDoneeDetails(props){
             )
         }
     
-        }    
+    }    
 
-
+    const studentdetails = () => {
+        if(props.userType === "UNIONST" ){
+            return(
+                <>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student first Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.fname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student Last Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.lname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Email Address</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.email}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Contact Number</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.contact}</Typography></div>                         
+                </div>
+                </>
+            )
+        }
+        else{
+            <></>
+        }
+    }
     return(
         <Grid item xs={6}>
             <Card className={classes.card}>
@@ -411,6 +466,7 @@ export function ClothDoneeDetails(props){
                         <div><Typography variant="subtitle2" className={classes.labelname}>Before around</Typography></div>
                         <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.date}</Typography></div>  
                     </div>
+                    {studentdetails()}
                     <div className={classes.receive}>
                     {receivebutton()}
                     </div>               
@@ -550,7 +606,35 @@ export function DeviceDoneeDetails(props){
             )
         }
     
-        }    
+    } 
+    
+    const studentdetails = () => {
+        if(props.userType === "UNIONST" ){
+            return(
+                <>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student first Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.fname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student Last Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.lname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Email Address</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.email}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Contact Number</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.contact}</Typography></div>                         
+                </div>
+                </>
+            )
+        }
+        else{
+            <></>
+        }
+    }
 
     return(
         <Grid item xs={6}>
@@ -569,6 +653,7 @@ export function DeviceDoneeDetails(props){
                         <div><Typography variant="subtitle2" className={classes.labelname}>Before around</Typography></div>
                         <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.date}</Typography></div>  
                     </div>
+                    {studentdetails()}
                     <div className={classes.receive}>
                     {receivebutton()}
                     </div>                
@@ -708,7 +793,35 @@ export function MoneyDoneeDetails(props){
             )
         }
     
-        }    
+    } 
+    
+    const studentdetails = () => {
+        if(props.userType === "UNIONST" ){
+            return(
+                <>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student first Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.fname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student Last Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.lname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Email Address</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.email}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Contact Number</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.contact}</Typography></div>                         
+                </div>
+                </>
+            )
+        }
+        else{
+            <></>
+        }
+    }
 
     return(
         <Grid item xs={6}>
@@ -727,6 +840,7 @@ export function MoneyDoneeDetails(props){
                         <div><Typography variant="subtitle2" className={classes.labelname}>Before around</Typography></div>
                         <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.date}</Typography></div>  
                     </div>
+                    {studentdetails()}
                     <div className={classes.receive}>
                     {receivebutton()}
                     </div>                
@@ -865,7 +979,35 @@ export function OtherDoneeDetails(props){
             )
         }
     
+    }
+
+    const studentdetails = () => {
+        if(props.userType === "UNIONST" ){
+            return(
+                <>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student first Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.fname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Student Last Name</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.lname}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Email Address</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.email}</Typography></div>                         
+                </div>
+                <div style={{display:"flex"}}>
+                  <div><Typography variant="subtitle2" className={classes.labelname}>Contact Number</Typography></div>
+                  <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.contact}</Typography></div>                         
+                </div>
+                </>
+            )
         }
+        else{
+            <></>
+        }
+    }
 
     return(
         <Grid item xs={6}>
@@ -880,6 +1022,7 @@ export function OtherDoneeDetails(props){
                         <div><Typography variant="subtitle2" className={classes.labelname}>Before around</Typography></div>
                         <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.date}</Typography></div>  
                     </div> 
+                    {studentdetails()}
                     <div className={classes.receive}>
                     {receivebutton()}
                     </div>               
