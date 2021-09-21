@@ -105,10 +105,13 @@ h3{
 #button{
   position: absolute;
   right: 100px;
-  bottom: 96px; 
+  bottom: 23px; 
 }
  .field{
   height: 250px;
   /* position: inherit;
   right: 5px; */
 } 
+.aucbox{
+  width: 50px;
+}

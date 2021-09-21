@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect, useState} from 'react';
 import './Donation.css';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,7 +9,11 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import  Button from '@material-ui/core/Button';
-import {NoteDoneeDetails,Description} from './aucmore';
+import {Link, useHistory } from "react-router-dom";
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import {Description} from './details';
+import {NoteDoneeDetails} from './detailsmore';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,6 +45,16 @@ const useStyles = makeStyles((theme) => ({
         border:"none",
         boxShadow:"none"
       },
+      card1:{
+        backgroundColor:"white",
+        border:"none",
+        boxShadow:"none",
+        position: "relative",
+        bottom:"10px",
+        left: "30px",
+        width:"550px"
+      },
+
 
       labelname: {
           marginLeft:40,
@@ -66,16 +80,47 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export default function View_Notecause(){
-   const classes = useStyles();
-   const [title, setTitle] = React.useState("");
-   const handleSubmit = (event) => {
-    event.preventDefault(); 
-   console.log(`
-       title: ${title}
-   `); 
- }
+    const { auction_id } = useParams();
+    const history = useHistory();
+  const classes = useStyles();
+  const [mapset, SetMap] = useState([]);
+
+  const [bid, setBid] = React.useState("");
+
+  const handleSubmit = (event) => {
+     event.preventDefault(); 
+    console.log(`
+    bid: ${bid}
+    
+    
+    `);
+     const userData=JSON.parse(localStorage.getItem("userData"));
+    
+    const requestNote={
+        // "studentID":userData.id,
+        "bid": bid,
+    }
+      axios.post("http://localhost:5000/api/auction/updatestatus",requestNote,{
+        params: {id:auction_id},
+          headers:{
+              "access-control-allow-origin" : "*",
+              "Content-type": "application/json; charset=UTF-8"
+              
+          }
+      }).then((response)=>{
+          console.log(response.data);
+          if(response.data==='success'){
+            setBid("");
+            history.push("/std/viewauc")
+        
+          }
+
+      }).catch((err)=>{
+        
+      }) 
+  }
     return(
-        <div>
+        <div><form className={classes.form} onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
                             <Card className={classes.card}>
@@ -95,11 +140,11 @@ export default function View_Notecause(){
                         <NoteDoneeDetails />
                         
                         <Grid item xs={6}>
-                        <Card className={classes.card}>
+                        <Card className={classes.card1}>
                                 <CardContent>
                                     <div>
                                         <Typography variant="h5" className={classes.title}>
-                                        Current Highest Bid : 60,000/=
+                                        You can stop or Change Time 
                                     </Typography>
                                     <Typography variant="subtitle2" className={classes.title}>
                                         {/* Your bid value should greater than highest bid */}
@@ -125,13 +170,15 @@ export default function View_Notecause(){
                                        Or You can cotact donee to donate
                                     </Typography> */}
                                     <Button
-                                        variant="contained"
-                                        color="primary"
-                                        component="label"
-                                        className={classes.contactbtn}
-                                        >
-                                        Stop Auction 
-                                    </Button>
+            type="submit"
+            // fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            >
+            Stop Auction
+            
+          </Button>
                                     <div id='button'>
                                     <Button
                                         variant="contained"
@@ -148,6 +195,7 @@ export default function View_Notecause(){
                             
                         </Grid>
                     </Grid>
+                    </form>
         </div>
     );
 }
