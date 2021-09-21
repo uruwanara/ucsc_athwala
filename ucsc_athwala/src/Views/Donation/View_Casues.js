@@ -175,15 +175,57 @@ export function NoteDoneeDetails(props){
                 </div>
             )
     }
-    else {
+    else if(props.status === 'Not Received'){
+        if(props.userType === "UNIONST" || props.userType === "ADMIN" ){
+            return(
+                <div>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        component="label"
+                        className={classes.contactbtn}
+                        onClick={handleClickOpen}
+                        >
+                        Deactive
+                    </Button>
+
+                    <Dialog
+                        open={props.open}
+                        onClose={handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description">Please confirm you want to deactivate this donation request</DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleClose} color="primary">
+                                No
+                            </Button>
+                            <Button onClick={handleSubmit} color="primary" autoFocus>
+                                Confirm
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                </div>
+            )
+        }
+        else{
+            return(
+                <></>
+            );
+        }
+    }
+
+    else{
         return(
             <></>
-        )
+        ); 
+    }
     }
 
-    }
-    
-
+   
     return(
         <Grid item xs={6}>
             <Card className={classes.card}>
@@ -207,8 +249,7 @@ export function NoteDoneeDetails(props){
                     </div> 
                     <div className={classes.receive}>
                     {receivebutton()}
-                    </div> 
-
+                    </div>
                                     
                 </CardContent> 
                  
@@ -297,6 +338,48 @@ export function ClothDoneeDetails(props){
                         </Button>
                     </div>
                 )
+        }
+        else if(props.status === 'Not Received'){
+            if(props.userType === "UNIONST" || props.userType === "ADMIN" ){
+                return(
+                    <div>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            component="label"
+                            className={classes.contactbtn}
+                            onClick={handleClickOpen}
+                            >
+                            Deactive
+                        </Button>
+    
+                        <Dialog
+                            open={props.open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">Please confirm you want to deactivate this donation request</DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose} color="primary">
+                                    No
+                                </Button>
+                                <Button onClick={handleSubmit} color="primary" autoFocus>
+                                    Confirm
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                )
+            }
+            else{
+                return(
+                    <></>
+                );
+            }
         }
         else {
             return(
@@ -419,6 +502,48 @@ export function DeviceDoneeDetails(props){
                     </div>
                 )
         }
+        else if(props.status === 'Not Received'){
+            if(props.userType === "UNIONST" || props.userType === "ADMIN" ){
+                return(
+                    <div>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            component="label"
+                            className={classes.contactbtn}
+                            onClick={handleClickOpen}
+                            >
+                            Deactive
+                        </Button>
+    
+                        <Dialog
+                            open={props.open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">Please confirm you want to deactivate this donation request</DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose} color="primary">
+                                    No
+                                </Button>
+                                <Button onClick={handleSubmit} color="primary" autoFocus>
+                                    Confirm
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                )
+            }
+            else{
+                return(
+                    <></>
+                );
+            }
+        }
         else {
             return(
                 <></>
@@ -535,6 +660,48 @@ export function MoneyDoneeDetails(props){
                     </div>
                 )
         }
+        else if(props.status === 'Not Received'){
+            if(props.userType === "UNIONST" || props.userType === "ADMIN" ){
+                return(
+                    <div>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            component="label"
+                            className={classes.contactbtn}
+                            onClick={handleClickOpen}
+                            >
+                            Deactive
+                        </Button>
+    
+                        <Dialog
+                            open={props.open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">Please confirm you want to deactivate this donation request</DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose} color="primary">
+                                    No
+                                </Button>
+                                <Button onClick={handleSubmit} color="primary" autoFocus>
+                                    Confirm
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                )
+            }
+            else{
+                return(
+                    <></>
+                );
+            }
+        }
         else {
             return(
                 <></>
@@ -649,6 +816,48 @@ export function OtherDoneeDetails(props){
                         </Button>
                     </div>
                 )
+        }
+        else if(props.status === 'Not Received'){
+            if(props.userType === "UNIONST" || props.userType === "ADMIN" ){
+                return(
+                    <div>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            component="label"
+                            className={classes.contactbtn}
+                            onClick={handleClickOpen}
+                            >
+                            Deactive
+                        </Button>
+    
+                        <Dialog
+                            open={props.open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">Please confirm you want to deactivate this donation request</DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose} color="primary">
+                                    No
+                                </Button>
+                                <Button onClick={handleSubmit} color="primary" autoFocus>
+                                    Confirm
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                )
+            }
+            else{
+                return(
+                    <></>
+                );
+            }
         }
         else {
             return(
