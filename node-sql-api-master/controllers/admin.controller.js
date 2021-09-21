@@ -8,6 +8,274 @@ const connection = require("../dbConnection")
 // in donation table if status = 2 then donation is Received
 
 
+exports.viewunion=(req, res, err) => {
+    console.log(req.body)
+    const userType="UNIONST";
+    connection.query('SELECT id,fname,lname,email,contactnumber,isActive,status FROM users where userType=? ',
+        [userType],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            }
+        }
+    );
+};
+
+exports.viewcoun=(req, res, err) => {
+    console.log(req.body)
+    const userType="COUNSELLOR";
+    connection.query('SELECT id,fname,lname,email,isActive,status FROM users where userType=? ',
+        [userType],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            }
+        }
+    );
+};
+
+
+exports.viewstd=(req, res, err) => {
+    console.log(req.body)
+    const userType="STUDENT";
+    connection.query('SELECT id,fname,lname,email,isActive,status FROM users where userType=? ',
+        [userType],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            }
+        }
+    );
+};
+exports.viewpstd=(req, res, err) => {
+    console.log(req.body)
+    const userType="ALUMNI";
+    connection.query('SELECT id,fname,lname,email,isActive,status FROM users where userType=? ',
+        [userType],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            }
+        }
+    );
+};
+
+exports.activeuser=(req, res, err) => {
+    console.log(req.body)
+    const id = req.params.id;
+    const stats="active"
+    connection.query('UPDATE users SET status=? WHERE id=? ',
+        [stats,id,],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            }
+        }
+    );
+};
+exports.deactiveuser=(req, res, err) => {
+    console.log(req.body)
+    const id = req.params.id;
+    const stats="deactive"
+    connection.query('UPDATE users SET status=? WHERE id=? ',
+        [stats,id,],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            }
+        }
+    );
+};
+
+
+
+
+
+
+
+
+exports.activeunion=(req, res, err) => {
+    console.log(req.body)
+    const id = req.params.id;
+    const stats="active"
+    connection.query('UPDATE users SET status=? WHERE id=? ',
+        [stats,id,],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            }
+        }
+    );
+};
+exports.deactiveunion=(req, res, err) => {
+    console.log(req.body)
+    const id = req.params.id;
+    const stats="deactive"
+    connection.query('UPDATE users SET status=? WHERE id=? ',
+        [stats,id,],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            }
+        }
+    );
+};
+exports.activecoun=(req, res, err) => {
+    console.log(req.body)
+    const id = req.params.id;
+    const stats="active"
+    connection.query('UPDATE users SET status=? WHERE id=? ',
+        [stats,id,],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            }
+        }
+    );
+};
+exports.deactivecoun=(req, res, err) => {
+    console.log(req.body)
+    const id = req.params.id;
+    const stats="deactive"
+    connection.query('UPDATE users SET status=? WHERE id=? ',
+        [stats,id,],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            }
+        }
+    );
+};
+exports.activestd=(req, res, err) => {
+    console.log(req.body)
+    const id = req.params.id;
+    const stats="active"
+    connection.query('UPDATE users SET status=? WHERE id=? ',
+        [stats,id,],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            }
+        }
+    );
+};
+exports.deactivestd=(req, res, err) => {
+    console.log(req.body)
+    const id = req.params.id;
+    const stats="deactive"
+    connection.query('UPDATE users SET status=? WHERE id=? ',
+        [stats,id,],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            }
+        }
+    );
+};
+exports.activepstd=(req, res, err) => {
+    console.log(req.body)
+    const id = req.params.id;
+    const stats="active"
+    connection.query('UPDATE users SET status=? WHERE id=? ',
+        [stats,id,],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            }
+        }
+    );
+};
+exports.deactivepstd=(req, res, err) => {
+    console.log(req.body)
+    const id = req.params.id;
+    const stats="deactive"
+    connection.query('UPDATE users SET status=? WHERE id=? ',
+        [stats,id,],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            }
+        }
+    );
+};
+
+
+
+
+
+
+exports.usersearch = (req, res) => {
+    const message = req.body.search;
+    const utype= req.body.utype;
+    connection.query("Select id,fname,lname,email,contactnumber,isActive,status FROM users where (id "+"like'%"+ message+"%'"+" or fname "+"like'%"+ message+"%'"+" or lname "+"like'%"+ message+"%'"+" or email "+"like'%"+ message+"%'"+" or contactnumber "+"like'%"+ message+"%') AND userType=?;",
+        [utype],
+        (err, result,fields) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(result);
+            }
+        }
+    );
+};
+
+exports.userfilter= (req, res) => {
+    const message = req.body.status;
+    const utype=req.body.utype;
+    if(message=="All"){
+        connection.query("Select id,fname,lname,email,contactnumber,isActive,status FROM users where userType=?;",
+            [utype],
+            (err, result,fields) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                    console.log("1111111111111")
+                    res.send(result);
+                }
+            }
+        );
+    }else {
+        connection.query("Select id,fname,lname,email,contactnumber,isActive,status FROM users where status=? AND userType=?;",
+            [message,utype],
+            (err, result,fields) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(result);
+                }
+            }
+        );
+    }
+
+};
 
 
 
@@ -20,8 +288,7 @@ const connection = require("../dbConnection")
 
 
 
-
-
+//---------------------------------------
 
 
 

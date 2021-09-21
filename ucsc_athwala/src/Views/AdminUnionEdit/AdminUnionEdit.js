@@ -17,6 +17,12 @@ import {useHistory } from "react-router-dom";
 import { Button } from '@material-ui/core';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import axios from 'axios';
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import PersonIcon from '@mui/icons-material/Person';
 
 const useStyles = makeStyles({
     title:{
@@ -60,14 +66,102 @@ export default function MyjobOpp(){
     const history = useHistory();
     const [mapset , SetMap] = useState([]);
 
+    const [filter, setFilter] = React.useState('all');
+    const [open, setOpen] = React.useState(false);
+    const [search,Setsearch] = useState("");
+
+
     const userData = JSON.parse(localStorage.getItem("userData"));
 
-    useEffect(() =>{
+
+    const handleChange = (event) => {
+        event.preventDefault();
+        setFilter(event.target.value);
+
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+
+    useEffect(() => {
+        filterposts();
         fetchData();
-    },[]);
+    }, [filter]);
+
+    const filterposts = () => {
+
+        axios.get("http://localhost:5000/api/donations/filter", {
+            params: {type:filter},
+        }).then((response) => {
+            console.log(response.data);
+            SetMap(response.data);
+            console.log(filter);
+        })
+    }
+
+    const searchSubmit = (searchtxt) => {
+        Setsearch(searchtxt);
+        console.log(search);
+
+        const searchtext={
+            "search": search,
+        }
+        axios.post("http://localhost:5000/api/ars/viewuinon",searchtext,{
+            headers:{
+                "access-control-allow-origin" : "*",
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then((response) => {
+            console.log(response.data);
+            SetMap(response.data);
+        });
+    };
+
+    const searchbar = () => {
+        return (
+
+            <Grid container spacing={1} >
+                <Grid item md={4}>
+
+                    <TextField
+                        id="outlined-basic"
+                        variant="outlined"
+                        size="small"
+                        className={classes.textfilter}
+                        value={search}
+                        placeholder="Search.."
+                        onChange={e => Setsearch(e.target.value)}
+                    />
+
+                </Grid>
+                <Grid item md={2}>
+
+                    <Button
+                        type="submit"
+                        size="large"
+                        className={classes.filterbutton}
+                        startIcon={<PageviewIcon sx={{ fontSize: 40 }}/>}
+                        onClick={() => {
+                            searchSubmit(search);
+                        }}
+                    >
+                        search
+                    </Button>
+
+                </Grid>
+            </Grid>
+
+        );
+    }
 
     const fetchData = () => {
-        axios.get("http://localhost:5000/api/jobposts/viewmypost", {
+        axios.get("http://localhost:5000/api/ars/viewunion", {
             params: {id:userData.id},
         }).then((response) => {
             console.log(response.data);
@@ -77,32 +171,32 @@ export default function MyjobOpp(){
     };
 
     function Tablerow(props){
-        const jobid = props.id;
-
-        const viewlink = "/pst/jobview?id="+jobid;
-        const editlink = "/pst/jobedit?id="+jobid;
-        const deletelink = "/pst/jobdelete?id="+jobid;
+        let  name = props.fname+" "+props.lname;
+        let ver=""
+        if(props.isActive=="1"){ ver="Verified"}else{ver="Unverified"}
         return(
             <TableRow key={props.id}>
-                <TableCell component="th" scope="row"><WorkIcon color="secondary"/></TableCell>
-                <TableCell component="th" scope="row">{props.title}</TableCell>
-                <TableCell align="center">{props.company}</TableCell>
-                <TableCell align="center">{props.postAt}</TableCell>
-                <TableCell align="center">
-                    <Link to ={viewlink}>
-                        <PageviewIcon fontSize="medium"></PageviewIcon>
-                    </Link>
-                </TableCell>
-                <TableCell align="center">
-                    <Link to ={editlink}>
-                        <EditIcon fontSize="medium"></EditIcon>
-                    </Link>
-                </TableCell>
-                <TableCell align="center">
-                    <Link to ={deletelink}>
-                        <DeleteOutlineIcon fontSize="medium"></DeleteOutlineIcon>
-                    </Link>
-                </TableCell>
+                <TableCell component="th" scope="row"><PersonIcon color="secondary"/></TableCell>
+                <TableCell component="th" scope="row">{props.id}</TableCell>
+                <TableCell align="center">{name}</TableCell>
+                <TableCell align="center">{props.email}</TableCell>
+                <TableCell align="center">{props.contact}</TableCell>
+                <TableCell align="center">{ver}</TableCell>
+                <TableCell align="center">{props.status}</TableCell>
+                {/*    <Link to ={viewlink}>*/}
+                {/*        <PageviewIcon fontSize="medium"></PageviewIcon>*/}
+                {/*    </Link>*/}
+                {/*</TableCell>*/}
+                {/*<TableCell align="center">*/}
+                {/*    <Link to ={editlink}>*/}
+                {/*        <EditIcon fontSize="medium"></EditIcon>*/}
+                {/*    </Link>*/}
+                {/*</TableCell>*/}
+                {/*<TableCell align="center">*/}
+                {/*    <Link to ={deletelink}>*/}
+                {/*        <DeleteOutlineIcon fontSize="medium"></DeleteOutlineIcon>*/}
+                {/*    </Link>*/}
+                {/*</TableCell>*/}
             </TableRow>
 
         );
@@ -113,12 +207,13 @@ export default function MyjobOpp(){
         return (
             <TableRow>
                 <TableCell></TableCell>
-                <TableCell className={classes.TableHead}>Title</TableCell>
-                <TableCell className={classes.TableHead} align="center">Company name</TableCell>
-                <TableCell className={classes.TableHead} align="center">Posted date</TableCell>
-                <TableCell className={classes.TableHead} align="center">View</TableCell>
-                <TableCell className={classes.TableHead} align="center">Update</TableCell>
-                <TableCell className={classes.TableHead} align="center">Delete</TableCell>
+                <TableCell className={classes.TableHead}>User ID</TableCell>
+                <TableCell className={classes.TableHead} align="center">Full Name</TableCell>
+                <TableCell className={classes.TableHead} align="center">Email</TableCell>
+                <TableCell className={classes.TableHead} align="center">Contact</TableCell>
+                <TableCell className={classes.TableHead} align="center">Verified</TableCell>
+                <TableCell className={classes.TableHead} align="center">Status</TableCell>
+                <TableCell className={classes.TableHead} align="center">Change Status</TableCell>
             </TableRow>
 
         );
@@ -128,17 +223,32 @@ export default function MyjobOpp(){
 
     return(
         <div>
-            <div><Typography variant="h5" className={classes.title}>Job Oppertunity</Typography></div>
+           <Grid container spacing={0} className={classes.topic}>
+                <Grid item md={4}><Typography variant="h5" className={classes.title}>Manage Union Members</Typography>
+                </Grid>
+            <Grid item md={6}>{searchbar()}</Grid>
+            <Grid item md={2}>
+                <form autoComplete="off">
+                    <FormControl className={classes.formControl}>
+                        <Select
+                            labelId="demo-controlled-open-select-label"
+                            id="demo-controlled-open-select"
+                            open={open}
+                            onClose={handleClose}
+                            onOpen={handleOpen}
+                            value={filter}
+                            onChange={handleChange}
+                        >
+                            <MenuItem value='all'>All</MenuItem>
+                            <MenuItem value='active'>Actice</MenuItem>
+                            <MenuItem value='deactive'>Deactive</MenuItem>
+                            <MenuItem value='notactive'>Pending</MenuItem>
 
-            <div>
-                <Button size="large"
-                        className={classes.filterbutton}
-                        onClick={()=>{ history.push("/pst/JobOpertunity")}}
-                        startIcon={<FavoriteBorderIcon />}
-                >
-                    All Job Posts
-                </Button>
-            </div>
+                        </Select>
+                    </FormControl>
+                </form>
+            </Grid>
+        </Grid>
 
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="a dense table">
@@ -147,7 +257,7 @@ export default function MyjobOpp(){
                     </TableHead>
                     <TableBody>
                         {mapset.map((row) => (
-                            <Tablerow id={row.jobpost_id} title={row.title} company={row.company} postAt = {row.post_at}/>
+                            <Tablerow id={row.id} fname={row.fname} lname={row.lname} contact={row.contactnumber} email={row.email} isActive={row.isActive} status={row.status} />
                         ))}
                     </TableBody>
                 </Table>

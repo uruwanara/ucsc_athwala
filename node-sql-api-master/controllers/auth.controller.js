@@ -38,11 +38,11 @@ exports.login = (req, res) => {
 
                 });
                 return;
-            }if(response.userType=="COUNSELLOR"){
-                if(response.status=="active"){
+            }if(response.userType=="COUNSELLOR"||response.userType=="ALUMNI"){
+                if(response.status=="notactive"){
                     res.status(406).send({
                         status: "notaproved",
-                        message: "Counsellor Not Approved"
+                        message: "Admin Not Approved"
 
                     });
                     return;

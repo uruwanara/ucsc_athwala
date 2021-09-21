@@ -106,7 +106,7 @@ export default function SignIn() {
         },
       })}
       if(err.message==="Request failed with status code 406"){
-        enqueueSnackbar("Please Contact Admin for the Counsellor-Approval", {
+        enqueueSnackbar("Please Contact Admin for the Account-Approval", {
           variant: 'error',anchorOrigin: {
             vertical: 'top',
             horizontal: 'right',

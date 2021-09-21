@@ -44,6 +44,7 @@ require("./routes/jobpost.routes")(app);
 require("./routes/faq.routes")(app);
 require("./routes/lg.routes")(app);
 require("./routes/coun.routes")(app);
+require("./routes/admin.routes")(app);
 
 //Uthpala saved me
 // set port, listen for requests
