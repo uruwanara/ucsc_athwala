@@ -224,7 +224,7 @@ function EditFundraising() {
     const [expiredate, setExpireDate] = React.useState();
     const [expiretime, setExpireTime] = React.useState();
     
-   
+    // const userData=JSON.parse(localStorage.getItem("userData"));
     const search = useLocation().search;
 
     useEffect(() => {
@@ -258,6 +258,43 @@ function EditFundraising() {
         })
     };
 
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    const handleSubmit = (event) => {
+        event.preventDefault(); 
+        
+    const postFundraising={
+        "create_by":userData.username,
+        "fundname": fundname,
+        "funddescription": funddescription,
+        "image": fundimage,
+        "goalamount": goalamount,
+        "startamount": startamount,
+        "expiredate": expiredate,
+        "expiretime":expiretime,
+    }
+    axios.post("http://localhost:5000/api/fundraising/editfund",postFundraising,{
+        headers:{
+            "access-control-allow-origin" : "*",
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    }).then((response)=>{
+        console.log(response.data);
+        if(response.data==='success'){
+            setFundname("");
+            setDescription("");
+            setGoalamount("");
+            setStartamount("");
+            setExpireDate("");
+            setImage("");
+            setExpireTime("");
+        }
+
+    }).catch((err)=>{
+
+    })
+    }
+
+
     return (
 
         <React.Fragment>
@@ -265,7 +302,7 @@ function EditFundraising() {
             <Divider />
             <Box component="br" />
             
-            <Link to="/ustd/funddashboard/available">
+            <Link to="/ustd/funddashboard">
                 <Button variant="contained" className={classes.filterbutton} startIcon={<ArrowBackIosIcon />}>
                     Back to Fundrasing dashboard
                 </Button>
@@ -277,7 +314,7 @@ function EditFundraising() {
 
             <Box borderColor="primary.main" {...defaultProps}>
                 <Box m={1}>
-                    <form className={classes.root}>
+                    <form className={classes.root} onSubmit={handleSubmit}>
                         <Card>
                             <Box component="div" m={1}>
                                 <Grid m={1} container justify="space-between" spacing={3}>
@@ -291,6 +328,7 @@ function EditFundraising() {
                                             multiline
                                             variant="outlined"
                                             fullWidth
+                                            onChange={e => setFundname(e.target.value)}
                                         // dataType="date"
                                         />
                                     </Grid>
@@ -307,6 +345,8 @@ function EditFundraising() {
                                             placeholder="Why/Who organise etc.."
                                             variant="outlined"
                                             fullWidth
+                                            onChange={e => setDescription(e.target.value)}
+
 
                                         />
                                     </Grid>
@@ -314,7 +354,7 @@ function EditFundraising() {
                                     <Grid item xs={12} sm={3}>
                                         {/* <label for="input_image"><h6 style="color:black;">Upload an Image</h6></label> */}
                                         <Typography variant="subtitle1" color="primary">Upload an image
-                                            <input id="image" type="file"  value={fundimage} type="image" name="image" />
+                                            <input id="image" type="file"  value={fundimage} type="image" name="fundimage" />
                                         </Typography>
                                     </Grid>
 
@@ -334,6 +374,7 @@ function EditFundraising() {
                                             variant="outlined"
                                             placeholder="Rs 10000"
                                             fullWidth
+                                            onChange={e => setGoalamount(e.target.value)}
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
@@ -353,6 +394,7 @@ function EditFundraising() {
                                             variant="outlined"
                                             placeholder="Rs 100"
                                             fullWidth
+                                            onChange={e => setStartamount(e.target.value)}
 
                                         />
                                     </Grid>
@@ -371,6 +413,7 @@ function EditFundraising() {
                                             // }}
                                             variant="outlined"
                                             fullWidth
+                                            onChange={e => setExpireDate(e.target.value)}
                                         />
 
                                     </Grid>
@@ -392,6 +435,7 @@ function EditFundraising() {
                                             }}
                                             variant="outlined"
                                             fullWidth
+                                            onChange={e => setExpireTime(e.target.value)}
                                         />
                                     </Grid>
 

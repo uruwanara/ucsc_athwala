@@ -224,7 +224,6 @@ function AddFundraising() {
         "funddescription": funddescription,
         "image": image,
         "goalamount": goalamount,
-        "image": image,
         "startamount": startamount,
         "expiredate": expiredate,
         "expiretime":expiretime,
@@ -250,18 +249,7 @@ function AddFundraising() {
 
     })
     }
-    // const handleChange = (event) => {
-    //     setValues({
-    //         ...values,
-    //         [event.target.name]: event.target.value,
-    //     });
-    // };
-
-    //set date_value
-    // const [date_value, setDate_Value] = React.useState(null);
-
-    //set time_value
-    // const [time_value, setTime_Value] = React.useState(null);
+    
     const defaultProps = {
         bgcolor: 'background.paper',
         m: 1,
