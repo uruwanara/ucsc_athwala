@@ -10,6 +10,13 @@ import  Button from '@material-ui/core/Button';
 import {ContactDetails,Description} from './Product_View_D_note';
 import axios from "axios";
 import { useLocation } from 'react-router';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import {useHistory } from "react-router-dom";
+import {useSnackbar} from "notistack";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -79,6 +86,9 @@ export default function View_Clothcause(){
     const [year,setYear] = useState();
     const [subject,setSubject] = useState();
     const search = useLocation().search;
+    const history = useHistory();
+    const [open, setOpen] = React.useState(false);
+    const {enqueueSnackbar, closeSnackbar } = useSnackbar();
 
     const product_id = new URLSearchParams(search).get("id");
     const userData=JSON.parse(localStorage.getItem("userData"));
@@ -134,6 +144,49 @@ export default function View_Clothcause(){
                 
             })
     };
+
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+    const handleConfirm = (event) => {
+      setOpen(false);     
+      event.preventDefault(); 
+  
+    const deletedonation={
+        "product_id": product_id,
+    }
+    axios.post("http://localhost:5000/api/products/deleteProduct",deletedonation,{
+        headers:{
+            "access-control-allow-origin" : "*",
+            "Content-type": "application/json; charset=UTF-8"
+          }
+        }).then((response) => {
+          if(response.data === 'success'){
+            console.log("hkjkdf");
+            console.log(product_id);
+            enqueueSnackbar('Successfully Deleted', {
+              variant: 'success', anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'center',
+              }
+            })
+
+            if(userData.userType === "STUDENT"){
+              history.push("/std/ViewMyProduct") ;
+            }
+            else if(userData.userType === "UNIONST" ){
+              history.push("/ustd/ViewMyProduct");
+            }
+
+          }
+    });
+      
+    }
 
     
   const tabContactDetailsButton =() =>{
@@ -202,10 +255,30 @@ export default function View_Clothcause(){
                                         color="secondary"
                                         component="label"
                                         //size="large"
+                                        onClick={handleClickOpen}
                                         className={classes.contactbtn}
                                         >
                                         Delete Advertisement
                                     </Button>
+                                    <Dialog
+                                        open={open}
+                                        onClose={handleClose}
+                                        aria-labelledby="alert-dialog-title"
+                                        aria-describedby="alert-dialog-description"
+                                    >
+                                        <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                                        <DialogContent>
+                                            <DialogContentText id="alert-dialog-description">Please confirm you receive the donation.</DialogContentText>
+                                        </DialogContent>
+                                        <DialogActions>
+                                            <Button onClick={handleClose} color="primary">
+                                                No
+                                            </Button>
+                                            <Button onClick={handleConfirm} color="primary" autoFocus>
+                                                Confirm
+                                            </Button>
+                                        </DialogActions>
+                                    </Dialog>
                                     </Grid>
                                     
                                     </Grid>

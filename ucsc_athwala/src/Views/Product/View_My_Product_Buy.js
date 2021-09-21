@@ -117,8 +117,8 @@ export default function My_product_Buy(){
         //   const handleConfirm1 = value => console.log(value);
         
           const handleConfirm = (event) => {
-            
-            setProductId(event.target.value);
+            console.log(props.id);
+            //setProductId(event.target.value);
             setOpen(false);     
             event.preventDefault(); 
             
@@ -126,7 +126,7 @@ export default function My_product_Buy(){
           const deletedonation={
             "product_id": props.id,
           }
-          axios.post("http://localhost:5000/api/products/deleteProduct",deletedonation,{
+          axios.post("http://localhost:5000/api/products/deleteProductHistory",deletedonation,{
               headers:{
                   "access-control-allow-origin" : "*",
                   "Content-type": "application/json; charset=UTF-8"
@@ -134,7 +134,7 @@ export default function My_product_Buy(){
               }).then((response) => {
                   if(response.data === 'success'){
                     console.log("hkjkdf");
-                    console.log(product_id);
+                    //console.log(product_id);
                     enqueueSnackbar('Successfully Deleted', {
                       variant: 'success', anchorOrigin: {
                         vertical: 'bottom',
@@ -161,7 +161,7 @@ export default function My_product_Buy(){
                 
                         <TableCell component="th" scope="row" align="center"><HistoryIcon color="primary" /></TableCell> 
                         <TableCell align="center" className={classes.Tablerow}>{props.description}</TableCell>
-                        <TableCell align="center" className={classes.Tablerow}>{props.type}</TableCell>
+                        <TableCell align="center" className={classes.Tablerow}>{props.id}</TableCell>
                         <TableCell align="center" className={classes.Tablerow}>{props.price}</TableCell>
                         <TableCell align="center" className={classes.Tablerow}>{props.postdate}</TableCell>
                         <TableCell align="center" className={classes.Tablerow}>{props.pay_data}</TableCell>
