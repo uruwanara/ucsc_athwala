@@ -40,7 +40,7 @@ export default function QAform(){
     const userData=JSON.parse(localStorage.getItem("userData"));
 
     const askbutton = () => {
-        if(userData.userType == "STUDENT" || userData.userType == "UNIONST" ){
+        if(userData.userType == "STUDENT"){
             return(
                 <div>
                             <Link to = '/std/helpstack/askQuestion'>
@@ -53,9 +53,29 @@ export default function QAform(){
                 </div>
             )
         }
+        if(userData.userType == "UNIONST" ){
+            return(
+                <div>
+                            <Link to = '/ustd/helpstack/askQuestion'>
+                            <Button size="large" 
+                            className={classes.filterbutton} 
+                            >
+                            Ask Question
+                            </Button>
+                            </Link>
+                </div>
+            )
+        }
         else if (userData.userType == "ALUMNI"){
             return(
                 <div>
+                            <Link to = '/pst/helpstack/askQuestion'>
+                            <Button size="large" 
+                            className={classes.filterbutton} 
+                            >
+                            Ask Question
+                            </Button>
+                            </Link>
                 </div>
             )
 

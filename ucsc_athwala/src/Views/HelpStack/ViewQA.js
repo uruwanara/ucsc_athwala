@@ -12,8 +12,7 @@ import axios from "axios";
 const useStyles = makeStyles({
     title:{
         color:"#546e7a",
-        marginTop:40,
-        fontSize:20,
+        fontSize:16,
         fontWeight:'normal'
       },
     votebutton:{
@@ -45,7 +44,6 @@ const useStyles = makeStyles({
     },
     answerby:{
         color:"#546e7a",
-        marginTop:5,
         fontSize:14,
         fontWeight:'normal',
         fontFamily:"Poppins, sans-serif",
@@ -116,6 +114,26 @@ console.log("hriii");
 
     }
 
+    const backlink = () => {
+        var link;
+    if(userData.userType == "STUDENT"){
+      link = "/std/helpstack/default";
+    }
+    else if(userData.userType == "UNIONST"){
+      link = "/ustd/helpstack/default";
+    }
+    else if(userData.userType == "ALUMNI"){
+      link = "/pst/helpstack/default";
+    }
+    return(
+            <Grid item md={12}>
+                <Link to ={link}>
+                <Typography variant="h5" className={classes.backlink}>Back to Top Questions</Typography>
+                </Link>
+            </Grid>
+        );
+    }
+
     return(
         <div>
             <Grid container md={12} spacing={4}>
@@ -132,7 +150,6 @@ console.log("hriii");
                             className={classes.txtfield}
                             fullWidth
                             multiline
-                            rows ={5}
                             inputProps={
                                 { readOnly: true, }
                             }                         
@@ -165,11 +182,7 @@ console.log("hriii");
                     ))}
                     
                     
-                    <Grid item md={12}>
-                        <Link to ='/std/helpstack/default'>
-                        <Typography variant="h5" className={classes.backlink}>Back to Top Questions</Typography>
-                        </Link>
-                    </Grid>
+                    {backlink()}
 
                     <Grid item md={12}>
                         <Divider />
@@ -193,7 +206,7 @@ console.log("hriii");
                 value={answer}
                 fullWidth
                 multiline
-                rows ={10}
+                rows={10}
                 autoFocus
                 onChange={e => setMyanswer(e.target.value)}
                 

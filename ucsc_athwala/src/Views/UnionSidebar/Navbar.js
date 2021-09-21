@@ -61,7 +61,7 @@ import CreateLG from'../LearningGroups/createLg'
 import ViewLG from '../LearningGroups/viewLgs'
 import ConCoun from '../ContactCouncellors/lgPage'
 import ContactCoun from '../ContactCouncellors/viewLgs'
-
+import Helpstack from '../HelpStack/HelpStack'
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -443,6 +443,10 @@ function UStdNavside() {
 
             <Route path="/ustd/editrequest" exact>
             <Editform />
+            </Route>
+
+            <Route path="/ustd/helpstack">
+            <Helpstack />
             </Route>
 
           </Switch>

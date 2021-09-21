@@ -63,7 +63,7 @@ export default function NestedList() {
 
   const [questionset, SetQuestion] = useState([]);
   const [search, Setsearch] = useState("");
-
+  const userData=JSON.parse(localStorage.getItem("userData"));
   useEffect(() =>{
     fetchData();
   },[]);
@@ -129,7 +129,16 @@ export default function NestedList() {
 
   function Questionlist(props){
     const id = props.id;
-    var link = "/std/helpstack/viewQuestionAnswer?id="+id;
+    var link;
+    if(userData.userType == "STUDENT"){
+      link = "/std/helpstack/viewQuestionAnswer?id="+id;
+    }
+    else if(userData.userType == "UNIONST"){
+      link = "/ustd/helpstack/viewQuestionAnswer?id="+id;
+    }
+    else if(userData.userType == "ALUMNI"){
+      link = "/pst/helpstack/viewQuestionAnswer?id="+id;
+    }
     return(     
       <List >
       <ListItem className={classes.link}>

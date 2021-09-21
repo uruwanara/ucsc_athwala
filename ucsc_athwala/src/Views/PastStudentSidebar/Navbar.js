@@ -45,6 +45,7 @@ import DeviceCause from '../Donation/View_Devicecause';
 import MoneyCause from '../Donation/View_Moneycause';
 import OtherCause from '../Donation/View_Othercause';
 import MyDonation from '../Donation/My_donation';
+import Helpstack from '../HelpStack/HelpStack';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -373,6 +374,10 @@ function Navbar() {
           <Route path="/pst/myDonation" exact>
             <MyDonation />
           </Route>
+
+          <Route path="/pst/helpstack">
+            <Helpstack />
+            </Route>
           
         </Switch>
       </main>
