@@ -6,6 +6,7 @@ import {useHistory } from "react-router-dom";
 import ShopIcon from '@material-ui/icons/Shop';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import HistoryIcon from '@material-ui/icons/History';
 
 
 
@@ -88,9 +89,9 @@ export function MyProductBuyButton(){
             <Button  size="large" 
             className={classes.productfilterbutton} 
             onClick={()=>{ history.push("/std/ViewMyProductBuy")}}
-                startIcon={<ProductionQuantityLimitsIcon/>}
+                startIcon={<HistoryIcon/>}
             >
-                My Buy Product
+                Product History
             </Button>
         </Grid>
     );
