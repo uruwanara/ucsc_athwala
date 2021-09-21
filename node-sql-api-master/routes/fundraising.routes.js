@@ -19,11 +19,11 @@ module.exports = fundraisingRoutes => {
     //retrieve all expired fundraising
     router.get("/viewallend", fundraising.viewallend);
 
-     //Edit available fundraising
-     router.post("/editfund", fundraising.editfund);
+    //Edit available fundraising
+    router.post("/editfund", fundraising.editfund);
 
-       //Edit available fundraising
-       router.post("/endbyforce", fundraising.endbyforce);
+    //Edit available fundraising
+    router.post("/endbyforce", fundraising.endbyforce);
 
 
     //retrieve specific details from a fundraising
@@ -31,6 +31,9 @@ module.exports = fundraisingRoutes => {
 
     //delete a specific fundraising by it's id
     router.delete("/deletefund/:fundID", fundraising.deletebyid);
+
+    //
+    router.post("/payhere", fundraising.paydonation);
 
     //A middleware function mounted on the '/api/fundraising' path, the function is executed for any type of HTTP request on the '/api/fundraising' path to the fundraising.route file receive a request.
     fundraisingRoutes.use('/api/fundraising', router);

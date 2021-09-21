@@ -1,6 +1,6 @@
 
 
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -21,6 +21,15 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { Divider } from "@material-ui/core";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+// import axios from "axios";
+// import { useLocation } from 'react-router';
+// import Dialog from '@material-ui/core/Dialog';
+// import DialogActions from '@material-ui/core/DialogActions';
+// import DialogContent from '@material-ui/core/DialogContent';
+// import DialogContentText from '@material-ui/core/DialogContentText';
+// import DialogTitle from '@material-ui/core/DialogTitle';
+// import { useHistory } from "react-router-dom";
+// import { useSnackbar } from "notistack";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -39,9 +48,9 @@ const useStyles = makeStyles((theme) => ({
     media1: {
         height: '100%',
     },
-    progress:{
-        height:8,
-        borderRadius:10
+    progress: {
+        height: 8,
+        borderRadius: 10
     },
     controls: {
         display: "flex",
@@ -69,8 +78,12 @@ function UAvailable_fundraising() {
     const classes = useStyles();
     const theme = useTheme();
 
-
-    const userData = JSON.parse(localStorage.getItem("userData"));
+    // const search = useLocation().search;
+    // const funddonationid = new URLSearchParams(search).get("id");
+    // const userData = JSON.parse(localStorage.getItem("userData"));
+    // const history = useHistory();
+    // const [open, setOpen] = React.useState(false);
+    // const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     // console.log(userData);
 
     const [mapset, SetMap] = useState([]);
@@ -91,15 +104,17 @@ function UAvailable_fundraising() {
         // console.log(result);
         SetMap(result);
     };
-    console.log(mapset);
+    // console.log(mapset);
 
     function Viewfund(props) {
 
         var link;
         var link1;
+        var link2;
         var id = props.id;
         link = "/ustd/funddashboard/donate?id=" + id;
         link1 = "/ustd/funddashboard/edit?id=" + id;
+        link2 = "/ustd/funddashboard/endforce?id=" + id;
 
         return (
             <Box>
@@ -132,7 +147,7 @@ function UAvailable_fundraising() {
                                 <Box mb={1} mr={1}>
                                     <Typography variant="body2" color="initial">50% completed
                                     </Typography>
-                                    <LinearProgress variant="determinate" value={50} className={classes.progress}/>
+                                    <LinearProgress variant="determinate" value={50} className={classes.progress} />
                                 </Box>
                             </Grid>
                             <Grid item xs={12}>
@@ -166,10 +181,13 @@ function UAvailable_fundraising() {
                                                 </Link>
                                             </Box>
                                             <Box>
-                                                <Button className={classes.filterbutton} variant="contained" color="secondary" size="medium" alignContent='flex-end'>
-                                                    End now
-                                                </Button>
+                                                <Link to={link2}>
+                                                    <Button className={classes.filterbutton} variant="contained" color="secondary" size="medium" alignContent='flex-end'>
+                                                        End now
+                                                    </Button>
+                                                </Link>
                                             </Box>
+                                          
                                         </Box>
                                     </Grid>
 

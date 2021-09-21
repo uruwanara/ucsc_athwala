@@ -105,16 +105,30 @@ exports.editfund = (req, res) => {
 
 exports.endbyforce = (req, res) => {
     
-    const fundID = req.body.fundID;
+    const fundID = req.body.fundID;//these are the postman variables
+    const endedby = req.body.endedby;
     // const fundName = req.body.fundname;
     
 
-    connection.query('UPDATE fundraising SET fundStatus=? WHERE fundID=?;', [1,fundID], (err, result) => {
+    connection.query('UPDATE fundraising SET fundStatus=?,fundEndedBy=? WHERE fundID=?;', [1,endedby,fundID], (err, result) => {
         if (err) { console.log(err) } else { res.json("success") }
     });
 }
 
 
+
+
+exports.paydonation = (req, res) => {
+    
+    const fundID = req.body.fundID;//these are the postman variables
+    const currentamount = req.body.currentamount;
+    // const fundName = req.body.fundname;
+    
+
+    connection.query('UPDATE fundraising SET fundCurrentAmount=? WHERE fundID=?;', [currentamount,fundID], (err, result) => {
+        if (err) { console.log(err) } else { res.json("success") }
+    });
+}
 
 exports.deletebyid = (req,res) => {
     const fundID =req.params.fundID;
