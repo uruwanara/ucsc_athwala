@@ -27,7 +27,11 @@ app.get("/", (req, res) => {
     res.json({ message: "Welcome to Mokakhari." });
 });
 
+app.use(express.static('public'));
+
+
 //Import routes
+require("./routes/fu.routes")(app);
 require("./routes/user.routes")(app);
 require("./routes/auth.routes")(app);
 require("./routes/sample.routes")(app);
