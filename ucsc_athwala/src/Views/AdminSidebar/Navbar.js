@@ -335,7 +335,7 @@ function Navbar() {
           <Route path="/admin/Admin_QA" exact>
             <Admin_QA />
           </Route>
-            <Route path="/chat" exact>
+            <Route path="/admin/chat" exact>
               <Chat/>
             </Route>
           <Route path="/admin/Admin_QA_Form" exact>
