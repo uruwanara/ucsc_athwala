@@ -131,6 +131,9 @@ export default function View_Clothcause(){
             })
     };
 
+
+    
+
     
   const tabContactDetailsButton =() =>{
     if(show_or_hide_details === 0 ){

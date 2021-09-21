@@ -42,6 +42,18 @@ module.exports = productRoutes => {
     //other form edit
     router.post("/productOtherFormEdit",product.productOtherEdit);
 
+    
+    //Block Post
+    router.post("/blockProductPost",product.blockProductPost);
+
+     //Block Post Admin
+     router.post("/haveBlockProductDetails",product.haveBlockProductDetails);
+
+     
+  //retrieve Admin all the details of products
+  router.get("/viewAdminAllProducts",product.viewAdminAllProducts);
+
+
 
 
  productRoutes.use('/api/products', router);
