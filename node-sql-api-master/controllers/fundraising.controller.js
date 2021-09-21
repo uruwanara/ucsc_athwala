@@ -119,13 +119,14 @@ exports.endbyforce = (req, res) => {
 
 
 exports.paydonation = (req, res) => {
-    
-    const fundID = req.body.fundID;//these are the postman variables
-    const currentamount = req.body.currentamount;
+    // const batchid = req.body.batchid;
+    const fundid = req.body.fundID;//these are the postman variables
+    const userid = req.body.userid;
+    const amount = req.body.amount;
     // const fundName = req.body.fundname;
     
 
-    connection.query('UPDATE fundraising SET fundCurrentAmount=? WHERE fundID=?;', [currentamount,fundID], (err, result) => {
+    connection.query('INSERT INTO fund_donation (fundid,,userid,amount) VALUES(?,?,?)', [ fundid,userid,amount], (err, result) => {
         if (err) { console.log(err) } else { res.json("success") }
     });
 }
