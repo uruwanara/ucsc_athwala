@@ -7,7 +7,7 @@ import {
 
 import Login from './Views/Signin/SignIn'
 import SignUp from './Views/SignUp/SignUp'
-import Land from './Views/LandingPage/home'
+import Land from './Views/Landing/home'
 import StdNavside from './Views/StudentSidebar/Navbar';
 import UStdNavside from './Views/UnionSidebar/Navbar';
 import AdminNavside from './Views/AdminSidebar/Navbar';
@@ -15,6 +15,9 @@ import PstNavside from './Views/PastStudentSidebar/Navbar';
 import CounNavside from './Views/CouncellorSidebar/Navbar';
 import Verify from './Views/EmailVerify/EmailVerify'
 import Test from './Views/UploadFileTest'
+import PublicDonation from './Views/Donation/Public_DonationPage';
+import ViewPublicDonation from './Views/Donation/View_Public'
+import Nav from './Views/Landing/Navigation';
 
 function App() {
     return (
@@ -36,7 +39,7 @@ function App() {
                 </Route>
                 <Route path="/login" exact>
                     <Login />
-                </Route>
+                </Route> 
                 <Route path="/pst">
                     <PstNavside />
                 </Route>
@@ -53,10 +56,9 @@ function App() {
                  <Route path="/test?id=10" exact>
                      <Verify/>
                  </Route>
-
-
-                 <Route path="/land" exact>
-                     <Land />
+                 
+                 <Route path="/public" >
+                     <Nav />
                  </Route>
 
             </Switch>

@@ -693,6 +693,20 @@ connection.query("update donations set status = 2 where donationID = ?",
 
 }
 
+exports.publicall = (req, res) => {
+  
+    connection.query("select * from donations where active = 1 and status = 0 and donationType = 'money' ;",
+    (err, result,fields) => { 
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    }
+);
+};
+
+
 
 
 

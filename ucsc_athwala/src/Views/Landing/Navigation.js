@@ -29,8 +29,8 @@ import Footer from '../Footer/Footer'
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import {useHistory } from "react-router-dom";
-import StartSection from '../Landing/startDesSection'
-import FunctionSection from '../Landing/functionSection'
+
+
 
 
 const drawerWidth = 240;
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
    // backgroundImage:`url(${LandImage})`,
-   backgroundColor:'white',
+   backgroundColor:'white'
   }, flex1: {
     flexGrow: 1,
   },
@@ -138,15 +138,15 @@ function Navbar() {
             
             <Button variant="contained" 
             className={classes.link}
-            onClick={() => history.push("/public/publicPage")}
+            onClick={() => history.push("/ucsc_athwala")}
             >
-               Donate As Visitor
+               Home
             </Button>
             
             </Box>
           </div>
 
-            <div>
+            {/* <div>
                 <Button variant="contained" 
                 className={classes.link}
                 onClick={() => history.push("/login")}
@@ -161,7 +161,7 @@ function Navbar() {
                 >
                    SignUp
                 </Button>
-            </div> 
+            </div> */}
 
 
         </Toolbar>
@@ -171,8 +171,15 @@ function Navbar() {
 
        <main className={classes.content}>
         <div className={classes.toolbar} />
-        <StartSection />
-        <FunctionSection />
+        <Switch>
+          <Route path="/public/publicPage" exact>
+              <Public />
+          </Route>
+          <Route path="/public/viewpublic" exact>
+              <ViewPublicDonation /> 
+          </Route>
+        </Switch>
+        
       </main> 
 
       
