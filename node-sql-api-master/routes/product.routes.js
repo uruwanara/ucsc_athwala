@@ -56,6 +56,13 @@ module.exports = productRoutes => {
     //retrieve Admin all the details of products
     router.post("/viewMyDetailsProducts",product.productMyDetails);
 
+     //Update product payment
+     router.post("/payProductPost",product.payProductPost);
+
+       //Update pay_product table
+       router.post("/updateProductTable",product.updateProductTable);
+
+
 
 
 
