@@ -300,7 +300,7 @@ export default function ProductViews(){
     function FormRow (props){
         var link;
         var product_id = props.product_id;
-        var imglink;
+        var imglink = "http://localhost:5000/product/"+product_id+".jpg";
         
         if(props.type == 'device'){
           if(userData.userType === "STUDENT"){
@@ -311,7 +311,7 @@ export default function ProductViews(){
             link = "/ustd/ViewMyProductDetails?id="+product_id;
             
           }
-          imglink = EventLaptopHP;
+          //imglink = EventLaptopHP;
         }
         else if (props.type == 'note'){
           if(userData.userType === "STUDENT"){
@@ -320,7 +320,7 @@ export default function ProductViews(){
           else if(userData.userType === "UNIONST" ){
             link = "/ustd/ViewMyProductDetailsNote?id="+product_id;
           }
-          imglink = Note;
+          //imglink = Note;
         }
         else if (props.type == 'other'){
           if(userData.userType === "STUDENT"){
@@ -329,7 +329,7 @@ export default function ProductViews(){
           else if(userData.userType === "UNIONST" ){
             link = "/ustd/ViewMyProductDetailsOther?id="+product_id;
           }
-          imglink = Other;
+         // imglink = Other;
         }
         return (
           <React.Fragment>
@@ -345,7 +345,7 @@ export default function ProductViews(){
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
-                    {props.title}{props.product_id}
+                    {props.title}
                   </Typography>
                  
                   <TextTruncate

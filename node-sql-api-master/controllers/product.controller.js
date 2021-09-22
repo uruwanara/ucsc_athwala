@@ -289,7 +289,7 @@ exports.productDeviceEdit = (req,res) => {
     //const post_date = req.body.date;
     const price = req.body.price;
     const show_or_hide_details = req.body.show_or_hide_details;
-    const p_type = req.body.type;
+    const p_type = 'device';
     
     connection.query( 'update product set product_type=?,price=?,description=?,title=?,show_or_hide_details=? where product_id=?;',
     [p_type,price,description,title,show_or_hide_details,product_id],
@@ -325,7 +325,7 @@ exports.productNoteEdit = (req,res) => {
     const price = req.body.price;
     const image = req.body.image;
     const show_or_hide_details = req.body.show_or_hide_details;
-    const p_type = req.body.type;
+    const p_type = 'note';
     
     connection.query( 'update product set product_type=?,price=?,description=?,title=?,show_or_hide_details=? where product_id=?;',
     [p_type,price,description,title,show_or_hide_details,product_id],
@@ -359,7 +359,7 @@ exports.productOtherEdit = (req,res) => {
     const price = req.body.price;
     const image = req.body.image;
     const show_or_hide_details = req.body.show_or_hide_details;
-    const p_type = req.body.type;
+    const p_type = 'other';
     
 
     connection.query( 'update product set product_type=?,price=?,description=?,title=?,show_or_hide_details=? where product_id=?;',
