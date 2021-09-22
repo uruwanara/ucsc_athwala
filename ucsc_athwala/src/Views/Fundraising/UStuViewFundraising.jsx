@@ -71,6 +71,19 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: "#757de8",
         },
     },
+    filterbutton3: {
+        backgroundColor:"#b71c1c",
+        color: "#FFFFFF",
+        textTransform: "none",
+
+        border: "none",
+        
+        borderRadius: 20,
+        "&:hover": {
+            color: "#FFFFFF",
+            backgroundColor: "#e53935",
+        },
+    },
 
 }
 ));
@@ -191,7 +204,7 @@ function UAvailable_fundraising() {
                                             </Box>
                                             <Box>
                                                 <Link to={link2}>
-                                                    <Button className={classes.filterbutton} variant="contained" color="secondary" size="medium" alignContent='flex-end'>
+                                                    <Button className={classes.filterbutton3} variant="contained" color="secondary" size="medium" alignContent='flex-end'>
                                                         End now
                                                     </Button>
                                                 </Link>

@@ -72,6 +72,19 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: "#757de8",
         },
     },
+    filterbutton3: {
+        backgroundColor:"#b71c1c",
+        color: "#FFFFFF",
+        textTransform: "none",
+
+        border: "none",
+        
+        borderRadius: 20,
+        "&:hover": {
+            color: "#FFFFFF",
+            backgroundColor: "#e53935",
+        },
+    },
 
 }
 ));
@@ -321,7 +334,7 @@ function ByforceEndFundraising() {
                     <Grid item xs={12} sm={6}>
                         <Box display="flex" justifyContent="flex-end" mr={1}>
                             <Box>
-                                <Button onClick={handleClickOpen} className={classes.filterbutton} variant="contained" color="primary">
+                                <Button onClick={handleClickOpen} className={classes.filterbutton3} variant="contained" color="primary">
                                     End by force now
                                 </Button>
                             </Box>
