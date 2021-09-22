@@ -50,7 +50,7 @@ export default function SignUp() {
   const [show_or_hide_details, setacceptTerm] = React.useState(false);
   const {enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [file,setfile] = React.useState("");
-  const [product_id,setProductId] = React.useState("");
+ // const [product_id,setProductId] = React.useState("");
   
   const handleSubmit = (event) => {
     const rx_float = /^[+-]?\d*(?:[.,]\d*)?$/;
@@ -125,7 +125,7 @@ else{
             formData.append('file',file)
             console.log(formData.file);
 
-            axios.post("http://localhost:5000/api/fus/upload/"+product_id,formData,{
+            axios.post("http://localhost:5000/api/productfiles/upload/"+product_id,formData,{
               headers:{
                   "access-control-allow-origin" : "*",
                   "Content-type": "application/json; charset=UTF-8"
@@ -142,10 +142,10 @@ else{
                   })
         
                   if(userData.userType === "STUDENT"){
-                    history.push("/std/SelectAdPost") ;
+                    history.push("/std/ViewMyProduct") ;
                   }
                   else if(userData.userType === "UNIONST" ){
-                    history.push("/ustd/SelectAdPost");
+                    history.push("/ustd/ViewMyProduct");
                   }
                 
   

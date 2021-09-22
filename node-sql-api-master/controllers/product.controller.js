@@ -113,7 +113,7 @@ exports.sellNote = (req,res) => {
                                     if (err2) {
                                         res.send(err2);
                                     } else {
-                                        res.send({product_id: product_id_max, success:"success"});
+                                        res.send({product_id: product_id_max, states:"success"});
                                     }
                                 }
                             );
@@ -197,7 +197,7 @@ exports.sellOther = (req,res) => {
                                     if (err2) {
                                         res.send(err2);
                                     } else {
-                                        res.send({product_id: product_id_max});
+                                        res.send({product_id: product_id_max, states:"success"});
                                     }
                                 }
                             );
