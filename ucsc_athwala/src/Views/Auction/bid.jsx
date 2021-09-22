@@ -82,6 +82,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export default function View_Notecause(){
+  
     const { auction_id } = useParams();
     const history = useHistory();
   const classes = useStyles();
@@ -91,18 +92,21 @@ export default function View_Notecause(){
 
   const handleSubmit = (event) => {
      event.preventDefault(); 
-    console.log(`
-    bid: ${bid}
+     console.log(`
+     bid: ${bid}
     
     
-    `);
+     `);
+    
      const userData=JSON.parse(localStorage.getItem("userData"));
     
     const requestNote={
+      "studentID":userData.id,
         "bid": bid,
     }
       axios.post("http://localhost:5000/api/auction/update",requestNote,{
         params: {id:auction_id},
+        
           headers:{
               "access-control-allow-origin" : "*",
               "Content-type": "application/json; charset=UTF-8"
@@ -112,7 +116,13 @@ export default function View_Notecause(){
           console.log(response.data);
           if(response.data==='success'){
             setBid("");
-            history.push("/std/viewauc")
+            if(userData.userType === "STUDENT"){
+              history.push("/std/viewauc")
+              }
+              if(userData.userType === "UNIONST"){
+                  history.push("/ustd/viewauc")
+                  }
+            
         
           }
 

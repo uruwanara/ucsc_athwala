@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
       },
 
       labelvalue:{
-        marginLeft:100,
+        marginLeft:10,
         marginBottom:10,
         color:"000000",
         fontFamily:"Poppins, sans-serif",
@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
       // const auction_id = userData.id;
       
   
-      axios.get("http://localhost:5000/api/auction/details", {
+      axios.get("http://localhost:5000/api/auction/pstbid", {
           params: {id:auction_id},
       }).then((response) => {
           console.log(response.data);
@@ -120,40 +120,45 @@ const useStyles = makeStyles((theme) => ({
       //   link = "/std/aucstop?id="+id;
       // }
 
-      var bid ;
-      if(props.bid1 === 0){
-        bid = "No one Bid Yet ";
+    //   var bid ;
+    //   if(props.bid1 === 0){
+    //     bid = "No one Bid Yet ";
+        
+    //   }
+    //   else{
+    //     bid = props.bid1;
+    //   }
+    var message ;
+      if(props.status === 0){
+        message = "Auction Has Been Ended ";
         
       }
       else{
-        bid = props.bid1;
+        message = "You can still bid To This Auction";
       }
     return(
       
         <Grid item xs={6}>
             <Card className={classes.card}>
                 <CardContent>
-                    <Typography variant="h5" className={classes.title}>Current Highest Bid : {bid} </Typography>
+                    {/* <Typography variant="h5" className={classes.title}>Your Auction Has Been End </Typography> */}
+                    <Typography variant="h5" className={classes.title}>{message} </Typography>
                     {/* <div style={{display:"flex"}}>
                         <div><Typography variant="subtitle2" className={classes.labelname}>Study year</Typography></div>
                         <div><Typography variant="subtitle2" className={classes.labelvalue}>2 nd year</Typography></div>  
                     </div> */}
                     <div style={{display:"flex"}}>
-                        <div><Typography variant="subtitle2" className={classes.labelname}>Base Price</Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.baseprice}</Typography></div>  
+                        <div><Typography variant="subtitle2" className={classes.labelname}>Highest Bidder</Typography></div>
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.fname} {props.lname}</Typography></div>  
                     </div>
-                    {/* <div style={{display:"flex"}}>
-                        <div><Typography variant="subtitle2" className={classes.labelname}>Current Highest Bid</Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>65,000/=</Typography></div>  
-                    </div> */}
-                    {/* <div style={{display:"flex"}}>
-                        <div><Typography variant="subtitle2" className={classes.labelname}>End date</Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.date}</Typography></div>  
-                    </div>  */}
-                    {/* <div style={{display:"flex"}}>
-                        <div><Typography variant="subtitle2" className={classes.labelname}>Days remaining</Typography></div>
-                        <div><Typography variant="subtitle2" className={classes.labelvalue}>13</Typography></div>  
-                    </div>                     */}
+                    {/* { <div style={{display:"flex"}}>
+                        <div><Typography variant="subtitle2" className={classes.labelname}>E mail Address</Typography></div>
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.email}</Typography></div>  
+                    </div> } */}
+                    <div style={{display:"flex"}}>
+                        <div><Typography variant="subtitle2" className={classes.labelname}>Highest Bid</Typography></div>
+                        <div><Typography variant="subtitle2" className={classes.labelvalue}>{props.bid1}</Typography></div>  
+                    </div>                    
                 </CardContent>    
             </Card>
         </Grid>
@@ -164,7 +169,7 @@ const useStyles = makeStyles((theme) => ({
             
               
             {mapset.map(student => (  
-                    <FormRow baseprice={student.baseprice} id={student.auction_id} date={student.date} bid1={student.bid1} description={student.description}/> 
+                    <FormRow fname={student.fname} status={student.status} lname={student.lname} email={student.email} bid1={student.bid1} baseprice={student.baseprice} id={student.auction_id} bid1={student.bid1} description={student.description}/> 
             ))}
               
             

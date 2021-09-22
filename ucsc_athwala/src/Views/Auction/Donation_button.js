@@ -8,7 +8,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import FlagIcon from '@material-ui/icons/Flag';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
-
+import AlarmOffIcon from '@material-ui/icons/AlarmOff';
 const useStyles = makeStyles({
     filterbutton: {
         backgroundColor: "#757de8",
@@ -31,11 +31,24 @@ const useStyles = makeStyles({
 export function RequestButton(){
     const classes = useStyles();
     const history = useHistory();
+    const userData=JSON.parse(localStorage.getItem("userData"));
+
+    var link;
+
+    if(userData.userType === "STUDENT"){
+      link = "/std/crtauc";
+    }
+     if(userData.userType === "UNIONST" ){
+       link = "/ustd/crtauc";
+     }
+    // if(userData.userType === "ALUMNI"){
+    //   link = "/pst/myDonation";
+    // }
     return(
         <Grid item s={4}>
             <Button size="large" 
             className={classes.filterbutton} 
-            onClick={()=>{ history.push("/std/crtauc")}}
+            onClick={()=>{ history.push(link)}}
                 startIcon={<AddCircleIcon />}
             >
                 Create Auction
@@ -48,11 +61,24 @@ export function RequestButton(){
 export function MyCauseButton(){
     const classes = useStyles();
     const history = useHistory();
+    const userData=JSON.parse(localStorage.getItem("userData"));
+
+    var link;
+
+    if(userData.userType === "STUDENT"){
+      link = "/std/myauc";
+    }
+     if(userData.userType === "UNIONST" ){
+       link = "/ustd/myauc";
+     }
+    // if(userData.userType === "ALUMNI"){
+    //   link = "/pst/myDonation";
+    // }
     return(
         <Grid item s={4}>
                       <Button size="large" 
                         className={classes.filterbutton} 
-                        onClick={()=>{ history.push("/std/myauc")}}
+                        onClick={()=>{ history.push(link)}}
                         startIcon={<AccountBalanceWalletIcon />}
                         >
                           My Auctions
@@ -65,19 +91,61 @@ export function MyCauseButton(){
  export function MyDonationButton(){
      const classes = useStyles();
      const history = useHistory();
+     const userData=JSON.parse(localStorage.getItem("userData"));
+
+    var link;
+
+    if(userData.userType === "STUDENT"){
+      link = "/std/mybid";
+    }
+     if(userData.userType === "UNIONST" ){
+       link = "/ustd/mybid";
+     }
+    // if(userData.userType === "ALUMNI"){
+    //   link = "/pst/myDonation";
+    // }
      return(
          <Grid item s={4}>
                        <Button size="large" 
                          className={classes.filterbutton} 
-                         onClick={()=>{ history.push("/std/mybid")}}
+                         onClick={()=>{ history.push(link)}}
                          startIcon={<FlagIcon />}
                          >
-                           My Bids
+                           Bid History
                          </Button>
  </Grid>
      );
 
  }
+ export function PastButton(){
+    const classes = useStyles();
+    const history = useHistory();
+    const userData=JSON.parse(localStorage.getItem("userData"));
+
+    var link;
+
+    if(userData.userType === "STUDENT"){
+      link = "/std/mypstauc";
+    }
+     if(userData.userType === "UNIONST" ){
+       link = "/ustd/mypstauc";
+     }
+    // if(userData.userType === "ALUMNI"){
+    //   link = "/pst/myDonation";
+    // }
+    return(
+        <Grid item s={4}>
+                      <Button size="large" 
+                        className={classes.filterbutton} 
+                        onClick={()=>{ history.push(link)}}
+                        startIcon={<AlarmOffIcon />}
+                        >
+                          Past Auctions
+                        </Button>
+</Grid>
+    );
+
+}
 
 // export function AllCauseButton(){
 //     const classes = useStyles();

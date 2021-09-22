@@ -33,8 +33,11 @@ import Auction from '../Auction/Auction';
 import Aucstop from '../Auction/aucstop';
 import Bid from '../Auction/bid';
 import Crtauc from '../Auction/createauction';
+import Pstdetails from '../Auction/pstdetails';
 import Myauc from '../Auction/myauc';
 import Mybid from '../Auction/mybid';
+import Pstauc from '../Auction/pastauc';
+import Pstbid from '../Auction/pastbiddetail';
 import Dashboard from '../StudentDashboard/StudentDashboard';
 import MyCause from '../Donation/Donation_MyCauses';
 import Category from '../Donation/RequestCategory';
@@ -435,6 +438,9 @@ function Navbar() {
           <Route path="/std/myauc" exact>
             <Myauc />
           </Route>
+          <Route path="/std/mypstauc" exact>
+            <Pstauc />
+          </Route>
 
           <Route path="/std/ViewProductEle" exact>
             <ViewProductEle />
@@ -448,6 +454,12 @@ function Navbar() {
           </Route>
           <Route path="/std/aucstop/:auction_id">
             <Aucstop />
+          </Route>
+          <Route path="/std/pstbid/:auction_id">
+            <Pstbid />
+          </Route>
+          <Route path="/std/pstdetail/:auction_id">
+            <Pstdetails />
           </Route>
           <Route path="/std/bid/:auction_id">
             <Bid />

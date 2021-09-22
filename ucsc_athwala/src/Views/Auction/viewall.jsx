@@ -20,7 +20,7 @@ import TextTruncate from 'react-text-truncate';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import TextField from '@material-ui/core/TextField';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import {RequestButton,MyCauseButton,MyDonationButton} from './Donation_button';
+import {RequestButton,MyCauseButton,MyDonationButton,PastButton} from './Donation_button';
 import GavelIcon from '@material-ui/icons/Gavel';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { useHistory } from 'react-router-dom';
@@ -166,7 +166,13 @@ export default function Cases(){
     // }
 
     const viewMore=(id)=>{
+      const userData=JSON.parse(localStorage.getItem("userData"));
+      if(userData.userType === "STUDENT"){
       history.push(`/std/bid/${id}`);
+      }
+      if(userData.userType === "UNIONST"){
+        history.push(`/ustd/bid/${id}`);
+      }
     }
     console.log("aaaa");
     return (
@@ -209,7 +215,6 @@ export default function Cases(){
       </React.Fragment>
     );
   }
-
     return(
     <div>
         <div><Typography variant="h5" className={classes.title}>All Auctions</Typography></div>
@@ -218,13 +223,14 @@ export default function Cases(){
               <Grid container spacing={4}>
                 <RequestButton  />
                 <MyCauseButton />
-                { <MyDonationButton />}
+                 <MyDonationButton />
+                 {<PastButton />}
               </Grid>
               
               </div>
 
               <div className={classes.filterbar}>
-                <Grid container spacing={1} alignItems="flex-end" >
+                {/* <Grid container spacing={1} alignItems="flex-end" >
                   <Grid item>
                   <TextField id="outlined-basic" variant="outlined" size="small" className={classes.textfilter}/>
                   </Grid>
@@ -236,7 +242,7 @@ export default function Cases(){
                           Filter
                         </Button>
                   </Grid>
-                </Grid>
+                </Grid> */}
               </div>
             </div>
               

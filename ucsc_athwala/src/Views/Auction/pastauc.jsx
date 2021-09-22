@@ -134,7 +134,7 @@ export default function MyCases(){
     const userData=JSON.parse(localStorage.getItem("userData"));
     const stid = userData.id;
 
-    axios.get("http://localhost:5000/api/auction/myauction", {
+    axios.get("http://localhost:5000/api/auction/pastauction", {
     params: {id:stid},
     }).then((response) => {
         console.log(response.data);
@@ -172,12 +172,12 @@ export default function MyCases(){
     // }
     // }
     const viewMore=(id)=>{
-      if(userData.userType === "STUDENT"){
-      history.push(`/std/aucstop/${id}`);
-      }
-      if(userData.userType === "UNIONST"){
-        history.push(`/ustd/aucstop/${id}`);  
-      }
+        if(userData.userType === "STUDENT"){
+      history.push(`/std/pstdetail/${id}`);
+        }
+        if(userData.userType === "UNIONST"){
+            history.push(`/ustd/pstdetail/${id}`);
+              }
     }
     return (
       <React.Fragment>
@@ -205,7 +205,7 @@ export default function MyCases(){
             color='secondary'
             onClick={()=>viewMore(props.id)}
             >
-              View More 
+              Bid Now
             </Button>
            {/* { </Link>  } */}
 
