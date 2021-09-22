@@ -111,7 +111,7 @@ export default function View_Clothcause(){
         const description={
             "product_id": product_id,
         }
-        axios.post("http://localhost:5000/api/products/viewdetail",description,{
+        axios.post("http://localhost:5000/api/products/viewMyDetailsProducts",description,{
             headers:{
                 "access-control-allow-origin" : "*",
                 "Content-type": "application/json; charset=UTF-8"

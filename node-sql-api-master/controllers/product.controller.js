@@ -29,6 +29,24 @@ exports.productDetails = (req,res,err) => {
     );
 };
 
+
+exports.productMyDetails = (req,res,err) => {
+    const product_id =req.body.product_id;
+
+    connection.query( 'Select * from product where product_id = ? AND active = 1;',
+    [product_id],
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    }
+
+    );
+};
+
+
 exports.productDetailsMore = (req,res,err) => {
     const product_id =req.body.product_id;
     const p_type =req.body.p_type;

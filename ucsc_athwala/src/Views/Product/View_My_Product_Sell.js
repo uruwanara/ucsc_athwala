@@ -185,7 +185,7 @@ export default function ProductViews(){
   },[]);
 
   const fetchData = () => {
-    const userData=JSON.parse(localStorage.getItem("userData"));
+    
     const id = user_id;
 
     axios.get("http://localhost:5000/api/products/viewmyallSellProduct", {
