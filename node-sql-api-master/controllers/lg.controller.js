@@ -156,8 +156,8 @@ exports.rmuser= (req, res) => {
     const lgId = req.body.lgId;
     const uId= req.body.uId;
 
-    connection.query("DELETE FROM lg_users WHERE lgId=?",
-        [lgId],
+    connection.query("DELETE FROM lg_users WHERE lgId=? AND uId=?",
+        [lgId,uId],
         (err, result,fields) => {
             if (err) {
                 res.send(err);
@@ -172,7 +172,7 @@ exports.viewAll = (req, res) => {
 
     const uId = req.body.uId;
     console.log(uId);
-    connection.query("Select learning_groups.lgId,learning_groups.title,learning_groups.url from learning_groups inner join lg_users on lg_users.lgId=learning_groups.lgId where lg_users.uId=?;",
+    connection.query("Select DISTINCT learning_groups.lgId,learning_groups.title,learning_groups.url from learning_groups inner join lg_users on lg_users.lgId=learning_groups.lgId where lg_users.uId=?;",
         [uId],
         (err, result,fields) => {
             if (err) {
