@@ -429,3 +429,38 @@ exports.viewAdminAllProducts = (req, res,err) => {
 );
 }; 
 
+
+exports.payProductPost = (req, res) => {
+    const product_id = req.body.product_id; 
+            connection.query("update product set is_pay = 1 where product_id = ?",
+            [product_id],
+            (err1, result,fields) => { 
+                if (err1) {
+                    res.send(err1);
+                } else {
+                    res.send("success");
+                }
+            }
+        );  
+
+};
+
+
+exports.updateProductTable = (req,res) => {
+    const userID =req.body.user_id;
+    const product_id = req.body.product_id;
+    
+    connection.query( 'insert into pay_product (product_Id,user_id) values(?,?);',
+    [product_id,userID],
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } 
+        else{
+            res.send("success");
+        }
+    }
+    );   
+};
+
+
