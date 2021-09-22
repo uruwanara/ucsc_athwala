@@ -217,7 +217,7 @@ export default function ProductViews(){
     function FormRow (props){
         var link;
         var id = props.id;
-        var imglink;
+        var imglink = "http://localhost:5000/product/"+id+".jpg";
 
         if(props.type == 'device'){
           if(userData.userType === "STUDENT"){
@@ -232,7 +232,7 @@ export default function ProductViews(){
           else if(userData.userType === "ADMIN" ){
             link = "/admin/ViewAdminProductDetails?id="+id;
           }
-          imglink = EventLaptopHP;
+          //imglink = EventLaptopHP;
         }
         else if (props.type == 'note'){
           if(userData.userType === "STUDENT"){
@@ -247,7 +247,7 @@ export default function ProductViews(){
           else if(userData.userType === "ADMIN" ){
             link = "/admin/ViewAdminProductDetailsNote?id="+id;
           }
-          imglink = Note;
+          //imglink = Note;
         }
         else if (props.type == 'other'){
           if(userData.userType === "STUDENT"){
@@ -262,7 +262,7 @@ export default function ProductViews(){
           else if(userData.userType === "ADMIN" ){
             link = "/admin/ViewAdminProductDetailsOther?id="+id;
           }
-          imglink = Other;
+          //imglink = Other;
         }
         return (
           <React.Fragment>
