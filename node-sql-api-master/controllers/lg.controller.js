@@ -1,15 +1,40 @@
 const db = require("../models");
 const connection = require("../dbConnection")
+const nodemailer = require('nodemailer');
 
 
-// in donation table if active column = 1 then donation is active. if active column = 0 then donation is not active.
-// in donation table if status = 0 then donation is Not Received
-// in donation table if status = 1 then donation is Pending
-// in donation table if status = 2 then donation is Received
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'ucscathwala@gmail.com',
+        pass: '2018cs140'
+    }
+});
 
+var mailOptions = {
+    from: 'ucscathwala@gmail.com',
+    to: 'vidarsha.edu@gmail.com',
+    subject: 'Sending Email using Node.js',
+    text: 'That was easy!'
+};
 
 
 exports.create= (req, res) => {
+
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+
+
+
+
+
+
     const created_by = req.body.created_by;
     const title = req.body.title;
     const url = req.body.url;

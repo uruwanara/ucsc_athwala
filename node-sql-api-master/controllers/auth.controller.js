@@ -6,6 +6,26 @@ const { Base64 } = require('js-base64');
 const sendGridMail = require('@sendgrid/mail');
 sendGridMail.setApiKey('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');
 const SHA256 = require("crypto-js/sha256");
+const nodemailer = require('nodemailer');
+
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'ucscathwala@gmail.com',
+        pass: '2018cs140'
+    }
+});
+
+var mailOptions = {
+    from: 'ucscathwala@gmail.com',
+    to: 'vidarsha.edu@gmail.com',
+    subject: 'Sending Email using Node.js',
+    text: 'That was easy!'
+};
+
+
+
 
 // Login a user
 exports.login = (req, res) => {
@@ -87,6 +107,7 @@ exports.login = (req, res) => {
     });
 
 };
+
 
 // validate a token
 exports.validate = (req, res) => {
