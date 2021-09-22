@@ -205,9 +205,9 @@ export default function MyjobOpp(prope){
                 axios.post("http://localhost:5000/api/lgs/adduser",det,{
                 }).then((response) => {
                     console.log("----------- Dvdvdvdv");
-                    enqueueSnackbar(name+' : Acount Deactivated', {
-                        variant: 'error',anchorOrigin: {
-                            vertical: 'top',
+                    enqueueSnackbar(name+' : Added to chat', {
+                        variant: 'Success',anchorOrigin: {
+                            vertical: 'bottom',
                             horizontal: 'right',
                         },
                     });

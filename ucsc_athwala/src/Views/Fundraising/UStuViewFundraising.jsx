@@ -116,6 +116,14 @@ function UAvailable_fundraising() {
         link1 = "/ustd/funddashboard/edit?id=" + id;
         link2 = "/ustd/funddashboard/endforce?id=" + id;
 
+
+        const handleDonate = (event) => {}
+
+
+
+
+
+
         return (
             <Box>
                 <Paper>

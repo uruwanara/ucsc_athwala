@@ -144,9 +144,9 @@ export default function MyjobOpp(prope){
             axios.post("http://localhost:5000/api/lgs/rmuser",det,{
             }).then((response) => {
                 console.log("----------- Dvdvdvdv");
-                enqueueSnackbar(nameq+' : Acount Deactivated', {
+                enqueueSnackbar(nameq+' : Removed From Chat', {
                     variant: 'error',anchorOrigin: {
-                        vertical: 'top',
+                        vertical: 'bottom',
                         horizontal: 'right',
                     },
                 });
