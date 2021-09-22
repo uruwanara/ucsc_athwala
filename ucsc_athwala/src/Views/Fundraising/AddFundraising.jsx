@@ -392,6 +392,11 @@ function AddFundraising() {
                                             id="expiredate"
                                             label="Expire Date"
                                             type="date"
+                                            value={expiredate}
+                                            inputProps={{
+                                                min: "2021-09-23"
+                                              }}
+                                            //   autoComplete="date"
                                             name="expiredate"
                                             defaultValue="weqwe"
                                             // className={classes_time.textField}
