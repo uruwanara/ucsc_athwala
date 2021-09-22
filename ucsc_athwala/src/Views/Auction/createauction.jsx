@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   
   const classes = useStyles();
+  const history = useHistory();
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [year, setYear] = React.useState("");
@@ -90,7 +91,15 @@ export default function SignUp() {
             setbaseprice("");
             setDate("");
             setacceptTerm(false);
-            
+          
+              if(userData.userType === "STUDENT"){
+              history.push("/std/viewauc")
+              }
+              if(userData.userType === "UNIONST"){
+                  history.push("/ustd/viewauc")
+                  }
+          
+  
           }
           
 
@@ -201,6 +210,7 @@ export default function SignUp() {
 
             <Grid item xs={12}>
               <TextField
+               inputProps={{min: "2021-09-23"}}
                 variant="outlined"
                 fullWidth
                 name="date"

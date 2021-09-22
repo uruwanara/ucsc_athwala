@@ -14,7 +14,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import {Description} from './details';
 import {NoteDoneeDetails} from './adminaucdet';
-
+import Charger from '../../image/charger.jpg';
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -135,7 +135,7 @@ export default function View_Notecause(){
                                 <CardMedia
                                     component="img"
                                     height="250"
-                                    src= {Note}
+                                    src= {Charger}
                                 />   
                             </Card>
                         </Grid>

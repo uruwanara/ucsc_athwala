@@ -9,6 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import  Button from '@material-ui/core/Button';
 import {NoteDoneeDetails,Description} from './aucmore';
+import Charger from '../../image/charger.jpg';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -74,7 +75,7 @@ export default function View_Notecause(){
                                 <CardMedia
                                     component="img"
                                     height="250"
-                                    src= {Note}
+                                    src= {Charger}
                                 />   
                             </Card>
                         </Grid>
