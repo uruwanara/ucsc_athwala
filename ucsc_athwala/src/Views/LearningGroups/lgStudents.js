@@ -191,7 +191,7 @@ export default function MyjobOpp(prope){
     return(
         <div>
            <Grid container spacing={0} className={classes.topic}>
-                <Grid item md={4}><Typography variant="h6" className={classes.title}>{prope.id}</Typography>
+                <Grid item md={4}><Typography variant="h6" className={classes.title}>Current Users</Typography>
                 </Grid>
 
 
