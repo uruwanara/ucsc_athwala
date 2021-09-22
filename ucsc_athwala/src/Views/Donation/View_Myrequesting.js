@@ -456,12 +456,15 @@ const donationid = new URLSearchParams(search).get("id");
                   </div>                         
               </div>
                     <Button
+                        
+                        size="large"
                         variant="contained"
                         color="primary"
                         component="label"
                         className={classes.editbutton}
+                        href={"http://localhost:5000/DonationNote/"+donationid+".pdf"}
                         >
-                        Download file
+                        Download file here
                     </Button>
             </>
             );
