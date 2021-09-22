@@ -282,7 +282,7 @@ export default function SignUp() {
                 onChange={e => setPrice(e.target.value)}
               />
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
                 <Typography component="h1" variant="subtitle1">
                     You are able to upload image here
             </Typography>
@@ -298,7 +298,7 @@ export default function SignUp() {
                     hidden
                 />
             </Button>
-            </Grid>
+            </Grid> */}
            
             <Grid item xs={12}>
               <FormControlLabel
