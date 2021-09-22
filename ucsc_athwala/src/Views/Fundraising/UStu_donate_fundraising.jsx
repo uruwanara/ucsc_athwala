@@ -277,7 +277,7 @@ function UStudonate_fundraising() {
                             </Box>
                             <Box>
 
-                                <Button className={classes.filterbutton} variant="contained" color="primary">
+                                <Button color="primary" variant="contained" color="primary">
                                     Donate now
                                 </Button>
 
