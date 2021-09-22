@@ -80,5 +80,8 @@ module.exports = donationRoutes => {
     //upload notes
     router.post("/uploadnote",donation.uploadfile);
 
+    //get all public donation
+    router.get("/publicall",donation.publicall);
+
     donationRoutes.use('/api/donations', router);
 };
