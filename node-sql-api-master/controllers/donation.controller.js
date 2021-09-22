@@ -69,18 +69,74 @@ exports.viewMyall = (req,res) => {
 };
 exports.pay = (req,res) => {
     const dId=req.body.dId;
-    const amount=req.body.amount;
-    connection.query( 'UPDATE money SET current_amount=? where donation_id=?;',
-        [amount,dId],
+    const totalamount=req.body.amount;
+    const donerid = req.body.donerid;
+
+    connection.query( 'SELECT amount,current_amount from money where donation_id=?;',
+    [dId],
         (err, result,fields) => {
             if (err) {
                 res.send(err);
-            } else {
-                res.send(result);
+            }
+            else{
+                console.log(result);
+                let goalamount = result[0].amount;
+                let curramount = result[0].current_amount;
+
+                console.log(goalamount);
+                console.log(curramount);
+
+                if(goalamount === totalamount){
+                    connection.query( 'UPDATE donations set status=2 where donationID=?;',
+                    [dId],
+                        (err, result,fields) => {
+                            if (err) {
+                                res.send(err);
+                            }
+                        }
+                    );
+                    connection.query( "UPDATE money set status='Received' where donation_id=?;",
+                    [dId],
+                        (err, result,fields) => {
+                            if (err) {
+                                res.send(err);
+                            }
+                        }
+                    );
+
+                }
+
+                connection.query( "UPDATE money set current_amount=? where donation_id=?;",
+                    [totalamount,dId],
+                        (err, result,fields) => {
+                            if (err) {
+                                res.send(err);
+                            }
+                        }
+                );
+
+                let donateamount = totalamount - curramount;
+                console.log(donateamount);
+                connection.query( 'INSERT INTO doners(donation_id,doner_id,amount) VALUES (?,?,?)',
+                    [dId,donerid,donateamount],
+                    (err, result,fields) => {
+                        if (err) {
+                            res.send(err);
+                        }
+                        else{
+                            res.send("success");
+                        }
+                    }
+                );
             }
         }
-
     );
+    
+
+    
+    
+   
+
 };
 exports.noteRequest = (req,res) => {
     const studentID =req.body.studentID;
@@ -383,7 +439,7 @@ connection.query("update donations set status = 2 where donationID = ?",
 exports.myhistory = (req, res) => {
     const userid = req.query.id;
 
-connection.query("select donations.donationID , donations.donationType , donations.description , donations.createdAt , donations.status, doners.donate_at FROM donations INNER JOIN doners ON donations.donationID = doners.donation_id WHERE doners.doner_id = ?",
+connection.query("select donations.donationID , donations.donationType , donations.description , donations.createdAt , donations.status, doners.id, doners.donate_at FROM donations INNER JOIN doners ON donations.donationID = doners.donation_id WHERE doners.doner_id = ? and doners.history = 1;",
 [userid],
 (err, result,fields) => { 
     if (err) {
@@ -705,6 +761,22 @@ exports.publicall = (req, res) => {
     }
 );
 };
+
+exports.deleteHistory = (req, res) => {
+    const donertblid = req.body.donertblid;
+
+connection.query("UPDATE doners set history = 0 where id=?",
+[donertblid],
+(err, result,fields) => { 
+    if (err) {
+        res.send(err);
+    } else {
+        res.send("success");
+    }
+}
+);
+
+}
 
 
 

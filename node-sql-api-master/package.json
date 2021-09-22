@@ -18,6 +18,7 @@
     "js-base64": "^3.6.1",
     "multer": "^1.4.3",
     "mysql2": "^2.2.5",
+    "nodemailer": "^6.6.3",
     "nodemon": "^2.0.12",
     "papaparse": "^5.3.1",
     "random-string": "^0.2.0",

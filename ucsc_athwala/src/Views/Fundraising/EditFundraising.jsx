@@ -113,7 +113,7 @@
 // export default EditFundraising;
 
 
-import React,{useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -130,6 +130,13 @@ import Divider from '@material-ui/core/Divider';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import axios from "axios";
 import { useLocation } from 'react-router';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { useHistory } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -194,6 +201,11 @@ function EditFundraising() {
     });
 
 
+
+    const history = useHistory();
+    const [open, setOpen] = React.useState(false);
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
     // const handleChange = (event) => {
     //     setValues({
     //         ...values,
@@ -223,8 +235,8 @@ function EditFundraising() {
     const [fundimage, setImage] = React.useState();
     const [expiredate, setExpireDate] = React.useState();
     const [expiretime, setExpireTime] = React.useState();
-    const [fundId, setFundID]=React.useState();
-    
+    const [fundId, setFundID] = React.useState();
+
     // const userData=JSON.parse(localStorage.getItem("userData"));
     const search = useLocation().search;
 
@@ -232,9 +244,9 @@ function EditFundraising() {
         const fundid = new URLSearchParams(search).get("id");
         setFundID(fundid);
         fetchDescription(fundid);
-      },[]);
+    }, []);
 
-      const fetchDescription = (fundid) => {
+    const fetchDescription = (fundid) => {
         const description = {
             "fundID": fundid,
         }
@@ -256,51 +268,72 @@ function EditFundraising() {
             setExpireTime(response.data[0].fundExpireTime)
             // setCreatedBy(response.data[0].fundStartedBy)
             // setCurrentAmount(response.data[0].fundCurrentAmount)
-            
+
         })
     };
 
-    const userData=JSON.parse(localStorage.getItem("userData"));
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+//store the already logged user data in userData
+    const userData = JSON.parse(localStorage.getItem("userData"));
     const handleSubmit = (event) => {
-        event.preventDefault(); 
-        
-    const postFundraising={
-        // "create_by":userData.username,
-        // "fundname": fundname,
-        // "funddescription": funddescription,
-        // "image": fundimage,
-        // "goalamount": goalamount,
-        // "startamount": startamount,
-        // "expiredate": expiredate,
-        // "expiretime":expiretime,
-        "fundname": fundname,
-        "fundID":fundId,
-        "funddescription": funddescription,
-        "image": "asdasd.asdasd",
-        "goalamount": goalamount,
-        "expiredate": expiredate,
-        "expiretime":expiretime
-    }
-    axios.post("http://localhost:5000/api/fundraising/editfund",postFundraising,{
-        headers:{
-            "access-control-allow-origin" : "*",
-            "Content-type": "application/json; charset=UTF-8"
-        }
-    }).then((response)=>{
-        console.log(response.data);
-        if(response.data==='success'){
-            setFundname("");
-            setDescription("");
-            setGoalamount("");
-            setStartamount("");
-            setExpireDate("");
-            setImage("");
-            setExpireTime("");
-        }
+        setOpen(false);
+        event.preventDefault();
 
-    }).catch((err)=>{
+        const postFundraising = {
+            // "create_by":userData.username,
+            // "fundname": fundname,
+            // "funddescription": funddescription,
+            // "image": fundimage,
+            // "goalamount": goalamount,
+            // "startamount": startamount,
+            // "expiredate": expiredate,
+            // "expiretime":expiretime,
+            "fundname": fundname,
+            "fundID": fundId,
+            "funddescription": funddescription,
+            "image": "asdasd.asdasd",
+            "goalamount": goalamount,
+            "expiredate": expiredate,
+            "expiretime": expiretime
+        }
+        axios.post("http://localhost:5000/api/fundraising/editfund", postFundraising, {
+            headers: {
+                "access-control-allow-origin": "*",
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then((response) => {
+            console.log(response.data);
+            if (response.data === 'success') {
+                setFundname("");
+                setDescription("");
+                setGoalamount("");
+                setStartamount("");
+                setExpireDate("");
+                setImage("");
+                setExpireTime("");
 
-    })
+                enqueueSnackbar('Successfully Edited the fundraising', {
+                    variant: 'success', anchorOrigin: {
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                    }
+                })
+
+                
+                if (userData.userType === "UNIONST") {
+                    history.push("/ustd/funddashboard/available");
+                }
+            }
+
+        }).catch((err) => {
+
+        })
     }
 
 
@@ -310,15 +343,15 @@ function EditFundraising() {
             <Typography variant="h4" align="center" color="initial">Edit your fundrasing programme</Typography>
             <Divider />
             <Box component="br" />
-            
+
             <Link to="/ustd/funddashboard">
                 <Button variant="contained" className={classes.filterbutton} startIcon={<ArrowBackIosIcon />}>
                     Back to Fundrasing dashboard
                 </Button>
             </Link>
-           
 
-            
+
+
             <Box component="br" />
 
             <Box borderColor="primary.main" {...defaultProps}>
@@ -363,7 +396,7 @@ function EditFundraising() {
                                     <Grid item xs={12} sm={3}>
                                         {/* <label for="input_image"><h6 style="color:black;">Upload an Image</h6></label> */}
                                         <Typography variant="subtitle1" color="primary">Upload an image
-                                            <input id="image" type="file"  value={fundimage} type="image" name="fundimage" />
+                                            <input id="image" type="file" value={fundimage} type="image" name="fundimage" />
                                         </Typography>
                                     </Grid>
 
@@ -452,10 +485,29 @@ function EditFundraising() {
                                         <Box display="flex" justifyContent="flex-end">
 
                                             <Box>
-                                                <Button type="submit" className={classes.filterbutton} variant="contained" color="primary" endIcon={<CheckCircleIcon>send</CheckCircleIcon>}>
+                                                <Button onClick={handleClickOpen} type="submit" className={classes.filterbutton} variant="contained" color="primary" endIcon={<CheckCircleIcon>send</CheckCircleIcon>}>
                                                     Update Fundraising
                                                 </Button>
                                             </Box>
+                                            <Dialog
+                                                open={open}
+                                                onClose={handleClose}
+                                                aria-labelledby="alert-dialog-title"
+                                                aria-describedby="alert-dialog-description"
+                                            >
+                                                <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                                                <DialogContent>
+                                                    <DialogContentText id="alert-dialog-description">Do you want to Edit this fundraising?</DialogContentText>
+                                                </DialogContent>
+                                                <DialogActions>
+                                                    <Button onClick={handleClose} color="primary">
+                                                        No
+                                                    </Button>
+                                                    <Button onClick={handleSubmit} color="primary" autoFocus>
+                                                        Yes
+                                                    </Button>
+                                                </DialogActions>
+                                            </Dialog>
 
 
                                         </Box>

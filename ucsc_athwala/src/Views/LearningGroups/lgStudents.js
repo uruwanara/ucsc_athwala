@@ -29,7 +29,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { useSnackbar } from 'notistack';
 import { useConfirm } from "material-ui-confirm";
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
-
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 
 const useStyles = makeStyles({
     title:{
@@ -55,7 +55,7 @@ const useStyles = makeStyles({
 
     },
     filterbutton: {
-        backgroundColor: "#757de8",
+        backgroundColor: "#3FBF3F",
         color: "#FFFFFF",
         textTransform: "none",
         paddingTop:5,
@@ -120,8 +120,6 @@ export default function MyjobOpp(prope){
         fetchData();
     },[]);
 
-
-
     const fetchData = () => {
         axios.post("http://localhost:5000/api/lgs/viewUsers/"+prope.id, {
         }).then((response) => {
@@ -149,7 +147,9 @@ export default function MyjobOpp(prope){
                         vertical: 'bottom',
                         horizontal: 'right',
                     },
-                });
+                })
+                fetchData();
+
                 console.log("----------- Deactivate");
                 console.log(response.data)
                 // fetchData();
@@ -191,14 +191,22 @@ export default function MyjobOpp(prope){
     return(
         <div>
            <Grid container spacing={0} className={classes.topic}>
-                <Grid item md={4}><Typography variant="h6" className={classes.title}>{prope.id}</Typography>
+                <Grid item md={4}><Typography variant="h6" className={classes.title}>Current Users</Typography>
                 </Grid>
+               <Button
+                   type="submit"
+                   size="large"
+                   className={classes.filterbutton}
+                   startIcon={<AutorenewIcon sx={{ fontSize: 40 }}/>}
+                   onClick={fetchData}
 
+               >Refresh</Button>
 
         </Grid>
 
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="a dense table">
+
                     <TableHead >
                         <Tablecloumn />
                     </TableHead>
