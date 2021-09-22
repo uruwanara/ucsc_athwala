@@ -70,12 +70,13 @@ export default function SignIn() {
     }).then((response)=>{
       console.log(response.data.data.userType);
       console.log(response.data.data.fname)
-      console.log(response.data.status);
+      console.log(response.data.data.status);
       console.log(response.data.data);
+      console.log(response.data);
       localStorage.setItem("userData",JSON.stringify(response.data.data))
 
       if(response.data.status==="success"){
-        if(response.data.alumnistatus==="1"){
+        if(response.data.data.alumnistatus==="1"){
           history.push("/user/changeemail");
         }else{
 
@@ -94,6 +95,13 @@ export default function SignIn() {
         }
       }}else if(response.data.status==="unauthorized") {
         enqueueSnackbar('Please Sign In to your Email and Verify the account', {
+          variant: 'error', anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'right',
+          }
+        })
+      } else if(response.data.status==="faild") {
+        enqueueSnackbar(' Password Incorrect', {
           variant: 'error', anchorOrigin: {
             vertical: 'top',
             horizontal: 'right',

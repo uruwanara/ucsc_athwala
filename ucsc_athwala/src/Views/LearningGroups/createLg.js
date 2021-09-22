@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
-
+import {Link, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -45,7 +45,7 @@ export default function RequestNote() {
     const [lesson, setLesson] = React.useState("");
     const [date, setDate] = React.useState("");
     const [acceptTerm, setacceptTerm] = React.useState(false);
-
+    const history =useHistory();
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(`
@@ -80,6 +80,7 @@ export default function RequestNote() {
                 setacceptTerm(false);
             }
 
+            history.push("/lrngrp")
         }).catch((err)=>{
 
         })

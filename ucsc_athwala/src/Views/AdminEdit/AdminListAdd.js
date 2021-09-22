@@ -463,46 +463,6 @@ export default function MyjobOpp(){
                         </div>
 
             </Grid>
-            //------------------------------------------
-            <Grid item xs={5}>
-                <Typography variant="subtitle2" className={classes.title}>
-                    Donate by uploading notes
-                </Typography>
-                <Button
-                    variant="contained"
-                    component="label"
-                    color="primary"
-                    className={classes.uploadbtn}
-                >
-                    Upload File
-                    <input
-                        type="file"
-                        name="file"
-                        //onChange={onChangeHandler}
-                    />
-                </Button>
-                <br></br>
-                <Button
-                    variant="contained"
-                    component="label"
-                    type="submit"
-                    color="secondary"
-                    className={classes.uploadbtn}
-                    //onClick={uploadFile}
-                >
-                    Upload File
-                </Button>
-                <div>
-                    <Typography variant="subtitle2" className={classes.title}>
-                        Or Provide your details to contact you
-                    </Typography>
-
-                    <ContactForm donationID="" type='note'/>
-
-                </div>
-
-            </Grid>
-            //------------------------------------------
 
         </div>
     );

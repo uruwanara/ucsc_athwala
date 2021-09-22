@@ -1,15 +1,40 @@
 const db = require("../models");
 const connection = require("../dbConnection")
+const nodemailer = require('nodemailer');
 
 
-// in donation table if active column = 1 then donation is active. if active column = 0 then donation is not active.
-// in donation table if status = 0 then donation is Not Received
-// in donation table if status = 1 then donation is Pending
-// in donation table if status = 2 then donation is Received
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'ucscathwala@gmail.com',
+        pass: '2018cs140'
+    }
+});
 
+var mailOptions = {
+    from: 'ucscathwala@gmail.com',
+    to: 'vidarsha.edu@gmail.com',
+    subject: 'Sending Email using Node.js',
+    text: 'That was easy!'
+};
 
 
 exports.create= (req, res) => {
+
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+
+
+
+
+
+
     const created_by = req.body.created_by;
     const title = req.body.title;
     const url = req.body.url;
@@ -131,8 +156,8 @@ exports.rmuser= (req, res) => {
     const lgId = req.body.lgId;
     const uId= req.body.uId;
 
-    connection.query("DELETE FROM lg_users WHERE lgId=?",
-        [lgId],
+    connection.query("DELETE FROM lg_users WHERE lgId=? AND uId=?",
+        [lgId,uId],
         (err, result,fields) => {
             if (err) {
                 res.send(err);
@@ -147,7 +172,7 @@ exports.viewAll = (req, res) => {
 
     const uId = req.body.uId;
     console.log(uId);
-    connection.query("Select learning_groups.lgId,learning_groups.title,learning_groups.url from learning_groups inner join lg_users on lg_users.lgId=learning_groups.lgId where lg_users.uId=?;",
+    connection.query("Select DISTINCT learning_groups.lgId,learning_groups.title,learning_groups.url from learning_groups inner join lg_users on lg_users.lgId=learning_groups.lgId where lg_users.uId=?;",
         [uId],
         (err, result,fields) => {
             if (err) {

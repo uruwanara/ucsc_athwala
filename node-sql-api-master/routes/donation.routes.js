@@ -83,5 +83,8 @@ module.exports = donationRoutes => {
     //get all public donation
     router.get("/publicall",donation.publicall);
 
+    //dlete donation history
+    router.post("/deletedonationhistory",donation.deleteHistory);
+
     donationRoutes.use('/api/donations', router);
 };
