@@ -177,7 +177,7 @@ export default function View_Notecause(){
         "donerid":userData.id
       }
 
-        axios.post("http://localhost:5000/api/fus/upload/"+donationid,formData,{
+        axios.post("http://localhost:5000/api/donationnotefiles/upload/"+donationid,formData,{
             headers:{
                 "access-control-allow-origin" : "*",
                 "Content-type": "application/json; charset=UTF-8"
