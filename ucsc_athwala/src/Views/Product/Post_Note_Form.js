@@ -54,69 +54,139 @@ export default function SignUp() {
   const [image, setImage] = React.useState("");
   const [show_or_hide_details, setacceptTerm] = React.useState(false);
   const {enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const [file,setfile] = React.useState("");
 
   const handleSubmit = (event) => {
-     event.preventDefault(); 
-    console.log(`
-        title: ${title}
-        description: ${description}
-        year: ${year}
-        subject: ${subject}
-        lesson: ${lesson}
-        price: ${price}
-        image: ${image}
-        show_or_hide_details: ${show_or_hide_details}
-    `)
-      const userData=JSON.parse(localStorage.getItem("userData"));
+    const rx_float = /^[+-]?\d*(?:[.,]\d*)?$/;
+
+    if(rx_float.test(price) === false){
+      console.log('im not float');
+      enqueueSnackbar('Please enter valid amount', {
+          variant: 'error', anchorOrigin: {
+            vertical: 'bottom',
+            horizontal: 'center',
+          }
+      });
+      setPrice("");
+  }
+  
+  else if(parseFloat(price) <= 0){
+    enqueueSnackbar('Please enter value for donate', {
+        variant: 'error', anchorOrigin: {
+          vertical: 'bottom',
+          horizontal: 'center',
+        }
+    });
+    setPrice("");
+}
+
+else{
+
       
-      const postProduct={
-          "user_id":userData.id,
-          "title": title,
-          "description": description,
-          "year": year,
-          "subject": subject,
-          "lesson": lesson,
-          "image": image,
-          "price": price,
-          "show_or_hide_details": show_or_hide_details,
-      }
-        axios.post("http://localhost:5000/api/products/sellNote",postProduct,{
-            headers:{
-                "access-control-allow-origin" : "*",
-                "Content-type": "application/json; charset=UTF-8"
-            }
-        }).then((response)=>{
-            console.log(response.data);
-            if(response.data==='success'){
-              setTitle("");
-              setDescription("");
-              setYear("");
-              setLesson("");
-              setSubject("");
-              setPrice("");
-              setImage("");
-              setacceptTerm(!show_or_hide_details);
-            }
+     event.preventDefault(); 
+     console.log(`
+         title: ${title}
+         description: ${description}
+         year: ${year}
+         subject: ${subject}
+         lesson: ${lesson}
+         price: ${price}
+         image: ${image}
+         show_or_hide_details: ${show_or_hide_details}
+     `)
+       const userData=JSON.parse(localStorage.getItem("userData"));
+       
+       const postProduct={
+           "user_id":userData.id,
+           "title": title,
+           "description": description,
+           "year": year,
+           "subject": subject,
+           "lesson": lesson,
+           "image": image,
+           "price": price,
+           "show_or_hide_details": show_or_hide_details,
+       }
+         axios.post("http://localhost:5000/api/products/sellNote",postProduct,{
+             headers:{
+                 "access-control-allow-origin" : "*",
+                 "Content-type": "application/json; charset=UTF-8"
+             }
+         }).then((response)=>{
+          console.log(response.data);
+          console.log(response.data.states);
+          console.log("nnnnnnnnnnnnnnnnn");
+          if(response.data.states ==="success"){
+               setTitle("");
+               setDescription("");
+               setYear("");
+               setLesson("");
+               setSubject("");
+               setPrice("");
+               setImage("");
+               setacceptTerm(!show_or_hide_details);
+               console.log("suuuuuuuu");
+               console.log(response.data.product_id);
+               const product_id = response.data.product_id;
+               //setProductId(response.data.product_id);
+               console.log(product_id);
+               const formData=new FormData();
+               formData.append('file',file)
+               console.log(formData.file);
 
-            enqueueSnackbar('Create Successful', {
-              variant: 'success', anchorOrigin: {
-                vertical: 'bottom',
-                horizontal: 'center',
-              }
-            })
-
-            if(userData.userType === "STUDENT"){
-              history.push("/std/SelectAdPost") ;
-            }
-            else if(userData.userType === "UNIONST" ){
-              history.push("/ustd/SelectAdPost");
-            }
+               axios.post("http://localhost:5000/api/productfiles/upload/"+product_id,formData,{
+                headers:{
+                    "access-control-allow-origin" : "*",
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }).then((response) => {
+                if(response.data.status === 'ok'){
+                    console.log("Sucesss -------------------");
   
-        }).catch((err)=>{
-  
-        })
-  
+                    enqueueSnackbar('Create Successful', {
+                      variant: 'success', anchorOrigin: {
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                      }
+                    })
+          
+                    if(userData.userType === "STUDENT"){
+                      history.push("/std/ViewMyProduct") ;
+                    }
+                    else if(userData.userType === "UNIONST" ){
+                      history.push("/ustd/ViewMyProduct");
+                    }
+                  
     
+                }
+                else{
+                    console.log(response);
+                }
+            }).catch((err1)=>{
+              console.log(err1);
+          })
+
+
+             }
+   
+         }).catch((err)=>{
+   
+         })
+   
+
+
+}
+    
+  
+  }
+
+  const onChangeHandler = (event)=>{
+    console.log(event.target.files[0]);
+   setfile(event.target.files[0]);
+  
+  //  const formData=new FormData()
+  //   formData.append('file',file)
+  console.log(file);
   
   }
 
@@ -241,12 +311,15 @@ export default function SignUp() {
             <Button
                 variant="contained"
                 component="label"
+                //color="primary"
+                className={classes.uploadbtn}
             >
-                Upload File
+              Upload File
                 <input
-                    type="file"
-                    hidden
-                />
+                  type="file"
+                  name="file"
+                  onChange={onChangeHandler}
+               />
             </Button>
             </Grid>
            
