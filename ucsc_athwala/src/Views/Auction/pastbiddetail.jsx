@@ -13,7 +13,7 @@ import {Link, useHistory } from "react-router-dom";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import {Description} from './details';
-import {NoteDoneeDetails} from './detailsmore';
+import {NoteDoneeDetails} from './pbid';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -97,10 +97,10 @@ export default function View_Notecause(){
      const userData=JSON.parse(localStorage.getItem("userData"));
     
     const requestNote={
-        // "studentID":userData.id,
+        "studentID":userData.id,
         "bid": bid,
     }
-      axios.post("http://localhost:5000/api/auction/updatestatus",requestNote,{
+      axios.post("http://localhost:5000/api/auction/bidhistory",requestNote,{
         params: {id:auction_id},
           headers:{
               "access-control-allow-origin" : "*",
@@ -112,11 +112,13 @@ export default function View_Notecause(){
           if(response.data==='success'){
             setBid("");
             if(userData.userType === "STUDENT"){
-              history.push("/std/viewauc")
-              }
-              if(userData.userType === "UNIONST"){
-                  history.push("/ustd/viewauc")
-                  }
+                history.push("/std/viewauc")
+                }
+                if(userData.userType === "UNIONST"){
+                    history.push("/ustd/viewauc")
+                    }
+              
+    
         
           }
 
@@ -149,7 +151,7 @@ export default function View_Notecause(){
                                 <CardContent>
                                     <div>
                                         <Typography variant="h5" className={classes.title}>
-                                        You can stop or Change Time 
+                                        You can Delete This Auction 
                                     </Typography>
                                     <Typography variant="subtitle2" className={classes.title}>
                                         {/* Your bid value should greater than highest bid */}
@@ -174,6 +176,7 @@ export default function View_Notecause(){
                                     {/* <Typography variant="subtitle2" className={classes.title}>
                                        Or You can cotact donee to donate
                                     </Typography> */}
+                                    
                                     <Button
             type="submit"
             // fullWidth
@@ -181,10 +184,10 @@ export default function View_Notecause(){
             color="primary"
             className={classes.submit}
             >
-            Stop Auction
+            Delete Thid Bid History
             
           </Button>
-                                    <div id='button'>
+                                    {/* <div id='button'>
                                     <Button
                                         variant="contained"
                                         color="primary"
@@ -193,7 +196,7 @@ export default function View_Notecause(){
                                         >
                                         Change remaining Days
                                     </Button>
-                                    </div>
+                                    </div> */}
                                     </div>
                                 </CardContent>   
                             </Card>

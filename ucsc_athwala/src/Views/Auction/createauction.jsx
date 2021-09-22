@@ -83,6 +83,7 @@ export default function SignUp() {
             setbaseprice("");
             setDate("");
             setacceptTerm(false);
+            
           }
 
       }).catch((err)=>{

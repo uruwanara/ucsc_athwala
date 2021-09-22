@@ -61,7 +61,7 @@ export default function Side(){
                 </ListItem>
               </Link>
 
-              <Link to = "" className={classes.Nounderline}>
+              <Link to = "/ustd/viewauc" className={classes.Nounderline}>
                 <ListItem button>
                 <ListItemIcon>
                     <GavelIcon className={classes.Listicon}/>

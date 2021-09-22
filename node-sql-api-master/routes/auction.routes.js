@@ -6,6 +6,10 @@ module.exports = donationRoutes => {
     //retrieve all the details of donations
       router.get("/details", auction.details);
 
+      router.get("/mybid", auction.mybid);
+
+      router.get("/bidvalue", auction.getbid);
+
       router.post("/updatestatus", auction.updatestatus);
 
     // //retrieve selected donation details
@@ -17,6 +21,12 @@ module.exports = donationRoutes => {
     // retrive all the my donation requests
     router.get("/myauction", auction.viewMyall);
 
+    router.get("/past", auction.past);
+
+    router.get("/pstbid", auction.pstbid);
+
+    router.get("/pastauction", auction.mypast);
+
     //request note 
     router.post("/createauc",auction.noteRequest);
 
@@ -24,6 +34,10 @@ module.exports = donationRoutes => {
 
     //request cloth 
      router.post("/update",auction.update);
+
+     router.post("/deletehistory",auction.delpast);
+
+     router.post("/bidhistory",auction.bidpast);
 
     // //request device 
     // router.post("/devicerequest",donation.deviceRequest);

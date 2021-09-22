@@ -35,6 +35,7 @@ import AddFundraising from '../Fundraising/AddFundraising';
 import EditFundraising from '../Fundraising/EditFundraising';
 import ByforceEndFundraising from '../Fundraising/ByForceEndFundraising';
 
+import Auction from '../Auction/Auction';
 import MyCause from '../Donation/Donation_MyCauses';
 import Category from '../Donation/RequestCategory';
 import NoteCause from '../Donation/View_Notecause';
@@ -82,6 +83,14 @@ import EditDeviceForm from '../Product/edit_Post_Device_Form';
 import EditNoteForm from '../Product/edit_Post_Note_Form';
 import EditOtherForm from '../Product/edit_Post_Other_Form';
 import ViewQA from '../QA/View_QAform';
+import Myauc from '../Auction/myauc';
+import Mybid from '../Auction/mybid';
+import Crtauc from '../Auction/createauction';
+import Pstauc from '../Auction/pastauc';
+import Aucstop from '../Auction/aucstop';
+import Bid from '../Auction/bid';
+import Pstdetails from '../Auction/pstdetails';
+import Pstbid from '../Auction/pastbiddetail';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -361,7 +370,33 @@ function UStdNavside() {
         </Typography> */}
 
           <Switch>
-
+          <Route path="/ustd/pstbid/:auction_id">
+            <Pstbid />
+          </Route>
+          <Route path="/ustd/pstdetail/:auction_id">
+            <Pstdetails />
+          </Route>
+          <Route path="/ustd/aucstop/:auction_id">
+            <Aucstop />
+          </Route>
+          <Route path="/ustd/bid/:auction_id">
+            <Bid />
+          </Route>
+          <Route path="/ustd/mypstauc" exact>
+            <Pstauc />
+          </Route>
+          <Route path="/ustd/crtauc" exact>
+            <Crtauc />
+          </Route>
+          <Route path="/ustd/mybid" exact>
+            <Mybid />
+          </Route>
+          <Route path="/ustd/myauc" exact>
+            <Myauc />
+          </Route>
+          <Route path="/ustd/viewauc" exact>
+            <Auction />
+          </Route>
             <Route path="/ustd/ustddashboard" exact>
               <UnionStudentDashboard />
             </Route>
