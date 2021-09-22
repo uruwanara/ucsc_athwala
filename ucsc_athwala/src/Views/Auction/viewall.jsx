@@ -14,6 +14,7 @@ import Device from '../../image/device.jpg';
 import Phone from '../../image/phone.jpg';
 import Money from '../../image/money.jpg';
 import Charger from '../../image/charger.jpg';
+import Mobile from '../../image/mobileS.jpg';
 import Note from '../../image/note.jpg';
 import Other from '../../image/other.jpg';
 import TextTruncate from 'react-text-truncate';
@@ -24,6 +25,7 @@ import {RequestButton,MyCauseButton,MyDonationButton,PastButton} from './Donatio
 import GavelIcon from '@material-ui/icons/Gavel';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 
 
@@ -133,25 +135,36 @@ export default function Cases(){
   },[]);
 
   const fetchData = async () => {
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    const stid = userData.id;
         
-    const response = await fetch(`http://localhost:5000/api/auction/viewall`, {
-      method: "GET",
-    });
-    const result = await response.json();
-    console.log(result);
-    SetMap(result);
+    axios.get("http://localhost:5000/api/auction/viewall", {
+    params: {id:stid},
+    }).then((response) => {
+        console.log(response.data);
+        SetMap(response.data);
+        
+    })
   };
-
   
 
   function FormRow (props){
   
     let history = useHistory();
     
-    // var link;
-    // if(props.type == 'note'){
-    //   link = "/std/viewNoteCause_details";
-    // }
+     var imglink;
+     if(props.year == 'First Year'){
+      imglink = Device;
+     }
+     if(props.year == 'Second Year'){
+      imglink = Charger;
+     }
+     if(props.year == 'Third Year'){
+      imglink = Mobile;
+     }
+     if(props.year == 'Fourth Year'){
+      imglink = Note;
+     }
     // else if (props.type == 'cloth'){
     //   link = "/std/viewClothCause_details";
     // }
@@ -182,11 +195,11 @@ export default function Cases(){
         <Card className={classes.root}>
 
           <CardActionArea>
-            <CardMedia
-              component="img"
-              height="100"
-              src= {props.image}
-            />
+          <CardMedia
+                component="img"
+                height="100"
+                src= {imglink}
+              />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 {props.title}
@@ -249,7 +262,7 @@ export default function Cases(){
             <div className={classes.root}>
           <Grid container spacing={6}>
             {mapset.map(student => (  
-                      <FormRow  title={student.title } id={student.auction_id } image={student.image}/> 
+                      <FormRow  title={student.title } year={student.year } id={student.auction_id } image={student.image}/> 
               ))}
                 
           </Grid>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect, useState} from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -20,10 +20,12 @@ import TextTruncate from 'react-text-truncate';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import TextField from '@material-ui/core/TextField';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import {RequestButton,MyCauseButton,MyDonationButton} from './Donation_button';
+import {RequestButton,MyCauseButton,MyDonationButton,PastButton} from './Donation_button';
 import GavelIcon from '@material-ui/icons/Gavel';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import DoneAllIcon from '@material-ui/icons/DoneAll';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import Mobile from '../../image/mobileS.jpg';
 
 
 
@@ -76,24 +78,24 @@ const useStyles = makeStyles((theme) =>({
 
 const students = [  
     {  
-      'id': 1,
-      'title': 'Mobile Phone',   
-       'description': 'i am 2nd year student.I need DSA 2 lecture note' , 
+      //  'id': 1,
+      //  'title': 'Mobile Phone',   
+      //  'description': 'i am 2nd year student.I need DSA 2 lecture note' , 
       'image' :Phone,
     },  
      
-    {  
-      'id': 3,    
-      'title': 'Laptop',   
-       'description': 'I am a first year student. i need mobile phone' ,
-      'image' :Device,   
-    }, 
-    {  
-      'id': 4,    
-      'title': 'Charger',   
-       'description': 'help with money for course fees' , 
-      'image' :Charger, 
-    }, 
+    // {  
+    //   'id': 3,    
+    //   'title': 'Laptop',   
+    //    'description': 'I am a first year student. i need mobile phone' ,
+    //   'image' :Device,   
+    // }, 
+    // {  
+    //   'id': 4,    
+    //   'title': 'Charger',   
+    //    'description': 'help with money for course fees' , 
+    //   'image' :Charger, 
+    // }, 
     // {  
     //   'id': 5,    
     //   'title': 'DSA Lecture note',   
@@ -120,12 +122,47 @@ const students = [
     //   'image' :Cloth,
     // }, 
 ]; 
-
-
 export default function Cases(){
   const classes = useStyles();
 
+  const userData=JSON.parse(localStorage.getItem("userData"));
+
+  const [mapset, SetMap] = useState([]);
+
+  useEffect(() =>{
+    fetchData();
+  },[]);
+
+  const fetchData = async () => {
+    const userData=JSON.parse(localStorage.getItem("userData"));
+    const stid = userData.id;
+        
+    axios.get("http://localhost:5000/api/ars/viewall", {
+    params: {id:stid},
+    }).then((response) => {
+        console.log(response.data);
+        SetMap(response.data);
+        
+    })
+  };
+  
+
   function FormRow (props){
+  
+    let history = useHistory();
+    var imglink;
+    if(props.year == 'First Year'){
+     imglink = Device;
+    }
+    if(props.year == 'Second Year'){
+     imglink = Charger;
+    }
+    if(props.year == 'Third Year'){
+     imglink = Mobile;
+    }
+    if(props.year == 'Fourth Year'){
+     imglink = Note;
+    }
     // var link;
     // if(props.type == 'note'){
     //   link = "/std/viewNoteCause_details";
@@ -142,39 +179,44 @@ export default function Cases(){
     // else if (props.type == 'other'){
     //   link = "/std/viewOtherCause_details";
     // }
+
+    const viewMore=(id)=>{
+      const userData=JSON.parse(localStorage.getItem("userData"));
+      
+        history.push(`/admin/approve/${id}`);
+      
+    }
+    console.log("aaaa");
     return (
       <React.Fragment>
+          
         <Grid item xs={4}>
         <Card className={classes.root}>
 
           <CardActionArea>
-            <CardMedia
-              component="img"
-              height="100"
-              src= {props.image}
-            />
+          <CardMedia
+                component="img"
+                height="100"
+                src= {imglink}
+              />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 {props.title}
               </Typography>
-              
-              <TextTruncate
-                  line={1}
-                  element="span"
-                  truncateText="…"
-                  text={props.description}
-              />
             </CardContent>
           </CardActionArea>
+          
 
           <CardActions className={classes.cardFooter}>
             {/* { <Link to={link}> } */}
+            
             <Button size="small" 
             className={classes.donateButton} 
-            startIcon={<DoneAllIcon />}
-            color='secondary' href="/admin/approve" component={Link}
+            startIcon={<GavelIcon />}
+            color='secondary'
+            onClick={()=>viewMore(props.id)}
             >
-              Approve Now 
+              Bid Now
             </Button>
            {/* { </Link>  } */}
 
@@ -185,22 +227,22 @@ export default function Cases(){
       </React.Fragment>
     );
   }
-
     return(
     <div>
-        <div><Typography variant="h5" className={classes.title}>All Auctions</Typography></div>
+        <div><Typography variant="h5" className={classes.title}>Auctions To Approve</Typography></div>
             <div>
               <div style={{float:"left"}}>
               <Grid container spacing={4}>
                 {/* <RequestButton  />
-                <MyCauseButton /> */}
-                {/* <MyDonationButton /> */}
+                <MyCauseButton />
+                 <MyDonationButton />
+                 {<PastButton />} */}
               </Grid>
               
               </div>
 
               <div className={classes.filterbar}>
-                <Grid container spacing={1} alignItems="flex-end" >
+                {/* <Grid container spacing={1} alignItems="flex-end" >
                   <Grid item>
                   <TextField id="outlined-basic" variant="outlined" size="small" className={classes.textfilter}/>
                   </Grid>
@@ -212,14 +254,14 @@ export default function Cases(){
                           Filter
                         </Button>
                   </Grid>
-                </Grid>
+                </Grid> */}
               </div>
             </div>
               
-        <div className={classes.root}>
+            <div className={classes.root}>
           <Grid container spacing={6}>
-            {students.map(student => (  
-                      <FormRow title={student.title} description={student.description} image={student.image} type={student.type}/> 
+            {mapset.map(student => (  
+                      <FormRow  title={student.title } year={student.year } id={student.auction_id } image={student.image}/> 
               ))}
                 
           </Grid>

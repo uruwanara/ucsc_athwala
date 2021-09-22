@@ -13,8 +13,8 @@ import {Link, useHistory } from "react-router-dom";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import {Description} from './details';
-import {NoteDoneeDetails} from './detailsmore';
-import Charger from '../../image/charger.jpg';
+import {NoteDoneeDetails} from './adminaucdet';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -100,7 +100,7 @@ export default function View_Notecause(){
         // "studentID":userData.id,
         "bid": bid,
     }
-      axios.post("http://localhost:5000/api/auction/updatestatus",requestNote,{
+      axios.post("http://localhost:5000/api/ars/updatestatus",requestNote,{
         params: {id:auction_id},
           headers:{
               "access-control-allow-origin" : "*",
@@ -117,6 +117,9 @@ export default function View_Notecause(){
               if(userData.userType === "UNIONST"){
                   history.push("/ustd/viewauc")
                   }
+                  if(userData.userType === "ADMIN"){
+                    history.push("/admin/admindashboard")
+                    }
         
           }
 
@@ -132,7 +135,7 @@ export default function View_Notecause(){
                                 <CardMedia
                                     component="img"
                                     height="250"
-                                    src= {Charger}
+                                    src= {Note}
                                 />   
                             </Card>
                         </Grid>
@@ -149,7 +152,7 @@ export default function View_Notecause(){
                                 <CardContent>
                                     <div>
                                         <Typography variant="h5" className={classes.title}>
-                                        You can stop or Change Time 
+                                        You can Approve The Auction 
                                     </Typography>
                                     <Typography variant="subtitle2" className={classes.title}>
                                         {/* Your bid value should greater than highest bid */}
@@ -181,19 +184,19 @@ export default function View_Notecause(){
             color="primary"
             className={classes.submit}
             >
-            Stop Auction
+            Approve The Auction
             
           </Button>
-                                    {/* <div id='button'>
-                                    <Button
+                                    <div id='button'>
+                                    {/* <Button
                                         variant="contained"
                                         color="primary"
                                         component="label"
                                         className={classes.contactbtn}
                                         >
                                         Change remaining Days
-                                    </Button>
-                                    </div> */}
+                                    </Button> */}
+                                    </div>
                                     </div>
                                 </CardContent>   
                             </Card>

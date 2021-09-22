@@ -47,7 +47,7 @@ import AskQA from '../QA/Ask_Q_And_A';
 import StdEdit from '../AdminEdit/AdminStudentEdit';
 import PstdEdit from '../AdminEdit/AdminPstdEdit';
 import CounEdit from '../AdminEdit/AdminCounsellorEdit';
-
+import Aucapprove from '../Auction/adminapprove';
 import ViewAdminProductEle from '../Product/Admin_Product_Page_View';
 import ViewAdminProductDetails from '../Product/Admin_View_Product_Details'; 
 import ViewAdminProductDetailsNote from '../Product/Admin_View_Product_Details_note';
@@ -336,6 +336,9 @@ function Navbar() {
           <Switch>
           <Route path="/admin/admindashboard" exact>
             <Dashboard />
+          </Route>
+          <Route path="/admin/approve/:auction_id">
+            <Aucapprove />
           </Route>
           <Route path="/admin/adminauc" exact>
             <Adminauc />

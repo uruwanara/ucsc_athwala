@@ -24,7 +24,7 @@ import {RequestButton,MyCauseButton,MyDonationButton,PastButton} from './Donatio
 import GavelIcon from '@material-ui/icons/Gavel';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import axios from 'axios';
-
+import Mobile from '../../image/mobileS.jpg';
 
 
 
@@ -149,28 +149,19 @@ export default function MyCases(){
     const userData=JSON.parse(localStorage.getItem("userData"));
     var id = props.id;
 
-     var link;
-    // if(props.type == 'note'){
-    //   link = "/std/viewNoteCause_details";
-    // }
-    // else if (props.type == 'cloth'){
-    //   link = "/std/viewClothCause_details";
-    // }
-    // else if (props.type == 'device'){
-    //   link = "/std/viewDeviceCause_details";
-    // }
-    // else if (props.type == 'money'){
-    //   link = "/std/viewMoneyCause_details";
-    // }
-    // else if (props.type == 'other'){
-    //   link = "/std/viewOtherCause_details";
-    // if(userData.userType === "STUDENT"){
-    //   link = "/std/aucstop?id="+id;
-    // }
-    // if(userData.userType === "UNIONST"){
-    //   link = "/std/aucstop?id="+id;
-    // }
-    // }
+    var imglink;
+    if(props.year == 'First Year'){
+     imglink = Device;
+    }
+    if(props.year == 'Second Year'){
+     imglink = Charger;
+    }
+    if(props.year == 'Third Year'){
+     imglink = Mobile;
+    }
+    if(props.year == 'Fourth Year'){
+     imglink = Note;
+    }
     const viewMore=(id)=>{
       if(userData.userType === "STUDENT"){
       history.push(`/std/aucstop/${id}`);
@@ -185,11 +176,11 @@ export default function MyCases(){
         <Card className={classes.root}>
 
           <CardActionArea>
-            <CardMedia
-              component="img"
-              height="100"
-              src= {props.image}
-            />
+          <CardMedia
+                component="img"
+                height="100"
+                src= {imglink}
+              />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 {props.title}
@@ -252,7 +243,7 @@ export default function MyCases(){
         <Grid container spacing={6}>
           
         {mapset.map(student => (  
-                <FormRow title={student.title} id={student.auction_id }/> 
+                <FormRow title={student.title} year={student.year} id={student.auction_id }/> 
         ))}
           
         </Grid>
