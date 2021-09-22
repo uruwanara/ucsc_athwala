@@ -19,6 +19,7 @@
     "multer": "^1.4.3",
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.12",
+    "papaparse": "^5.3.1",
     "random-string": "^0.2.0",
     "sequelize": "^6.6.5"
   }

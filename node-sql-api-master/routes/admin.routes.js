@@ -25,5 +25,9 @@ module.exports = adminRoutes => {
 
     router.post("/usersearch", ars.usersearch);
     router.post("/userfilter", ars.userfilter);
+
+    router.post("/listadd", ars.listadd);
+    router.post("/admin/changeemail",ars.changeemail);
+
     adminRoutes.use('/api/ars', router);
 };

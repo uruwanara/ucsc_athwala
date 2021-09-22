@@ -19,6 +19,9 @@ import PublicDonation from './Views/Donation/Public_DonationPage';
 import ViewPublicDonation from './Views/Donation/View_Public'
 import Nav from './Views/Landing/Navigation';
 
+import ChangeEmail from './Views/EmailChange/EmailVerify'
+
+
 function App() {
     return (
         <div>
@@ -45,13 +48,19 @@ function App() {
                 </Route>
 
                 <Route path="/ucsc_athwala" exact>
-                    <Land /> 
+                    <Land />
                 </Route>
+                 <Route path="/land" exact>
+                     <Land />
+                 </Route>
                 <Route path="/signup" exact>
                     <SignUp />
                 </Route>
                  <Route path="/everify" exact>
                      <Verify/>
+                 </Route>
+                 <Route path="/user/changeemail" exact>
+                     <ChangeEmail/>
                  </Route>
                  <Route path="/test?id=10" exact>
                      <Verify/>

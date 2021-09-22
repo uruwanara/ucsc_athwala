@@ -53,6 +53,7 @@ import ViewAdminProductDetails from '../Product/Admin_View_Product_Details';
 import ViewAdminProductDetailsNote from '../Product/Admin_View_Product_Details_note';
 import ViewAdminProductDetailsOther from '../Product/Admin_View_Product_Details_other';
 import UnionAdd from '../AdminEdit/AdminUnionAdd';
+import AdminListAdd from '../AdminEdit/AdminListAdd';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -383,6 +384,9 @@ function Navbar() {
             </Route>
             <Route path="/admin/addunion" exact>
               <UnionAdd/>
+            </Route>
+            <Route path="/admin/addlist" exact>
+              <AdminListAdd/>
             </Route>
             <Route path="/admin/AdminViewQA" exact>
               <AdminViewQA />

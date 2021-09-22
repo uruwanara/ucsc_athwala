@@ -227,7 +227,42 @@ exports.deactivepstd=(req, res, err) => {
     );
 };
 
+exports.listadd = (req, res) => {
+    for(let i=0;i<req.body.length;i++){
+        const email =req.body[i].email;
+        console.log(email);
+        connection.query("UPDATE users SET alumnistatus=1 where email=?",
+            [email],
+            (err, result,fields) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                    console.log(" ------------------------");
+                }
+            }
+        );
 
+    }
+
+
+
+
+};
+
+exports.changeemail = (req, res) => {
+    const email = req.body.email;
+    const newEmail= req.body.newEmail;
+    connection.query("",
+        [utype],
+        (err, result,fields) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(result);
+            }
+        }
+    );
+};
 
 
 
@@ -257,7 +292,7 @@ exports.userfilter= (req, res) => {
                 if (err) {
                     res.send(err);
                 } else {
-                    console.log("1111111111111")
+                    console.log("Sucsess")
                     res.send(result);
                 }
             }

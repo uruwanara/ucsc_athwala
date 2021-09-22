@@ -38,16 +38,27 @@ exports.login = (req, res) => {
 
                 });
                 return;
-            }if(response.userType=="COUNSELLOR"||response.userType=="ALUMNI"){
-                if(response.status=="notactive"){
+            }if(response.userType=="COUNSELLOR"){
+                if(response.status=="active"){
                     res.status(406).send({
                         status: "notaproved",
-                        message: "Admin Not Approved"
+                        message: "Counsellor Not Approved"
 
                     });
                     return;
                 }
             }
+            if(response.alumnistatus=="1"|| response.alumnistatus==1){
+
+                    res.status(409).send({
+                        status: "notasproved",
+                        message: "Counsellor Not Approved"
+
+                    });
+                    return;
+
+            }
+
             res.status(200).send({
                 status: "success",
                 data: response

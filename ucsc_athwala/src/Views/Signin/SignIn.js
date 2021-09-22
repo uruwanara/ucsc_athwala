@@ -71,9 +71,15 @@ export default function SignIn() {
       console.log(response.data.data.userType);
       console.log(response.data.data.fname)
       console.log(response.data.status);
+      console.log(response.data.data);
       localStorage.setItem("userData",JSON.stringify(response.data.data))
 
       if(response.data.status==="success"){
+        if(response.data.alumnistatus==="1"){
+          history.push("/user/changeemail");
+        }else{
+
+
         if(response.data.data.userType==="STUDENT"){
           console.log("1");
           history.push("/std/stddashboard");
@@ -86,7 +92,7 @@ export default function SignIn() {
         }else if(response.data.data.userType==="ADMIN"){
           history.push("/admin/admindashboard");
         }
-      }else if(response.data.status==="unauthorized") {
+      }}else if(response.data.status==="unauthorized") {
         enqueueSnackbar('Please Sign In to your Email and Verify the account', {
           variant: 'error', anchorOrigin: {
             vertical: 'top',
@@ -105,6 +111,16 @@ export default function SignIn() {
           horizontal: 'right',
         },
       })}
+      if(err.message==="Request failed with status code 409"){
+        enqueueSnackbar("Login Credintials Expired", {
+          variant: 'error',anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'right',
+          },
+        })
+        history.push("/user/changeemail");
+      }
+
       if(err.message==="Request failed with status code 406"){
         enqueueSnackbar("Please Contact Admin for the Account-Approval", {
           variant: 'error',anchorOrigin: {

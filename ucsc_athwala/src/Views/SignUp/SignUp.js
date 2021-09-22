@@ -81,7 +81,7 @@ export default function SignUp() {
                 },
             });
         }
-        else if(!password == conpassword){
+        else if(!(password == conpassword) ){
             enqueueSnackbar('Passwords Not matched', {
                 variant: 'error',anchorOrigin: {
                     vertical: 'top',

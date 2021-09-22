@@ -102,7 +102,7 @@ export default function MyjobOpp(){
         setFilter(event.target.value);
 
     };
-
+    const history = useHistory();
     const handleClose = () => {
         setOpen(false);
     };
@@ -200,7 +200,7 @@ export default function MyjobOpp(){
                         color="success"
                         className={classes.filterbutton1}
                         startIcon={<PersonAddIcon sx={{ fontSize: 40 }}/>}
-                        //onClick={()=>{ history.push("/admin/addunion")}}
+                        onClick={()=>{history.push("/admin/addlist")}}
                     >
                         Add 3rd Year List
                     </Button>
