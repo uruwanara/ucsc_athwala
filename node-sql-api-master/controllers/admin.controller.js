@@ -252,8 +252,8 @@ exports.listadd = (req, res) => {
 exports.changeemail = (req, res) => {
     const email = req.body.email;
     const newEmail= req.body.newEmail;
-    connection.query("",
-        [utype],
+    connection.query("UPDATE users SET email=? where email=?",
+        [newEmail,email],
         (err, result,fields) => {
             if (err) {
                 res.send(err);

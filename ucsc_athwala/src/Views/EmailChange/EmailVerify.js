@@ -72,21 +72,20 @@ export default function SignUp(props) {
             "email": email,
             "newEmail": password
         }
-        axios.post("http://localhost:5000/api/users/create",user,{
+        axios.post("http://localhost:5000/api/ars/changeemail",user,{
             headers:{
                 "access-control-allow-origin" : "*",
                 "Content-type": "application/json; charset=UTF-8"
             }
         }).then((response)=>{
-            console.log(response.data.data.userType);
-            if(response.data.data.userType==="STUDENT"){
-                history.push("/stddashboard");
-
-            }else if (response.data.data.userType==="ALUMNI"){
-                alert("Alumni");
-            }else if (response.data.data.userType==="COUNSELLOR"){
-                alert("Counsellor");
-            }
+            console.log("dddddddddddddddddddddd");
+            enqueueSnackbar('New Email Added!', {
+                variant: 'success', anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right',
+                },
+            });
+            history.push("/login")
         }).catch((err)=>{
 
         })
