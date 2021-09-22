@@ -112,7 +112,7 @@
 
 // export default AddFundraising;
 
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -218,14 +218,14 @@ function AddFundraising() {
 
 
     const [fundname, setFundname] = React.useState("");
-  const [funddescription, setFunddescription] = React.useState("");
-  const [goalamount, setGoalamount] = React.useState("");
-  const [startamount, setStartamount] = React.useState("");
-  const [expiredate, setExpiredate] = React.useState("");
-  const [image, setImage] = React.useState("");
-  const [expiretime, setExpiretime] = React.useState("");
+    const [funddescription, setFunddescription] = React.useState("");
+    const [goalamount, setGoalamount] = React.useState("");
+    const [startamount, setStartamount] = React.useState("");
+    const [expiredate, setExpiredate] = React.useState("");
+    const [image, setImage] = React.useState("");
+    const [expiretime, setExpiretime] = React.useState("");
 
-    const userData=JSON.parse(localStorage.getItem("userData"));
+    const userData = JSON.parse(localStorage.getItem("userData"));
 
 
     const handleClickOpen = () => {
@@ -237,52 +237,52 @@ function AddFundraising() {
 
     const handleSubmit = (event) => {
         setOpen(false);
-        event.preventDefault(); 
-    const postFundraising={
-        "create_by":userData.username,
-        "fundname": fundname,
-        "funddescription": funddescription,
-        "image": image,
-        "goalamount": goalamount,
-        "startamount": startamount,
-        "expiredate": expiredate,
-        "expiretime":expiretime,
-    }
-    axios.post("http://localhost:5000/api/fundraising/create",postFundraising,{
-        headers:{
-            "access-control-allow-origin" : "*",
-            "Content-type": "application/json; charset=UTF-8"
+        event.preventDefault();
+        const postFundraising = {
+            "create_by": userData.username,
+            "fundname": fundname,
+            "funddescription": funddescription,
+            "image": image,
+            "goalamount": goalamount,
+            "startamount": startamount,
+            "expiredate": expiredate,
+            "expiretime": expiretime,
         }
-    }).then((response)=>{
-        console.log(response.data);
-        if(response.data==='success'){
-            setFundname("");
-            setFunddescription("");
-            setGoalamount("");
-            setStartamount("");
-            setExpiredate("");
-            setImage("");
-            setExpiretime("");
+        axios.post("http://localhost:5000/api/fundraising/create", postFundraising, {
+            headers: {
+                "access-control-allow-origin": "*",
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then((response) => {
+            console.log(response.data);
+            if (response.data === 'success') {
+                setFundname("");
+                setFunddescription("");
+                setGoalamount("");
+                setStartamount("");
+                setExpiredate("");
+                setImage("");
+                setExpiretime("");
 
-            enqueueSnackbar('Successfully Ended the fundraising', {
-                variant: 'success', anchorOrigin: {
-                    vertical: 'bottom',
-                    horizontal: 'center',
+                enqueueSnackbar('Successfully Created the new fundraising', {
+                    variant: 'success', anchorOrigin: {
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                    }
+                })
+
+
+                if (userData.userType === "UNIONST") {
+                    history.push("/ustd/funddashboard/available");
                 }
-            })
 
-            
-            if (userData.userType === "UNIONST") {
-                history.push("/ustd/funddashboard/available");
             }
 
-        }
+        }).catch((err) => {
 
-    }).catch((err)=>{
-
-    })
+        })
     }
-    
+
     const defaultProps = {
         bgcolor: 'background.paper',
         m: 1,
@@ -333,7 +333,7 @@ function AddFundraising() {
                                             label="Fundraising Description"
                                             multiline
                                             rows={3}
-                                            name="funddescription"                                       
+                                            name="funddescription"
                                             placeholder="Why/Who organise etc.."
                                             variant="outlined"
                                             fullWidth
@@ -433,24 +433,24 @@ function AddFundraising() {
                                                 </Button>
                                             </Box>
                                             <Dialog
-                                open={open}
-                                onClose={handleClose}
-                                aria-labelledby="alert-dialog-title"
-                                aria-describedby="alert-dialog-description"
-                            >
-                                <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
-                                <DialogContent>
-                                    <DialogContentText id="alert-dialog-description">Do you want to create a new fundraising?</DialogContentText>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={handleClose} color="primary">
-                                        No
-                                    </Button>
-                                    <Button onClick={handleSubmit} color="primary" autoFocus>
-                                        Yes
-                                    </Button>
-                                </DialogActions>
-                            </Dialog>
+                                                open={open}
+                                                onClose={handleClose}
+                                                aria-labelledby="alert-dialog-title"
+                                                aria-describedby="alert-dialog-description"
+                                            >
+                                                <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                                                <DialogContent>
+                                                    <DialogContentText id="alert-dialog-description">Do you want to Create a new fundraising?</DialogContentText>
+                                                </DialogContent>
+                                                <DialogActions>
+                                                    <Button onClick={handleClose} color="primary">
+                                                        No
+                                                    </Button>
+                                                    <Button onClick={handleSubmit} color="primary" autoFocus>
+                                                        Yes
+                                                    </Button>
+                                                </DialogActions>
+                                            </Dialog>
 
 
                                         </Box>

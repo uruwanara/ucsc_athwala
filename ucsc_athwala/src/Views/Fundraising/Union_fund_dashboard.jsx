@@ -67,6 +67,44 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: "#757de8",
         },
     },
+    filterbutton1: {//available fundraising
+        backgroundColor:"#4a148c",
+        color: "#FFFFFF",
+        textTransform: "none",
+
+        border: "none",
+        borderRadius: 20,
+        "&:hover": {
+            color: "#FFFFFF",
+            backgroundColor: "#8e24aa",
+        },
+    },
+    filterbutton2: {//expired fundraising
+        backgroundColor:"#c51162",
+        color: "#FFFFFF",
+        textTransform: "none",
+
+        border: "none",
+        borderRadius: 20,
+        "&:hover": {
+            color: "#FFFFFF",
+            backgroundColor: "#ff4081",
+        },
+    },
+    filterbutton3: {//ended fundraising
+        backgroundColor:"#b71c1c",
+        color: "#FFFFFF",
+        textTransform: "none",
+
+        border: "none",
+        
+        borderRadius: 20,
+        "&:hover": {
+            color: "#FFFFFF",
+            backgroundColor: "#e53935",
+        },
+    },
+
 
 }
 ));
@@ -95,7 +133,7 @@ function Union_Fund_dashboard() {
 
                     <Grid item sm={3}>
                         <Link to="/ustd/funddashboard/available">
-                            <Button variant="contained" className={classes.filterbutton} size="medium" startIcon={<AddCircleOutlineOutlinedIcon />}>
+                            <Button variant="contained" className={classes.filterbutton1} size="medium" startIcon={<AddCircleOutlineOutlinedIcon />}>
                                 Available fundraising
                             </Button>
                         </Link>
@@ -104,14 +142,14 @@ function Union_Fund_dashboard() {
 
                     <Grid item sm={3}>
                         <Link to ="/ustd/funddashboard/expired">
-                            <Button variant="contained" className={classes.filterbutton} size="medium" startIcon={<AddCircleOutlineOutlinedIcon />}>
+                            <Button variant="contained" className={classes.filterbutton2} size="medium" startIcon={<AddCircleOutlineOutlinedIcon />}>
                                 Expired fundraising
                             </Button>
                         </Link>
                     </Grid>
                     <Grid item sm={3}>
                         <Link to="/ustd/funddashboard/ended">
-                            <Button variant="contained" className={classes.filterbutton} size="medium" startIcon={<AddCircleOutlineOutlinedIcon />}>
+                            <Button variant="contained" className={classes.filterbutton3} size="medium" startIcon={<AddCircleOutlineOutlinedIcon />}>
                                 Ended fundraising
                             </Button>
                         </Link>
