@@ -20,8 +20,6 @@ var mailOptions = {
 
 
 exports.create= (req, res) => {
-
-
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
             console.log(error);

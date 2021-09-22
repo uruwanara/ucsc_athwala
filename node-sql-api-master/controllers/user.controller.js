@@ -10,6 +10,8 @@ sendGridMail.setApiKey('SG.JkKDWLNzTt6B8UgAQlKgCA.nxMmVKzvOZr0EFgNU2w6ukf2Vlp9JF
 const axios =require('axios');
 const SHA256 = require("crypto-js/sha256");
 // Create and Save a new user
+const nodemailer = require('nodemailer');
+
 
 exports.create = (req, res) => {
     // Validate request
@@ -54,6 +56,40 @@ exports.create = (req, res) => {
                     subject: 'Vaidate Your Email',
                     html: '<strong>Please click the below link and verify your email.</strong><br><a href="'+validationURL+'">'+validationURL+'</a>',
                 }
+
+                var transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'ucscathwala@gmail.com',
+                        pass: '2018cs140'
+                    }
+                });
+
+                var mailOptions = {
+                    from: 'ucscathwala@gmail.com',
+                    to: req.body.email,
+                    subject: 'Sending Email using Node.js',
+                    text:  "open the below link:            "+validationURL,
+
+                };
+
+                transporter.sendMail(mailOptions, function(error, info){
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        console.log('Email sent: ----- ' + info.response);
+                    }
+                });
+
+
+
+
+
+
+
+
+
+
                 sendGridMail
                     .send(msg)
                     .then(() => {
