@@ -131,6 +131,13 @@ import { Divider } from '@material-ui/core';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { useHistory } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -205,6 +212,10 @@ function AddFundraising() {
         numberformat: '',
     });
 
+    const history = useHistory();
+    const [open, setOpen] = React.useState(false);
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
 
     const [fundname, setFundname] = React.useState("");
   const [funddescription, setFunddescription] = React.useState("");
@@ -216,7 +227,16 @@ function AddFundraising() {
 
     const userData=JSON.parse(localStorage.getItem("userData"));
 
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     const handleSubmit = (event) => {
+        setOpen(false);
         event.preventDefault(); 
     const postFundraising={
         "create_by":userData.username,
@@ -243,6 +263,19 @@ function AddFundraising() {
             setExpiredate("");
             setImage("");
             setExpiretime("");
+
+            enqueueSnackbar('Successfully Ended the fundraising', {
+                variant: 'success', anchorOrigin: {
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }
+            })
+
+            
+            if (userData.userType === "UNIONST") {
+                history.push("/ustd/funddashboard/available");
+            }
+
         }
 
     }).catch((err)=>{
@@ -395,10 +428,29 @@ function AddFundraising() {
                                         <Box display="flex" justifyContent="flex-end">
 
                                             <Box>
-                                                <Button type="submit" className={classes.filterbutton} variant="contained" color="primary" endIcon={<CheckCircleIcon>send</CheckCircleIcon>}>
+                                                <Button onClick={handleClickOpen} className={classes.filterbutton} variant="contained" color="primary" endIcon={<CheckCircleIcon>send</CheckCircleIcon>}>
                                                     Create Fundraising
                                                 </Button>
                                             </Box>
+                                            <Dialog
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText id="alert-dialog-description">Do you want to create a new fundraising?</DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleClose} color="primary">
+                                        No
+                                    </Button>
+                                    <Button onClick={handleSubmit} color="primary" autoFocus>
+                                        Yes
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
 
 
                                         </Box>
