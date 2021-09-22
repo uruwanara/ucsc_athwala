@@ -43,6 +43,10 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
         marginLeft: theme.spacing(0.5),
     },
+    progress: {
+        height: 8,
+        borderRadius: 10
+    },
     controls: {
         display: "flex",
         alignItems: "center",
@@ -162,7 +166,7 @@ function UStudonate_fundraising() {
                             <Box mb={1} mr={1}>
                                 <Typography variant="subtitle1" color="initial">50% completed
                                 </Typography>
-                                <LinearProgress variant="determinate" value={50} />
+                                <LinearProgress variant="determinate" value={50} className={classes.progress}/>
                             </Box>
 
                         </Grid>
