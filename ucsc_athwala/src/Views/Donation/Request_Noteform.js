@@ -203,6 +203,9 @@ export default function RequestNote() {
                 required
                 value={date}
                 id="date"
+                inputProps={{
+                  min:"2021-09-23"
+                }}
                 autoComplete="date"
                 label="Before date"
                 onFocus={(e) => (e.currentTarget.type = "date")}
