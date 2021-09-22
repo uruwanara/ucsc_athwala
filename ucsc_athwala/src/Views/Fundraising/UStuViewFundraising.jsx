@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     },
     media1: {
         height: '100%',
+        marginLeft: theme.spacing(0.5),
     },
     progress: {
         height: 8,
