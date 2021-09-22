@@ -98,7 +98,7 @@ export default function MyjobOpp(prope){
     const [open, setOpen] = React.useState(false);
     const [search,Setsearch] = useState("");
 
-
+    const history =useHistory();
     const userData = JSON.parse(localStorage.getItem("userData"));
     const {enqueueSnackbar, closeSnackbar } = useSnackbar();
 
@@ -214,7 +214,7 @@ export default function MyjobOpp(prope){
                         {mapset.map((row) => (
                             <Tablerow id={row.id} fname={row.fname} lname={row.lname}  email={row.email} />
                         ))}
-                    </TableBody>
+                    file name </TableBody>
                 </Table>
             </TableContainer>
 
