@@ -53,6 +53,9 @@ module.exports = productRoutes => {
   //retrieve Admin all the details of products
   router.get("/viewAdminAllProducts",product.viewAdminAllProducts);
 
+    //retrieve Admin all the details of products
+    router.post("/viewMyDetailsProducts",product.productMyDetails);
+
 
 
 
