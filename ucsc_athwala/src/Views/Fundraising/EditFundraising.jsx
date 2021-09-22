@@ -448,7 +448,10 @@ function EditFundraising() {
                                             name="expiredate"
                                             type="date"
                                             value={expiredate}
-                                            defaultValue="weqwe"
+                                            inputProps={{
+                                                min: "2021-09-23"
+                                              }}
+                                            // defaultValue="weqwe"
                                             // className={classes_time.textField}
                                             // InputLabelProps={{
                                             //     shrink: true,
