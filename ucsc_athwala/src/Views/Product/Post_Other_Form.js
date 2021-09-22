@@ -49,7 +49,7 @@ export default function SignUp() {
   const [show_or_hide_details, setacceptTerm] = React.useState(false);
   const {enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [file,setfile] = React.useState("");
-
+  
   const handleSubmit = (event) => {
 
     const rx_float = /^[+-]?\d*(?:[.,]\d*)?$/;
@@ -230,6 +230,7 @@ else{
               <TextField
                 variant="outlined"
                 required
+                multiline
                 fullWidth
                 id="information"
                 label="Information"

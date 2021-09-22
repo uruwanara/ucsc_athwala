@@ -93,6 +93,7 @@ export default function View_Clothcause(){
     const [open, setOpen] = React.useState(false);
 
     const product_id = new URLSearchParams(search).get("id");
+    var imglink = "http://localhost:5000/product/"+product_id+".jpg";
    
     const userData=JSON.parse(localStorage.getItem("userData"));
     const user_id = userData.id;
@@ -280,7 +281,7 @@ const handleConfirm = (event) => {
                                 <CardMedia
                                     component="img"
                                     height="350"
-                                    src= { Note}
+                                    src= {imglink}
                                 />   
                             </Card>
                         </Grid>
