@@ -62,6 +62,13 @@ module.exports = productRoutes => {
        //Update pay_product table
        router.post("/updateProductTable",product.updateProductTable);
 
+       //Update pay_product table
+       router.post("/searchproduct",product.searchproduct);
+
+       //Update pay_product table
+       router.post("/mysearchproduct",product.mysearchproduct);
+
+
 
 
 

@@ -464,3 +464,33 @@ exports.updateProductTable = (req,res) => {
 };
 
 
+exports.searchproduct = (req, res) => {
+    const message = req.body.search; 
+
+    connection.query("Select * from product where (title "+ "like'%"+ message+"%'"+" or description "+"like'%"+ message+"%'"+" or product_type "+"like'%"+ message+"%')" + " AND is_pay = 0 AND active = 1 AND block = 0;",
+    (err, result,fields) => { 
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    }
+);
+};
+
+exports.mysearchproduct = (req, res) => {
+    const message = req.body.search; 
+    const user_id = req.body.user_id;
+
+    connection.query("Select * from product where (title "+ "like'%"+ message+"%'"+" or description "+"like'%"+ message+"%'"+" or product_type "+"like'%"+ message+"%')" + " AND user_id = ?;",
+    [user_id],
+    (err, result,fields) => { 
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    }
+);
+};
+

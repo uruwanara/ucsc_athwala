@@ -14,6 +14,8 @@ module.exports = faqRoutes => {
 
     //  //retrive all the my Sell product
     // router.get("/viewmyallSellProduct",product.viewMyallSellProduct);
+    //create the details of question and answer
+    router.post("/faqsearch",faq.faqsearch );
 
 
 

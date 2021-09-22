@@ -22,6 +22,7 @@ import Other from '../../image/other.jpg';
 import TextField from '@material-ui/core/TextField';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import axios from "axios";
+import PageviewIcon from '@material-ui/icons/Pageview';
 
 
 const useStyles = makeStyles((theme) =>({
@@ -74,6 +75,24 @@ const useStyles = makeStyles((theme) =>({
         border: "2px solid #757de8",
         float:"right",
         
+      },
+      textfilter:{
+        width: '100%',
+        backgroundColor:"#FFFFFF",
+      },
+    
+      filterbutton: {
+        backgroundColor: "#757de8",
+        color: "#FFFFFF",
+        textTransform: "none",
+        paddingTop:5,
+        border:"none",
+        borderRadius:20,
+        "&:hover": {
+          color: "#FFFFFF",
+          backgroundColor: "#757de8",
+          border: "1px solid #757de8",
+        },
       },
       card: {
 
@@ -167,6 +186,7 @@ export default function ProductViews(){
   const [mapset, SetMap] = useState([]);
   const [filter, setFilter] = React.useState('');
   const [open, setOpen] = React.useState(false);
+  const [search,Setsearch] = useState("");
 
   const handleChange = (event) => {
     setFilter(event.target.value);
@@ -218,6 +238,62 @@ export default function ProductViews(){
       );
     }
 
+  }
+
+  const searchSubmit = (searchtxt) => {
+    Setsearch(searchtxt);
+    console.log(search);
+
+    const searchtext={
+      "search": search,
+      "user_id":userData.id
+  }
+  axios.post("http://localhost:5000/api/products/mysearchproduct",searchtext,{
+          headers:{
+              "access-control-allow-origin" : "*",
+              "Content-type": "application/json; charset=UTF-8"
+            }
+          }).then((response) => {
+              console.log(response.data);
+              SetMap(response.data);
+          });
+  };
+
+  const searchbar = () => {
+    return (
+
+      <Grid container spacing={1} >
+      <Grid item md={10}>
+  
+          <TextField 
+          id="outlined-basic" 
+          variant="outlined" 
+          size="small" 
+          className={classes.textfilter}
+          value={search}
+          placeholder="Search.."
+          onChange={e => Setsearch(e.target.value)}
+          />
+      
+      </Grid>
+      <Grid item md={2}>
+  
+          <Button
+          type="submit"
+          size="large" 
+          className={classes.filterbutton} 
+          startIcon={<PageviewIcon sx={{ fontSize: 40 }}/>}
+          onClick={() => {
+              searchSubmit(search);
+          }}
+          >
+            search
+          </Button>
+      
+      </Grid>
+    </Grid>
+  
+    );
   }
 
 
@@ -320,7 +396,7 @@ export default function ProductViews(){
                         <Typography variant="h5" className={classes.title}>All My Products</Typography>
                     </Grid>
                     <Grid item xs={12} sm={8}>
-                        <SearchBar />
+                      {searchbar()}
                     </Grid>
                     <Grid item xs={12} sm={2}>
                         <div></div>
