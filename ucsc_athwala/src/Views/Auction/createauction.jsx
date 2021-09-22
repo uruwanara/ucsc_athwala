@@ -14,6 +14,10 @@ import GavelIcon from '@material-ui/icons/Gavel';
 import { TextareaAutosize } from '@material-ui/core';
 import './Donation.css';
 import axios from 'axios';
+import InputLabel  from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import {Link, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -33,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  formcontrol:{
+    width:'100%',
+  },
 }));
 
 
@@ -40,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   
   const classes = useStyles();
+  const history = useHistory();
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [year, setYear] = React.useState("");
@@ -83,8 +91,17 @@ export default function SignUp() {
             setbaseprice("");
             setDate("");
             setacceptTerm(false);
-            
+          
+              if(userData.userType === "STUDENT"){
+              history.push("/std/viewauc")
+              }
+              if(userData.userType === "UNIONST"){
+                  history.push("/ustd/viewauc")
+                  }
+          
+  
           }
+          
 
       }).catch((err)=>{
 
@@ -141,18 +158,25 @@ export default function SignUp() {
             </Grid>
             
 
-            <Grid item xs={12}>
-              <TextField
+            <Grid item xs={6}>
+            <FormControl className={classes.formcontrol}>
+            <InputLabel id="gender-user">Year</InputLabel>
+              <Select
                 variant="outlined"
                 required
                 fullWidth
-                id="stdyear"
-                label="Study year"
-                name="stdyear"
+                name="Year"
+                labelId="gender-user"
                 value={year}
-                autoComplete="stdyear"
+                id="year"
+                autoComplete="year"
                 onChange={e => setYear(e.target.value)}
-              />
+              >
+                <option value={'First Year'}>First Year</option>
+                <option value={'Second Year'}>Second Year</option>
+                <option value={'Third Year'}>Third Year</option>
+                <option value={'Fourth Year'}>Fourth Year</option>
+              </Select></FormControl>
             </Grid>
 
             {/* <Grid item xs={6}>
@@ -171,6 +195,7 @@ export default function SignUp() {
 
             <Grid item xs={12}>
               <TextField
+              inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                 variant="outlined"
                 required
                 fullWidth
@@ -185,6 +210,7 @@ export default function SignUp() {
 
             <Grid item xs={12}>
               <TextField
+               inputProps={{min: "2021-09-23"}}
                 variant="outlined"
                 fullWidth
                 name="date"

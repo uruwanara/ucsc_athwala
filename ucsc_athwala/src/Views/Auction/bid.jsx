@@ -14,6 +14,14 @@ import {NoteDoneeDetails} from './detailsmore';
 import {Link, useHistory } from "react-router-dom";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { useSnackbar } from "notistack";
+import Device from '../../image/device.jpg';
+import GavelIcon from '@material-ui/icons/Gavel';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -87,7 +95,8 @@ export default function View_Notecause(){
     const history = useHistory();
   const classes = useStyles();
   const [mapset, SetMap] = useState([]);
-
+  const [open, setOpen] = React.useState(false);
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [bid, setBid] = React.useState("");
 
   const handleSubmit = (event) => {
@@ -99,7 +108,7 @@ export default function View_Notecause(){
      `);
     
      const userData=JSON.parse(localStorage.getItem("userData"));
-    
+     
     const requestNote={
       "studentID":userData.id,
         "bid": bid,
@@ -175,7 +184,7 @@ export default function View_Notecause(){
 //     // if(userData.userType === "UNIONST"){
 //     //   link = "/std/aucstop?id="+id;
 //     // }
- 
+
     return(
         
         <div><form className={classes.form} onSubmit={handleSubmit}>
@@ -186,7 +195,7 @@ export default function View_Notecause(){
                                     component="img"
                                     height="350"
                                     // width="10"
-                                    src= {Note}
+                                    src= {Device}
                                 />   
                             </Card>
                         </Grid>
@@ -211,12 +220,13 @@ export default function View_Notecause(){
                                     </div>
                                     <Grid item xs={12}>
               <TextField
+              inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                 variant="outlined"
                 required
                 fullWidth
-                id="stdyear"
-                label="Study year"
-                name="stdyear"
+                // id="stdyear"
+                // label="Study year"
+                // name="stdyear"
                  value={bid}
                 // autoComplete="stdyear"
                  onChange={e => setBid(e.target.value)}
@@ -228,16 +238,36 @@ export default function View_Notecause(){
                                        Or You can cotact donee to donate
                                     </Typography> */}
                                     
-                                    <Button
+                                    <Button 
             type="submit"
             // fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            startIcon={<GavelIcon />}
             >
-            Submit
+            Bid Now
             
           </Button>
+          {/* <Dialog
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText id="alert-dialog-description">Do you want to end this fundraising?</DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleClose} color="primary">
+                                        No
+                                    </Button>
+                                    <Button onClick={handleConfirm} color="primary" autoFocus>
+                                        Yes
+                                    </Button>
+                                </DialogActions>
+                            </Dialog> */}
                                     </div>
                                     
                                 </CardContent>   

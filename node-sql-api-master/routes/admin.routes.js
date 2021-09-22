@@ -7,7 +7,7 @@ module.exports = adminRoutes => {
     router.post("/viewcoun", ars.viewcoun);
     router.post("/viewstd", ars.viewstd);
     router.post("/viewpstd", ars.viewpstd);
-
+    router.post("/updatestatus", ars.updatestatus);
     router.post("/union/active/:id", ars.activeunion);
     router.post("/union/deactive/:id", ars.deactiveunion);
     router.post("/coun/active/:id", ars.activecoun);
@@ -18,10 +18,10 @@ module.exports = adminRoutes => {
     router.post("/pstd/deactive/:id", ars.deactivepstd);
     router.post("/active/:id", ars.activeuser);
     router.post("/deactive/:id", ars.deactiveuser);
-
+    router.get("/details", ars.details);
     router.post("/unionadd/:id", ars.unionadd);
     router.post("/unionremove/:id", ars.unionremove);
-
+    router.get("/viewall", ars.viewall);
 
     router.post("/usersearch", ars.usersearch);
     router.post("/userfilter", ars.userfilter);

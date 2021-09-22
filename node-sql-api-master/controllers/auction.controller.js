@@ -2,7 +2,9 @@ const db = require("../models");
 const connection = require("../dbConnection")
 
 exports.viewall = (req, res) => {
-    connection.query('Select * from auction where status = 1 ;',
+    const studentID =req.query.id;
+    connection.query('Select * from auction where student_id != ? AND status=1; ;',
+    [studentID],
     (err, result,fields) => {
         if (err) {
             res.send(err);
@@ -79,7 +81,7 @@ exports.viewMyall = (req,res) => {
 
 exports.mypast = (req,res) => {
     const studentID =req.query.id;
-    connection.query( 'Select * from auction where student_id = ? AND status=0;',
+    connection.query( 'Select * from auction where student_id = ? AND status=2;',
     [studentID],
     (err, result,fields) => {
         if (err) {
@@ -181,7 +183,7 @@ exports.update = (req,res) => {
     // const date = req.body.date;
     // const type = 'note';
     console.log(bid,auction_id,student_id)
-    connection.query( "update auction set bid1 = ?,bidder_id=? where auction_id = ? AND bid1 < ?;",
+    connection.query( "update auction set bid1 = ?,bidder_id=? where auction_id = ? and bid1 < ?;",
     [bid,student_id,auction_id,bid],
     (err, result,fields) => {
 
@@ -224,7 +226,7 @@ exports.updatestatus = (req,res) => {
     // const date = req.body.date;
     // const type = 'note';
     
-    connection.query( "update auction set status = 0 where auction_id = ?",
+    connection.query( "update auction set status = 2 where auction_id = ?",
     [auction_id],
     (err, result,fields) => {
 
