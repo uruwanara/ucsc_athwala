@@ -175,6 +175,16 @@ export default function View_Clothcause(){
             });
             setDonateamount("");
         }
+
+        else if(parseFloat(curramount) === parseFloat(amount)){
+            enqueueSnackbar('Donation Goal is achieved. Thank you!!', {
+                variant: 'Success', anchorOrigin: {
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }
+            });
+            setDonateamount("");
+        }
         
         else if(parseFloat(donateamount) <= 0){
             enqueueSnackbar('Please enter value for donate', {
@@ -233,7 +243,8 @@ export default function View_Clothcause(){
         console.log("Payment Done!---------------------------------")
         const details={
             "dId": donationid,
-            "amount":amont
+            "amount":amont,
+            "donerid":0
         }
         axios.post("http://localhost:5000/api/donations/pay",details,{
             headers:{
@@ -426,6 +437,7 @@ export default function View_Clothcause(){
                                                     inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                                                     variant="outlined"
                                                     fullWidth
+                                                    required
                                                     id="d_amount"
                                                     label="amount"
                                                     name="d_amount"
