@@ -158,28 +158,18 @@ else{
         })
         
           }
-
-           
-        
-        
   
         // const donreceive = {
         //   "product_id":product_id,
         //   "type":'device',
         //   "user_id":userData.id
-        // }
-  
-          
+        // }   
 
       }).catch((err)=>{
           console.log(err);
       })
 
-}
-
-
-
-     
+}    
 
 }
 

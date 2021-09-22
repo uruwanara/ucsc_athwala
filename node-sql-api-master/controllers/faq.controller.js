@@ -31,3 +31,17 @@ exports.createQA = (req,res) => {
     }
     );
 };
+
+exports.faqsearch = (req, res) => {
+    const message = req.body.search; 
+    // connection.query("Select * from donations where (title "+ "like'%"+ message+"%'"+" or description "+"like'%"+ message+"%')" + " AND active = 1 and status = 0;",
+    connection.query("Select * from q_and_a where (answer "+ "like'%"+ message+"%'"+" or questions "+"like'%"+ message+"%'"+" or tag "+"like'%"+ message+"%');",
+    (err, result,fields) => { 
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    }
+);
+}
