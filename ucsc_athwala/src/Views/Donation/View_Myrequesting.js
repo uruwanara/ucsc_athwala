@@ -469,15 +469,14 @@ const donationid = new URLSearchParams(search).get("id");
                   </div>                         
               </div>
                   <Button
-
+                      type="submit"
                       size="large"
-                      variant="contained"
                       color="primary"
-                      className={classes.editbutton}
-                      href={"http://localhost:5000/DonationNote/"+donationid+".pdf"}
-                  >
-                      Download file here
-                  </Button>
+                      className={classes.filterbutton}
+                       href={"http://localhost:5000/DonationNote/"+donationid+".pdf"}
+                  >Download File Here</Button>
+
+
                   {/*<Button*/}
                   {/*    type="submit"*/}
                   {/*    size="large"*/}
