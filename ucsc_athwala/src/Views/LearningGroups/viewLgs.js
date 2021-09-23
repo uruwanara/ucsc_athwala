@@ -99,16 +99,27 @@ export default function SignIn() {
                 </div>
 
             </Grid>
+<Grid container xs={12}>
+    <Grid item xs={6}>
+        <ChatUserView id={lgId}/>
+    </Grid>
+    <Grid item xs={6}>
+        <ChatUserAdd id={lgId}/>
+    </Grid>
+</Grid>
 
-            <Grid item xs={6} square>
-                <div className={classes.paper}>
-                    <ChatUserView id={lgId}/>
 
-                </div>
-                <div className={classes.paper}>
-                    <ChatUserAdd id={lgId}/>
-            </div>
-            </Grid>
+
+
+            {/*<Grid item xs={6} square>*/}
+            {/*    <div className={classes.paper}>*/}
+            {/*        <ChatUserView id={lgId}/>*/}
+
+            {/*    </div>*/}
+            {/*    <div className={classes.paper}>*/}
+            {/*        <ChatUserAdd id={lgId}/>*/}
+            {/*</div>*/}
+            {/*</Grid>*/}
 
         </Grid>
     );

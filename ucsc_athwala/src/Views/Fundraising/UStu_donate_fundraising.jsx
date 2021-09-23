@@ -117,6 +117,7 @@ function UStudonate_fundraising() {
         })
     };
 
+    var imglink="http://localhost:5000/Fund/"+Math.floor(Math.random() * 10)+".jpg";
 
     return (
         <React.Fragment>
@@ -144,7 +145,7 @@ function UStudonate_fundraising() {
 
                         <CardMedia
                             className={classes.media1}
-                            image={Vaniwilla}
+                            image={imglink}
                             title="Paella dish"
                         />
 

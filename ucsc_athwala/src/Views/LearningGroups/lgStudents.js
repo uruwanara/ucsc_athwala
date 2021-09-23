@@ -214,7 +214,7 @@ export default function MyjobOpp(prope){
                         {mapset.map((row) => (
                             <Tablerow id={row.id} fname={row.fname} lname={row.lname}  email={row.email} />
                         ))}
-                    file name </TableBody>
+                    </TableBody>
                 </Table>
             </TableContainer>
 
