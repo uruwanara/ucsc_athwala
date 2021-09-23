@@ -6,7 +6,62 @@ const connection = require("../dbConnection")
 // in donation table if status = 0 then donation is Not Received
 // in donation table if status = 1 then donation is Pending
 // in donation table if status = 2 then donation is Received
+exports.details = (req,res) => {
+    console.log("api")
+    const auction_id =req.query.id;
+    console.log(auction_id)
+    connection.query('Select * from auction where auction_id = ? ;',
+    [auction_id],
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    }
+);
+}; 
 
+exports.updatestatus = (req,res) => {
+    // const studentID =req.body.studentID;
+    // const bid = req.body.bid;
+    const auction_id =req.query.id;
+    // const description = req.body.description;
+    // const year = req.body.year;
+    // // const subject = req.body.subject;
+    // const Baseprice = req.body.Baseprice;
+    // const date = req.body.date;
+    // const type = 'note';
+    
+    connection.query( "update auction set status = 1 where auction_id = ?",
+    [auction_id],
+    (err, result,fields) => {
+
+        if (err) {
+            res.send("Invalid");
+        } 
+        else{
+            
+                            res.send("success");
+                       
+                }
+                }
+            );
+};
+
+exports.viewall = (req, res) => {
+    
+    connection.query('Select * from auction where status=0; ;',
+    
+    (err, result,fields) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    }
+);
+}; 
 
 exports.viewunion=(req, res, err) => {
     console.log(req.body)
