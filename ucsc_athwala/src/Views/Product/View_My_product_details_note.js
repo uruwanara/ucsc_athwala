@@ -86,6 +86,7 @@ export default function View_Clothcause(){
     const [year,setYear] = useState();
     const [subject,setSubject] = useState();
     const [p_type,setType] = useState();
+    const [is_pay,setPay] = useState();
     const search = useLocation().search;
     const history = useHistory();
     const [open, setOpen] = React.useState(false);
@@ -125,7 +126,7 @@ export default function View_Clothcause(){
                 setHideDetails(response.data[0].show_or_hide_details);
                 setTitle(response.data[0].title);
                 setType(response.data[0].product_type);
-                
+                setPay(response.data[0].is_pay);
             })
     };
 
@@ -212,6 +213,35 @@ export default function View_Clothcause(){
 
   }
 
+  const tabCPayDetailsButton =() =>{
+
+    if(is_pay === 0){
+      return(
+      <Button   style={{maxWidth: '400px', maxHeight: '40px', minWidth: '400px', minHeight: '40px'}}
+        variant="contained"
+        color="Primary"
+        component="label"
+        className={classes.contactbtn}
+        onClick={()=>{ history.push(editlink)}}
+        >
+        Edit Advertisement
+    </Button>
+    );
+    }else{
+      return(
+      <Button   style={{maxWidth: '400px', maxHeight: '40px', minWidth: '400px', minHeight: '40px'}}
+        variant="contained"
+        color="secondary"
+        component="label"
+        className={classes.contactbtn}
+        >
+        Sucessfully Paid
+      </Button>
+      );
+    }
+
+}
+
 
     return(
         <div>
@@ -251,15 +281,7 @@ export default function View_Clothcause(){
                                 <Grid container spacing={3} alignItems="center" justify="center">
                                    
                                  <Grid item >
-                                  <Button   style={{maxWidth: '400px', maxHeight: '40px', minWidth: '400px', minHeight: '40px'}}
-                                      variant="contained"
-                                      color="Primary"
-                                      component="label"
-                                      className={classes.contactbtn}
-                                      onClick={()=>{ history.push(editlink)}}
-                                      >
-                                      Edit Advertisement
-                                    </Button>
+                                 {tabCPayDetailsButton()}
                                   </Grid> 
                                     
                                     <Grid item > 
