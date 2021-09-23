@@ -161,7 +161,7 @@ export default function My_product_Buy(){
                 
                         <TableCell component="th" scope="row" align="center"><HistoryIcon color="primary" /></TableCell> 
                         <TableCell align="center" className={classes.Tablerow}>{props.description}</TableCell>
-                        <TableCell align="center" className={classes.Tablerow}>{props.id}</TableCell>
+                        <TableCell align="center" className={classes.Tablerow}>{props.type}</TableCell>
                         <TableCell align="center" className={classes.Tablerow}>{props.price}</TableCell>
                         <TableCell align="center" className={classes.Tablerow}>{props.postdate}</TableCell>
                         <TableCell align="center" className={classes.Tablerow}>{props.pay_data}</TableCell>
