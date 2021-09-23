@@ -86,6 +86,7 @@ export default function View_Clothcause(){
     const history = useHistory();
 
     const product_id = new URLSearchParams(search).get("id");
+    var imglink = "http://localhost:5000/product/"+product_id+".jpg";
     const userData=JSON.parse(localStorage.getItem("userData"));
     console.log(userData);
     const email = userData.email;
@@ -245,7 +246,7 @@ export default function View_Clothcause(){
                                 <CardMedia
                                     component="img"
                                     height="350"
-                                    src= { Note}
+                                    src= {imglink}
                                 />   
                             </Card>
                         </Grid>
