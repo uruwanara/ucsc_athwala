@@ -89,7 +89,20 @@ const useStyles = makeStyles((theme) => ({
         textTransform:"none",
         fontFamily:"Poppins, sans-serif",
         margin:10
-      }
+      },
+    filterbutton: {
+        backgroundColor: "#757de8",
+        color: "#FFFFFF",
+        textTransform: "none",
+        paddingTop:5,
+        border:"none",
+        borderRadius:20,
+        "&:hover": {
+            color: "#FFFFFF",
+            backgroundColor: "#757de8",
+            border: "1px solid #757de8",
+        },
+    },
 
   
   }));
@@ -455,17 +468,23 @@ const donationid = new URLSearchParams(search).get("id");
                     <Typography variant="subtitle2" className={classes.labelvalue}>{status}</Typography> 
                   </div>                         
               </div>
-                    <Button
-                        
-                        size="large"
-                        variant="contained"
-                        color="primary"
-                        component="label"
-                        className={classes.editbutton}
-                        href={"http://localhost:5000/DonationNote/"+donationid+".pdf"}
-                        >
-                        Download file here
-                    </Button>
+                  <Button
+
+                      size="large"
+                      variant="contained"
+                      color="primary"
+                      className={classes.editbutton}
+                      href={"http://localhost:5000/DonationNote/"+donationid+".pdf"}
+                  >
+                      Download file here
+                  </Button>
+                  {/*<Button*/}
+                  {/*    type="submit"*/}
+                  {/*    size="large"*/}
+                  {/*    color="primar"*/}
+                  {/*    className={classes.filterbutton}*/}
+                  {/*     href={"http://localhost:5000/DonationNote/"+donationid+".pdf"}*/}
+                  {/*>Download File Here</Button>*/}
             </>
             );
         }
