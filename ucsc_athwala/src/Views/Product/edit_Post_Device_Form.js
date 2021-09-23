@@ -274,10 +274,10 @@ export default function SignUp(props) {
             */}
             <Grid item xs={12}>
           
-            <FormControlLabel
+            {/* <FormControlLabel
                 control={<Checkbox name="acceptTerm" color="primary"  onChange={e => setacceptTerm(true)}/>}
                 label="I Don't need to show my identity to others."
-            />
+            /> */}
             
             </Grid>
           </Grid>
