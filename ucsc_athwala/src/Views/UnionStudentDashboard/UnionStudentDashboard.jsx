@@ -142,6 +142,7 @@ function UnionStudentDashboard() {
         link1 = "/ustd/funddashboard/edit?id=" + id;
         //link for end by force
         link2 = "/ustd/funddashboard/endforce?id=" + id;
+        var imglink="http://localhost:5000/Fund/"+Math.floor(Math.random() * 10)+".jpg";
 
         return (
             <Box my={2}>
@@ -153,7 +154,7 @@ function UnionStudentDashboard() {
 
                             <CardMedia
                                 className={classes.media1}
-                                image={Vaniwilla}
+                                image={imglink}
                                 title="Paella dish"
                             />
 
