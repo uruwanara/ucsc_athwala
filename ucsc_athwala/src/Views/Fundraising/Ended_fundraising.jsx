@@ -213,7 +213,7 @@ function Ended_fundraising() {
                                 <Box>
 
                                     <Typography variant="subtitle2" color="initial">
-                                        Ended Time: {props.expiretime}
+                                        Ended Time of fundraising: {props.expiretime}
                                     </Typography>
 
                                 </Box>
